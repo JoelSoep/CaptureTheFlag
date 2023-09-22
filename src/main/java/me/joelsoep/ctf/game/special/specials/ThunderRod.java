@@ -1,0 +1,63 @@
+package me.joelsoep.ctf.game.special.specials;
+
+import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.util.MM;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LightningStrike;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.Objects;
+
+public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
+
+    public ThunderRod() {
+        super("ThunderRod");
+    }
+
+    @Override
+    public ItemStack setItemStack() {
+        ItemStack item = new ItemStack(Material.BLAZE_ROD, 1);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.addItemFlags(ItemFlag.HIDE_DYE);
+        itemMeta.displayName(MM.deserialize("<gold>Thunder Rod"));
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    @Override
+    @EventHandler
+    public void onUse(PlayerInteractEvent event) {
+        if (!this.isEqual(event, setItemStack())) {
+            return;
+        }
+
+        Player player = event.getPlayer();
+        if (player.getTargetBlockExact(55) == null) {
+            player.sendActionBar(MM.deserialize("<red>Focus on a block to summon lightning!"));
+            return;
+        }
+
+        Location location = Objects.requireNonNull(player.getTargetBlockExact(55)).getLocation();
+        Entity entity = player.getWorld().spawnEntity(location, EntityType.LIGHTNING);
+        if (entity instanceof LightningStrike lightning) {
+            lightning.setCausingPlayer(player);
+        }
+
+        if (event.getItem().getAmount() == 1) {
+            player.getInventory().remove(event.getItem());
+        } else {
+            event.getItem().setAmount(event.getItem().getAmount() - 1);
+        }
+    }
+}

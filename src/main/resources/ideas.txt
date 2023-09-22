@@ -1,0 +1,210 @@
+1. Add custom advancements for players to achieve. (Like playing 10 games, gaining a killstreak of 10, etc);
+2. Add leaderboards of stats. (Most games played etc.) use mongo to save data. DONE
+3. Allow multiple games to be played at once. (This will be difficult ig) will require multiple worlds etc.
+4. Add special items. People could gain them when they have a killstreak of 3 for example. DONE
+5. make hotbar saver
+6. special idea: item that pulls players in a radius
+7. Add daily login streak
+8. add ability system [FUTURE]
+9. add different maps for different team sizes
+10. on the lower platforms: add chests for players to go there that contains goodies
+11. add cosmetics
+12. special idea: whirlpool that sucks the players up for 3 seconds in a radius and then spits them out
+13. add tutorial book
+14. weekly challenges
+15. economy system
+16. WHEN RELEASING: MAKE A FORCE GAMEMODE SO MODS CANT JUST CHEAT
+
+CUSTOM COSMETICS IDEAS:
+- When a player has a flag captured, they can have a custom flag banner pattern
+- Custom kill messages
+- Custom finishers
+
+GLITCHES / BUGS:
+Kits need to be fixed FIXED
+if you die you get into another lobby (multiple plugins messing with each other?) should be FIXED
+not everyone is still in their teams is FIXED ig?
+show win conditions (scoreboard) FIXED
+at the end of the game people can still combat in the lobby FIXED
+playercount isnt accurate. FIXED
+
+you die multiple times, tp when dying FIXED
+you should be able to break blocks FIXED
+You get leggings twice???? FIXED
+note what the target goal is (0/3) FIXED
+give arrows with bow FIXED
+when a player leaves and the games is starting maybe cancel it? FIXED
+
+
+
+on block break it becomes a normal block and thus not placeable etc FIXED
+make it so you cant build on flag FIXED
+BANNER SHOULD HAVE CURSE OF BINDING!!! FIXED
+ARMOR TOOO!!!! NOT NEEDED
+hide the mf block flags FIXED
+handle playerdeathevent when game is not running FIXED
+
+
+[15:03:36 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 148.251.189.120, Port: 25591
+[15:03:36 WARN]: [CTF] Task #260 for CapturetheFlag v1.0 generated an exception
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+        at me.joelsoep.ctf.game.board.ScoreboardHandler.update(ScoreboardHandler.java:51) ~[ctf-1.0.jar:?]
+        at me.joelsoep.ctf.game.board.ScoreboardHandler$1.run(ScoreboardHandler.java:36) ~[ctf-1.0.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.tickChildren(DedicatedServer.java:447) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1397) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:833) ~[?:?]
+[15:03:37 WARN]: [CTF] Task #260 for CapturetheFlag v1.0 generated an exception
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+        at me.joelsoep.ctf.game.board.ScoreboardHandler.update(ScoreboardHandler.java:51) ~[ctf-1.0.jar:?]
+        at me.joelsoep.ctf.game.board.ScoreboardHandler$1.run(ScoreboardHandler.java:36) ~[ctf-1.0.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.tickChildren(DedicatedServer.java:447) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1397) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:833) ~[?:?]
+[15:03:38 WARN]: [CTF] Task #260 for CapturetheFlag v1.0 generated an exception
+
+Heal the user when he dies. FIXED
+Also food. FIXED
+Random item: bound must be positive. FIXED
+Give the player more blocks if he uses them. FIXED
+on flag capture, do not reset crossbow FIXED
+on kit choose > chat FIXED
+
+teammates can shoot each other with arrows FIXED
+blocks can just easily be multiplied FIXED
+spectators die and then spawn in overworld DOES NOT NEED TO BE FIXED
+
+[20:25:18 WARN]: [CTF] Task #322 for CapturetheFlag v1.0 generated an exception
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+        at me.joelsoep.ctf.game.board.ScoreboardHandler.update(ScoreboardHandler.java:51) ~[ctf-1.0.jar:?]
+        at me.joelsoep.ctf.game.board.ScoreboardHandler$1.run(ScoreboardHandler.java:36) ~[ctf-1.0.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.tickChildren(DedicatedServer.java:447) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1397) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:833) ~[?:?]
+
+disable player collision NOT POSSIBLE ATM
+some players do not join a team [MAJOR] FIXED PROBABLY
+
+[15:12:35 ERROR]: Could not pass event PlayerInteractEvent to CapturetheFlag v1.0
+java.lang.NoClassDefFoundError: me/joelsoep/ctf/game/gui/KitSelectionGUI
+        at me.joelsoep.ctf.listener.PlayerInteractListener.onInteract(PlayerInteractListener.java:22) ~[ctf-1.0.jar:?]
+        at com.destroystokyo.paper.event.executor.asm.generated.GeneratedEventExecutor28.execute(Unknown Source) ~[?:?]
+        at org.bukkit.plugin.EventExecutor$2.execute(EventExecutor.java:77) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:81) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:git-Paper-550]
+        at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:70) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at io.papermc.paper.plugin.manager.PaperEventManager.callEvent(PaperEventManager.java:54) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.callEvent(PaperPluginManagerImpl.java:126) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:615) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:564) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:521) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:516) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:511) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:507) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.network.ServerGamePacketListenerImpl.handleUseItem(ServerGamePacketListenerImpl.java:2017) ~[?:?]
+        at net.minecraft.network.protocol.game.ServerboundUseItemPacket.handle(ServerboundUseItemPacket.java:32) ~[?:?]
+        at net.minecraft.network.protocol.game.ServerboundUseItemPacket.a(ServerboundUseItemPacket.java:8) ~[?:?]
+        at net.minecraft.network.protocol.PacketUtils.lambda$ensureRunningOnSameThread$0(PacketUtils.java:51) ~[?:?]
+        at net.minecraft.server.TickTask.run(TickTask.java:18) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:153) ~[?:?]
+        at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:24) ~[?:?]
+        at net.minecraft.server.MinecraftServer.doRunTask(MinecraftServer.java:1342) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.d(MinecraftServer.java:197) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:126) ~[?:?]
+        at net.minecraft.server.MinecraftServer.pollTaskInternal(MinecraftServer.java:1319) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.pollTask(MinecraftServer.java:1312) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.util.thread.BlockableEventLoop.managedBlock(BlockableEventLoop.java:136) ~[?:?]
+        at net.minecraft.server.MinecraftServer.waitUntilNextTick(MinecraftServer.java:1290) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1178) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.ClassNotFoundException: me.joelsoep.ctf.game.gui.KitSelectionGUI
+        ... 30 more
+
+
+
+allow flying on server
+
+SPecial ideas:
+obsidian remover
+obsidian
+rabbit which launches the player DONE
+
+
+[15:34:07 WARN]: [CTF] Task #635 for CapturetheFlag v1.0 generated an exception
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getTeam()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+        at me.joelsoep.ctf.game.kit.BaseKit.giveKitToPlayer(BaseKit.java:82) ~[ctf-1.0.jar:?]
+        at me.joelsoep.ctf.game.kit.KitService.giveKitToPlayer(KitService.java:50) ~[ctf-1.0.jar:?]
+        at me.joelsoep.ctf.game.task.DeathCountdownTask$1.run(DeathCountdownTask.java:36) ~[ctf-1.0.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.tickChildren(DedicatedServer.java:447) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1397) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:833) ~[?:?]
+
+WHEN PEOPLE ARE TELEPORTED TO LOBBY GIVE KIT SELECTOR FIXED
+ON DIE CLEAR EFFECTS FIXED
+fix red team pitch / yaw cuz they look at the wrong side FIXED
+Sometimes when a player gets killed the message aint appearing -->
+make it so when someone joins they get to see the start timer as well FIXED
+players can suffocate by having blocks placed at their spawn FIXED
+
+
+[13:50:23 ERROR]: Could not pass event GameEndEvent to CapturetheFlag v1.0
+java.lang.NoClassDefFoundError: me/joelsoep/ctf/game/task/ResetGameTask
+        at me.joelsoep.ctf.listener.GameEndListener.onEnd(GameEndListener.java:84) ~[ctf-1.0.jar:?]
+        at com.destroystokyo.paper.event.executor.asm.generated.GeneratedEventExecutor50.execute(Unknown Source) ~[?:?]
+        at org.bukkit.plugin.EventExecutor$2.execute(EventExecutor.java:77) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:81) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:git-Paper-550]
+        at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:70) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at io.papermc.paper.plugin.manager.PaperEventManager.callEvent(PaperEventManager.java:54) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.callEvent(PaperPluginManagerImpl.java:126) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:615) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at me.joelsoep.ctf.listener.PlayerMoveListener.onMove(PlayerMoveListener.java:102) ~[ctf-1.0.jar:?]
+        at com.destroystokyo.paper.event.executor.asm.generated.GeneratedEventExecutor41.execute(Unknown Source) ~[?:?]
+        at org.bukkit.plugin.EventExecutor$2.execute(EventExecutor.java:77) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:81) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:git-Paper-550]
+        at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:70) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at io.papermc.paper.plugin.manager.PaperEventManager.callEvent(PaperEventManager.java:54) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.callEvent(PaperPluginManagerImpl.java:126) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:615) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at net.minecraft.server.network.ServerGamePacketListenerImpl.handleMovePlayer(ServerGamePacketListenerImpl.java:1605) ~[?:?]
+        at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.handle(ServerboundMovePlayerPacket.java:29) ~[?:?]
+        at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$PosRot.handle(ServerboundMovePlayerPacket.java:88) ~[?:?]
+        at net.minecraft.network.protocol.PacketUtils.lambda$ensureRunningOnSameThread$0(PacketUtils.java:51) ~[?:?]
+        at net.minecraft.server.TickTask.run(TickTask.java:18) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:153) ~[?:?]
+        at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:24) ~[?:?]
+        at net.minecraft.server.MinecraftServer.doRunTask(MinecraftServer.java:1342) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.d(MinecraftServer.java:197) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:126) ~[?:?]
+        at net.minecraft.server.MinecraftServer.pollTaskInternal(MinecraftServer.java:1319) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.pollTask(MinecraftServer.java:1312) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.util.thread.BlockableEventLoop.managedBlock(BlockableEventLoop.java:136) ~[?:?]
+        at net.minecraft.server.MinecraftServer.waitUntilNextTick(MinecraftServer.java:1290) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1178) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.ClassNotFoundException: me.joelsoep.ctf.game.task.ResetGameTask
+        at org.bukkit.plugin.java.PluginClassLoader.loadClass0(PluginClassLoader.java:183) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at org.bukkit.plugin.java.PluginClassLoader.loadClass(PluginClassLoader.java:150) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?]
+        ... 33 more
+
+        fucking participating menu broken???? <<< game doesnt stop anymore when leaving DOESNT HAPPEN EVERY TIME, IDK WHAT THAT WAS, MAYBE BECAUSE OF PREVIOUS ERROR

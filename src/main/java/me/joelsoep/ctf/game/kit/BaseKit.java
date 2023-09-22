@@ -1,0 +1,149 @@
+package me.joelsoep.ctf.game.kit;
+
+import com.destroystokyo.paper.Namespaced;
+import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.game.team.Team;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Color;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public abstract class BaseKit {
+    protected String name;
+    protected ItemStack[] armor;
+    protected Map<ItemStack, Integer> items; // Map to store items and their enchantments
+    protected Material icon;
+    protected Component styledName;
+    protected ItemStack[] hand;
+
+    public BaseKit(String name, Material icon) {
+        this.name = name;
+        this.icon = icon;
+        this.styledName = Component.text(name);
+        this.armor = new ItemStack[4];
+        this.items = new HashMap<>();
+        this.hand = new ItemStack[1];
+        setArmor();
+        setItems();
+        setHand();
+    }
+
+    public BaseKit(String name, Material icon, Component styledName) {
+        this.name = name;
+        this.icon = icon;
+        this.styledName = styledName;
+        this.armor = new ItemStack[4];
+        this.items = new HashMap<>();
+        this.hand = new ItemStack[1];
+        setArmor();
+        setItems();
+        setHand();
+    }
+
+    public abstract void setArmor();
+
+    public abstract void setItems();
+
+    public abstract void setHand();
+
+    public String getName() {
+        return name;
+    }
+
+    public Material getIcon() {
+        return icon;
+    }
+
+    public Component getStyledName() {
+        return styledName;
+    }
+
+    public Map<ItemStack, Integer> getItems() {
+        return this.items;
+    }
+
+    public void giveKitToPlayer(Player player) {
+        PlayerInventory inventory = player.getInventory();
+        Game game = Main.game;
+        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+
+        if (ctfPlayer == null) {
+            return;
+        }
+
+        Team team = ctfPlayer.getTeam();
+        if (team == null) {
+            return;
+        }
+        // Clear player's inventory before giving the kit
+        inventory.clear();
+
+        // Give the armor pieces
+        for (ItemStack itemStack : armor) {
+            if (itemStack != null) {
+                inventory.setArmorContents(armor);
+            }
+        }
+        Color color = team.equals(game.getBlue()) ? Color.BLUE : Color.RED;
+        inventory.setHelmet(getHelmet(color));
+
+        for (Map.Entry<ItemStack, Integer> entry : items.entrySet()) {
+            ItemStack item = entry.getKey();
+            int slot = entry.getValue();
+            inventory.setItem(slot, item);
+        }
+
+        inventory.addItem(getBlocks(team, 64));
+        if (hand != null && hand[0] != null) {
+            inventory.setItemInOffHand(hand[0]);
+        }
+    }
+
+    public static ItemStack getHelmet(Color color) {
+        ItemStack itemStack = new ItemStack(Material.LEATHER_HELMET);
+        LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
+        meta.setColor(color);
+        itemStack.setItemMeta(meta);
+        return itemStack;
+    }
+
+    public static ItemStack getBlocks(Team team, int amount) {
+        ItemStack itemStack;
+        Material material = switch (team.getTeamColor()) {
+            case RED -> Material.RED_CONCRETE;
+            case BLUE -> Material.BLUE_CONCRETE;
+        };
+
+        itemStack = new ItemStack(material, amount);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<Namespaced> list = new ArrayList<>(Material.values().length);
+        List.of(Material.values()).forEach(value -> list.add(value.getKey()));
+        itemMeta.setPlaceableKeys(list);
+        itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_ATTRIBUTES);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    public ItemStack getDefaultPickaxe() {
+        ItemStack itemStack = new ItemStack(Material.STONE_PICKAXE);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ArrayList<Namespaced> list = new ArrayList<>(List.of(Material.BLUE_CONCRETE.getKey(), Material.RED_CONCRETE.getKey()));
+        itemMeta.setUnbreakable(true);
+        itemMeta.setDestroyableKeys(list);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+}
