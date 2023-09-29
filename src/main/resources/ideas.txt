@@ -1,19 +1,20 @@
-1. Add custom advancements for players to achieve. (Like playing 10 games, gaining a killstreak of 10, etc);
+1. Add custom advancements for players to achieve. (Like playing 10 games, gaining a killstreak of 10, etc); DONE
 2. Add leaderboards of stats. (Most games played etc.) use mongo to save data. DONE
 3. Allow multiple games to be played at once. (This will be difficult ig) will require multiple worlds etc.
 4. Add special items. People could gain them when they have a killstreak of 3 for example. DONE
-5. make hotbar saver
+5. make hotbar saver DONE FINA FUCKING LLY
 6. special idea: item that pulls players in a radius
 7. Add daily login streak
 8. add ability system [FUTURE]
 9. add different maps for different team sizes
-10. on the lower platforms: add chests for players to go there that contains goodies
+10. on the lower platforms: add chests for players to go there that contains goodies DONE
 11. add cosmetics
 12. special idea: whirlpool that sucks the players up for 3 seconds in a radius and then spits them out
 13. add tutorial book
 14. weekly challenges
 15. economy system
 16. WHEN RELEASING: MAKE A FORCE GAMEMODE SO MODS CANT JUST CHEAT
+17. Message broadcaster for lobbies
 
 CUSTOM COSMETICS IDEAS:
 - When a player has a flag captured, they can have a custom flag banner pattern

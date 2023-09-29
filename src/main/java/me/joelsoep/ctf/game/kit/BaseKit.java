@@ -7,8 +7,10 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.team.Team;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -16,15 +18,12 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class BaseKit {
     protected String name;
     protected ItemStack[] armor;
-    protected Map<ItemStack, Integer> items; // Map to store items and their enchantments
+    protected Map<Integer, ItemStack> items; // Map to store items and their enchantments
     protected Material icon;
     protected Component styledName;
     protected ItemStack[] hand;
@@ -71,7 +70,7 @@ public abstract class BaseKit {
         return styledName;
     }
 
-    public Map<ItemStack, Integer> getItems() {
+    public Map<Integer, ItemStack> getItems() {
         return this.items;
     }
 
@@ -100,13 +99,52 @@ public abstract class BaseKit {
         Color color = team.equals(game.getBlue()) ? Color.BLUE : Color.RED;
         inventory.setHelmet(getHelmet(color));
 
-        for (Map.Entry<ItemStack, Integer> entry : items.entrySet()) {
-            ItemStack item = entry.getKey();
-            int slot = entry.getValue();
+        HashMap<Integer, ItemStack> sorted = ctfPlayer.getData().getSortedKits().get(this.getName());
+        HashMap<Integer, ItemStack> finalSorted = sorted;
+        if (sorted == null) {
+            sorted = new HashMap<>(this.items);
+            HashMap<Integer, ItemStack> finalSorted1 = sorted;
+            sorted.forEach((integer, itemStack) -> {
+               if (itemStack == null) {
+                   return;
+               }
+                if (itemStack.getType() == Material.GRAY_CONCRETE) {
+                    finalSorted1.put(integer, getBlocks(team, 64));
+                }
+            });
+            sorted = finalSorted1;
+        } else {
+            sorted.forEach((integer, itemStack) -> {
+                if (itemStack == null) {
+                    return;
+                }
+
+                ArrayList<ItemStack> originalList = new ArrayList<>(this.items.values());
+                if (originalList.stream().noneMatch(item -> item.getType() == itemStack.getType())) {
+                    Bukkit.getLogger().warning("itemStack is null but shouldnt be null @ giveKitToPlayer " + player.getName() + itemStack.getType());
+                    return;
+                }
+
+                Bukkit.getLogger().info("Material: " + itemStack.getType() + " Amount: " + originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
+
+                itemStack.setAmount(originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
+
+                if (itemStack.getType() == Material.GRAY_CONCRETE) {
+                    finalSorted.put(integer, getBlocks(team, 64));
+                }
+            });
+        }
+
+        HashMap<Integer, ItemStack> finalList = finalSorted == null ? sorted : finalSorted;
+        for (Map.Entry<Integer, ItemStack> entry : finalList.entrySet()) {
+            ItemStack item = entry.getValue();
+            int slot = entry.getKey();
             inventory.setItem(slot, item);
         }
 
-        inventory.addItem(getBlocks(team, 64));
+        if (!inventory.contains(getBlocks(team, 64).getType())) {
+            inventory.addItem(getBlocks(team, 64));
+        }
         if (hand != null && hand[0] != null) {
             inventory.setItemInOffHand(hand[0]);
         }

@@ -22,11 +22,12 @@ public class Warrior extends BaseKit {
 
     @Override
     public void setItems() {
-        items.put(new ItemStack(Material.GOLDEN_APPLE, 1), 7);
-        items.put(new ItemStack(Material.IRON_AXE), 0);
-        items.put(getDefaultPickaxe(), 1);
-        items.put(new ItemStack(Material.CROSSBOW), 8);
-        items.put(new ItemStack(Material.ARROW, 5), 6);
+        items.put(7, new ItemStack(Material.GOLDEN_APPLE, 1));
+        items.put(0, new ItemStack(Material.IRON_AXE));
+        items.put(1, getDefaultPickaxe());
+        items.put(2, new ItemStack(Material.GRAY_CONCRETE));
+        items.put(8, new ItemStack(Material.CROSSBOW));
+        items.put(6, new ItemStack(Material.ARROW, 5));
     }
 
     @Override

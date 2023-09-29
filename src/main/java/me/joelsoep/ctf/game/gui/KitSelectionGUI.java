@@ -11,6 +11,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.util.MM;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -65,13 +66,19 @@ public class KitSelectionGUI extends ChestGui implements Listener {
         this.pane.getItems().clear();
         int unused = 7;
 
+        List<Component> lore = List.of(
+                MM.deserialize("<red>Left-Click to Select"),
+                MM.deserialize("<green>Right-Click to Sort / View Kit")
+        );
+
         // Create GUI items for each kit
         for (int i = 0; i < kits.size(); i++) {
             BaseKit kit = kits.get(i);
             ItemStack kitItem = new ItemStack(kit.getIcon());
             ItemMeta kitMeta = kitItem.getItemMeta();
             kitMeta.displayName(kit.getStyledName());
-            kitMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            kitMeta.lore(lore);
+            kitMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES);
             kitItem.setItemMeta(kitMeta);
 
             // If the kit is enabled, make the item glow
@@ -87,7 +94,7 @@ public class KitSelectionGUI extends ChestGui implements Listener {
                     handleKitSelection(player, kit);
                 }
                 if (clickType == ClickType.RIGHT) {
-
+                    new KitSortGUI(player, kit);
                 }
                 event.setCancelled(true);
             });

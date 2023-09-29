@@ -66,6 +66,9 @@ public class PlayerMoveListener implements Listener {
         }
 
         if (game.getState().equals(GameState.READY)) {
+            if (ctfPlayer.getTeam() == null) {
+                return;
+            }
             event.setCancelled(true);
         }
 

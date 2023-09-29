@@ -22,12 +22,13 @@ public class Archer extends BaseKit {
 
     @Override
     public void setItems() {
-        items.put(new ItemStack(Material.GOLDEN_AXE), 0);
-        items.put(new ItemStack(Material.WOODEN_SWORD), 1);
-        items.put(new ItemStack(Material.BOW), 2);
-        items.put(getDefaultPickaxe(), 3);
-        items.put(new ItemStack(Material.ARROW, 32), 7);
-        items.put(new ItemStack(Material.GOLDEN_APPLE), 8);
+        items.put(0, new ItemStack(Material.GOLDEN_AXE));
+        items.put(1, new ItemStack(Material.WOODEN_SWORD));
+        items.put(2, new ItemStack(Material.BOW));
+        items.put(3, getDefaultPickaxe());
+        items.put(4, new ItemStack(Material.GRAY_CONCRETE));
+        items.put(7, new ItemStack(Material.ARROW, 32));
+        items.put(8, new ItemStack(Material.GOLDEN_APPLE));
     }
 
     @Override

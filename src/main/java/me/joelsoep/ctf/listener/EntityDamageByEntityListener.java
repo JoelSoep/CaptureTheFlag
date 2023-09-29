@@ -48,7 +48,6 @@ public class EntityDamageByEntityListener implements Listener {
         }
 
         if (entityDamager instanceof LightningStrike lightning) {
-            Bukkit.getLogger().info("AMOGUS!!!");
             Entity striker = lightning.getCausingEntity();
             if (striker instanceof Player lighter) {
                 Main.entityDamageHandler.setLastDamager(player, lighter, EntityDamageEvent.DamageCause.LIGHTNING);

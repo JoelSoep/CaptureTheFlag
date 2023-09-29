@@ -27,7 +27,7 @@ public class PlayerInteractListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Game game = Main.game;
-        if (!(game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+        if (!(game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_AIR || game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
         Player player = event.getPlayer();

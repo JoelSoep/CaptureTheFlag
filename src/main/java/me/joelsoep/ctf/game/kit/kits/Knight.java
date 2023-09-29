@@ -22,11 +22,12 @@ public class Knight extends BaseKit {
 
     @Override
     public void setItems() {
-        items.put(new ItemStack(Material.IRON_SWORD), 0);
-        items.put(new ItemStack(Material.BOW), 1);
-        items.put(new ItemStack(Material.ARROW, 5), 12);
-        items.put(getDefaultPickaxe(), 2);
-        items.put(new ItemStack(Material.GOLDEN_APPLE, 1), 8);
+        items.put(0, new ItemStack(Material.IRON_SWORD));
+        items.put(1, new ItemStack(Material.BOW));
+        items.put(7, new ItemStack(Material.ARROW, 5));
+        items.put(3, new ItemStack(Material.GRAY_CONCRETE));
+        items.put(2, getDefaultPickaxe());
+        items.put(8, new ItemStack(Material.GOLDEN_APPLE, 1));
     }
 
     @Override

@@ -73,7 +73,7 @@ public final class Main extends JavaPlugin {
         new BackupPlayerDataTask(this);
         this.advancementMain.enableMySQL(
                 "network",
-                "CWLj6GSqK1umJ59s5xS",
+                "admin",
                 "ctf",
                 "23.88.124.188",
                 3306,
