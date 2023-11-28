@@ -1,0 +1,193 @@
+[19:29:29 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:29:29 INFO]: Material: ARROW Amount: 5
+[19:29:32 INFO]: DreamXH » got it
+[19:29:43 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:29:49 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:29:49 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:29:49 INFO]: Material: IRON_AXE Amount: 1
+[19:29:49 INFO]: Material: CROSSBOW Amount: 1
+[19:29:49 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:29:49 INFO]: Material: ARROW Amount: 5
+[19:29:52 INFO]: 到细 Xaibot12 » WHAT
+[19:29:53 INFO]: DreamXH » xd
+[19:29:53 INFO]: Material: IRON_SWORD Amount: 1
+[19:29:53 INFO]: Material: BOW Amount: 1
+[19:29:53 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:29:53 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:29:53 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:29:53 INFO]: Material: ARROW Amount: 5
+[19:29:54 INFO]: 到细 Nickyso » :P
+[19:29:56 INFO]: 到细 Xaibot12 » how did you just hit me
+[19:29:58 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:30:13 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:30:15 INFO]: Material: BOW Amount: 1
+[19:30:15 INFO]: Material: IRON_SWORD Amount: 1
+[19:30:15 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:30:15 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:30:15 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:30:15 INFO]: Material: ARROW Amount: 5
+[19:30:20 INFO]: [org.mongodb.driver.cluster] Exception in monitor thread while connecting to server ac-i45juyq-shard-00-00.bh3mqpu.mongodb.net:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+        at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:410) ~[ctf-1.0.jar:?]
+        at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:385) ~[ctf-1.0.jar:?]
+        at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe$1.run(AbstractNioChannel.java:262) ~[netty-transport-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.PromiseTask.runTask(PromiseTask.java:98) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:153) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:174) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:167) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569) ~[netty-transport-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.87.Final.jar:4.1.87.Final]
+        at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: io.netty.channel.ConnectTimeoutException: connection timed out: ac-i45juyq-shard-00-00.bh3mqpu.mongodb.net/3.211.107.181:27017
+        at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe$1.run(AbstractNioChannel.java:261) ~[netty-transport-4.1.87.Final.jar:4.1.87.Final]
+        ... 10 more
+[19:30:28 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:30:32 INFO]: Material: IRON_SWORD Amount: 1
+[19:30:32 INFO]: Material: BOW Amount: 1
+[19:30:32 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:30:32 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:30:32 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:30:32 INFO]: Material: ARROW Amount: 5
+[19:30:43 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:30:43 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[19:30:58 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:30:58 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:30:58 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:30:58 INFO]: Material: IRON_AXE Amount: 1
+[19:30:58 INFO]: Material: CROSSBOW Amount: 1
+[19:30:58 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:30:58 INFO]: Material: ARROW Amount: 5
+[19:31:08 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:31:08 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:31:08 INFO]: Material: IRON_AXE Amount: 1
+[19:31:08 INFO]: Material: CROSSBOW Amount: 1
+[19:31:08 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:31:08 INFO]: Material: ARROW Amount: 5
+[19:31:13 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:31:17 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:31:17 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:31:17 INFO]: Material: IRON_AXE Amount: 1
+[19:31:17 INFO]: Material: CROSSBOW Amount: 1
+[19:31:17 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:31:17 INFO]: Material: ARROW Amount: 5
+[19:31:18 INFO]: DreamXH » HELP ME
+[19:31:20 INFO]: 到细 Xaibot12 » LOL
+[19:31:28 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:31:37 INFO]: 䋷䋸 Nik_T_ » gg
+[19:31:37 INFO]: 到细 Xaibot12 » W
+[19:31:38 INFO]: 到细 Nickyso » gg
+[19:31:40 INFO]: DreamXH » N O WAY
+[19:31:43 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:31:45 INFO]: 到细 Xaibot12 » LMAO SPAWN KILLING IS POSSIBLE
+[19:31:46 INFO]: Wormpje » Xaibot12 your so annoying
+[19:31:48 INFO]: 到细 Xaibot12 » HAHAHHAa
+[19:31:48 INFO]: mr_Seal lost connection: Disconnected
+[19:31:49 INFO]: [-] mr_Seal left the game.
+[19:31:56 INFO]: world
+[19:31:56 INFO]: CaptureTheFlag
+[19:31:56 INFO]: Verifying game UUID @ ResetGameTask: 6975a4b3-351c-4cc7-a5ab-6910691e42fb
+[19:31:58 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:32:02 INFO]: chmc lost connection: Disconnected
+[19:32:02 INFO]: [-] chmc left the game.
+[19:32:02 INFO]: Wormpje lost connection: Disconnected
+[19:32:02 INFO]: [-] Wormpje left the game.
+[19:32:03 INFO]: 到细 Xaibot12 » ima go archer again
+[19:32:05 INFO]: somboddyunknown lost connection: Disconnected
+[19:32:05 INFO]: [-] somboddyunknown left the game.
+[19:32:06 INFO]: Nickyso lost connection: Disconnected
+[19:32:06 INFO]: [-] Nickyso left the game.
+[19:32:08 INFO]: world
+[19:32:08 INFO]: CaptureTheFlag
+[19:32:08 INFO]: Verifying game UUID @ ResetGameTask: f04646f9-186d-408d-8b48-d4e49aa81040
+[19:32:12 INFO]: Nik_T_ issued server command: /send sprayyzbtw event-3
+[19:32:12 INFO]: Kibb3ling lost connection: Disconnected
+[19:32:12 INFO]: [-] Kibb3ling left the game.
+[19:32:13 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:32:13 INFO]: UUID of player Sprayyzbtw is 2aea945f-ad73-40a9-880c-5cce47a12663
+[19:32:13 INFO]: Sprayyzbtw[/82.44.49.200:46344] logged in with entity id 9083 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[19:32:16 INFO]: 煪䋿 marleyb2221 » evryone left
+[19:32:18 INFO]: wmr31 lost connection: Disconnected
+[19:32:18 INFO]: [-] wmr31 left the game.
+[19:32:24 INFO]: 到细 Xaibot12 » ook pls just gimme nik
+[19:32:28 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:32:30 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:73, serverValue:132573}] to ac-i45juyq-shard-00-00.bh3mqpu.mongodb.net:27017
+[19:32:30 INFO]: [org.mongodb.driver.cluster] Monitor thread successfully connected to server with description ServerDescription{address=ac-i45juyq-shard-00-00.bh3mqpu.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, version=ServerVersion{versionList=[6, 0, 11]}, minWireVersion=0, maxWireVersion=17, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=1754949, setName='atlas-tcxy2z-shard-0', canonicalAddress=ac-i45juyq-shard-00-00.bh3mqpu.mongodb.net:27017, hosts=[ac-i45juyq-shard-00-00.bh3mqpu.mongodb.net:27017, ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017, ac-i45juyq-shard-00-02.bh3mqpu.mongodb.net:27017], passives=[], arbiters=[], primary='ac-i45juyq-shard-00-02.bh3mqpu.mongodb.net:27017', tagSet=TagSet{[Tag{name='availabilityZone', value='use1-az4'}, Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=8, lastWriteDate=Mon Nov 20 19:32:30 UTC 2023, lastUpdateTimeNanos=3617180188365314}
+[19:32:37 INFO]: 煪䋿 Sprayyzbtw » whats teh best kit
+[19:32:40 INFO]: 到细 Xaibot12 » ARCHER
+[19:32:42 INFO]: SECONDS = 0 @ Countdowntask
+[19:32:42 INFO]: Updated game state to READY
+[19:32:42 INFO]: Picked players before team randomization (registered in game):
+[19:32:42 INFO]: DreamXH
+[19:32:42 INFO]: Nik_T_
+[19:32:42 INFO]: Xaibot12
+[19:32:42 INFO]: marleyb2221
+[19:32:42 INFO]: Team red:
+[19:32:42 INFO]: Nik_T_
+[19:32:42 INFO]: marleyb2221
+[19:32:42 INFO]: Team blue:
+[19:32:42 INFO]: DreamXH
+[19:32:42 INFO]: Xaibot12
+[19:32:42 INFO]: ---- DEBUG LOG FOR PLAYER DreamXH | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 6975a4b3-351c-4cc7-a5ab-6910691e42fb
+---- END DEBUG LOG ---
+
+[19:32:42 INFO]: ---- DEBUG LOG FOR PLAYER Nik_T_ | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 6975a4b3-351c-4cc7-a5ab-6910691e42fb
+---- END DEBUG LOG ---
+
+[19:32:42 INFO]: ---- DEBUG LOG FOR PLAYER Xaibot12 | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 6975a4b3-351c-4cc7-a5ab-6910691e42fb
+---- END DEBUG LOG ---
+
+[19:32:42 INFO]: ---- DEBUG LOG FOR PLAYER marleyb2221 | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 6975a4b3-351c-4cc7-a5ab-6910691e42fb
+---- END DEBUG LOG ---
+
+[19:32:42 INFO]: Material: IRON_SWORD Amount: 1
+[19:32:42 INFO]: Material: BOW Amount: 1
+[19:32:42 INFO]: Material: GOLDEN_APPLE Amount: 1
+[19:32:42 INFO]: Material: STONE_PICKAXE Amount: 1
+[19:32:42 INFO]: Material: GRAY_CONCRETE Amount: 1
+[19:32:42 INFO]: Material: ARROW Amount: 5
+[19:32:42 INFO]: GameStartEvent trigger @Countdowntask
+[19:32:42 INFO]: 到细 Xaibot12 » xD
+[19:32:43 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:32:49 INFO]: 煪䋿 marleyb2221 » nooooo
+[19:32:50 INFO]: SECONDS = 0 @ Countdowntask
+[19:32:50 INFO]: Updated game state to RUNNING
+[19:32:52 INFO]: 煪䋿 marleyb2221 » 2v3
+[19:32:57 INFO]: 䋷䋸 Nik_T_ » game broke
+[19:32:57 INFO]: 到细 Xaibot12 » bruh
+[19:32:58 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:32:58 INFO]: DreamXH » Xaibot12 welp
+[19:33:00 INFO]: 到细 Xaibot12 » blocks dont work
+[19:33:03 INFO]: 煪䋿 Sprayyzbtw » hold on why am i not in
+[19:33:10 INFO]: DreamXH » JoelSoep
+[19:33:12 INFO]: DreamXH » bug
+[19:33:13 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:33:28 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:33:43 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:33:52 INFO]: 到细 Xaibot12 » the game is bwoken
+[19:33:58 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:33:58 INFO]: 煪䋿 Sprayyzbtw » uh oh!
+[19:34:13 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:34:21 INFO]: Sprayyzbtw issued server command: /msg nickyso hello
+[19:34:28 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[19:34:30 INFO]: 到细 JoelSoep » sdaffffffffffffffffffffffff
+[19:34:32 INFO]: 到细 JoelSoep » time for logcheck
+[19:34:36 INFO]: 煪䋿 marleyb2221 » sdafffffffffffffffffffffffff
+[19:34:37 INFO]: 煪䋿 Sprayyzbtw » yo no way i have the highest kd

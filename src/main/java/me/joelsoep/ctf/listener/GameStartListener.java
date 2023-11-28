@@ -42,6 +42,7 @@ public class GameStartListener implements Listener {
         Audience blueAudience = blue.getAudience();
 
         game.setState(GameState.READY);
+        Bukkit.getLogger().info("Updated game state to READY");
         game.setStarting(false);
         game.setSpedUp(false);
         TeamService.setTeams(game);
@@ -66,12 +67,12 @@ public class GameStartListener implements Listener {
                 player.getPlayer().displayName(
                         MM.deserialize(
                                 red.getTeamColor().getPrefix())
-                                .append(Component.text(" " + player.getPlayer().getName()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName()))
                 );
                 player.getPlayer().playerListName(
                         MM.deserialize(
                                 red.getTeamColor().getPrefix())
-                                .append(Component.text(" " + player.getPlayer().getName()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName()))
                 );
             });
 
@@ -79,12 +80,12 @@ public class GameStartListener implements Listener {
                 player.getPlayer().displayName(
                         MM.deserialize(
                                         blue.getTeamColor().getPrefix())
-                                .append(Component.text(" " + player.getPlayer().getName()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName()))
                 );
                 player.getPlayer().playerListName(
                         MM.deserialize(
                                         blue.getTeamColor().getPrefix())
-                                .append(Component.text(" " + player.getPlayer().getName()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName()))
                 );
         });
 
@@ -97,6 +98,7 @@ public class GameStartListener implements Listener {
         );
 
         players.forEach(player -> {
+            player.getPlayer().closeInventory();
             if (player.getKit() == null) {
                 player.setKit(Main.kitService.getAllKits().get(0));
             }

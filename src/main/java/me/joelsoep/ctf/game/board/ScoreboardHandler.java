@@ -5,6 +5,7 @@ import me.joelsoep.ctf.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -63,11 +64,12 @@ public class ScoreboardHandler implements Listener {
         }
 
         if (game.getState() == GameState.ENDED) {
+            Team winner = game.getWinner();
             board.updateTitle(MM.deserialize("<green><bold>Capture the Flag"));
             board.updateLines(
                     message(""),
                     message("<gray>The game has ended."),
-                    message("<gray>Team " + game.getWinner().getTeamColor().getPrefix() + "<gray> has won!"),
+                    message(winner == null ? "Tied" : "<gray>Team " + winner.getTeamColor().getPrefix() + " <gray>has won!"),
                     message(""),
                     message("<italic><gold>mcmanhunt.com")
             );

@@ -1,0 +1,622 @@
+[17:02:22 INFO]: Material: IRON_AXE Amount: 1
+[17:02:22 INFO]: Material: STONE_PICKAXE Amount: 1
+[17:02:22 INFO]: Material: GOLDEN_APPLE Amount: 1
+[17:02:22 INFO]: Material: ARROW Amount: 5
+[17:02:22 INFO]: Material: GRAY_CONCRETE Amount: 1
+[17:02:22 INFO]: Material: CROSSBOW Amount: 1
+[17:02:25 INFO]: 到细 Xaibot12 » W
+[17:02:27 INFO]: _DALMUS_ » Please, contribute
+[17:02:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:02:43 INFO]: 到细 Xaibot12 » oh fk 4v3
+[17:02:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:03:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:03:17 INFO]: LIGHTNING
+[17:03:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:03:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:03:35 INFO]: 到细 Xaibot12 » f
+[17:03:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:04:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:04:06 INFO]: _DALMUS_ » HOW
+[17:04:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:04:27 INFO]: 到细 Xaibot12 » SHIELD?
+[17:04:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:04:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:04:50 INFO]: 到细 Xaibot12 » FLAG
+[17:05:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:05:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:05:28 INFO]: 到细 Xaibot12 » oh fk
+[17:05:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:05:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:06:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:06:05 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:06:16 INFO]: 到细 Xaibot12 » RUN
+[17:06:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:06:23 INFO]: 到细 Xaibot12 » oops
+[17:06:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:06:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:06:54 INFO]: _DALMUS_ » NO ONE IS REACTING COME ON
+[17:07:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:07:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:07:28 INFO]: FLEY_ issued server command: /pc how do u want me to react when i have quadrillion ping
+[17:07:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:07:39 INFO]: _DALMUS_ » AndroidMoon9215's cheating
+[17:07:45 INFO]: 到细 Xaibot12 » lol
+[17:07:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:07:52 INFO]: 到细 Xaibot12 » wait how
+[17:08:03 INFO]: _DALMUS_ » WTH EVEN HAPPENED
+[17:08:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:08:07 INFO]: 到细 Xaibot12 » lol
+[17:08:10 INFO]: 到细 Xaibot12 » smash broed
+[17:08:18 INFO]: _DALMUS_ » well I hit him miore and ate a golden apple but he somehow survived
+[17:08:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:08:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:08:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:08:54 INFO]: 到细 Xaibot12 » ggs
+[17:08:55 INFO]: _DALMUS_ » no gg
+[17:09:03 INFO]: FLEY_ issued server command: /pc nah this shit
+[17:09:04 INFO]: 到细 Xaibot12 » i only saw dalmus
+[17:09:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:09:08 INFO]: FLEY_ issued server command: /pc unplayable ping
+[17:09:09 INFO]: FLEY_ issued server command: /p leave
+[17:09:09 INFO]: 到细 Xaibot12 » oh and FLEY_
+[17:09:11 INFO]: _DALMUS_ » I'm leaving actually
+[17:09:11 INFO]: world
+[17:09:11 INFO]: CaptureTheFlag
+[17:09:11 INFO]: Verifying game UUID @ ResetGameTask: e85db304-7dad-495a-80c2-5547327d4a4d
+[17:09:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:09:23 INFO]: 到细 Xaibot12 » FLEY_s kit is broken
+[17:09:29 INFO]: _DALMUS_ » Next time something like that happens, I'm out
+[17:09:29 INFO]: 到细 Xaibot12 » NAH
+[17:09:33 INFO]: 到细 Xaibot12 » dude less arrows
+[17:09:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:09:36 INFO]: 到细 Xaibot12 » if then less
+[17:09:36 INFO]: FLEY_ lost connection: Disconnected
+[17:09:36 INFO]: [-] FLEY_ left the game.
+[17:09:48 INFO]: [LP] LOG > (Console@hardcore) [U] (earlen)
+[17:09:48 INFO]: [LP] LOG > permission settemp dailytokens.default.cooldown.new true 1d server=hardcore
+[17:09:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:09:57 INFO]: Updated game state to READY
+[17:09:57 INFO]: Picked players before team randomization (registered in game):
+[17:09:57 INFO]: JoelSoep
+[17:09:57 INFO]: Xaibot12
+[17:09:57 INFO]: MePlayerOne2018
+[17:09:57 INFO]: TGCAce
+[17:09:57 INFO]: AndroidMoon9215
+[17:09:57 INFO]: _DALMUS_
+[17:09:57 INFO]: Team red:
+[17:09:57 INFO]: Xaibot12
+[17:09:57 INFO]: TGCAce
+[17:09:57 INFO]: _DALMUS_
+[17:09:57 INFO]: Team blue:
+[17:09:57 INFO]: JoelSoep
+[17:09:57 INFO]: MePlayerOne2018
+[17:09:57 INFO]: AndroidMoon9215
+[17:09:57 INFO]: ---- DEBUG LOG FOR PLAYER JoelSoep | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: e85db304-7dad-495a-80c2-5547327d4a4d
+---- END DEBUG LOG ---
+
+[17:09:57 INFO]: ---- DEBUG LOG FOR PLAYER Xaibot12 | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: e85db304-7dad-495a-80c2-5547327d4a4d
+---- END DEBUG LOG ---
+
+[17:09:57 INFO]: ---- DEBUG LOG FOR PLAYER MePlayerOne2018 | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: e85db304-7dad-495a-80c2-5547327d4a4d
+---- END DEBUG LOG ---
+
+[17:09:57 INFO]: ---- DEBUG LOG FOR PLAYER TGCAce | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: e85db304-7dad-495a-80c2-5547327d4a4d
+---- END DEBUG LOG ---
+
+[17:09:57 INFO]: ---- DEBUG LOG FOR PLAYER AndroidMoon9215 | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: e85db304-7dad-495a-80c2-5547327d4a4d
+---- END DEBUG LOG ---
+
+[17:09:57 INFO]: ---- DEBUG LOG FOR PLAYER _DALMUS_ | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: e85db304-7dad-495a-80c2-5547327d4a4d
+---- END DEBUG LOG ---
+
+[17:09:57 INFO]: Material: IRON_AXE Amount: 1
+[17:09:57 INFO]: Material: STONE_PICKAXE Amount: 1
+[17:09:57 INFO]: Material: GOLDEN_APPLE Amount: 1
+[17:09:57 INFO]: Material: ARROW Amount: 5
+[17:09:57 INFO]: Material: GRAY_CONCRETE Amount: 1
+[17:09:57 INFO]: Material: CROSSBOW Amount: 1
+[17:10:01 INFO]: 到细 Xaibot12 » NOO
+[17:10:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:10:06 INFO]: 到细 Xaibot12 » WHYY THIS TEAM
+[17:10:17 INFO]: MePlayerOne2018 issued server command: /pc
+[17:10:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:10:29 INFO]: 到细 MePlayerOne2018 » 2v3 LMAO
+[17:10:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:10:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:11:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:11:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:11:20 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:11:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:11:44 INFO]: [LP] LOG > (Console@hardcore) [U] (r3d3st)
+[17:11:44 INFO]: [LP] LOG > permission settemp dailytokens.default.cooldown.new true 1d server=hardcore
+[17:11:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:12:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:12:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:12:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:12:35 INFO]: 到细 Xaibot12 » BRO
+[17:12:46 INFO]: 到细 MePlayerOne2018 » BRO WATS DIS
+[17:12:48 INFO]: 到细 MePlayerOne2018 » 2v3
+[17:12:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:13:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:13:12 INFO]: [LP] LOG > (Console@hardcore) [U] (Nik_T_)
+[17:13:12 INFO]: [LP] LOG > permission settemp dailytokens.divine.cooldown.new true 1d server=hardcore
+[17:13:15 INFO]: _DALMUS_ » U took a hundred years to die, I doin't think u can complain
+[17:13:18 INFO]: 到细 Xaibot12 » lol
+[17:13:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:13:21 INFO]: 到细 MePlayerOne2018 » no i can
+[17:13:29 INFO]: _DALMUS_ » no
+[17:13:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:13:41 INFO]: 到细 Xaibot12 » GO FROM WEST
+[17:13:43 INFO]: [LP] LOG > (Console@hardcore) [U] (vands21)
+[17:13:43 INFO]: [LP] LOG > permission settemp dailytokens.default.cooldown.new true 1d server=hardcore
+[17:13:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:14:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:14:09 INFO]: 到细 Xaibot12 » ggs
+[17:14:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:14:30 INFO]: 到细 Xaibot12 » f
+[17:14:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:14:36 INFO]: _DALMUS_ » Xaibot12 look
+[17:14:41 INFO]: 到细 Xaibot12 » bro got 1 kill
+[17:14:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:14:50 INFO]: 到细 Xaibot12 » idek what it does
+[17:14:50 INFO]: _DALMUS_ » who?
+[17:14:53 INFO]: 到细 Xaibot12 » but i think it yeets
+[17:15:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:15:16 INFO]: 到细 Xaibot12 » FK
+[17:15:16 INFO]: 到细 MePlayerOne2018 » DUDE
+[17:15:18 INFO]: 到细 Xaibot12 » wtf
+[17:15:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:15:25 INFO]: 到细 Xaibot12 » DUDE I WENT FLYING
+[17:15:28 INFO]: 到细 MePlayerOne2018 » LMAO
+[17:15:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:15:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:16:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:16:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:16:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:16:35 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:16:38 INFO]: 到细 MePlayerOne2018 » HOW IS THIS FAIR
+[17:16:43 INFO]: 到细 Xaibot12 » lol
+[17:16:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:17:02 INFO]: LIGHTNING
+[17:17:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:17:07 INFO]: 到细 MePlayerOne2018 » wat
+[17:17:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:17:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:17:37 INFO]: 到细 Xaibot12 » WHAT
+[17:17:38 INFO]: 到细 MePlayerOne2018 » LOL
+[17:17:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:17:50 INFO]: 到细 MePlayerOne2018 » my kd dying f
+[17:17:51 INFO]: 到细 MePlayerOne2018 » my kd dying fr
+[17:18:05 INFO]: 到细 Xaibot12 » BRO
+[17:18:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:18:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:18:34 INFO]: 到细 Xaibot12 » ughhh
+[17:18:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:18:37 INFO]: 到细 Xaibot12 » rip xd
+[17:18:39 INFO]: 到细 Xaibot12 » kd
+[17:18:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:19:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:19:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:19:31 INFO]: LIGHTNING
+[17:19:33 INFO]: 到细 Xaibot12 » omg thats a hole
+[17:19:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:19:40 INFO]: 到细 MePlayerOne2018 » whats that
+[17:19:42 INFO]: 到细 Xaibot12 » gj
+[17:19:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:20:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:20:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:20:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:20:37 INFO]: 到细 Xaibot12 » lmao
+[17:20:39 INFO]: 到细 Xaibot12 » no bridge?
+[17:20:45 INFO]: [LP] LOG > (Console@hardcore) [U] (_czipsol_)
+[17:20:45 INFO]: [LP] LOG > parent add tier-3 server=hardcore
+[17:20:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:21:00 INFO]: 到细 MePlayerOne2018 » BRO
+[17:21:04 INFO]: 到细 MePlayerOne2018 » this is impossible
+[17:21:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:21:08 INFO]: _DALMUS_ » it's onyl faoir*
+[17:21:18 INFO]: 到细 MePlayerOne2018 » 2v3 = fair
+[17:21:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:21:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:21:46 INFO]: 到细 Xaibot12 » dang
+[17:21:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:21:50 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:22:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:22:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:22:31 INFO]: 到细 MePlayerOne2018 » idk
+[17:22:32 INFO]: 到细 Xaibot12 » no idea
+[17:22:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:22:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:22:55 INFO]: 到细 MePlayerOne2018 » WTF
+[17:23:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:23:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:23:20 INFO]: Material: IRON_AXE Amount: 1
+[17:23:20 INFO]: Material: STONE_PICKAXE Amount: 1
+[17:23:20 INFO]: Material: GOLDEN_APPLE Amount: 1
+[17:23:20 INFO]: Material: ARROW Amount: 5
+[17:23:20 INFO]: Material: GRAY_CONCRETE Amount: 1
+[17:23:20 INFO]: Material: CROSSBOW Amount: 1
+[17:23:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:23:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:24:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:24:07 INFO]: 到细 MePlayerOne2018 » DUDE
+[17:24:10 INFO]: _DALMUS_ » YES
+[17:24:12 INFO]: [LP] LOG > (Console) [U] (unsicherster)
+[17:24:12 INFO]: [LP] LOG > parent add gold
+[17:24:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:24:26 INFO]: 到细 MePlayerOne2018 » so fun
+[17:24:27 INFO]: 到细 MePlayerOne2018 » so fair
+[17:24:34 INFO]: 到细 Xaibot12 » ggs
+[17:24:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:24:37 INFO]: _DALMUS_ » gg
+[17:24:40 INFO]: 到细 Xaibot12 » yeeee 2v3
+[17:24:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:24:52 INFO]: world
+[17:24:52 INFO]: CaptureTheFlag
+[17:24:52 INFO]: Verifying game UUID @ ResetGameTask: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+[17:24:54 INFO]: 到细 Xaibot12 » mirror - useless smash bros - dude wtf
+[17:24:56 INFO]: 到细 MePlayerOne2018 » how do you change to that sword kit
+[17:25:01 INFO]: 到细 MePlayerOne2018 » nvm
+[17:25:02 INFO]: _DALMUS_ » yeah it's so useless
+[17:25:02 INFO]: 到细 Xaibot12 » book
+[17:25:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:25:09 INFO]: 到细 Xaibot12 » what does it do?
+[17:25:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:25:27 INFO]: 到细 Xaibot12 » lol im gone from k/d leaderboard
+[17:25:30 INFO]: 到细 MePlayerOne2018 » pls ace and that dalmus dude on 1 team with joel
+[17:25:30 INFO]: 到细 Xaibot12 » it was 2.2
+[17:25:34 INFO]: 到细 MePlayerOne2018 » i was 3.33
+[17:25:34 INFO]: 到细 Xaibot12 » now its not even 1.5
+[17:25:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:25:37 INFO]: 到细 MePlayerOne2018 » then 2v3 happened
+[17:25:38 INFO]: Updated game state to READY
+[17:25:38 INFO]: Picked players before team randomization (registered in game):
+[17:25:38 INFO]: JoelSoep
+[17:25:38 INFO]: Xaibot12
+[17:25:38 INFO]: MePlayerOne2018
+[17:25:38 INFO]: TGCAce
+[17:25:38 INFO]: AndroidMoon9215
+[17:25:38 INFO]: _DALMUS_
+[17:25:38 INFO]: Team red:
+[17:25:38 INFO]: Xaibot12
+[17:25:38 INFO]: TGCAce
+[17:25:38 INFO]: _DALMUS_
+[17:25:38 INFO]: Team blue:
+[17:25:38 INFO]: JoelSoep
+[17:25:38 INFO]: MePlayerOne2018
+[17:25:38 INFO]: AndroidMoon9215
+[17:25:38 INFO]: ---- DEBUG LOG FOR PLAYER JoelSoep | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+---- END DEBUG LOG ---
+
+[17:25:38 INFO]: ---- DEBUG LOG FOR PLAYER Xaibot12 | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+---- END DEBUG LOG ---
+
+[17:25:38 INFO]: ---- DEBUG LOG FOR PLAYER MePlayerOne2018 | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+---- END DEBUG LOG ---
+
+[17:25:38 INFO]: ---- DEBUG LOG FOR PLAYER TGCAce | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+---- END DEBUG LOG ---
+
+[17:25:38 INFO]: ---- DEBUG LOG FOR PLAYER AndroidMoon9215 | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+---- END DEBUG LOG ---
+
+[17:25:38 INFO]: ---- DEBUG LOG FOR PLAYER _DALMUS_ | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 029de26f-0bea-47d3-8570-f6ec5730b5cc
+---- END DEBUG LOG ---
+
+[17:25:38 INFO]: Material: IRON_AXE Amount: 1
+[17:25:38 INFO]: Material: STONE_PICKAXE Amount: 1
+[17:25:38 INFO]: Material: GOLDEN_APPLE Amount: 1
+[17:25:38 INFO]: Material: ARROW Amount: 5
+[17:25:38 INFO]: Material: GRAY_CONCRETE Amount: 1
+[17:25:38 INFO]: Material: CROSSBOW Amount: 1
+[17:25:44 INFO]: 到细 MePlayerOne2018 » not again
+[17:25:45 INFO]: _DALMUS_ » lets go guys
+[17:25:46 INFO]: 到细 MePlayerOne2018 » BRO
+[17:25:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:26:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:26:08 INFO]: 到细 Xaibot12 » nooo
+[17:26:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:26:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:26:44 INFO]: 到细 Xaibot12 » what
+[17:26:47 INFO]: 到细 Xaibot12 » this is dumb
+[17:26:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:27:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:27:05 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:27:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:27:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:27:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:28:00 INFO]: 到细 MePlayerOne2018 » this is so dumb
+[17:28:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:28:05 INFO]: 到细 Xaibot12 » dude shield vs shield
+[17:28:10 INFO]: 到细 MePlayerOne2018 » ye lmao
+[17:28:10 INFO]: 到细 Xaibot12 » that cant be like that
+[17:28:13 INFO]: LIGHTNING
+[17:28:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:28:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:28:45 INFO]: 到细 Xaibot12 » NO
+[17:28:46 INFO]: 到细 Xaibot12 » WHAT
+[17:28:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:29:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:29:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:29:30 INFO]: 到细 MePlayerOne2018 » lmao
+[17:29:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:29:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:29:52 INFO]: LIGHTNING
+[17:29:55 INFO]: 到细 MePlayerOne2018 » ghost block LOL
+[17:30:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:30:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:30:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:30:46 INFO]: 到细 Xaibot12 » huh
+[17:30:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:30:51 INFO]: 到细 Xaibot12 » where tf did you come from
+[17:31:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:31:14 INFO]: 到细 Xaibot12 » bro
+[17:31:18 INFO]: 到细 MePlayerOne2018 » go
+[17:31:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:31:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:31:45 INFO]: _DALMUS_ » Hopw do we use the crystal???
+[17:31:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:32:00 INFO]: 到细 Xaibot12 » NOOO
+[17:32:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:32:05 INFO]: 到细 Xaibot12 » 2 smash bros
+[17:32:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:32:20 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:32:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:32:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:33:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:33:08 INFO]: 到细 MePlayerOne2018 » LOL
+[17:33:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:33:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:33:38 INFO]: 到细 MePlayerOne2018 » go go go
+[17:33:45 INFO]: 到细 Xaibot12 » DUDE
+[17:33:46 INFO]: 到细 MePlayerOne2018 » YES
+[17:33:47 INFO]: 到细 Xaibot12 » ARE YOU KIDDING
+[17:33:49 INFO]: 到细 Xaibot12 » TEAM?
+[17:33:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:33:51 INFO]: 到细 MePlayerOne2018 » AndroidMoon9215 MY HERO
+[17:33:52 INFO]: _DALMUS_ » It doesn't even make sense LMAO
+[17:33:53 INFO]: TGCAce lost connection: Disconnected
+[17:33:53 INFO]: [-] TGCAce left the game.
+[17:34:03 INFO]: 到细 Xaibot12 » tgcace went afk i think
+[17:34:03 INFO]: world
+[17:34:03 INFO]: CaptureTheFlag
+[17:34:03 INFO]: Verifying game UUID @ ResetGameTask: 7d530033-81f3-4ae7-b4d0-1317ebfd81ce
+[17:34:03 INFO]: 到细 MePlayerOne2018 » the 2v3 clutch
+[17:34:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:34:08 INFO]: 到细 MePlayerOne2018 » Xaibot12 nop
+[17:34:13 INFO]: world
+[17:34:13 INFO]: CaptureTheFlag
+[17:34:13 INFO]: Verifying game UUID @ ResetGameTask: 643aceac-23db-4010-9db0-9f7e0fcc6d72
+[17:34:13 INFO]: 到细 MePlayerOne2018 » my kd is gone
+[17:34:16 INFO]: 到细 MePlayerOne2018 » but well
+[17:34:16 INFO]: 到细 Xaibot12 » where tf were they
+[17:34:18 INFO]: _DALMUS_ » WGuys, how do we use the crystals?
+[17:34:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:34:25 INFO]: 到细 Xaibot12 » idk
+[17:34:27 INFO]: 到细 MePlayerOne2018 » i wish back my 3.3 kd
+[17:34:29 INFO]: _DALMUS_ » Okay
+[17:34:32 INFO]: AndroidMoon9215 lost connection: Disconnected
+[17:34:32 INFO]: [-] AndroidMoon9215 left the game.
+[17:34:33 INFO]: _DALMUS_ » great
+[17:34:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:34:36 INFO]: 到细 Xaibot12 » f
+[17:34:40 INFO]: 到细 MePlayerOne2018 » im boutta 1v2 fr
+[17:34:42 INFO]: 到细 Xaibot12 » me and MePlayerOne2018 pls
+[17:34:49 INFO]: Updated game state to READY
+[17:34:49 INFO]: Picked players before team randomization (registered in game):
+[17:34:49 INFO]: JoelSoep
+[17:34:49 INFO]: Xaibot12
+[17:34:49 INFO]: MePlayerOne2018
+[17:34:49 INFO]: _DALMUS_
+[17:34:49 INFO]: Team red:
+[17:34:49 INFO]: Xaibot12
+[17:34:49 INFO]: _DALMUS_
+[17:34:49 INFO]: Team blue:
+[17:34:49 INFO]: JoelSoep
+[17:34:49 INFO]: MePlayerOne2018
+[17:34:49 INFO]: ---- DEBUG LOG FOR PLAYER JoelSoep | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 7d530033-81f3-4ae7-b4d0-1317ebfd81ce
+---- END DEBUG LOG ---
+
+[17:34:49 INFO]: ---- DEBUG LOG FOR PLAYER Xaibot12 | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 7d530033-81f3-4ae7-b4d0-1317ebfd81ce
+---- END DEBUG LOG ---
+
+[17:34:49 INFO]: ---- DEBUG LOG FOR PLAYER MePlayerOne2018 | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: 7d530033-81f3-4ae7-b4d0-1317ebfd81ce
+---- END DEBUG LOG ---
+
+[17:34:49 INFO]: ---- DEBUG LOG FOR PLAYER _DALMUS_ | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: 7d530033-81f3-4ae7-b4d0-1317ebfd81ce
+---- END DEBUG LOG ---
+
+[17:34:49 INFO]: Material: IRON_AXE Amount: 1
+[17:34:49 INFO]: Material: STONE_PICKAXE Amount: 1
+[17:34:49 INFO]: Material: GOLDEN_APPLE Amount: 1
+[17:34:49 INFO]: Material: ARROW Amount: 5
+[17:34:49 INFO]: Material: GRAY_CONCRETE Amount: 1
+[17:34:49 INFO]: Material: CROSSBOW Amount: 1
+[17:34:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:34:50 INFO]: 到细 Xaibot12 » oh ace gone
+[17:34:55 INFO]: 到细 MePlayerOne2018 » Xaibot12 first round teams were goated
+[17:35:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:35:07 INFO]: 到细 Xaibot12 » cant place blocks?
+[17:35:13 INFO]: _DALMUS_ » YEAH WE CANT
+[17:35:14 INFO]: 到细 MePlayerOne2018 » LMAO
+[17:35:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:35:23 INFO]: 到细 MePlayerOne2018 » reset maybe
+[17:35:30 INFO]: _DALMUS_ » yeah, it may be lagging
+[17:35:32 INFO]: 到细 MePlayerOne2018 » nope
+[17:35:34 INFO]: 到细 MePlayerOne2018 » its a bug
+[17:35:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:35:39 INFO]: _DALMUS_ » A bug? Ok
+[17:35:47 INFO]: _DALMUS_ » Nice
+[17:35:47 INFO]: 到细 Xaibot12 » oops
+[17:35:48 INFO]: LIGHTNING
+[17:35:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:35:51 INFO]: 到细 MePlayerOne2018 » Xaibot12 bro
+[17:35:56 INFO]: 到细 MePlayerOne2018 » you spawned on the better side fr
+[17:35:58 INFO]: _DALMUS_ » Well, I mma leave actually, goodbyez
+[17:36:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:36:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:36:24 INFO]: 到细 Xaibot12 » gtg
+[17:36:29 INFO]: Xaibot12 lost connection: Disconnected
+[17:36:29 INFO]: [-] Xaibot12 left the game.
+[17:36:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:36:42 INFO]: _DALMUS_ lost connection: Disconnected
+[17:36:43 INFO]: [-] _DALMUS_ left the game.
+[17:36:45 INFO]: 到细 MePlayerOne2018 » wow
+[17:36:49 INFO]: 到细 MePlayerOne2018 » easy win fr
+[17:36:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:36:57 INFO]: MePlayerOne2018 issued server command: /pc easy win fr
+[17:37:02 INFO]: world
+[17:37:02 INFO]: CaptureTheFlag
+[17:37:02 INFO]: Verifying game UUID @ ResetGameTask: b63e55bc-18aa-4907-8a71-f4cd261221dd
+[17:37:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:37:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:37:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:37:35 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:37:48 INFO]: Updated game state to READY
+[17:37:48 INFO]: Picked players before team randomization (registered in game):
+[17:37:48 INFO]: JoelSoep
+[17:37:48 INFO]: MePlayerOne2018
+[17:37:48 INFO]: Team red:
+[17:37:48 INFO]: MePlayerOne2018
+[17:37:48 INFO]: Team blue:
+[17:37:48 INFO]: JoelSoep
+[17:37:48 INFO]: ---- DEBUG LOG FOR PLAYER JoelSoep | GAME START ----
+CTFPlayer Team: BLUE
+CTFPlayer Game: b63e55bc-18aa-4907-8a71-f4cd261221dd
+---- END DEBUG LOG ---
+
+[17:37:48 INFO]: ---- DEBUG LOG FOR PLAYER MePlayerOne2018 | GAME START ----
+CTFPlayer Team: RED
+CTFPlayer Game: b63e55bc-18aa-4907-8a71-f4cd261221dd
+---- END DEBUG LOG ---
+
+[17:37:48 INFO]: Material: IRON_AXE Amount: 1
+[17:37:48 INFO]: Material: STONE_PICKAXE Amount: 1
+[17:37:48 INFO]: Material: GOLDEN_APPLE Amount: 1
+[17:37:48 INFO]: Material: ARROW Amount: 5
+[17:37:48 INFO]: Material: GRAY_CONCRETE Amount: 1
+[17:37:48 INFO]: Material: CROSSBOW Amount: 1
+[17:37:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:38:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:38:15 INFO]: [LP] LOG > (Console@hardcore) [U] (darthlucas2997)
+[17:38:15 INFO]: [LP] LOG > permission settemp dailytokens.default.cooldown.new true 1d server=hardcore
+[17:38:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:38:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:38:41 INFO]: 到细 JoelSoep » no way
+[17:38:47 INFO]: 到细 MePlayerOne2018 » we clutched a 2v3
+[17:38:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:38:55 INFO]: 到细 JoelSoep » congrats
+[17:39:00 INFO]: 到细 MePlayerOne2018 » and last round game bugged
+[17:39:02 INFO]: 到细 JoelSoep » did the game function as it should?
+[17:39:04 INFO]: 到细 MePlayerOne2018 » thats why they left
+[17:39:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:39:07 INFO]: 到细 JoelSoep » what happened?
+[17:39:07 INFO]: 到细 MePlayerOne2018 » well
+[17:39:15 INFO]: 到细 MePlayerOne2018 » last round we couldnt place blocks
+[17:39:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:39:33 INFO]: 到细 JoelSoep » did you receive your kits?
+[17:39:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:39:37 INFO]: 到细 MePlayerOne2018 » yes
+[17:39:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:40:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:40:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:40:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:40:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:40:50 INFO]: 到细 JoelSoep » let me check logs
+[17:40:53 INFO]: 到细 MePlayerOne2018 » ok
+[17:41:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:41:17 INFO]: 到细 JoelSoep » was it fun tho? when it worked ofc
+[17:41:19 INFO]: 到细 MePlayerOne2018 » yes
+[17:41:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:41:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:41:37 INFO]: 到细 MePlayerOne2018 » apart from the unbalanced teams *cough* 2v3 *cough*
+[17:41:46 INFO]: 到细 JoelSoep » if you could rate it on a scale from 1-10?
+[17:41:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:41:54 INFO]: 到细 MePlayerOne2018 » oh and we didnt know how to use the mirror thingie
+[17:42:02 INFO]: 到细 JoelSoep » ah
+[17:42:04 INFO]: 到细 JoelSoep » so
+[17:42:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:42:07 INFO]: 到细 MePlayerOne2018 » id give it a solid 8 or 7.5
+[17:42:11 INFO]: [LP] LOG > (Console@hardcore) [U] (chungvilleisgood)
+[17:42:11 INFO]: [LP] LOG > parent add tier-2 server=hardcore
+[17:42:13 INFO]: 到细 JoelSoep » the mirror can block player specific attacks
+[17:42:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:42:21 INFO]: 到细 MePlayerOne2018 » because sword vs sword kit is kinda meh
+[17:42:27 INFO]: 到细 MePlayerOne2018 » JoelSoep ah ok
+[17:42:33 INFO]: 到细 JoelSoep » the only player specific item currently is smash bros
+[17:42:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:42:45 INFO]: 到细 MePlayerOne2018 » ahhhhhh
+[17:42:46 INFO]: 到细 MePlayerOne2018 » ok
+[17:42:47 INFO]: 到细 JoelSoep » if you have a mirror in your (off)hand and someone uses smash bros on u it gets countered
+[17:42:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:42:50 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[17:43:00 INFO]: 到细 JoelSoep » btw there are multiple kits in the game
+[17:43:00 INFO]: 到细 MePlayerOne2018 » ok makes sense
+[17:43:03 INFO]: 到细 MePlayerOne2018 » ik
+[17:43:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:43:06 INFO]: 到细 JoelSoep » aight good
+[17:43:13 INFO]: 到细 MePlayerOne2018 » but sword vs sword kit is kind of meh
+[17:43:16 INFO]: [LP] LOG > (Console@hardcore) [U] (nickyso)
+[17:43:16 INFO]: [LP] LOG > permission settemp dailytokens.immortal.cooldown.new true 1d server=hardcore
+[17:43:20 INFO]: 到细 MePlayerOne2018 » since its holding shield
+[17:43:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:43:28 INFO]: 到细 MePlayerOne2018 » and waiting for teammate or backstabs
+[17:43:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:43:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:43:58 INFO]: 到细 MePlayerOne2018 » apart from those minor things its really good
+[17:44:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:44:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:44:28 INFO]: 到细 JoelSoep » yeah
+[17:44:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:44:37 INFO]: 到细 JoelSoep » they are experimental kits so ill probably modify them
+[17:44:39 INFO]: 到细 JoelSoep » ty tho
+[17:44:44 INFO]: 到细 JoelSoep » aight so ill copy the logs rn
+[17:44:46 INFO]: 到细 MePlayerOne2018 » oh and ofc you should make a guide or something
+[17:44:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:44:51 INFO]: 到细 JoelSoep » and then ill put a new jar
+[17:45:02 INFO]: 到细 MePlayerOne2018 » because the beginning was confusing (noone knew where to put flags)
+[17:45:03 INFO]: 到细 JoelSoep » yeah, i wanted to do that earlier but if i decide to change it now i have to make changes
+[17:45:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:45:08 INFO]: 到细 MePlayerOne2018 » ah ok
+[17:45:09 INFO]: 到细 JoelSoep » so the guide will be the very last thing
+[17:45:11 INFO]: 到细 MePlayerOne2018 » fair enough
+[17:45:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:45:28 INFO]: 到细 JoelSoep » yeah im still seeking a good way to show people where the flags are
+[17:45:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:45:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:45:54 INFO]: 到细 MePlayerOne2018 » ok !
+[17:46:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:46:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[17:46:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586

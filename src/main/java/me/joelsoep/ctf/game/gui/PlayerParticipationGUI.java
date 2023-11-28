@@ -35,7 +35,7 @@ import java.util.List;
 public class PlayerParticipationGUI extends ChestGui implements Listener {
 
     private final Player player;
-    private final Game game;
+    private Game game;
     private final StaticPane participationPane;
     private final StaticPane idlePane;
     private final StaticPane spectatorPane;

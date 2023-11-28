@@ -12,8 +12,7 @@ package me.joelsoep.ctf;
 
 import co.aikar.commands.PaperCommandManager;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
-import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
-import com.mongodb.client.model.Filters;
+import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.database.Mongo;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
 import me.joelsoep.ctf.game.advancement.AdvancementService;
@@ -25,24 +24,19 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.listener.*;
 import me.joelsoep.ctf.util.EntityDamageHandler;
-import org.bson.Document;
 import org.bukkit.*;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Team;
 
 import java.io.File;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class Main extends JavaPlugin {
 
     private AdvancementMain advancementMain;
 
     public static LinkedHashMap<String, CTFPlayer> playerList = new LinkedHashMap<>();
-    // public static Reflections reflections = new Reflections("me.joelsoep.ctf");
     public static Game game = new Game();
     public static Mongo mongo = new Mongo();
     public static KitService kitService = new KitService();
@@ -54,8 +48,8 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        this.advancementMain = new AdvancementMain(this);
-        this.advancementMain.load();
+      // this.advancementMain = new AdvancementMain(this);
+      //  this.advancementMain.load();
     }
 
     @Override
@@ -71,18 +65,18 @@ public final class Main extends JavaPlugin {
         }
 
         new BackupPlayerDataTask(this);
-        this.advancementMain.enableMySQL(
-                "network",
-                "admin",
-                "ctf",
-                "23.88.124.188",
-                3306,
-                10,
-                6000
-        );
-            Bukkit.getLogger().log(Level.INFO, "Booting CTF-Advancements...");
-            Main.advancementAPI = new AdvancementAPI(this);
-            Main.advancementService = new AdvancementService();
+      //  this.advancementMain.enableMySQL(
+       //         "network",
+       //         "admin",
+       //         "ctf",
+       //         "23.88.124.188",
+       //         3306,
+       //         10,
+       //         6000
+       // );
+          //  Bukkit.getLogger().log(Level.INFO, "Booting CTF-Advancements...");
+          //  Main.advancementAPI = new AdvancementAPI(this);
+           // Main.advancementService = new AdvancementService();
 
         //saveFile("schem.zip", "https://download1590.mediafire.com/ugi4gapkncfgbmlMtE7AGRiQSqqEvrIhGvDf_k3cT2WEa0_Mv_QrHjJhO-QqmIC0hYaS67N9WNEp9vRh7tj6iM-ADiNSIKLXYVV3lsvyZWOTiAHb1ovC_tST7diWoEfL_AAxwAtE1DNdgg-cKlCNobb6B3OuiY9gZ-8yQeYSsCE/bchce43dm3xxmhg/schem.zip");
         saveFile("map.schem", "https://dl.soep.me/map.schem");
@@ -112,6 +106,9 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FlagStealListener(), this);
         getServer().getPluginManager().registerEvents(new FlagCaptureListener(), this);
         getServer().getPluginManager().registerEvents(new AdvancementListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityPickupItemListener(), this);
+
+        manager.registerCommand(new DebugCommand(this));
                 // Plugin startup logic
     }
 
@@ -119,7 +116,7 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
      //   Main.mongo.getConfigCollection().findOneAndUpdate(Filters.eq("_id", 0), new Document("gameCount", Main.mongo.getGameCount()));
         // Plugin shutdown logic
-        this.advancementMain.disable();
+       // this.advancementMain.disable();
     }
 
     public void saveFile(String resource, String url) {

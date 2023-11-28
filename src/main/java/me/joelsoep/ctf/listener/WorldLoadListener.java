@@ -34,7 +34,7 @@ public class WorldLoadListener implements Listener {
 
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setGameRule(GameRule.FALL_DAMAGE, false);
-        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements.
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements. Done!
         world.setGameRule(GameRule.DISABLE_RAIDS, true);
         world.setGameRule(GameRule.DO_WARDEN_SPAWNING, false);
         world.setGameRule(GameRule.DO_MOB_LOOT, false);
@@ -51,7 +51,9 @@ public class WorldLoadListener implements Listener {
         world.setGameRule(GameRule.DO_PATROL_SPAWNING, false);
         world.setGameRule(GameRule.SHOW_DEATH_MESSAGES, false);
         world.setGameRule(GameRule.KEEP_INVENTORY, true);
-
+        world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, true);
+        world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
+        world.setGameRule(GameRule.DO_TILE_DROPS, false);
 
        // Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
           //  @Override

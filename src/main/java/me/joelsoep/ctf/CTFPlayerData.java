@@ -20,6 +20,7 @@ public class CTFPlayerData {
     private final String name;
 
     private HashMap<String, HashMap<Integer, ItemStack>> sortedKits = new HashMap<>();
+    private Date lastSeen;
     private Integer kills;
     private Integer deaths;
     private Double kd;
@@ -34,6 +35,7 @@ public class CTFPlayerData {
                     .append("player_name", name)
                     .append("player_kills", 0)
                     .append("player_deaths", 0)
+                    .append("player_login_streak", 1)
                     .append("player_kd", (double) 1)
             );
             this.kills = 0;
@@ -58,6 +60,7 @@ public class CTFPlayerData {
 
               this.kills = result.getInteger("player_kills");
               this.deaths = result.getInteger("player_deaths");
+
               this.kd = result.getDouble("player_kd");
 
               List<Object> resultList = result.getList("sortedKits", Object.class);
@@ -122,11 +125,6 @@ public class CTFPlayerData {
                   BaseKit kit = optionalKit.get();
                   HashMap<Integer, ItemStack> mappedStack = new HashMap<>();
                   data.forEach((dataInteger, material) -> {
-                    //  if (material == Material.GRAY_CONCRETE) {
-                    //      Bukkit.getLogger().info("Placement: " + dataInteger + " material: " + Material.GRAY_CONCRETE);
-                    //      mappedStack.put(dataInteger, new ItemStack(Material.GRAY_CONCRETE));
-                    //      return;
-                    //  }
                       kit.getItems().forEach((kitInteger, item) -> {
                           if (item.getType() == material) {
                               Bukkit.getLogger().info("Placement: " + dataInteger + " material: " + item.getType());

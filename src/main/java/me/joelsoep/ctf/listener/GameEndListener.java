@@ -60,7 +60,7 @@ public class GameEndListener implements Listener {
         loser.getAudience().playSound(Sound.sound(Key.key("block.note_block.pling"), Sound.Source.MASTER, 1, (float) 0.5));
         loser.getAudience().showTitle(Title.title(
                 MM.deserialize(
-                        "<gray>Team %s<gray>has won!".formatted(
+                        "<gray>Team %s<gray> has won!".formatted(
                                 winner.getTeamColor().getPrefix())
                 ),
                 MM.deserialize("<gray>Better luck next time!")));

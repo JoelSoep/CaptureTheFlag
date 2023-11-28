@@ -1,4 +1,4 @@
-1. Add custom advancements for players to achieve. (Like playing 10 games, gaining a killstreak of 10, etc); DONE
+1. Add custom advancements for players to achieve. (Like playing 10 games, gaining a killstreak of 10, etc); DONE, NOT READY THO
 2. Add leaderboards of stats. (Most games played etc.) use mongo to save data. DONE
 3. Allow multiple games to be played at once. (This will be difficult ig) will require multiple worlds etc.
 4. Add special items. People could gain them when they have a killstreak of 3 for example. DONE
@@ -15,6 +15,7 @@
 15. economy system
 16. WHEN RELEASING: MAKE A FORCE GAMEMODE SO MODS CANT JUST CHEAT
 17. Message broadcaster for lobbies
+18. Rule idea: in order to capture a flag, your own flag needs to be on your own place.
 
 CUSTOM COSMETICS IDEAS:
 - When a player has a flag captured, they can have a custom flag banner pattern
@@ -209,3 +210,16 @@ Caused by: java.lang.ClassNotFoundException: me.joelsoep.ctf.game.task.ResetGame
         ... 33 more
 
         fucking participating menu broken???? <<< game doesnt stop anymore when leaving DOESNT HAPPEN EVERY TIME, IDK WHAT THAT WAS, MAYBE BECAUSE OF PREVIOUS ERROR
+
+
+KILL FLOATING ITEMS ONCE EVERY 60 SECONDS
+RESET STATS (LIKE LAST HIT) ON MATCH END, PLAYERS GET KILLS AT THE BEGINNING OF NEXT MATCH
+SOMETIMES KILLS DONT REGISTER
+
+EVERYONE IS IN THE SAME TEAM
+PEOPLE CANT PLACE BLOCKS
+
+If a player is changing their kit and the game starts they dont get their kit
+golden apples you get from flags dont stack on the others
+smash bros can hit people from their own team
+

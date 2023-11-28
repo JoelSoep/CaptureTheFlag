@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.task;
 
 import me.joelsoep.ctf.CTFPlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.kit.kits.Warrior;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -28,12 +29,25 @@ public class DeathCountdownTask {
         this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
+                if (player == null || !player.getPlayer().isOnline()) {
+                    cancel();
+                    return;
+                }
+
+                if (player.getTeam() == null) {
+                    Bukkit.getLogger().warning("Player team is null @ DeathCountdownTask: " + player.getPlayer().getName());
+                    cancel();
+                    return;
+                }
 
                 if (seconds == 0) {
                     player.getPlayer().teleport(player.getTeam().getSpawn());
                     player.getPlayer().setGameMode(GameMode.ADVENTURE);
                     player.sendActionBar(MM.deserialize("<gray>Fight!"));
                     player.playSound(Sound.sound(Key.key("block.note_block.pling"), Sound.Source.MASTER, 1, 2));
+                    if (player.getKit() == null) {
+                        player.setKit(new Warrior());
+                    }
                     Main.kitService.giveKitToPlayer(player.getPlayer(), player.getKit().getName());
                     cancel();
                 }

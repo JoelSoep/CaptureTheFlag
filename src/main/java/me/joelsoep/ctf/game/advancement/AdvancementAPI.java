@@ -18,13 +18,13 @@ public class AdvancementAPI {
 
     public AdvancementAPI(Plugin plugin) {
         this.plugin = plugin;
-        this.api = UltimateAdvancementAPI.getInstance(plugin);
-        if (this.api == null) {
-            Bukkit.getLogger().log(Level.SEVERE, "UltimateAdvancementAPI is not enabled or not found.");
-            // Handle the error or disable the CTF plugin if necessary.
-        } else {
-            this.tab = api.createAdvancementTab("ctf");
-        }
+      //  this.api = UltimateAdvancementAPI.getInstance(plugin);
+      //  if (this.api == null) {
+        //    Bukkit.getLogger().log(Level.SEVERE, "UltimateAdvancementAPI is not enabled or not found.");
+        //    // Handle the error or disable the CTF plugin if necessary.
+       // } else {
+       //     this.tab = api.createAdvancementTab("ctf");
+     //   }
     }
 
     public void registerTab() {

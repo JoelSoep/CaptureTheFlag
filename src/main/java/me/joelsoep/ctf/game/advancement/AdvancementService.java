@@ -20,28 +20,32 @@ import java.util.logging.Level;
 
 public class AdvancementService {
 
-    private final UltimateAdvancementAPI api;
-    private final AdvancementTab tab;
+  //  private final UltimateAdvancementAPI api;
+ //   private final AdvancementTab tab;
    @Getter private Map<String, BaseAdvancement> advancements;
    @Getter private RootAdvancement root;
 
+    /**
+     * Currently disabled.
+     */
+
     public AdvancementService() {
-        this.advancements = new HashMap<>();
-        this.api = Main.advancementAPI.getAPI();
-        this.tab = Main.advancementAPI.getTab();
-        Main.advancementService = this;
-        loadRootAdvancement("me.joelsoep.ctf.game.advancement.advancements");
-        loadBaseAdvancements("me.joelsoep.ctf.game.advancement.advancements");
+      //  this.advancements = new HashMap<>();
+      //  this.api = Main.advancementAPI.getAPI();
+      //  this.tab = Main.advancementAPI.getTab();
+      //  Main.advancementService = this;
+      //  loadRootAdvancement("me.joelsoep.ctf.game.advancement.advancements");
+     //   loadBaseAdvancements("me.joelsoep.ctf.game.advancement.advancements");
 
         /**
          * Do not ask me why this is the case, but if this code is removed / altered the plugin crashes.
          */
-        if (Main.advancementService == null) {
-            Bukkit.getLogger().log(Level.WARNING, "ADVANCEMENT_SERVICE IS NULL!");
-            Bukkit.getLogger().log(Level.INFO, "Setting advancementService to this to fix error.");
-            Main.advancementService = this;
-        }
-        Main.advancementAPI.registerTab();
+      //  if (Main.advancementService == null) {
+     //       Bukkit.getLogger().log(Level.WARNING, "ADVANCEMENT_SERVICE IS NULL!");
+      //      Bukkit.getLogger().log(Level.INFO, "Setting advancementService to this to fix error.");
+      //      Main.advancementService = this;
+     //   }
+     //   Main.advancementAPI.registerTab();
     }
 
     private void loadRootAdvancement(String packageName) {

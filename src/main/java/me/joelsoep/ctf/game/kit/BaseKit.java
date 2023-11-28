@@ -19,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class BaseKit {
     protected String name;
@@ -100,7 +101,9 @@ public abstract class BaseKit {
         inventory.setHelmet(getHelmet(color));
 
         HashMap<Integer, ItemStack> sorted = ctfPlayer.getData().getSortedKits().get(this.getName());
-        HashMap<Integer, ItemStack> finalSorted = sorted;
+        HashMap<Integer, ItemStack> finalSorted = sorted != null ? new HashMap<>(sorted.entrySet().stream()
+                .filter(entry -> entry.getValue() != null)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))) : null;
         if (sorted == null) {
             sorted = new HashMap<>(this.items);
             HashMap<Integer, ItemStack> finalSorted1 = sorted;
@@ -114,6 +117,9 @@ public abstract class BaseKit {
             });
             sorted = finalSorted1;
         } else {
+            sorted = new HashMap<>(sorted.entrySet().stream()
+                    .filter(entry -> entry.getValue() != null)
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
             sorted.forEach((integer, itemStack) -> {
                 if (itemStack == null) {
                     return;
@@ -125,7 +131,7 @@ public abstract class BaseKit {
                     return;
                 }
 
-                Bukkit.getLogger().info("Material: " + itemStack.getType() + " Amount: " + originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
+                //Bukkit.getLogger().info("Material: " + itemStack.getType() + " Amount: " + originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
 
                 itemStack.setAmount(originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
 
@@ -137,7 +143,9 @@ public abstract class BaseKit {
 
         HashMap<Integer, ItemStack> finalList = finalSorted == null ? sorted : finalSorted;
         for (Map.Entry<Integer, ItemStack> entry : finalList.entrySet()) {
-            ItemStack item = entry.getValue();
+            // remove NBT data from golden apples so they stack
+            ItemStack item = entry.getValue().getType() == Material.GOLDEN_APPLE ? new ItemStack(Material.GOLDEN_APPLE, entry.getValue().getAmount()) : entry.getValue();
+
             int slot = entry.getKey();
             inventory.setItem(slot, item);
         }
@@ -153,6 +161,7 @@ public abstract class BaseKit {
     public static ItemStack getHelmet(Color color) {
         ItemStack itemStack = new ItemStack(Material.LEATHER_HELMET);
         LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
+        meta.setUnbreakable(true);
         meta.setColor(color);
         itemStack.setItemMeta(meta);
         return itemStack;

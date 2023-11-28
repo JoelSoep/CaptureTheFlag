@@ -37,12 +37,8 @@ public class PlayerJoinListener implements Listener {
         event.joinMessage(null);
 
         if (game.getState() == GameState.WAITING) {
-            player.setGameMode(GameMode.ADVENTURE);
-            player.setFoodLevel(20);
-            player.setHealth(20);
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
-            player.setGlowing(false);
-            player.getInventory().clear();
+            ctfPlayer.reset();
+            // Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
             game.addPlayer(ctfPlayer);
             new Hotbar(player);
            ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);
@@ -96,11 +92,7 @@ public class PlayerJoinListener implements Listener {
         }
 
         if (game.getState() == GameState.ENDED) {
-            player.setGameMode(GameMode.ADVENTURE);
-            player.setFoodLevel(20);
-            player.setHealth(20);
-            player.setGlowing(false);
-            player.getInventory().clear();
+
             player.sendMessage(MM.deserialize("<red>A game is currently preparing. You will be added shortly."));
             new Hotbar(player);
             ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);

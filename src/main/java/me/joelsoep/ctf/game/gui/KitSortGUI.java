@@ -135,7 +135,6 @@ public class KitSortGUI extends ChestGui {
     }
 
     private void save() {
-
         this.items = new HashMap<>();
 
         int index = 9;
@@ -226,7 +225,6 @@ public class KitSortGUI extends ChestGui {
             );
             player.sendMessage(MM.deserialize("<gray>Backed up data to database."));
         }
-
 
         player.closeInventory();
         player.getInventory().clear();

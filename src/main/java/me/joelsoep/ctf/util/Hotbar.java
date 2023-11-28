@@ -16,7 +16,7 @@ public class Hotbar {
 
     public Hotbar(Player player) {
         this.player = player;
-
+        player.getInventory().clear();
         giveKitSelectionItem();
         giveParticipationMenuItem();
         giveAdminMenu();

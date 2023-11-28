@@ -32,8 +32,7 @@ public class KitService {
                 BaseKit kit = kitClass.getDeclaredConstructor().newInstance();
                 kits.put(kit.getName().toLowerCase(), kit);
                 Bukkit.getLogger().log(Level.INFO, "Loaded kit " + kit.getName());
-            } catch (InstantiationException | IllegalAccessException
-                    | InvocationTargetException | NoSuchMethodException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -63,7 +63,8 @@ public class PlayerQuitListener implements Listener {
         if (ctfPlayer.getTeam() != null) {
             Team team = ctfPlayer.getTeam();
             Team oppositeTeam = ctfPlayer.getTeam() == game.getRed() ? game.getBlue() : game.getRed();
-            team.getPlayers().remove(ctfPlayer);
+            team.removePlayer(ctfPlayer);
+            ctfPlayer.setTeam(null);
 
             if (team.getPlayers().size() == 0) {
                 GameEndEvent endEvent = new GameEndEvent(game, oppositeTeam, team);

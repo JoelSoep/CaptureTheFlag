@@ -58,7 +58,7 @@ public class BackupPlayerDataTask {
                     FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
 
                     Main.mongo.findOneAndUpdateAsync(Main.mongo.getUserCollection(), Filters.eq("_id", player.getPlayer().getUniqueId().toString()), update, options).thenAccept(result -> {
-                        System.out.println("Update completed: " + result);
+                        //System.out.println("Update completed: " + result);
                     }).exceptionally(throwable -> {
                         throwable.printStackTrace();
                         return null;

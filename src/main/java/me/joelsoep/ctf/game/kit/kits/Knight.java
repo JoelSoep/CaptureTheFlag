@@ -33,9 +33,9 @@ public class Knight extends BaseKit {
     @Override
     public void setHand() {
         ItemStack item = new ItemStack(Material.SHIELD);
-        //Damageable itemMeta = (Damageable) item.getItemMeta();
-       // itemMeta.setDamage(333);
-        //item.setItemMeta(itemMeta);
+        Damageable itemMeta = (Damageable) item.getItemMeta();
+        itemMeta.setDamage(327);
+        item.setItemMeta(itemMeta);
         hand[0] = item;
     }
 }

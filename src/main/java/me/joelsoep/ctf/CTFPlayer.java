@@ -6,6 +6,7 @@ import lombok.Setter;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.chat.ChatType;
@@ -17,7 +18,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.title.TitlePart;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -43,6 +46,30 @@ public class CTFPlayer implements Audience {
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
         Main.playerList.put(player.getName(), this);
+        reset();
+    }
+
+    public void reset() {
+        this.setGame(null);
+        this.setTeam(null);
+        this.setKillStreak(0);
+
+        player.getInventory().clear();
+        player.playerListName(MM.deserialize("<gray>" + player.getName()));
+        player.displayName(MM.deserialize("<gray>" + player.getName()));
+        player.setGameMode(GameMode.ADVENTURE);
+        player.setGlowing(false);
+        player.setLastDamageCause(null);
+        player.setLastDeathLocation(null);
+        player.setKiller(null);
+        player.setKiller(null);
+        player.setLastDamage(0);
+        player.setHealth(20);
+        player.setFoodLevel(20);
+
+        player.getActivePotionEffects().forEach(effect -> {
+            player.removePotionEffect(effect.getType());
+        });
     }
 
     @Override

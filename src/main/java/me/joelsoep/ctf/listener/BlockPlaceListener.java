@@ -29,7 +29,7 @@ public class BlockPlaceListener implements Listener {
         Location blockLocation = event.getBlockPlaced().getLocation();
 
         if (game.getState() != GameState.RUNNING) {
-            if (player.hasPermission("ctf.admin")) {
+            if (!player.hasPermission("ctf.admin")) {
                 event.setCancelled(true);
             }
         }

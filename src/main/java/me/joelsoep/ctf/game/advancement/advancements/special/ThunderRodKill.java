@@ -47,12 +47,12 @@ public class ThunderRodKill extends BaseAdvancement implements ParentGrantedVisi
             Player killer = player.getKiller();
 
             if (killer == null) {
-                Bukkit.getLogger().info("killer null!!!!");
+                //Bukkit.getLogger().info("killer null!!!!");
                 return;
             }
 
             if (player.getLastDamageCause() == null) {
-                Bukkit.getLogger().info("null!!!!!!!");
+               // Bukkit.getLogger().info("null!!!!!!!");
                 return;
             }
 

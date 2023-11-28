@@ -25,7 +25,7 @@ import java.util.List;
 public class AdminPanelGUI extends ChestGui implements Listener {
 
     private final Player player;
-    private final Game game;
+    private Game game;
     private PatternPane background;
     private StaticPane forceStart;
 

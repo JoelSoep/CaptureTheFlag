@@ -1,1 +1,276 @@
 give kits names and make stuff unbreakable
+make some color rules, so that it all feels unified
+
+
+[16:00:11 INFO]: JoelSoep issued server command: /p warp
+[16:00:12 INFO]: UUID of player Regresion is 2e2206d0-84cb-4f26-9145-c9f3b570b3de
+[16:00:12 INFO]: UUID of player FREPYHTON61418 is dd625658-f328-4e93-aa9c-de5a38417f00
+[16:00:12 INFO]: UUID of player proesthuskara is 2fbb59ae-d8ea-4ac7-983d-0523f6e7a8e4
+[16:00:12 INFO]: UUID of player KubasinskyPL is 1c229c58-33a1-4723-b3ff-849298a9c9e8
+[16:00:12 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:18, serverValue:440861}] to mcm-rs0-us.mcmanhunt.trafficlytics.net:27003
+[16:00:12 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:16, serverValue:565118}] to mcm-rs0-us.mcmanhunt.trafficlytics.net:27001
+[16:00:12 INFO]: Couldn't revoke 1179 advancements from Regresion as they don't have them
+[16:00:12 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:20, serverValue:442402}] to mcm-rs0-us.mcmanhunt.trafficlytics.net:27002
+[16:00:12 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:17, serverValue:442403}] to mcm-rs0-us.mcmanhunt.trafficlytics.net:27002
+[16:00:12 INFO]: UUID of player z_15 is 1a32ad67-3593-4769-85a5-2dc7ffeeb3be
+[16:00:12 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:21, serverValue:440862}] to mcm-rs0-us.mcmanhunt.trafficlytics.net:27003
+[16:00:12 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:19, serverValue:565119}] to mcm-rs0-us.mcmanhunt.trafficlytics.net:27001
+[16:00:12 INFO]: UUID of player SirNest is 741541ea-f143-4cbc-a60a-24a2b890a9dd
+[16:00:12 INFO]: Regresion[/51.39.229.235:40184] logged in with entity id 3153 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:12 INFO]: UUID of player Ashar0n is ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b
+[16:00:12 INFO]: UUID of player __Nicooo__ is 7c5f5fbd-5d1e-4d21-a47c-483bcb101c80
+[16:00:12 INFO]: UUID of player MiragePensam is 2c8d105f-fd0d-423c-800f-352285ba9b9d
+[16:00:12 INFO]: UUID of player Dannymak8 is 0156e42d-0311-41fb-aa7d-7f8ff8d8994d
+[16:00:12 INFO]: Couldn't revoke 1179 advancements from z_15 as they don't have them
+[16:00:12 INFO]: z_15[/81.136.108.178:40212] logged in with entity id 3154 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:12 INFO]: Couldn't revoke 1179 advancements from FREPYHTON61418 as they don't have them
+[16:00:12 INFO]: FREPYHTON61418[/185.227.56.127:40222] logged in with entity id 3155 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:12 INFO]: Couldn't revoke 1179 advancements from Ashar0n as they don't have them
+[16:00:13 INFO]: Ashar0n[/147.235.212.13:40224] logged in with entity id 3156 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:13 INFO]: Couldn't revoke 1179 advancements from MiragePensam as they don't have them
+[16:00:13 INFO]: MiragePensam[/197.232.50.126:40228] logged in with entity id 3157 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:13 INFO]: Couldn't revoke 1179 advancements from SirNest as they don't have them
+[16:00:13 INFO]: SirNest[/130.204.63.237:40178] logged in with entity id 3158 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:13 INFO]: Revoked 1179 advancements from __Nicooo__
+[16:00:13 INFO]: __Nicooo__[/79.33.239.57:40206] logged in with entity id 3159 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:13 INFO]: Couldn't revoke 1179 advancements from Dannymak8 as they don't have them
+[16:00:13 INFO]: Dannymak8[/78.98.124.175:40238] logged in with entity id 3160 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:13 INFO]: Couldn't revoke 1179 advancements from proesthuskara as they don't have them
+[16:00:13 INFO]: proesthuskara[/212.133.235.132:40250] logged in with entity id 3161 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:13 INFO]: Couldn't revoke 1179 advancements from KubasinskyPL as they don't have them
+[16:00:13 INFO]: KubasinskyPL[/89.65.237.100:40256] logged in with entity id 3162 at ([CaptureTheFlag]516.0, 35.0, 13.0)
+[16:00:18 WARN]: Can't keep up! Is the server overloaded? Running 5239ms or 104 ticks behind
+[16:00:18 WARN]: JoelSoep moved too quickly! -10.888097228380559,-0.3767356137817188,-11.937452924647582
+[16:00:18 WARN]: proesthuskara moved too quickly! -6.831530073312081,0.0,-7.570580602729721
+[16:00:18 WARN]: SirNest moved too quickly! -6.0551878508531445,0.0,-8.061487530995999
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=2e2206d0-84cb-4f26-9145-c9f3b570b3de, player_name=Regresion, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:8, serverValue:379786}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:7, serverValue:379782}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:10, serverValue:379717}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:12, serverValue:379782}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=2c8d105f-fd0d-423c-800f-352285ba9b9d, player_name=MiragePensam, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=14, player_deaths=11, player_kd=1.27}}
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=30, player_kd=1.6}}
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=2fbb59ae-d8ea-4ac7-983d-0523f6e7a8e4, player_name=proesthuskara, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:6, serverValue:379772}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:13, serverValue:379717}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1a32ad67-3593-4769-85a5-2dc7ffeeb3be, player_name=z_15, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:20 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:11, serverValue:379782}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:00:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:21 INFO]: [org.mongodb.driver.connection] Opened connection [connectionId{localValue:9, serverValue:379717}] to ac-i45juyq-shard-00-01.bh3mqpu.mongodb.net:27017
+[16:00:21 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=0, player_deaths=0, player_kd=1.0}}
+[16:00:24 INFO]: z_15 lost connection: Disconnected
+[16:00:24 INFO]: [-] z_15 left the game.
+[16:00:25 INFO]: Dannymak8 » what?
+[16:00:27 INFO]: MiragePensam issued server command: /pc fudge u
+[16:00:30 INFO]: MiragePensam issued server command: /leave'
+[16:00:33 INFO]: MiragePensam lost connection: Disconnected
+[16:00:33 INFO]: [-] MiragePensam left the game.
+[16:00:35 INFO]: Regresion lost connection: Disconnected
+[16:00:35 INFO]: [-] Regresion left the game.
+[16:00:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:00:36 INFO]: proesthuskara lost connection: Disconnected
+[16:00:36 INFO]: [-] proesthuskara
+[16:00:37 INFO]: Picked players before team randomization (registered in game):
+[16:00:37 INFO]: JoelSoep
+[16:00:37 INFO]: FREPYHTON61418
+[16:00:37 INFO]: Ashar0n
+[16:00:37 INFO]: SirNest
+[16:00:37 INFO]: __Nicooo__
+[16:00:37 INFO]: Dannymak8
+[16:00:37 INFO]: KubasinskyPL
+[16:00:37 INFO]: Team red:
+[16:00:37 INFO]: FREPYHTON61418
+[16:00:37 INFO]: SirNest
+[16:00:37 INFO]: Dannymak8
+[16:00:37 INFO]: Team blue:
+[16:00:37 INFO]: JoelSoep
+[16:00:37 INFO]: Ashar0n
+[16:00:37 INFO]: __Nicooo__
+[16:00:37 INFO]: KubasinskyPL
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=14, player_deaths=11, player_kd=1.27}}
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:00:50 WARN]: Nag author(s): '[JoelSoep]' of 'CapturetheFlag v1.0' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=30, player_kd=1.6}}
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:00:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:00:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:00:58 INFO]: JoelSoep issued server command: /p chat we already started
+[16:01:01 INFO]: 到细 JoelSoep » So this is ctf
+[16:01:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:01:06 INFO]: 到细 JoelSoep » the flags are the banners
+[16:01:11 INFO]: PROJECTILE
+[16:01:13 INFO]: ENTITY_ATTACK
+[16:01:19 INFO]: 到细 JoelSoep » which are positioned at the center of the ships
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=30, player_kd=1.6}}
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=14, player_deaths=11, player_kd=1.27}}
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:01:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:01:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:01:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:01:36 INFO]: PROJECTILE
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=1, player_deaths=0, player_kd=1.0}}
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=1, player_deaths=0, player_kd=1.0}}
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=14, player_deaths=12, player_kd=1.17}}
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=30, player_kd=1.6}}
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=0, player_deaths=0, player_kd=NaN}}
+[16:01:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=0, player_deaths=1, player_kd=0.0}}
+[16:01:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:01:51 INFO]: ENTITY_ATTACK
+[16:01:52 INFO]: ENTITY_ATTACK
+[16:02:03 INFO]: killer null!!!!
+[16:02:04 INFO]: killer null!!!!
+[16:02:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:02:14 INFO]: killer null!!!!
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=1, player_deaths=0, player_kd=1.0}}
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=30, player_kd=1.6}}
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=14, player_deaths=12, player_kd=1.17}}
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=1, player_deaths=0, player_kd=1.0}}
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=0, player_kd=1.0}}
+[16:02:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=0, player_deaths=2, player_kd=0.0}}
+[16:02:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:02:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=12, player_kd=1.25}}
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=31, player_kd=1.55}}
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=3, player_kd=0.33}}
+[16:02:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:02:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:02:59 INFO]: ENTITY_ATTACK
+[16:03:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=dd625658-f328-4e93-aa9c-de5a38417f00, player_name=FREPYHTON61418, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=31, player_kd=1.55}}
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=287, player_kd=0.45, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=3, player_kd=0.33}}
+[16:03:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=12, player_kd=1.25}}
+[16:03:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:03:22 INFO]: FREPYHTON61418 lost connection: Disconnected
+[16:03:22 INFO]: [-] FREPYHTON61418 left the game.
+[16:03:34 INFO]: DRAGON_BREATH
+[16:03:34 INFO]: ENTITY_ATTACK
+[16:03:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:03:44 INFO]: ENTITY_ATTACK
+[16:03:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=12, player_kd=1.25}}
+[16:03:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=48, player_deaths=31, player_kd=1.55}}
+[16:03:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:03:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:03:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=3, player_kd=0.33}}
+[16:03:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=288, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:03:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:04:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:04:16 INFO]: DRAGON_BREATH
+[16:04:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=13, player_kd=1.15}}
+[16:04:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=289, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:04:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:04:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=741541ea-f143-4cbc-a60a-24a2b890a9dd, player_name=SirNest, player_kills=3, player_deaths=1, player_kd=3.0}}
+[16:04:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=4, player_kd=0.25}}
+[16:04:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=49, player_deaths=31, player_kd=1.58}}
+[16:04:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:04:30 INFO]: DRAGON_BREATH
+[16:04:35 INFO]: killer null!!!!
+[16:04:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:04:35 WARN]: Nag author(s): '[Wising, Nathan G]' of 'MCManhunt-Core v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[16:04:42 INFO]: SirNest lost connection: Disconnected
+[16:04:43 INFO]: [-] SirNest left the game.
+[16:04:48 INFO]: world
+[16:04:48 INFO]: CaptureTheFlag
+[16:04:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=13, player_kd=1.15}}
+[16:04:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=50, player_deaths=31, player_kd=1.61}}
+[16:04:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=289, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:04:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:04:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=4, player_kd=0.25}}
+[16:04:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:04:55 INFO]: __Nicooo__ issued server command: /fly
+[16:05:02 INFO]: world
+[16:05:02 INFO]: CaptureTheFlag
+[16:05:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:05:11 INFO]: __Nicooo__ issued server command: /gmc
+[16:05:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=50, player_deaths=31, player_kd=1.61}}
+[16:05:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:05:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=289, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:05:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=13, player_kd=1.15}}
+[16:05:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=4, player_kd=0.25}}
+[16:05:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:05:26 INFO]: __Nicooo__ issued server command: /gma
+[16:05:34 INFO]: Picked players before team randomization (registered in game):
+[16:05:34 INFO]: JoelSoep
+[16:05:34 INFO]: Ashar0n
+[16:05:34 INFO]: __Nicooo__
+[16:05:34 INFO]: Dannymak8
+[16:05:34 INFO]: KubasinskyPL
+[16:05:34 INFO]: Team red:
+[16:05:34 INFO]: Ashar0n
+[16:05:34 INFO]: Dannymak8
+[16:05:34 INFO]: Team blue:
+[16:05:34 INFO]: JoelSoep
+[16:05:34 INFO]: __Nicooo__
+[16:05:34 INFO]: KubasinskyPL
+[16:05:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:05:42 INFO]: 䋷䋸 __Nicooo__ » mhh
+[16:05:46 INFO]: 䋷䋸 __Nicooo__ » waiting time?
+[16:05:47 INFO]: 到细 JoelSoep » hmmmmmmmmmmmmmmmmm
+[16:05:47 INFO]: killer null!!!!
+[16:05:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=4, player_kd=0.25}}
+[16:05:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=50, player_deaths=31, player_kd=1.61}}
+[16:05:50 WARN]: Nag author(s): '[JoelSoep]' of 'CapturetheFlag v1.0' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[16:05:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=13, player_kd=1.15}}
+[16:05:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=289, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:05:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:05:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:05:52 INFO]: 到细 JoelSoep » glitch%
+[16:05:59 INFO]: 䋷䋸 __Nicooo__ » can't put stuff in off hadn
+[16:06:02 INFO]: 䋷䋸 __Nicooo__ » hand
+[16:06:05 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:06:13 INFO]: 到细 JoelSoep » how tf did the game fuck up this bad
+[16:06:15 INFO]: 到细 JoelSoep » ok
+[16:06:16 INFO]: 到细 JoelSoep » yeah
+[16:06:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=289, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:06:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=13, player_kd=1.15}}
+[16:06:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=50, player_deaths=31, player_kd=1.61}}
+[16:06:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=1c229c58-33a1-4723-b3ff-849298a9c9e8, player_name=KubasinskyPL, player_kills=1, player_deaths=5, player_kd=0.2}}
+[16:06:20 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:06:20 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:06:27 INFO]: 到细 JoelSoep » hold on let me try to test this again
+[16:06:27 INFO]: JoelSoep issued server command: /gamemode spectator
+[16:06:28 INFO]: __Nicooo__ issued server command: /gms
+[16:06:35 INFO]: killer null!!!!
+[16:06:35 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:06:36 INFO]: KubasinskyPL lost connection: Disconnected
+[16:06:36 INFO]: [-] KubasinskyPL left the game.
+[16:06:45 INFO]: 到细 JoelSoep » wtf
+[16:06:47 INFO]: 䋷䋸 __Nicooo__ » restart?
+[16:06:48 INFO]: 到细 JoelSoep » the entire fucking game
+[16:06:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=b35f3a61-8e25-4274-87ce-93a0e604df2c, player_name=JoelSoep, player_kills=128, player_deaths=289, player_kd=0.44, sortedKits=[Document{{Archer=Document{{0=GOLDEN_AXE, 1=WOODEN_SWORD, 2=BOW, 3=STONE_PICKAXE, 5=ARROW, 7=GRAY_CONCRETE, 8=GOLDEN_APPLE}}}}, Document{{Knight=Document{{0=IRON_SWORD, 1=STONE_PICKAXE, 2=GRAY_CONCRETE, 6=ARROW, 7=GOLDEN_APPLE, 8=BOW}}}}]}}
+[16:06:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=ee0820a8-b33b-4b97-a69d-0f16fc6f2e3b, player_name=Ashar0n, player_kills=15, player_deaths=13, player_kd=1.15}}
+[16:06:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=7c5f5fbd-5d1e-4d21-a47c-483bcb101c80, player_name=__Nicooo__, player_kills=50, player_deaths=31, player_kd=1.61}}
+[16:06:50 INFO]: [CTF] [STDOUT] Update completed: Document{{_id=0156e42d-0311-41fb-aa7d-7f8ff8d8994d, player_name=Dannymak8, player_kills=1, player_deaths=1, player_kd=1.0}}
+[16:06:50 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 45.59.171.45, Port: 25586
+[16:06:52 INFO]: 到细 JoelSoep » well yeah
+[16:06:56 INFO]: 到细 JoelSoep » i need to copy logs first
+
+[00:43:22 WARN]: [CTF] Task #1826 for CapturetheFlag v1.0 generated an exception
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.game.team.Team.getSpawn()" because the return value of "me.joelsoep.ctf.CTFPlayer.getTeam()" is null
+        at me.joelsoep.ctf.game.task.DeathCountdownTask$1.run(DeathCountdownTask.java:33) ~[ctf-1.0.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1483) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.tickChildren(DedicatedServer.java:447) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1397) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:840) ~[?:?]

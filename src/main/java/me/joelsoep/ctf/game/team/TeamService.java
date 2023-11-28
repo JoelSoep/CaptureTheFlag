@@ -13,8 +13,13 @@ public class TeamService {
 
     public static void setTeams(Game game) {
         ArrayList<CTFPlayer> players = game.getPlayers();
+        Team blue = game.getBlue();
+        Team red = game.getRed();
         ArrayList<CTFPlayer> bluePlayers = game.getBlue().getPlayers();
         ArrayList<CTFPlayer> redPlayers = game.getRed().getPlayers();
+
+        Bukkit.getLogger().info("red players size: " + redPlayers.size());
+        Bukkit.getLogger().info("blue players size: " + bluePlayers.size());
 
         Bukkit.getLogger().log(Level.INFO, "Picked players before team randomization (registered in game): ");
         game.getPlayers().forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName()); });
@@ -30,10 +35,10 @@ public class TeamService {
 
         for (CTFPlayer player : players) {
             if (bluePlayers.size() <= redPlayers.size()) {
-                bluePlayers.add(player);
+                blue.addPlayer(player);
                 player.setTeam(game.getBlue());
             } else {
-                redPlayers.add(player);
+                red.addPlayer(player);
                 player.setTeam(game.getRed());
             }
         }
@@ -41,5 +46,14 @@ public class TeamService {
         redPlayers.forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName());});
         Bukkit.getLogger().log(Level.INFO, "Team blue: ");
         bluePlayers.forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName());});
+
+        game.getPlayers().forEach(player -> {
+            Bukkit.getLogger().info("""
+                ---- DEBUG LOG FOR PLAYER %s | GAME START ----
+                CTFPlayer Team: %s
+                CTFPlayer Game: %s
+                ---- END DEBUG LOG ---
+                """.formatted(player.getPlayer().getName(), player.getTeam().getTeamColor().toString(), player.getGame().getUuid().toString()));
+        });
     }
 }

@@ -95,6 +95,12 @@ public class PlayerDeathListener implements Listener {
                 if (ctfKiller == null) {
                     return;
                 }
+                if (killer.getName().equals(player.getName())) {
+                    game.getAudience().sendMessage(MM.deserialize("""
+                        <gray>%s <gray>died.
+                        """.formatted(team.getTeamColor().getColor() + player.getName())));
+                    return;
+                }
 
                 ctfKiller.setKillStreak(ctfKiller.getKillStreak() + 1);
                 ctfKiller.getData().setKills(ctfKiller.getData().getKills() + 1);
@@ -141,6 +147,8 @@ public class PlayerDeathListener implements Listener {
                         game.getAudience().sendMessage(MM.deserialize("""
                                 <gray>%s <gray>has been killed by %s<gray>!"""
                                 .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
+                    } else {
+
                     }
                     return;
                 }

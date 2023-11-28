@@ -35,10 +35,10 @@ public class KitSelectionGUI extends ChestGui implements Listener {
     public KitSelectionGUI(Player player, KitService kitService) {
         super(3, "Kit Selection");
         this.kitService = kitService;
-        this.pane = new OutlinePane(1, 1, 7, 1);
+        this.pane = new OutlinePane(2, 1, 5, 1);
         this.background = new PatternPane(0, 0, 9, 3, new Pattern(
                 "111111111",
-                "100000001",
+                "110000011",
                 "111111111"
         ));
 
@@ -136,6 +136,7 @@ public class KitSelectionGUI extends ChestGui implements Listener {
      * @param player The player that gets to see the updated GUI.
      * @param kit The kit to select / deselect.
      */
+
     private void handleKitSelection(Player player, BaseKit kit) {
         CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
         if (ctfPlayer == null) {

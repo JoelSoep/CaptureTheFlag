@@ -65,11 +65,13 @@ public class CountdownTask {
                 }
 
                 if (seconds == 0) {
-
+                    Bukkit.getLogger().info("SECONDS = 0 @ Countdowntask");
                     if (isGameStartCountdown && game.getState() == GameState.READY) {
                         game.setState(GameState.RUNNING);
+                        Bukkit.getLogger().info("Updated game state to RUNNING");
                         if (game.getPlayers().size() == 0) {
-
+                            Bukkit.getLogger().info("CountdownTask: Activated 0-player-function.");
+                            game.setState(GameState.ENDED);
                             mapLoader.reloadMap();
                             mapLoader.placeFlag(game.getBlue());
                             mapLoader.placeFlag(game.getRed());
@@ -84,6 +86,7 @@ public class CountdownTask {
                     if (isGameStartCountdown && game.getState() == GameState.WAITING) {
                         GameStartEvent event = new GameStartEvent(game);
                         Bukkit.getPluginManager().callEvent(event);
+                        Bukkit.getLogger().info("GameStartEvent trigger @Countdowntask");
                     }
                     cancel();
                 }

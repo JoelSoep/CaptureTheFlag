@@ -43,27 +43,21 @@ public class ResetGameTask {
             public void run() {
                 // Create a copy of game.getPlayers() to avoid ConcurrentModificationException
                 List<CTFPlayer> playersToRemove = new ArrayList<>(game.getPlayers());
+                List<CTFPlayer> spectatorsToRemove = new ArrayList<>(game.getSpectators());
 
                 playersToRemove.forEach(player -> {
                     player.getPlayer().teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), 516, 35, 13));
-                    player.getPlayer().displayName(Component.text(player.getPlayer().getName()));
-                    player.getPlayer().playerListName(Component.text(player.getPlayer().getName()));
-                    player.getPlayer().getInventory().clear();
-                    player.setKillStreak(0);
-                    player.getPlayer().setGlowing(false);
-                    player.setTeam(null);
-                    for (PotionEffect potionEffect : player.getPlayer().getActivePotionEffects()) {
-                        PotionEffectType type = potionEffect.getType();
-                        player.getPlayer().removePotionEffect(type);
-                    }
+                    game.removePlayer(player);
+                    player.reset();
                 });
 
-                playersToRemove.forEach(ctfPlayer -> game.removePlayer(ctfPlayer));
-                game.getSpectators().forEach(player -> {
-                    player.getPlayer().setGameMode(GameMode.ADVENTURE);
+                spectatorsToRemove.forEach(player -> {
                     player.getPlayer().teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), 516, 35, 13));
-                    player.setGame(null);
+                    game.removeSpectator(player);
+                    player.reset();
                 });
+
+                game.getPlayers().clear();
                 game.getSpectators().clear();
 
                 Main.playerList.values().forEach(player -> {
@@ -95,6 +89,7 @@ public class ResetGameTask {
 
                 Main.game = newGame;
                 game = newGame;
+                Bukkit.getLogger().info("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
 
                 if (game.getPlayerCount() >= game.getMinPlayers() && !game.isStarting()) {
                     Main.countdownTask = new CountdownTask(
