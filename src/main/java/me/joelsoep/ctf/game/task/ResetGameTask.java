@@ -37,7 +37,6 @@ public class ResetGameTask {
     }
 
     public void reset() {
-        Game newGame = new Game();
         this.id = Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
             @Override
             public void run() {
@@ -60,6 +59,11 @@ public class ResetGameTask {
                 game.getPlayers().clear();
                 game.getSpectators().clear();
 
+                Bukkit.getLogger().info("Before assignment - Main.game identity: " + System.identityHashCode(Main.game));
+                game.reset();
+                Bukkit.getLogger().info("After assignment - Main.game identity: " + System.identityHashCode(Main.game));
+                Bukkit.getLogger().info("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
+
                 Main.playerList.values().forEach(player -> {
                     new Hotbar(player.getPlayer());
 
@@ -72,24 +76,22 @@ public class ResetGameTask {
                     }
 
                     if (player.getParticipationState() == ParticipationState.SPECTATING) {
-                        newGame.addSpectator(player);
+                        game.addSpectator(player);
                         return;
                     }
 
-                    if (newGame.getPlayers().size() >= newGame.getMaxPlayers()) {
+                    if (game.getPlayers().size() >= game.getMaxPlayers()) {
+                        player.sendMessage(MM.deserialize("""
+                                <gray>Couldn't add you to the new game as it is full!
+                                """));
                         return;
                     }
-                    newGame.addPlayer(player);
+                    game.addPlayer(player);
                     player.sendMessage(MM.deserialize("""
                         <green>You have been added to a game with uuid %s.
                         <green>The game will start shortly.
-                        """.formatted(newGame.getUuid())));
+                        """.formatted(game.getUuid())));
                 });
-                newGame.createTeams();
-
-                Main.game = newGame;
-                game = newGame;
-                Bukkit.getLogger().info("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
 
                 if (game.getPlayerCount() >= game.getMinPlayers() && !game.isStarting()) {
                     Main.countdownTask = new CountdownTask(

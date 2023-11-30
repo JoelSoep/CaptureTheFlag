@@ -50,7 +50,6 @@ public class EntityDamageByEntityListener implements Listener {
         if (entityDamager instanceof LightningStrike lightning) {
             Entity striker = lightning.getCausingEntity();
             if (striker instanceof Player lighter) {
-                Main.entityDamageHandler.setLastDamager(player, lighter, EntityDamageEvent.DamageCause.LIGHTNING);
                 player.setLastDamageCause(new EntityDamageEvent(player, EntityDamageEvent.DamageCause.LIGHTNING, 0));
             }
         }

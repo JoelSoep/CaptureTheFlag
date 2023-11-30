@@ -7,8 +7,10 @@ import me.joelsoep.ctf.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.map.MapLoader;
 import me.joelsoep.ctf.game.task.ResetGameTask;
+import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
@@ -36,6 +38,7 @@ public class DebugCommand extends BaseCommand {
                 <gray>- team <player>
                 <gray>- endgame
                 <gray>- game
+                <gray>- giveblocks
                 """));
     }
 
@@ -80,6 +83,7 @@ public class DebugCommand extends BaseCommand {
     @Description("Get information about your current game.")
     public void onGame(Player player) {
         player.sendMessage(MM.deserialize("<gray>The current game ID is <yellow>" + game.getUuid().toString()));
+        player.sendMessage(MM.deserialize("<gray>The current state of this game is <yellow>" + game.getState().toString()));
 
         CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
         if (ctfPlayer == null) {
@@ -92,6 +96,8 @@ public class DebugCommand extends BaseCommand {
             return;
         }
         player.sendMessage(MM.deserialize("<gray>Your game ID is <yellow>" + ctfPlayer.getGame().getUuid().toString()));
+        player.sendMessage(MM.deserialize("<gray>The current state of your game is <yellow>" + ctfPlayer.getGame().getState().toString()));
+        player.sendMessage(MM.deserialize("<gray>You are " + (ctfPlayer.getGame().getUuid().toString().equals(game.getUuid().toString()) ? "<green>synced." : "<red>NOT synced.")));
     }
 
     @Subcommand("endgame")
@@ -116,8 +122,26 @@ public class DebugCommand extends BaseCommand {
     }
 
     @Subcommand("giveblocks")
+    @CommandCompletion("@players")
     @Description("Give a player blocks.")
     public void onGive(Player player, OnlinePlayer onlinePlayer, String team) {
+        if (!(team.equals("red") || team.equals("blue"))) {
+            player.sendMessage(MM.deserialize("<red>Please select a valid team! (red/blue)"));
+            return;
+        }
+        Team finalTeam = null;
 
+        switch (team) {
+            case "red" -> finalTeam = game.getRed();
+            case "blue" -> finalTeam = game.getBlue();
+            default -> player.sendMessage(MM.deserialize("<red>Please select a valid team! (red/blue)"));
+        }
+
+        if (finalTeam == null) {
+            player.sendMessage(MM.deserialize("The given team is null! Is the game running?"));
+            return;
+        }
+
+        onlinePlayer.getPlayer().getInventory().addItem(BaseKit.getBlocks(finalTeam, 64));
     }
 }

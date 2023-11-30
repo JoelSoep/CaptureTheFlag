@@ -24,7 +24,6 @@ public class BlockPlaceListener implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
         Game game = Main.game;
         Location blockLocation = event.getBlockPlaced().getLocation();
 

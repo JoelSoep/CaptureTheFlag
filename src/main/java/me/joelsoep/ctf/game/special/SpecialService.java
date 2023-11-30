@@ -15,6 +15,7 @@ import java.util.logging.Level;
 public class SpecialService {
     private final Map<String, BaseSpecial> specials;
     private final Plugin plugin;
+    private Random random = new Random();
 
     public SpecialService() {
         this.plugin = Bukkit.getPluginManager().getPlugin("CapturetheFlag");
@@ -65,7 +66,7 @@ public class SpecialService {
         if (list.isEmpty()) {
             return null;
         }
-        int randomIndex = new Random().nextInt(list.size());
+        int randomIndex = random.nextInt(list.size());
         BaseSpecial special = list.get(randomIndex);
         if (special == null) {
             Bukkit.getLogger().log(Level.INFO, "Special is null");

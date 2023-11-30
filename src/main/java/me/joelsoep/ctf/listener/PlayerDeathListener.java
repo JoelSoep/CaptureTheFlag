@@ -118,40 +118,6 @@ public class PlayerDeathListener implements Listener {
                         <gray>%s <gray>has been killed by %s<gray>!"""
                         .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
             } else {
-                if (Main.entityDamageHandler.getLastDamager(player) != null) {
-                    killer = Main.entityDamageHandler.getLastDamager(player);
-                    EntityDamageEvent.DamageCause cause = Main.entityDamageHandler.getLastDamageCause(player);
-                    if (cause != null) {
-                        Bukkit.getLogger().info(cause.toString());
-                        player.setKiller(killer);
-                        player.setLastDamageCause(new EntityDamageEvent(player, cause, 0));
-                        Main.entityDamageHandler.setLastDamager(player, null, null);
-
-                        CTFPlayer ctfKiller = Main.playerList.get(killer.getName());
-                        if (ctfKiller == null) {
-                            return;
-                        }
-
-                        ctfKiller.setKillStreak(ctfKiller.getKillStreak() + 1);
-                        ctfKiller.getData().setKills(ctfKiller.getData().getKills() + 1);
-                        if (ctfKiller.getKillStreak() % game.getMinKillStreak() == 0) {
-                            PlayerRewardSpecialEvent rewardEvent = new PlayerRewardSpecialEvent(ctfKiller);
-                            Bukkit.getPluginManager().callEvent(rewardEvent);
-                        }
-                        if (killer.getHealth() >= 13) {
-                            killer.setHealth(20);
-                        } else {
-                            killer.setHealth(killer.getHealth() + 7);
-                        }
-
-                        game.getAudience().sendMessage(MM.deserialize("""
-                                <gray>%s <gray>has been killed by %s<gray>!"""
-                                .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
-                    } else {
-
-                    }
-                    return;
-                }
                 game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>died.
                         """.formatted(team.getTeamColor().getColor() + player.getName())));

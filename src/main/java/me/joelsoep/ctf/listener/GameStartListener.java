@@ -38,8 +38,6 @@ public class GameStartListener implements Listener {
 
         Team red = game.getRed();
         Team blue = game.getBlue();
-        Audience redAudience = red.getAudience();
-        Audience blueAudience = blue.getAudience();
 
         game.setState(GameState.READY);
         Bukkit.getLogger().info("Updated game state to READY");

@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.util;
+package me.joelsoep.ctf.util.garbage;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -9,6 +9,7 @@ import org.bukkit.plugin.Plugin;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
+@Deprecated
 public class EntityDamageHandler {
 
     private Plugin plugin = null;

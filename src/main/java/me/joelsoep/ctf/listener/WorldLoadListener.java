@@ -4,7 +4,11 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.map.MapLoader;
 import me.joelsoep.ctf.game.board.Leaderboard;
+import me.joelsoep.ctf.game.task.CleanItemsTask;
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -55,12 +59,9 @@ public class WorldLoadListener implements Listener {
         world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
         world.setGameRule(GameRule.DO_TILE_DROPS, false);
 
-       // Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-          //  @Override
-         //   public void run() {
-                new Leaderboard(plugin,"kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", new Location(world, 505, 39, 3), Main.mongo.getUserCollection(), "player_kills", 0, true, "&4", "&c");
-                new Leaderboard(plugin, "kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", new Location(world, 505, 39, -4), Main.mongo.getUserCollection(), "player_kd", (double) 1, false, "&3", "&b");
-         //   }
-        //}, 200L);
+        new CleanItemsTask(plugin, world);
+
+        new Leaderboard(plugin,"kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", new Location(world, 505, 39, 3), Main.mongo.getUserCollection(), "player_kills", 0, true, "&4", "&c");
+        new Leaderboard(plugin, "kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", new Location(world, 505, 39, -4), Main.mongo.getUserCollection(), "player_kd", (double) 1, false, "&3", "&b");
     }
 }

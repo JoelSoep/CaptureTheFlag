@@ -23,7 +23,7 @@ import me.joelsoep.ctf.util.Download;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.listener.*;
-import me.joelsoep.ctf.util.EntityDamageHandler;
+import me.joelsoep.ctf.util.garbage.EntityDamageHandler;
 import org.bukkit.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,18 +33,16 @@ import java.util.LinkedHashMap;
 import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
-
     private AdvancementMain advancementMain;
 
     public static LinkedHashMap<String, CTFPlayer> playerList = new LinkedHashMap<>();
     public static Game game = new Game();
-    public static Mongo mongo = new Mongo();
-    public static KitService kitService = new KitService();
-    public static SpecialService specialService = new SpecialService();
+    public static final Mongo mongo = new Mongo();
+    public static final KitService kitService = new KitService();
+    public static final SpecialService specialService = new SpecialService();
     public static CountdownTask countdownTask;
     public static AdvancementAPI advancementAPI;
     public static AdvancementService advancementService;
-    public static EntityDamageHandler entityDamageHandler;
 
     @Override
     public void onLoad() {

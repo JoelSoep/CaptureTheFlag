@@ -48,6 +48,21 @@ public class Game {
         this.state = GameState.WAITING;
     }
 
+    public void reset() {
+        this.setUuid(UUID.randomUUID());
+        this.setPlayerCount(0);
+        this.setMaxPlayers(20);
+        this.setMinPlayers(2);
+        this.setMaxPoints(3);
+        this.setMinKillStreak(1);
+        this.setState(GameState.WAITING);
+        this.setWinner(null);
+        this.setStarting(false);
+        this.setSpedUp(false);
+        this.setAudience(Audience.audience(concatAudience(players, spectators)));
+        this.createTeams();
+    }
+
     public void addPlayer(CTFPlayer player) {
         if (players.size() >= this.getMaxPlayers()) {
             player.sendMessage(MM.deserialize("""
