@@ -220,6 +220,6 @@ EVERYONE IS IN THE SAME TEAM
 PEOPLE CANT PLACE BLOCKS
 
 If a player is changing their kit and the game starts they dont get their kit
-golden apples you get from flags dont stack on the others
-smash bros can hit people from their own team
+golden apples you get from flags dont stack on the others FIXED
+smash bros can hit people from their own team REMOVED SMASH BROS, FIXED
 

@@ -10,6 +10,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import me.joelsoep.ctf.CTFPlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
@@ -93,6 +94,10 @@ public class KitSortGUI extends ChestGui {
         this.show(player);
 
         this.setOnClose(event -> {
+            // return in case the game is starting in order to prevent the hotbar inventory from overriding the kit.
+            if (ctfPlayer.getGame().getState() != GameState.WAITING) {
+                return;
+            }
             player.getInventory().clear();
             new Hotbar(player);
             new KitSelectionGUI((Player) event.getPlayer(), Main.kitService);
