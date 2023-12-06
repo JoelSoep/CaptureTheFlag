@@ -20,17 +20,10 @@ import java.util.logging.Level;
 
 public class PlayerQuitListener implements Listener {
 
-    private final Plugin plugin;
-
-    public PlayerQuitListener(Plugin plugin) {
-        this.plugin = plugin;
-    }
-
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
-        MapLoader mapLoader = new MapLoader(plugin);
 
         if (ctfPlayer == null) {
             return;
@@ -52,38 +45,5 @@ public class PlayerQuitListener implements Listener {
 
         event.quitMessage(MM.deserialize("<gray>[<red>-<gray>] <red>%s <gray>left the game.".formatted(player.getName())));
         game.removePlayer(ctfPlayer);
-        if (game.getPlayers().size() < game.getMinPlayers() && game.isStarting()) {
-            if (Main.countdownTask != null) {
-                Main.countdownTask.cancel();
-                game.setStarting(false);
-                game.setSpedUp(false);
-                game.getAudience().sendMessage(MM.deserialize("<red>Game preparation has been canceled as there are too few players to start."));
-            }
-        }
-        if (ctfPlayer.getTeam() != null) {
-            Team team = ctfPlayer.getTeam();
-            Team oppositeTeam = ctfPlayer.getTeam() == game.getRed() ? game.getBlue() : game.getRed();
-            team.removePlayer(ctfPlayer);
-            ctfPlayer.setTeam(null);
-
-            if (team.getPlayers().size() == 0) {
-                GameEndEvent endEvent = new GameEndEvent(game, oppositeTeam, team);
-                Bukkit.getPluginManager().callEvent(endEvent);
-                return;
-            }
-
-            if (oppositeTeam.getFlagThief() != null) {
-                if (!(oppositeTeam.getFlagThief().equals(ctfPlayer))) {
-                    return;
-                }
-                    oppositeTeam.setFlagThief(null);
-                    mapLoader.placeFlag(oppositeTeam);
-                    game.getAudience().sendMessage(
-                            MM.deserialize(
-                                    "<gray>Team %s's flag has been returned."
-                                            .formatted(oppositeTeam.getTeamColor().getPrefix()))
-                    );
-            }
-        }
     }
 }

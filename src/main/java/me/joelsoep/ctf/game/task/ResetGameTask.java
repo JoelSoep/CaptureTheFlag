@@ -82,7 +82,7 @@ public class ResetGameTask {
 
                     if (game.getPlayers().size() >= game.getMaxPlayers()) {
                         player.sendMessage(MM.deserialize("""
-                                <gray>Couldn't add you to the new game as it is full!
+                                <gray>Couldn't add you to the game as it is full!
                                 """));
                         return;
                     }
@@ -92,19 +92,6 @@ public class ResetGameTask {
                         <green>The game will start shortly.
                         """.formatted(game.getUuid())));
                 });
-
-                if (game.getPlayerCount() >= game.getMinPlayers() && !game.isStarting()) {
-                    Main.countdownTask = new CountdownTask(
-                            plugin,
-                            MM.deserialize("<#63f02b>Game has started!"),
-                            game.getAudience(),
-                            45,
-                            true,
-                            game
-                    );
-                    game.setStarting(true);
-                }
-
 
             }
         }, 400L);

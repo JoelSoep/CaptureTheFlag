@@ -4,6 +4,8 @@ import fr.mrmicky.fastboard.adventure.FastBoard;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
+import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.util.MM;
@@ -75,6 +77,8 @@ public class Game {
         player.setGame(this);
         playerCount++;
         this.audience = Audience.audience(concatAudience(players, spectators));
+        PlayerJoinGameEvent event = new PlayerJoinGameEvent(this, player);
+        Bukkit.getPluginManager().callEvent(event);
     }
 
     public void removePlayer(CTFPlayer player) {
@@ -82,6 +86,8 @@ public class Game {
         player.setGame(null);
         playerCount--;
         this.audience = Audience.audience(concatAudience(players, spectators));
+        PlayerLeaveGameEvent event = new PlayerLeaveGameEvent(this, player);
+        Bukkit.getPluginManager().callEvent(event);
     }
 
     public void addSpectator(CTFPlayer player) {

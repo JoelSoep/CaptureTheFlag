@@ -5,14 +5,9 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.gui.AdminPanelGUI;
 import me.joelsoep.ctf.game.gui.KitSelectionGUI;
-import me.joelsoep.ctf.game.gui.PlayerParticipationGUI;
+import me.joelsoep.ctf.util.garbage.PlayerParticipationGUI;
 import me.joelsoep.ctf.util.MM;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +15,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.FireworkMeta;
 
 public class PlayerInteractListener implements Listener {
 
@@ -40,11 +34,6 @@ public class PlayerInteractListener implements Listener {
         if (material == Material.BOOK) {
             new KitSelectionGUI(player, Main.kitService);
             return;
-        }
-
-        if (material == Material.ENDER_EYE) {
-            event.setCancelled(true); // ensure the ender eye doesn't fly away.
-            new PlayerParticipationGUI(player);
         }
 
         if (event.getMaterial() == Material.COMMAND_BLOCK) {

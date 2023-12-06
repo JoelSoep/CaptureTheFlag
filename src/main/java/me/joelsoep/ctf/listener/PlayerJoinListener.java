@@ -40,45 +40,9 @@ public class PlayerJoinListener implements Listener {
             ctfPlayer.reset();
             // Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
             game.addPlayer(ctfPlayer);
-            new Hotbar(player);
-           ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);
-           ctfPlayer.setBoard(scoreboardHandler.getBoard());
-
-
-            game.getAudience().sendMessage(MM.deserialize("""
-                    <gray>[</gray><green>+</green><gray>] %s has joined the game! (%s/%s)"""
-                    .formatted(player.getName(), game.getPlayerCount(), game.getMaxPlayers())));
-
-            if (Main.countdownTask != null) {
-                Main.countdownTask.updateAudience(game.getAudience());
-            }
-
-            if (game.getPlayerCount() >= game.getMinPlayers() && !game.isStarting()) {
-                Main.countdownTask = new CountdownTask(
-                        plugin,
-                        MM.deserialize("<#63f02b>Game has started!"),
-                        game.getAudience(),
-                        45,
-                        true,
-                        game
-                );
-                game.setStarting(true);
-            }
-
-            if (game.getPlayerCount() >= game.getMaxPlayers() && game.isStarting() && !game.isSpedUp()) {
-                if (Main.countdownTask != null && Main.countdownTask.getSeconds() > 10) {
-                    Main.countdownTask.cancel();
-                }
-                Main.countdownTask = new CountdownTask(
-                        plugin,
-                        MM.deserialize("<#63f02b>Game has started!"),
-                        game.getAudience(),
-                        10,
-                        true,
-                        game
-                );
-                game.setSpedUp(true);
-            }
+            new Hotbar(ctfPlayer.getPlayer());
+            ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);
+            ctfPlayer.setBoard(scoreboardHandler.getBoard());
         }
 
         if (game.getState() == GameState.RUNNING || game.getState() == GameState.READY) {

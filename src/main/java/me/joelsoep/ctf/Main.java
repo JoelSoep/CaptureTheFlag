@@ -16,6 +16,7 @@ import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.database.Mongo;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
 import me.joelsoep.ctf.game.advancement.AdvancementService;
+import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
 import me.joelsoep.ctf.game.task.CountdownTask;
@@ -93,7 +94,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new InventoryDragListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryDropListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryMoveItemListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
         getServer().getPluginManager().registerEvents(new GameEndListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
@@ -105,6 +106,8 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FlagCaptureListener(), this);
         getServer().getPluginManager().registerEvents(new AdvancementListener(), this);
         getServer().getPluginManager().registerEvents(new EntityPickupItemListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinGameListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerLeaveGameListener(this), this);
 
         manager.registerCommand(new DebugCommand(this));
                 // Plugin startup logic

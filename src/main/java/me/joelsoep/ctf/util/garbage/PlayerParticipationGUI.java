@@ -1,11 +1,9 @@
-package me.joelsoep.ctf.game.gui;
+package me.joelsoep.ctf.util.garbage;
 
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
-import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.PatternPane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
-import com.github.stefvanschie.inventoryframework.pane.component.ToggleButton;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import me.joelsoep.ctf.CTFPlayer;
 import me.joelsoep.ctf.Main;
@@ -14,10 +12,6 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.format.StyleBuilderApplicable;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.Tag;
-import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -28,10 +22,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+@Deprecated
 public class PlayerParticipationGUI extends ChestGui implements Listener {
 
     private final Player player;

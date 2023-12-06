@@ -18,7 +18,6 @@ public class Hotbar {
         this.player = player;
         player.getInventory().clear();
         giveKitSelectionItem();
-        giveParticipationMenuItem();
         giveAdminMenu();
     }
 
@@ -38,6 +37,13 @@ public class Hotbar {
         this.player.getInventory().setItem(4, kitSelector);
     }
 
+    /***
+     * Deprecated.
+     * Please use the new Queue block instead over the Participation menu,
+     * as the Participation menu is scheduled for removal.
+     */
+    
+    @Deprecated
     private void giveParticipationMenuItem() {
         ItemStack participationMenu = new ItemStack(Material.ENDER_EYE);
         ItemMeta itemMeta = participationMenu.getItemMeta();
