@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.team;
 
 import me.joelsoep.ctf.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 
@@ -23,6 +24,11 @@ public class TeamService {
 
         Bukkit.getLogger().log(Level.INFO, "Picked players before team randomization (registered in game): ");
         game.getPlayers().forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName()); });
+
+        if (players.size() == 0) {
+            game.getAudience().sendMessage(MM.deserialize("<red>Couldn't create teams as there are no players to join!"));
+            return;
+        }
 
         if (players.size() > game.getMaxPlayers()) {
             List<CTFPlayer> newPlayers = players.subList(0, game.getMaxPlayers() - 1);

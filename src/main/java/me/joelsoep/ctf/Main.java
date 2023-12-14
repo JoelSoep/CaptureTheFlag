@@ -14,22 +14,24 @@ import co.aikar.commands.PaperCommandManager;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
 import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.database.Mongo;
+import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
 import me.joelsoep.ctf.game.advancement.AdvancementService;
-import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
 import me.joelsoep.ctf.game.task.CountdownTask;
-import me.joelsoep.ctf.util.Download;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.KitService;
+import me.joelsoep.ctf.game.task.QueueCheckGameAvailabilityTask;
+import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
 import me.joelsoep.ctf.listener.*;
-import me.joelsoep.ctf.util.garbage.EntityDamageHandler;
 import org.bukkit.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 
@@ -41,6 +43,7 @@ public final class Main extends JavaPlugin {
     public static final Mongo mongo = new Mongo();
     public static final KitService kitService = new KitService();
     public static final SpecialService specialService = new SpecialService();
+    public static final GameQueue queue = new GameQueue();
     public static CountdownTask countdownTask;
     public static AdvancementAPI advancementAPI;
     public static AdvancementService advancementService;
@@ -64,6 +67,8 @@ public final class Main extends JavaPlugin {
         }
 
         new BackupPlayerDataTask(this);
+        new QueuePlayersActionbarTask(this);
+        new QueueCheckGameAvailabilityTask(this);
       //  this.advancementMain.enableMySQL(
        //         "network",
        //         "admin",
@@ -127,7 +132,7 @@ public final class Main extends JavaPlugin {
                     getDataFolder().mkdirs();
                 }
                 Bukkit.getLogger().log(Level.INFO, "Downloading " + resource + "...");
-                Download.download(new URL(url), getDataFolder() + File.separator + resource);
+                Files.copy(new URL(url).openStream(), Paths.get(getDataFolder() + File.separator + resource));
               //  Bukkit.getLogger().log(Level.INFO, "Unzipping " + resource + "...");
              //   Download.unzip(getDataFolder() + File.separator + resource, String.valueOf(getDataFolder()));
             } catch (Exception e) {

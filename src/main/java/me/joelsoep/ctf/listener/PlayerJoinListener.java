@@ -39,7 +39,12 @@ public class PlayerJoinListener implements Listener {
         if (game.getState() == GameState.WAITING) {
             ctfPlayer.reset();
             // Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
-            game.addPlayer(ctfPlayer);
+            if (game.getPlayerCount() >= game.getMaxPlayers()) {
+                player.sendMessage(MM.deserialize("<gray>yellow>You've been added to the queue as the current game is full."));
+                Main.queue.addPlayer(ctfPlayer);
+            } else {
+                game.addPlayer(ctfPlayer);
+            }
             new Hotbar(ctfPlayer.getPlayer());
             ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);
             ctfPlayer.setBoard(scoreboardHandler.getBoard());
@@ -53,10 +58,10 @@ public class PlayerJoinListener implements Listener {
                     <gray>The game has already started.
                     <gray>You have been put in spectator mode.
                     """));
+            Main.queue.addPlayer(ctfPlayer);
         }
 
         if (game.getState() == GameState.ENDED) {
-
             player.sendMessage(MM.deserialize("<red>A game is currently preparing. You will be added shortly."));
             new Hotbar(player);
             ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);

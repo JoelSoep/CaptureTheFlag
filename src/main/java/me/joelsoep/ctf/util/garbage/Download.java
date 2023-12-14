@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.util;
+package me.joelsoep.ctf.util.garbage;
 
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.zip.GZIPOutputStream;
 
+@Deprecated
 public class Download {
 
    // https://drive.google.com/file/d/1Y_7FjXvF7-oedh1ffbssYODu2mxWu8Je/view?usp=sharing lobby
