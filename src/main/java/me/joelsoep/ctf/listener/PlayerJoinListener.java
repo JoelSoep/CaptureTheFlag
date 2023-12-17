@@ -1,25 +1,18 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
-import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Collections;
 
 public class PlayerJoinListener implements Listener {
 

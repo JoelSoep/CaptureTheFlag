@@ -1,11 +1,10 @@
 package me.joelsoep.ctf.game.event;
 
 import lombok.Getter;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.game.map.MapLoader;
+import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

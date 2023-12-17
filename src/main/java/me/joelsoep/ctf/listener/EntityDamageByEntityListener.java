@@ -1,10 +1,10 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
-import org.bukkit.Bukkit;
+import me.joelsoep.ctf.player.PlayerService;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LightningStrike;
@@ -13,7 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.projectiles.ProjectileSource;
 
 public class EntityDamageByEntityListener implements Listener {
 
@@ -31,10 +30,10 @@ public class EntityDamageByEntityListener implements Listener {
             event.setCancelled(true);
         }
 
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
 
         if (entityDamager instanceof Player damager) {
-            CTFPlayer ctfDamager = Main.playerList.get(damager.getName());
+            CTFPlayer ctfDamager = PlayerService.getPlayers().get(damager.getName());
 
             if (ctfPlayer.getTeam() == null || ctfDamager.getTeam() == null) {
                 event.setCancelled(true);
@@ -59,7 +58,7 @@ public class EntityDamageByEntityListener implements Listener {
                 return;
             }
 
-            CTFPlayer ctfShooter = Main.playerList.get(shooter.getName());
+            CTFPlayer ctfShooter = PlayerService.getPlayers().get(shooter.getName());
             if (ctfShooter == null) {
                 return;
             }

@@ -1,39 +1,26 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
-import me.joelsoep.ctf.game.kit.BaseKit;
-import me.joelsoep.ctf.game.kit.KitService;
-import me.joelsoep.ctf.game.map.MapLoader;
+import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
-import me.joelsoep.ctf.game.team.TeamColor;
-import net.kyori.adventure.key.Key;
-import net.kyori.adventure.sound.Sound;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import me.joelsoep.ctf.player.PlayerService;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
 
 public class PlayerMoveListener implements Listener {
 
@@ -46,7 +33,7 @@ public class PlayerMoveListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
         MapLoader mapLoader = new MapLoader(plugin);
         Game game = Main.game;
         Location location = event.getTo().toCenterLocation();

@@ -264,7 +264,7 @@ make some color rules, so that it all feels unified
 [16:06:56 INFO]: 到细 JoelSoep » i need to copy logs first
 
 [00:43:22 WARN]: [CTF] Task #1826 for CapturetheFlag v1.0 generated an exception
-java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.game.team.Team.getSpawn()" because the return value of "me.joelsoep.ctf.CTFPlayer.getTeam()" is null
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.game.team.Team.getSpawn()" because the return value of "me.joelsoep.ctf.player.CTFPlayer.getTeam()" is null
         at me.joelsoep.ctf.game.task.DeathCountdownTask$1.run(DeathCountdownTask.java:33) ~[ctf-1.0.jar:?]
         at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
         at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]

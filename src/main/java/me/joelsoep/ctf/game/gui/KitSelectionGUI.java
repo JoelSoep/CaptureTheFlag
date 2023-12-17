@@ -6,14 +6,13 @@ import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import com.github.stefvanschie.inventoryframework.pane.PatternPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.kit.KitService;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -24,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
-import java.util.logging.Level;
 
 public class KitSelectionGUI extends ChestGui implements Listener {
 
@@ -125,7 +123,7 @@ public class KitSelectionGUI extends ChestGui implements Listener {
      */
 
     private boolean isKitEnabled(Player player, BaseKit kit) {
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
         return ctfPlayer != null && ctfPlayer.getKit() == kit;
     }
 
@@ -138,7 +136,7 @@ public class KitSelectionGUI extends ChestGui implements Listener {
      */
 
     private void handleKitSelection(Player player, BaseKit kit) {
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
         if (ctfPlayer == null) {
             return;
         }

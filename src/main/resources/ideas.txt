@@ -49,7 +49,7 @@ handle playerdeathevent when game is not running FIXED
 
 [15:03:36 INFO]: [MCManhunt-Core] [STDOUT] Pushing server into cache. ID: event-3, IP: 148.251.189.120, Port: 25591
 [15:03:36 WARN]: [CTF] Task #260 for CapturetheFlag v1.0 generated an exception
-java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.player.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
         at me.joelsoep.ctf.game.board.ScoreboardHandler.update(ScoreboardHandler.java:51) ~[ctf-1.0.jar:?]
         at me.joelsoep.ctf.game.board.ScoreboardHandler$1.run(ScoreboardHandler.java:36) ~[ctf-1.0.jar:?]
         at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
@@ -61,7 +61,7 @@ java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKill
         at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
         at java.lang.Thread.run(Thread.java:833) ~[?:?]
 [15:03:37 WARN]: [CTF] Task #260 for CapturetheFlag v1.0 generated an exception
-java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.player.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
         at me.joelsoep.ctf.game.board.ScoreboardHandler.update(ScoreboardHandler.java:51) ~[ctf-1.0.jar:?]
         at me.joelsoep.ctf.game.board.ScoreboardHandler$1.run(ScoreboardHandler.java:36) ~[ctf-1.0.jar:?]
         at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
@@ -86,7 +86,7 @@ blocks can just easily be multiplied FIXED
 spectators die and then spawn in overworld DOES NOT NEED TO BE FIXED
 
 [20:25:18 WARN]: [CTF] Task #322 for CapturetheFlag v1.0 generated an exception
-java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.player.CTFPlayer.getKillStreak()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
         at me.joelsoep.ctf.game.board.ScoreboardHandler.update(ScoreboardHandler.java:51) ~[ctf-1.0.jar:?]
         at me.joelsoep.ctf.game.board.ScoreboardHandler$1.run(ScoreboardHandler.java:36) ~[ctf-1.0.jar:?]
         at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
@@ -147,7 +147,7 @@ rabbit which launches the player DONE
 
 
 [15:34:07 WARN]: [CTF] Task #635 for CapturetheFlag v1.0 generated an exception
-java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.CTFPlayer.getTeam()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
+java.lang.NullPointerException: Cannot invoke "me.joelsoep.ctf.player.CTFPlayer.getTeam()" because the return value of "java.util.LinkedHashMap.get(Object)" is null
         at me.joelsoep.ctf.game.kit.BaseKit.giveKitToPlayer(BaseKit.java:82) ~[ctf-1.0.jar:?]
         at me.joelsoep.ctf.game.kit.KitService.giveKitToPlayer(KitService.java:50) ~[ctf-1.0.jar:?]
         at me.joelsoep.ctf.game.task.DeathCountdownTask$1.run(DeathCountdownTask.java:36) ~[ctf-1.0.jar:?]

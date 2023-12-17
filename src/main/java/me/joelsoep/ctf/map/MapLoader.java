@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.game.map;
+package me.joelsoep.ctf.map;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;

@@ -3,14 +3,15 @@ package me.joelsoep.ctf.command;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
-import me.joelsoep.ctf.game.map.MapLoader;
+import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
 import org.bukkit.entity.Player;
@@ -47,7 +48,7 @@ public class DebugCommand extends BaseCommand {
     @Description("Get information about a players team.")
     public void onTeam(Player player, String[] args) {
         if (args.length == 0) {
-            CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+            CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
             if (ctfPlayer == null) {
                 player.sendMessage(MM.deserialize("Couldn't find CTFPlayer!"));
                 return;
@@ -62,7 +63,7 @@ public class DebugCommand extends BaseCommand {
             player.sendMessage(MM.deserialize("Game Team for " + ctfPlayer.getPlayer().getName() + ": " + gameTeam));
         } else {
             String playerName = args[0];
-            CTFPlayer ctfPlayer = Main.playerList.get(playerName);
+            CTFPlayer ctfPlayer = PlayerService.getPlayers().get(playerName);
             if (ctfPlayer == null) {
                 player.sendMessage(MM.deserialize("Couldn't find CTFPlayer!"));
                 return;
@@ -85,7 +86,7 @@ public class DebugCommand extends BaseCommand {
         player.sendMessage(MM.deserialize("<gray>The current game ID is <yellow>" + game.getUuid().toString()));
         player.sendMessage(MM.deserialize("<gray>The current state of this game is <yellow>" + game.getState().toString()));
 
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
         if (ctfPlayer == null) {
             player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
             return;

@@ -2,13 +2,10 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.game.map.MapLoader;
+import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.board.Leaderboard;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;

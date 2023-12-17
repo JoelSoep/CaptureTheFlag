@@ -1,11 +1,8 @@
 package me.joelsoep.ctf.game.special;
 
-import me.joelsoep.ctf.CTFPlayer;
-import me.joelsoep.ctf.game.kit.BaseKit;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 

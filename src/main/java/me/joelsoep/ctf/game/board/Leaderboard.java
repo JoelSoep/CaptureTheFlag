@@ -90,7 +90,7 @@ public class Leaderboard {
                     lines.add(line);
                     rank++;
                 }
-                future.complete(lines);
+                future.complete(lines); // might cause problems in the future, not sure tho idk if whenComplete() is a better idea in this case?
             }
         });
 

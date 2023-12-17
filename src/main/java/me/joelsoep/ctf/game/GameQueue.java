@@ -1,14 +1,11 @@
 package me.joelsoep.ctf.game;
 
-import lombok.Getter;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 
 import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 

@@ -1,28 +1,18 @@
 package me.joelsoep.ctf.game.task;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.ParticipationState;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
 
 public class ResetGameTask {
 
@@ -64,7 +54,7 @@ public class ResetGameTask {
                 Bukkit.getLogger().info("After assignment - Main.game identity: " + System.identityHashCode(Main.game));
                 Bukkit.getLogger().info("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
 
-                Main.playerList.values().forEach(player -> {
+                PlayerService.getPlayers().values().forEach(player -> {
                     new Hotbar(player.getPlayer());
 
                     if (player.getGame() != null) {

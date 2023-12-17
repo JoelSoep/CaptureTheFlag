@@ -2,18 +2,15 @@ package me.joelsoep.ctf.game.task;
 
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
-import com.mongodb.client.model.UpdateManyModel;
 import com.mongodb.client.model.Updates;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.database.Mongo;
-import org.bson.Document;
+import me.joelsoep.ctf.player.PlayerService;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.text.DecimalFormat;
-import java.util.logging.Level;
 
 public class BackupPlayerDataTask {
 
@@ -30,7 +27,7 @@ public class BackupPlayerDataTask {
             @Override
             public void run() {
 
-                for (CTFPlayer player : Main.playerList.values()) {
+                for (CTFPlayer player : PlayerService.getPlayers().values()) {
                     if (player.getData().getKills() == null) {
                         player.getData().setKills(0);
                     }

@@ -1,15 +1,14 @@
 package me.joelsoep.ctf.game.kit;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.reflections.Reflections;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.logging.Level;
 
@@ -56,7 +55,7 @@ public class KitService {
     }
 
     public @Nullable BaseKit getAppliedKit(Player player) {
-        CTFPlayer CTFPlayer = Main.playerList.get(player.getName());
+        CTFPlayer CTFPlayer = PlayerService.getPlayers().get(player.getName());
         return CTFPlayer.getKit();
     }
 }

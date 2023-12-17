@@ -1,11 +1,14 @@
-package me.joelsoep.ctf;
+package me.joelsoep.ctf.player;
 
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.ParticipationState;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.CTFPlayerData;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
@@ -20,7 +23,6 @@ import net.kyori.adventure.title.Title;
 import net.kyori.adventure.title.TitlePart;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -45,7 +47,7 @@ public class CTFPlayer implements Audience {
         this.data = new CTFPlayerData(this);
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
-        Main.playerList.put(player.getName(), this);
+        PlayerService.getPlayers().put(player.getName(), this);
         reset();
     }
 

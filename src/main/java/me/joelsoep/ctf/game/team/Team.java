@@ -2,7 +2,7 @@ package me.joelsoep.ctf.game.team;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Location;
 import org.bukkit.Material;

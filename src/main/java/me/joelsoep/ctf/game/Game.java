@@ -1,9 +1,8 @@
 package me.joelsoep.ctf.game;
 
-import fr.mrmicky.fastboard.adventure.FastBoard;
 import lombok.Getter;
 import lombok.Setter;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.team.Team;
@@ -12,7 +11,6 @@ import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;

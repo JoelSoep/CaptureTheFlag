@@ -1,9 +1,7 @@
-package me.joelsoep.ctf;
+package me.joelsoep.ctf.player;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import org.bson.Document;
 import org.bukkit.Bukkit;

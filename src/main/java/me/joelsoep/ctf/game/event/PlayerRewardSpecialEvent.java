@@ -1,7 +1,7 @@
 package me.joelsoep.ctf.game.event;
 
 import lombok.Getter;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

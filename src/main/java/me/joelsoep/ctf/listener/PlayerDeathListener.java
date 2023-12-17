@@ -1,30 +1,26 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.CTFPlayer;
-import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
-import me.joelsoep.ctf.game.map.MapLoader;
+import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.task.DeathCountdownTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.logging.Level;
 
 public class PlayerDeathListener implements Listener {
 
@@ -38,7 +34,7 @@ public class PlayerDeathListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getPlayer();
         Player killer = player.getKiller();
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
 
         if (ctfPlayer == null) {
             return;
@@ -91,7 +87,7 @@ public class PlayerDeathListener implements Listener {
 
             }
             if (killer != null) {
-                CTFPlayer ctfKiller = Main.playerList.get(killer.getName());
+                CTFPlayer ctfKiller = PlayerService.getPlayers().get(killer.getName());
                 if (ctfKiller == null) {
                     return;
                 }

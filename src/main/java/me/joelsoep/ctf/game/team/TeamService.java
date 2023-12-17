@@ -1,9 +1,8 @@
 package me.joelsoep.ctf.game.team;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;

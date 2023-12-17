@@ -1,7 +1,5 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.game.map.MapLoader;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -10,8 +8,6 @@ import org.bukkit.WorldType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
-import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

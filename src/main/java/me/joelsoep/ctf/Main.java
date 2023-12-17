@@ -12,8 +12,9 @@ package me.joelsoep.ctf;
 
 import co.aikar.commands.PaperCommandManager;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
+import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
-import me.joelsoep.ctf.database.Mongo;
+import me.joelsoep.ctf.database.MongoService;
 import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
 import me.joelsoep.ctf.game.advancement.AdvancementService;
@@ -32,15 +33,13 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.LinkedHashMap;
 import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
     private AdvancementMain advancementMain;
 
-    public static LinkedHashMap<String, CTFPlayer> playerList = new LinkedHashMap<>();
     public static Game game = new Game();
-    public static final Mongo mongo = new Mongo();
+    public static final MongoService mongo = new MongoService();
     public static final KitService kitService = new KitService();
     public static final SpecialService specialService = new SpecialService();
     public static final GameQueue queue = new GameQueue();
@@ -86,34 +85,8 @@ public final class Main extends JavaPlugin {
         saveFile("map.schem", "https://dl.soep.me/map.schem");
         saveFile("lobby.schem", "https://dl.soep.me/lobby.schem");
         new ListenerService(this);
+        new BroadcastService(this).runAll();
         PaperCommandManager manager = new PaperCommandManager(this);
-     //   getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
-     //   getServer().getPluginManager().registerEvents(new WorldLoadListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerSpawnListener(), this);
-     //   getServer().getPluginManager().registerEvents(new GameStartListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new ServerLoadListener(), this);
-     //   getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(), this);
-     //   getServer().getPluginManager().registerEvents(new FoodLevelChangeListener(), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new InventoryDragListener(), this);
-     //   getServer().getPluginManager().registerEvents(new InventoryDropListener(), this);
-     //   getServer().getPluginManager().registerEvents(new InventoryMoveItemListener(), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
-     //   getServer().getPluginManager().registerEvents(new GameEndListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
-     //   getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
-     //   getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerRewardSpecialListener(), this);
-     //   getServer().getPluginManager().registerEvents(new PluginEnableListener(), this);
-     //   getServer().getPluginManager().registerEvents(new EntityExplodeListener(), this);
-     //   getServer().getPluginManager().registerEvents(new FlagStealListener(), this);
-     //   getServer().getPluginManager().registerEvents(new FlagCaptureListener(), this);
-     //   getServer().getPluginManager().registerEvents(new AdvancementListener(), this);
-     //   getServer().getPluginManager().registerEvents(new EntityPickupItemListener(), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerJoinGameListener(this), this);
-     //   getServer().getPluginManager().registerEvents(new PlayerLeaveGameListener(this), this);
 
         manager.registerCommand(new DebugCommand(this));
                 // Plugin startup logic

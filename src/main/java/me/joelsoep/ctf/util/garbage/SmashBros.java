@@ -1,13 +1,13 @@
 package me.joelsoep.ctf.util.garbage;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -26,7 +26,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -58,8 +57,8 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             return;
         }
 
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
-        CTFPlayer ctfAttacker = Main.playerList.get(attacker.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+        CTFPlayer ctfAttacker = PlayerService.getPlayers().get(attacker.getName());
 
         if (ctfPlayer == null || ctfAttacker == null) {
             return;

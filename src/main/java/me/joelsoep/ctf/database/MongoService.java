@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.database;
 
+import com.mongodb.Block;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.async.SingleResultCallback;
@@ -15,13 +16,14 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Getter
 @SuppressWarnings("deprecated")
-public class Mongo {
+public class MongoService {
 
     private final String connectionString = "mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority";
 
@@ -31,11 +33,12 @@ public class Mongo {
     private final MongoCollection<Document> configCollection;
     private final MongoCollection<Document> userCollection;
     private final MongoCollection<Document> gameCollection;
+    private final MongoCollection<Document> autoBroadcastCollection;
 
     @Setter private Integer gameCount;
     @Setter private Integer userCount;
 
-    public Mongo() {
+    public MongoService() {
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(connectionString))
                 .streamFactoryFactory(NettyStreamFactoryFactory.builder().build())
@@ -47,8 +50,9 @@ public class Mongo {
         this.configCollection = database.getCollection("config");
         this.userCollection = database.getCollection("player");
         this.gameCollection = database.getCollection("game");
+        this.autoBroadcastCollection = database.getCollection("autoBroadcast");
 
-        CompletableFuture<Void> initFuture = CompletableFuture.runAsync(() -> {
+        CompletableFuture.runAsync(() -> {
             if (this.countDocumentsAsync(configCollection).join() == 0) {
                 this.insertDocumentAsync(configCollection, new Document("_id", 1)
                         .append("gameCount", 0)
@@ -57,7 +61,7 @@ public class Mongo {
                 Bukkit.getLogger().log(Level.INFO, "Created config document in database.");
             }
 
-            this.findOneDocumentAsync(configCollection, new Document("_id", 0)).whenComplete((result, throwable) -> {
+            this.findOneDocumentAsync(configCollection, new Document("_id", 0)).whenCompleteAsync((result, throwable) -> {
                 if (result != null) {
                     this.gameCount = result.getInteger("gameCount");
                 } else {
@@ -65,7 +69,7 @@ public class Mongo {
                 }
             });
 
-            this.findOneDocumentAsync(configCollection, new Document("_id", 0)).whenComplete((result, throwable) -> {
+            this.findOneDocumentAsync(configCollection, new Document("_id", 0)).whenCompleteAsync((result, throwable) -> {
                 if (result != null) {
                     this.userCount = result.getInteger("userCount");
                 } else {
@@ -73,9 +77,6 @@ public class Mongo {
                 }
             });
         });
-
-        // Wait for the initialization to complete
-        initFuture.join();
 
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.WARNING);
@@ -156,6 +157,20 @@ public class Mongo {
         });
 
         return future;
+    }
+
+    public ArrayList<Document> findAsync(MongoCollection<Document> collection) {
+        ArrayList<Document> documents = new ArrayList<>();
+        Block<Document> block = new Block<Document>() {
+            @Override
+            public void apply(Document document) {
+                documents.add(document);
+            }
+        };
+
+        collection.find().forEach(block, (result, throwable) -> {});
+
+        return documents;
     }
 
 }

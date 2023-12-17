@@ -1,8 +1,6 @@
 package me.joelsoep.ctf.game.task;
 
-import me.joelsoep.ctf.CTFPlayer;
-import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.player.CTFPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -12,10 +10,8 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 public class CongratulationEffectTask {
 

@@ -1,10 +1,9 @@
 package me.joelsoep.ctf.game.task;
 
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 

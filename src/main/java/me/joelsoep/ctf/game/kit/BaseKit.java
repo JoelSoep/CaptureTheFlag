@@ -1,16 +1,15 @@
 package me.joelsoep.ctf.game.kit;
 
 import com.destroystokyo.paper.Namespaced;
-import me.joelsoep.ctf.CTFPlayer;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.PlayerService;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -78,7 +77,7 @@ public abstract class BaseKit {
     public void giveKitToPlayer(Player player) {
         PlayerInventory inventory = player.getInventory();
         Game game = Main.game;
-        CTFPlayer ctfPlayer = Main.playerList.get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
 
         if (ctfPlayer == null) {
             return;

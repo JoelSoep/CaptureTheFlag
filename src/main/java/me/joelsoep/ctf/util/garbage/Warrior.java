@@ -1,7 +1,5 @@
 package me.joelsoep.ctf.util.garbage;
 
-import me.joelsoep.ctf.CTFPlayer;
-import me.joelsoep.ctf.game.kit.BaseKit;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
