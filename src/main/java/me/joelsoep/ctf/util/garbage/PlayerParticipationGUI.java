@@ -7,7 +7,7 @@ import com.github.stefvanschie.inventoryframework.pane.StaticPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.ParticipationState;
+import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.task.CountdownTask;

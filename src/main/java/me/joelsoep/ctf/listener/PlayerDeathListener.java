@@ -73,12 +73,12 @@ public class PlayerDeathListener implements Listener {
             player.teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), -118, -17, -97));
             new DeathCountdownTask(plugin, ctfPlayer, 5);
 
-            if (oppositeTeam.getFlagThief() != null) {
-                if (!(oppositeTeam.getFlagThief().equals(ctfPlayer))) {
+            if (oppositeTeam.getFlag().getThief() != null) {
+                if (!(oppositeTeam.getFlag().getThief().equals(ctfPlayer))) {
                     return;
                 }
                 mapLoader.placeFlag(oppositeTeam);
-                oppositeTeam.setFlagThief(null);
+                oppositeTeam.getFlag().setThief(null);
                 game.getAudience().sendMessage(
                         MM.deserialize(
                                 "<gray>Team %s<gray>'s flag has been returned."

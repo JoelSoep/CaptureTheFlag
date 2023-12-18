@@ -24,10 +24,10 @@ public class WorldLoadListener implements Listener {
         World world = event.getWorld();
         Game game = Main.game;
 
-        if (!world.getName().equals("CaptureTheFlag")) {
+        if (!world.getName().startsWith("ctf_")) {
             return;
         }
-        game.createTeams();
+        game.createTeams(); // change when maps are implemented, createTeams should happen with args for coordinates etc
         MapLoader mapLoader = new MapLoader(plugin);
         mapLoader.load();
         mapLoader.placeFlag(game.getRed());
@@ -35,7 +35,7 @@ public class WorldLoadListener implements Listener {
 
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setGameRule(GameRule.FALL_DAMAGE, false);
-        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements. Done!
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements.
         world.setGameRule(GameRule.DISABLE_RAIDS, true);
         world.setGameRule(GameRule.DO_WARDEN_SPAWNING, false);
         world.setGameRule(GameRule.DO_MOB_LOOT, false);

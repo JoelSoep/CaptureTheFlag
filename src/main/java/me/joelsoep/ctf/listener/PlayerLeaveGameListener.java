@@ -47,11 +47,11 @@ public class PlayerLeaveGameListener implements Listener {
                 return;
             }
 
-            if (oppositeTeam.getFlagThief() != null) {
-                if (!(oppositeTeam.getFlagThief().equals(player))) {
+            if (oppositeTeam.getFlag().getThief() != null) {
+                if (!(oppositeTeam.getFlag().getThief().equals(player))) {
                     return;
                 }
-                oppositeTeam.setFlagThief(null);
+                oppositeTeam.getFlag().setThief(null);
                 mapLoader.placeFlag(oppositeTeam);
                 game.getAudience().sendMessage(
                         MM.deserialize(

@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.autoBroadcast;
 
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -50,7 +51,7 @@ public class BroadcastMessage {
                     throw new IllegalStateException("No duration found for broadcast message.");
                 }
 
-                Bukkit.broadcast(MM.deserialize(message));
+                PlayerService.getAudience().sendMessage(MM.deserialize(message));
 
                 if (sound != null) {
                     Bukkit.getOnlinePlayers().forEach(player -> player.playSound(Sound.sound(Key.key(sound), Sound.Source.MASTER, 1, 1)));

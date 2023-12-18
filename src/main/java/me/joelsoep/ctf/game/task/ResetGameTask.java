@@ -2,7 +2,7 @@ package me.joelsoep.ctf.game.task;
 
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.ParticipationState;
+import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;

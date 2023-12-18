@@ -101,22 +101,22 @@ public class Game {
     }
 
     public void createTeams() {
-        Bukkit.getWorlds().forEach(world -> Bukkit.getLogger().log(Level.INFO, world.getName()));
+        Bukkit.getWorlds().forEach(world -> Bukkit.getLogger().info(world.getName()));
         this.red = new Team(
                 TeamColor.RED,
                 new Location(Bukkit.getWorld("CaptureTheFlag"), -70, -26.5, -49.5, -180, 0),
                 new Location(Bukkit.getWorld("CaptureTheFlag"), -117, -34, -50)
         );
-        this.red.setFlagBlockFace(BlockFace.NORTH);
-        this.red.setFlagMaterial(Material.RED_BANNER);
+        this.red.getFlag().setBlockFace(BlockFace.NORTH);
+        this.red.getFlag().setMaterial(Material.RED_BANNER);
 
         this.blue = new Team(
                 TeamColor.BLUE,
                 new Location(Bukkit.getWorld("CaptureTheFlag"), -70, -26.5, -144.5),
                 new Location(Bukkit.getWorld("CaptureTheFlag"), -117, -34, -145)
         );
-        this.blue.setFlagBlockFace(BlockFace.SOUTH);
-        this.blue.setFlagMaterial(Material.BLUE_BANNER);
+        this.blue.getFlag().setBlockFace(BlockFace.SOUTH);
+        this.blue.getFlag().setMaterial(Material.BLUE_BANNER);
     }
 
     public List<CTFPlayer> concatAudience(List<CTFPlayer> arr1, List<CTFPlayer> arr2) {

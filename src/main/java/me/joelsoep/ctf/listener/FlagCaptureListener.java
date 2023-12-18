@@ -46,6 +46,6 @@ public class FlagCaptureListener implements Listener {
         player.getInventory().setHelmet(BaseKit.getHelmet(ctfPlayer.getTeam().getTeamColor() == TeamColor.BLUE ? Color.BLUE : Color.RED));
         mapLoader.placeFlag(flagOwner);
         player.setGlowing(false);
-        flagOwner.setFlagThief(null);
+        flagOwner.getFlag().setThief(null);
     }
 }

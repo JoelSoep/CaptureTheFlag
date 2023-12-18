@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public abstract class LobbyMap extends Map {
 
-    @Setter protected Location spawnLocation;
-    @Setter protected ArrayList<Location> leaderboardLocations;
+    protected Location spawnLocation;
+    protected ArrayList<Location> leaderboardLocations;
 
     public LobbyMap(String name, World world) {
         super(name, "lobby_");
@@ -21,5 +21,7 @@ public abstract class LobbyMap extends Map {
         load();
     }
 
-    public abstract void load();
+    protected abstract void load();
+    protected abstract Location getSpawnLocation();
+    protected abstract ArrayList<Location> getLeaderboardLocations();
 }

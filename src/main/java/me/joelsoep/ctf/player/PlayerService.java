@@ -11,6 +11,11 @@ public class PlayerService {
     private static HashMap<String, CTFPlayer> players;
     private static Audience audience;
 
+    public PlayerService() {
+        players = new HashMap<>();
+        audience = Audience.audience(players.values());
+    }
+
     public static void addPlayer(CTFPlayer player) {
         players.put(player.getPlayer().getName(), player);
         audience = Audience.audience(players.values());
@@ -23,5 +28,9 @@ public class PlayerService {
 
     public static HashMap<String, CTFPlayer> getPlayers() {
         return players;
+    }
+
+    public static Audience getAudience() {
+        return audience;
     }
 }

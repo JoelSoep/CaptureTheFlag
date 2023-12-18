@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.team;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -8,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 @Getter
@@ -19,16 +21,25 @@ public class Team {
     private TeamColor teamColor;
     private Audience audience;
     private Location spawn;
-    private Location flagLocation;
-    private Material flagMaterial;
-    private BlockFace flagBlockFace;
-    private CTFPlayer flagThief;
+    private Flag flag;
+  // private Location flagLocation;
+  //  private Material flagMaterial;
+  //  private BlockFace flagBlockFace;
+   // private CTFPlayer flagThief;
 
-    public Team(TeamColor teamColor, Location spawn, Location flag) {
+    public Team(TeamColor teamColor, Location spawn, Location flagLocation) {
         this.teamColor = teamColor;
         this.spawn = spawn;
-        this.flagLocation = flag;
+        this.flag.location = flagLocation;
         this.audience = Audience.audience(players);
+    }
+
+    @Data
+    public static class Flag {
+        private Location location;
+        private Material material;
+        private BlockFace blockFace;
+        private @Nullable CTFPlayer thief;
     }
 
     public void addPlayer(CTFPlayer player) {

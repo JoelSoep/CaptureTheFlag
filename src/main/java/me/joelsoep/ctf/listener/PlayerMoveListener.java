@@ -72,8 +72,8 @@ public class PlayerMoveListener implements Listener {
             Team red = game.getRed();
             Team oppositeTeam = ctfPlayer.getTeam().getTeamColor() == red.getTeamColor() ? blue : red;
 
-            if (team.getFlagLocation().getBlock().getLocation().equals(location.getBlock().getLocation()) && oppositeTeam.getFlagThief() != null) {
-                if (!oppositeTeam.getFlagThief().equals(ctfPlayer)) {
+            if (team.getFlag().getLocation().getBlock().getLocation().equals(location.getBlock().getLocation()) && oppositeTeam.getFlag().getThief() != null) {
+                if (!oppositeTeam.getFlag().getThief().equals(ctfPlayer)) {
                     return;
                 }
                 FlagCaptureEvent captureEvent = new FlagCaptureEvent(game, ctfPlayer, oppositeTeam, mapLoader);
@@ -85,8 +85,8 @@ public class PlayerMoveListener implements Listener {
                 Bukkit.getPluginManager().callEvent(endEvent);
             }
 
-            if (location.getBlock().getLocation().equals(oppositeTeam.getFlagLocation().getBlock().getLocation())) {
-                if (oppositeTeam.getFlagThief() != null) {
+            if (location.getBlock().getLocation().equals(oppositeTeam.getFlag().getLocation().getBlock().getLocation())) {
+                if (oppositeTeam.getFlag().getThief() != null) {
                     return;
                 }
                 FlagStealEvent stealEvent = new FlagStealEvent(game, ctfPlayer, oppositeTeam, mapLoader);

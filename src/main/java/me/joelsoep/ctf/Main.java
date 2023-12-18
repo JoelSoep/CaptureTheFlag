@@ -12,6 +12,7 @@ package me.joelsoep.ctf;
 
 import co.aikar.commands.PaperCommandManager;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
+import io.papermc.lib.PaperLib;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.database.MongoService;
@@ -26,6 +27,7 @@ import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.game.task.QueueCheckGameAvailabilityTask;
 import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
 import me.joelsoep.ctf.listener.*;
+import me.joelsoep.ctf.map.MapManager;
 import org.bukkit.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -47,6 +49,8 @@ public final class Main extends JavaPlugin {
     public static AdvancementAPI advancementAPI;
     public static AdvancementService advancementService;
 
+    private static Main instance;
+
     @Override
     public void onLoad() {
       // this.advancementMain = new AdvancementMain(this);
@@ -56,6 +60,8 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        instance = this;
+        new MapManager();
 
         if (!getServer().getAllowFlight()) {
             Bukkit.getLogger().warning("""
@@ -115,5 +121,9 @@ public final class Main extends JavaPlugin {
             }
         }
 
+    }
+
+    public static Main getInstance() {
+        return instance;
     }
 }

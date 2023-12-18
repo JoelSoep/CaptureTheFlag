@@ -1,4 +1,4 @@
-package me.joelsoep.ctf;
+package me.joelsoep.ctf.player;
 
 import lombok.Getter;
 

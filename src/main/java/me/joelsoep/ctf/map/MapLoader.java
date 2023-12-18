@@ -17,11 +17,14 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 
+@Deprecated
+@ApiStatus.ScheduledForRemoval
 public class MapLoader {
 
     private final Plugin plugin;
@@ -53,9 +56,9 @@ public class MapLoader {
     }
 
     public void placeFlag(Team team) {
-        Location flagLocation = team.getFlagLocation();
-        Material material = team.getFlagMaterial();
-        BlockFace blockFace = team.getFlagBlockFace();
+        Location flagLocation = team.getFlag().getLocation();
+        Material material = team.getFlag().getMaterial();
+        BlockFace blockFace = team.getFlag().getBlockFace();
         Block block = flagLocation.getBlock();
         block.setType(material);
         BlockData blockData = block.getBlockData();
@@ -101,7 +104,7 @@ public class MapLoader {
     }
 
     public void removeFlag(Team team) {
-        Location flagLocation = team.getFlagLocation();
+        Location flagLocation = team.getFlag().getLocation();
         Block block = flagLocation.getBlock();
         block.setType(Material.AIR);
     }
