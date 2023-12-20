@@ -14,6 +14,7 @@ import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -151,5 +152,11 @@ public class DebugCommand extends BaseCommand {
         Game game = Main.game;
         game.setMaxPlayers(integer);
         player.sendMessage(MM.deserialize("<gray>Updated max players to <yellow>" + game.getMaxPlayers()));
+    }
+
+    @Subcommand("worldtp")
+    @CommandCompletion("@worlds")
+    public void worldTP(Player player, World world) {
+        player.teleport(world.getSpawnLocation());
     }
 }

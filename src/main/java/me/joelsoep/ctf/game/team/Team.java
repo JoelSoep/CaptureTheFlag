@@ -28,6 +28,7 @@ public class Team {
    // private CTFPlayer flagThief;
 
     public Team(TeamColor teamColor, Location spawn, Location flagLocation) {
+        this.flag = new Flag();
         this.teamColor = teamColor;
         this.spawn = spawn;
         this.flag.location = flagLocation;
@@ -38,7 +39,7 @@ public class Team {
     public static class Flag {
         private Location location;
         private Material material;
-        private BlockFace blockFace;
+        private BlockFace blockFace; //TODO: remove from here as this should be map-specific
         private @Nullable CTFPlayer thief;
     }
 

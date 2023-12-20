@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.special;
 
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
+import me.joelsoep.ctf.util.RandomUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
@@ -12,7 +13,6 @@ import java.util.logging.Level;
 public class SpecialService {
     private final Map<String, BaseSpecial> specials;
     private final Plugin plugin;
-    private Random random = new Random();
 
     public SpecialService() {
         this.plugin = Bukkit.getPluginManager().getPlugin("CapturetheFlag");
@@ -63,10 +63,10 @@ public class SpecialService {
         if (list.isEmpty()) {
             return null;
         }
-        int randomIndex = random.nextInt(list.size());
+        int randomIndex = RandomUtil.get().nextInt(list.size());
         BaseSpecial special = list.get(randomIndex);
         if (special == null) {
-            Bukkit.getLogger().log(Level.INFO, "Special is null");
+            Bukkit.getLogger().info("Special is null");
             return null;
         }
         return special;

@@ -5,11 +5,15 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.board.Leaderboard;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
+import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.map.type.GameMap;
 import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.plugin.Plugin;
+
+import java.util.Locale;
 
 public class WorldLoadListener implements Listener {
 
@@ -24,10 +28,29 @@ public class WorldLoadListener implements Listener {
         World world = event.getWorld();
         Game game = Main.game;
 
-        if (!world.getName().startsWith("ctf_")) {
+        if (!world.getName().toLowerCase(Locale.ROOT).startsWith("plugins/CapturetheFlag/maps/ctf_".toLowerCase(Locale.ROOT))) {
+            Bukkit.getLogger().info("Excluding world %s from ctf-registry".formatted(world.getName()));
             return;
         }
-        game.createTeams(); // change when maps are implemented, createTeams should happen with args for coordinates etc
+
+        Bukkit.getLogger().info("Loaded maps rn: %s".formatted(MapManager.getMaps().size()));
+
+        MapManager.getMaps().forEach(map -> {
+            World mapWorld = map.getWorld();
+            if (mapWorld == null) {
+                Bukkit.getLogger().warning("Couldn't load map %s because it's world is null!".formatted(map.getName()));
+                return;
+            }
+
+            if (!mapWorld.getName().equals(world.getName())) {
+                if (!(map instanceof GameMap gameMap)) {
+                    return;
+                }
+                gameMap.loadMap();
+                Bukkit.getLogger().info("Added content to map %s.".formatted(gameMap.getName()));
+            }
+        });
+        game.createTeams(); //TODO: change when maps are implemented, createTeams should happen with args for coordinates etc
         MapLoader mapLoader = new MapLoader(plugin);
         mapLoader.load();
         mapLoader.placeFlag(game.getRed());

@@ -13,13 +13,18 @@ import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
+import me.joelsoep.ctf.file.FileManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FAWE {
+
+    private static boolean failed = false;
 
     public static void paste(File file, Location location) {
 
@@ -49,10 +54,20 @@ public class FAWE {
                 try {
                     Operations.complete(operation);
                     editSession.close();
+                    failed = false;
                 } catch (WorldEditException e) {
                     e.printStackTrace();
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
+                if (e instanceof FileNotFoundException) {
+                    Bukkit.getLogger().severe("Couldn't find file " + file.getName() + "!");
+                    if (failed) {
+                        return;
+                    }
+                    Bukkit.getLogger().severe("Attempting to download file %s...".formatted(file.getName()));
+                    FileManager.requestFile(file.getName(), "schematics" + File.separator + file.getName());
+                    failed = true;
+                }
                 e.printStackTrace();
             }
         }

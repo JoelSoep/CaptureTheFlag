@@ -12,13 +12,13 @@ package me.joelsoep.ctf;
 
 import co.aikar.commands.PaperCommandManager;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
-import io.papermc.lib.PaperLib;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.database.MongoService;
 import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
 import me.joelsoep.ctf.game.advancement.AdvancementService;
+import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
 import me.joelsoep.ctf.game.task.CountdownTask;
@@ -26,8 +26,6 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.game.task.QueueCheckGameAvailabilityTask;
 import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
-import me.joelsoep.ctf.listener.*;
-import me.joelsoep.ctf.map.MapManager;
 import org.bukkit.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -55,13 +53,12 @@ public final class Main extends JavaPlugin {
     public void onLoad() {
       // this.advancementMain = new AdvancementMain(this);
       //  this.advancementMain.load();
+        instance = this;
     }
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        instance = this;
-        new MapManager();
 
         if (!getServer().getAllowFlight()) {
             Bukkit.getLogger().warning("""
@@ -88,7 +85,7 @@ public final class Main extends JavaPlugin {
            // Main.advancementService = new AdvancementService();
 
         //saveFile("schem.zip", "https://download1590.mediafire.com/ugi4gapkncfgbmlMtE7AGRiQSqqEvrIhGvDf_k3cT2WEa0_Mv_QrHjJhO-QqmIC0hYaS67N9WNEp9vRh7tj6iM-ADiNSIKLXYVV3lsvyZWOTiAHb1ovC_tST7diWoEfL_AAxwAtE1DNdgg-cKlCNobb6B3OuiY9gZ-8yQeYSsCE/bchce43dm3xxmhg/schem.zip");
-        saveFile("map.schem", "https://dl.soep.me/map.schem");
+      //  saveFile("map.schem", "https://dl.soep.me/map.schem");
         saveFile("lobby.schem", "https://dl.soep.me/lobby.schem");
         new ListenerService(this);
         new BroadcastService(this).runAll();

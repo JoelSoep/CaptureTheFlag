@@ -56,6 +56,10 @@
                             <pattern>com.fren_gor.ultimateAdvancementAPI</pattern>
                             <shadedPattern>me.joelsoep.ctf.libs.com.fren_gor.ultimateAdvancementAPI</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>io.papermc.lib</pattern>
+                            <shadedPattern>me.joelsoep.ctf.paperlib</shadedPattern> <!-- Replace this -->
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -218,6 +222,12 @@
             <groupId>com.fastasyncworldedit</groupId>
             <artifactId>FastAsyncWorldEdit-Core</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.papermc</groupId>
+            <artifactId>paperlib</artifactId>
+            <version>1.0.7</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.fastasyncworldedit</groupId>

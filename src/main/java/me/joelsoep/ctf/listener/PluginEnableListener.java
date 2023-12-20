@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.util.garbage.EntityDamageHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,5 +18,6 @@ public class PluginEnableListener implements Listener {
             return;
         }
         Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", plugin);
+        new MapManager();
     }
 }

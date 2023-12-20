@@ -1,7 +1,6 @@
 package me.joelsoep.ctf.game.advancement.advancements.special;
 
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
-import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
@@ -9,18 +8,10 @@ import com.fren_gor.ultimateAdvancementAPI.visibilities.ParentGrantedVisibility;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.advancement.IBaseAdvancement;
 import me.joelsoep.ctf.game.advancement.advancements.captures.Capturer;
-import me.joelsoep.ctf.listener.PlayerDeathListener;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Range;
 
 public class MirrorUse extends BaseAdvancement implements ParentGrantedVisibility, IBaseAdvancement {
 

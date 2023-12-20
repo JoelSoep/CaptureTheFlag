@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
@@ -19,7 +20,6 @@ import org.bukkit.block.BlockFace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 public class Game {
 
     private UUID uuid = UUID.randomUUID();
+    private GameMap map;
     private Integer playerCount = 0;
     private Integer maxPlayers = 20;
     private Integer minPlayers = 2;

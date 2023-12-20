@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class MapManager {
 
-    private HashMap<String, Map> maps;
+    private static final HashMap<String, Map> maps = new HashMap<>();
     private LobbyMap lobby;
 
     public MapManager() {
@@ -31,6 +31,10 @@ public class MapManager {
         String schematicFolderPath = Main.getInstance().getDataFolder() + File.separator + "schematics" + File.separator;
         new File (schematicFolderPath).mkdirs();
         return schematicFolderPath;
+    }
+
+    public static List<Map> getMaps() {
+        return maps.values().stream().toList();
     }
 
     public void loadLobby(String packageName) {
@@ -65,15 +69,11 @@ public class MapManager {
         mapClasses.forEach(map -> {
             try {
                 GameMap gameMap = map.getDeclaredConstructor().newInstance();
-                this.maps.put(map.getName(), gameMap);
+                maps.put(map.getName(), gameMap);
                 Bukkit.getLogger().info("Loaded gameMap %s".formatted(gameMap.getName()));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         });
     }
-
-
-
-
 }

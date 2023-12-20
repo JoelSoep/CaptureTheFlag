@@ -36,7 +36,6 @@ public abstract class GameMap extends Map {
         this.maxPlayers = getMaxPlayers();
 
         this.setWorld(createEmptyWorld());
-        load();
     }
 
     protected abstract void load();
@@ -63,5 +62,9 @@ public abstract class GameMap extends Map {
         Location flagLocation = team.getFlag().getLocation();
         Block block = flagLocation.getBlock();
         block.setType(Material.AIR);
+    }
+
+    public void loadMap() {
+        load();
     }
 }
