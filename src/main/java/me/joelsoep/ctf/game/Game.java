@@ -61,7 +61,6 @@ public class Game {
         this.setStarting(false);
         this.setSpedUp(false);
         this.setAudience(Audience.audience(concatAudience(players, spectators)));
-        this.createTeams();
     }
 
     public void addPlayer(CTFPlayer player) {
@@ -101,20 +100,20 @@ public class Game {
         this.audience = Audience.audience(concatAudience(players, spectators));
     }
 
-    public void createTeams() {
+    public void createTeams(GameMap map) {
         Bukkit.getWorlds().forEach(world -> Bukkit.getLogger().info(world.getName()));
         this.red = new Team(
                 TeamColor.RED,
-                new Location(Bukkit.getWorld("CaptureTheFlag"), -70, -26.5, -49.5, -180, 0),
-                new Location(Bukkit.getWorld("CaptureTheFlag"), -117, -34, -50)
+                map.getRedSpawnLocation(),
+                map.getRedFlagLocation()
         );
         this.red.getFlag().setBlockFace(BlockFace.NORTH);
         this.red.getFlag().setMaterial(Material.RED_BANNER);
 
         this.blue = new Team(
                 TeamColor.BLUE,
-                new Location(Bukkit.getWorld("CaptureTheFlag"), -70, -26.5, -144.5),
-                new Location(Bukkit.getWorld("CaptureTheFlag"), -117, -34, -145)
+                map.getBlueSpawnLocation(),
+                map.getBlueFlagLocation()
         );
         this.blue.getFlag().setBlockFace(BlockFace.SOUTH);
         this.blue.getFlag().setMaterial(Material.BLUE_BANNER);

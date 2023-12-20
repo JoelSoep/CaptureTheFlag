@@ -28,8 +28,8 @@ import java.util.logging.Level;
 public class MapLoader {
 
     private final Plugin plugin;
-    private final File mapFile;
-    private final File lobbyFile;
+   // private final File mapFile;
+   // private final File lobbyFile;
 
     private final World world = Bukkit.getWorld("CaptureTheFlag");
 
@@ -40,13 +40,13 @@ public class MapLoader {
     public MapLoader(Plugin plugin) {
         this.plugin = plugin;
 
-        mapFile = new File(plugin.getDataFolder() + File.separator + "map.schem");
-        lobbyFile = new File(plugin.getDataFolder() + File.separator + "lobby.schem");
+       // mapFile = new File(plugin.getDataFolder() + File.separator + "map.schem");
+       // lobbyFile = new File(plugin.getDataFolder() + File.separator + "lobby.schem");
     }
 
     public void load() {
-        FAWE.paste(mapFile, mapLocation);
-        FAWE.paste(lobbyFile, lobbyLocation);
+       // FAWE.paste(mapFile, mapLocation);
+       // FAWE.paste(lobbyFile, lobbyLocation);
         loadChest();
     }
 
@@ -110,7 +110,7 @@ public class MapLoader {
     }
 
     public void reloadMap() {
-        FAWE.paste(mapFile, mapLocation);
+      //  FAWE.paste(mapFile, mapLocation);
         loadChest();
     }
 }

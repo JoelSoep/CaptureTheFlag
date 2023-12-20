@@ -19,7 +19,7 @@ public class FileManager {
                     if (!Main.getInstance().getDataFolder().exists()) {
                         Main.getInstance().getDataFolder().mkdirs();
                     }
-                    Bukkit.getLogger().info("Downloading " + resource + "...");
+                    Bukkit.getLogger().info("Downloading " + fileName + "...");
                     Files.copy(new URL(domain + fileName).openStream(), Paths.get(Main.getInstance().getDataFolder() + File.separator + resource));
                     return true;
                 } catch (Exception e) {

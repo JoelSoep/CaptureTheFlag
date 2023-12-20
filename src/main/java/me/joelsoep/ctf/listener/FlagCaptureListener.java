@@ -4,7 +4,6 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.game.kit.BaseKit;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.util.MM;
@@ -29,14 +28,13 @@ public class FlagCaptureListener implements Listener {
         Player player = ctfPlayer.getPlayer();
         Team team = ctfPlayer.getTeam();
         Team flagOwner = event.getFlagOwner();
-        MapLoader mapLoader = event.getMapLoader();
 
         if (team == null) {
             Bukkit.getLogger().log(Level.SEVERE, player.getName() + "\\'s team is null @ flag capture!");
             return;
         }
 
-        mapLoader.loadChest();
+       //TODO: make replacer mapLoader.loadChest();
         team.setPoints(team.getPoints() + 1);
         game.getAudience().sendMessage(MM.deserialize("""
                 <gray>Team %s<gray>'s flag has been captured by %s<gray>!"""
@@ -44,7 +42,7 @@ public class FlagCaptureListener implements Listener {
         game.getAudience().playSound(Sound.sound(Key.key("entity.player.levelup"), Sound.Source.MASTER, 1, 1));
         player.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 1));
         player.getInventory().setHelmet(BaseKit.getHelmet(ctfPlayer.getTeam().getTeamColor() == TeamColor.BLUE ? Color.BLUE : Color.RED));
-        mapLoader.placeFlag(flagOwner);
+        game.getMap().placeFlag(flagOwner);
         player.setGlowing(false);
         flagOwner.getFlag().setThief(null);
     }

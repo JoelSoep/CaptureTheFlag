@@ -6,7 +6,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameEndEvent;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.task.CongratulationEffectTask;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
@@ -33,7 +32,6 @@ public class GameEndListener implements Listener {
         Game game = event.getGame();
         Team winner = event.getWinner();
         Team loser = event.getLoser();
-        MapLoader mapLoader = new MapLoader(plugin);
         game.setWinner(winner);
         game.setState(GameState.ENDED);
 
@@ -70,9 +68,9 @@ public class GameEndListener implements Listener {
 
 
 
-        mapLoader.reloadMap();
-        mapLoader.placeFlag(loser);
-        mapLoader.placeFlag(winner);
+        game.getMap().load();
+        game.getMap().placeFlag(loser);
+        game.getMap().placeFlag(winner);
         winner.getPlayers().clear();
         loser.getPlayers().clear();
         new ResetGameTask(plugin, game);

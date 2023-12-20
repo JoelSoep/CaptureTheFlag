@@ -3,7 +3,6 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
@@ -25,7 +24,6 @@ public class FlagStealListener implements Listener {
         Player player = ctfPlayer.getPlayer();
         @NotNull Team team = ctfPlayer.getTeam();
         Team flagOwner = event.getFlagOwner();
-        MapLoader mapLoader = event.getMapLoader();
 
         if (team == null) {
             Bukkit.getLogger().log(Level.SEVERE, player.getName() + "\\'s team is null @ flag steal!");
@@ -35,7 +33,7 @@ public class FlagStealListener implements Listener {
         ItemStack helmet = new ItemStack(flagOwner.getFlag().getMaterial());
         helmet.addUnsafeEnchantment(Enchantment.BINDING_CURSE, 1);
         player.getInventory().setHelmet(helmet);
-        mapLoader.removeFlag(flagOwner);
+        game.getMap().removeFlag(flagOwner);
         flagOwner.getFlag().setThief(ctfPlayer);
         player.setGlowing(true);
         game.getAudience().sendMessage(MM.deserialize("""

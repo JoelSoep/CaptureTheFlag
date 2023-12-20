@@ -2,10 +2,10 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.board.Leaderboard;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.map.MapState;
 import me.joelsoep.ctf.map.type.GameMap;
 import org.bukkit.*;
 import org.bukkit.event.EventHandler;
@@ -33,9 +33,15 @@ public class WorldLoadListener implements Listener {
             return;
         }
 
-        Bukkit.getLogger().info("Loaded maps rn: %s".formatted(MapManager.getMaps().size()));
+        Bukkit.getLogger().info("Loaded maps rn: %s".formatted(MapManager.getGameMaps().size()));
 
-        MapManager.getMaps().forEach(map -> {
+        /**
+         * We attempt to load the world here as well as on map initialization, since it's a race condition:
+         * The world could load earlier than the map was initialized, or the map loads earlier than the world was initialized.
+         * To handle this, I attempt to load them on world load as well as on map initialization.
+         */
+
+        MapManager.getGameMaps().forEach(map -> {
             World mapWorld = map.getWorld();
             if (mapWorld == null) {
                 Bukkit.getLogger().warning("Couldn't load map %s because it's world is null!".formatted(map.getName()));
@@ -46,16 +52,13 @@ public class WorldLoadListener implements Listener {
                 if (!(map instanceof GameMap gameMap)) {
                     return;
                 }
-                gameMap.loadMap();
+                gameMap.load();
+                gameMap.setState(MapState.READY);
                 Bukkit.getLogger().info("Added content to map %s.".formatted(gameMap.getName()));
             }
         });
-        game.createTeams(); //TODO: change when maps are implemented, createTeams should happen with args for coordinates etc
-        MapLoader mapLoader = new MapLoader(plugin);
-        mapLoader.load();
-        mapLoader.placeFlag(game.getRed());
-        mapLoader.placeFlag(game.getBlue());
 
+        //TODO: move placeFlag() here to ensure that the world is loaded
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setGameRule(GameRule.FALL_DAMAGE, false);
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements.

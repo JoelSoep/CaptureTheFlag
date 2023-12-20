@@ -7,7 +7,6 @@ import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.player.PlayerService;
 import org.bukkit.Bukkit;
@@ -34,7 +33,6 @@ public class PlayerMoveListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
-        MapLoader mapLoader = new MapLoader(plugin);
         Game game = Main.game;
         Location location = event.getTo().toCenterLocation();
 
@@ -76,7 +74,7 @@ public class PlayerMoveListener implements Listener {
                 if (!oppositeTeam.getFlag().getThief().equals(ctfPlayer)) {
                     return;
                 }
-                FlagCaptureEvent captureEvent = new FlagCaptureEvent(game, ctfPlayer, oppositeTeam, mapLoader);
+                FlagCaptureEvent captureEvent = new FlagCaptureEvent(game, ctfPlayer, oppositeTeam);
                 Bukkit.getPluginManager().callEvent(captureEvent);
             }
 
@@ -89,7 +87,7 @@ public class PlayerMoveListener implements Listener {
                 if (oppositeTeam.getFlag().getThief() != null) {
                     return;
                 }
-                FlagStealEvent stealEvent = new FlagStealEvent(game, ctfPlayer, oppositeTeam, mapLoader);
+                FlagStealEvent stealEvent = new FlagStealEvent(game, ctfPlayer, oppositeTeam);
                 Bukkit.getPluginManager().callEvent(stealEvent);
             }
 

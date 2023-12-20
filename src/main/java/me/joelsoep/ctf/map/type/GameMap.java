@@ -11,6 +11,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
+import org.jetbrains.annotations.TestOnly;
 
 import java.io.File;
 
@@ -38,13 +39,15 @@ public abstract class GameMap extends Map {
         this.setWorld(createEmptyWorld());
     }
 
-    protected abstract void load();
-    protected abstract Location getRedFlagLocation();
-    protected abstract Location getBlueFlagLocation();
-    protected abstract Location getRedSpawnLocation();
-    protected abstract Location getBlueSpawnLocation();
-    protected abstract Integer getMaxPlayers();
+    public abstract void load();
+    public abstract Location getRedFlagLocation();
+    public abstract Location getBlueFlagLocation();
+    public abstract Location getRedSpawnLocation();
+    public abstract Location getBlueSpawnLocation();
+    public abstract Integer getMaxPlayers();
 
+
+    @TestOnly
     public void placeFlag(Team team) {
         Location flagLocation = team.getFlag().getLocation();
         Material material = team.getFlag().getMaterial();
@@ -58,13 +61,10 @@ public abstract class GameMap extends Map {
         }
     }
 
+    @TestOnly
     public void removeFlag(Team team) {
         Location flagLocation = team.getFlag().getLocation();
         Block block = flagLocation.getBlock();
         block.setType(Material.AIR);
-    }
-
-    public void loadMap() {
-        load();
     }
 }

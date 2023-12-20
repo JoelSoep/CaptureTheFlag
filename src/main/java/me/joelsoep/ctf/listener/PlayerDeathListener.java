@@ -4,7 +4,6 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.task.DeathCountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.player.PlayerService;
@@ -60,7 +59,6 @@ public class PlayerDeathListener implements Listener {
         if (game.getState() == GameState.RUNNING || game.getState() == GameState.READY) {
             Team team = ctfPlayer.getTeam();
             Team oppositeTeam = ctfPlayer.getTeam().equals(game.getRed()) ? game.getBlue() : game.getRed();
-            MapLoader mapLoader = new MapLoader(plugin);
 
             player.setGameMode(GameMode.SPECTATOR);
             player.getInventory().clear();
@@ -77,7 +75,7 @@ public class PlayerDeathListener implements Listener {
                 if (!(oppositeTeam.getFlag().getThief().equals(ctfPlayer))) {
                     return;
                 }
-                mapLoader.placeFlag(oppositeTeam);
+                game.getMap().placeFlag(oppositeTeam);
                 oppositeTeam.getFlag().setThief(null);
                 game.getAudience().sendMessage(
                         MM.deserialize(

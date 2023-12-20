@@ -26,7 +26,14 @@ public class FAWE {
 
     private static boolean failed = false;
 
-    public static void paste(File file, Location location) {
+    /**
+     *
+     * @param file The schematic to paste.
+     * @param location The location where the schematic should be pasted.
+     * @return A boolean which indicates whether the operation was successful.
+     */
+
+    public static boolean paste(File file, Location location) {
 
         ClipboardFormat clipboardFormat = ClipboardFormats.findByFile(file);
         Clipboard clipboard;
@@ -62,14 +69,19 @@ public class FAWE {
                 if (e instanceof FileNotFoundException) {
                     Bukkit.getLogger().severe("Couldn't find file " + file.getName() + "!");
                     if (failed) {
-                        return;
+                        Bukkit.getLogger().severe("Attempt to get file %s failed! Cannot load world.");
+                        return false;
                     }
                     Bukkit.getLogger().severe("Attempting to download file %s...".formatted(file.getName()));
                     FileManager.requestFile(file.getName(), "schematics" + File.separator + file.getName());
                     failed = true;
+                    paste(file, location);
+                    return true;
                 }
                 e.printStackTrace();
+                return false;
             }
         }
+        return false;
     }
 }

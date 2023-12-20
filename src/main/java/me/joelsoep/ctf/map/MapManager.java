@@ -3,6 +3,7 @@ package me.joelsoep.ctf.map;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
+import me.joelsoep.ctf.util.RandomUtil;
 import org.bukkit.Bukkit;
 import org.reflections.Reflections;
 
@@ -13,12 +14,17 @@ import java.util.Set;
 
 public class MapManager {
 
-    private static final HashMap<String, Map> maps = new HashMap<>();
+    private static final HashMap<String, Map> gameMaps = new HashMap<>();
     private LobbyMap lobby;
 
     public MapManager() {
         loadLobby("me.joelsoep.ctf.map.type.lobby");
         loadGames("me.joelsoep.ctf.map.type.game");
+        GameMap gameMap = getRandomGameMap();
+        Main.game.createTeams(gameMap);
+        Main.game.setMap(gameMap);
+        Main.game.getMap().placeFlag(Main.game.getRed());
+        Main.game.getMap().placeFlag(Main.game.getBlue());
     }
 
     public static String getWorldFolderPath() {
@@ -33,8 +39,12 @@ public class MapManager {
         return schematicFolderPath;
     }
 
-    public static List<Map> getMaps() {
-        return maps.values().stream().toList();
+    public static GameMap getRandomGameMap() {
+        return (GameMap) gameMaps.values().stream().toList().get(RandomUtil.get().nextInt(gameMaps.size()));
+    }
+
+    public static List<Map> getGameMaps() {
+        return gameMaps.values().stream().toList();
     }
 
     public void loadLobby(String packageName) {
@@ -69,8 +79,16 @@ public class MapManager {
         mapClasses.forEach(map -> {
             try {
                 GameMap gameMap = map.getDeclaredConstructor().newInstance();
-                maps.put(map.getName(), gameMap);
+                gameMaps.put(map.getName(), gameMap);
                 Bukkit.getLogger().info("Loaded gameMap %s".formatted(gameMap.getName()));
+
+                if (Bukkit.getWorld(gameMap.getWorld().getName()) == null) {
+                    return;
+                }
+
+                gameMap.load();
+                gameMap.setState(MapState.READY);
+                Bukkit.getLogger().info("Added content to map %s.".formatted(gameMap.getName()));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

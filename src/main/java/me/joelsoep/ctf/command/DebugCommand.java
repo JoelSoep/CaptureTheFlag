@@ -8,7 +8,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.player.PlayerService;
@@ -109,13 +108,12 @@ public class DebugCommand extends BaseCommand {
             player.sendMessage(MM.deserialize("<red>The game has not started yet!"));
             return;
         }
-        MapLoader mapLoader = new MapLoader(plugin);
         game.setState(GameState.ENDED);
         player.sendMessage(MM.deserialize("<yellow>Ending game..."));
 
-        mapLoader.reloadMap();
-        mapLoader.placeFlag(game.getBlue());
-        mapLoader.placeFlag(game.getRed());
+        game.getMap().load();
+        game.getMap().placeFlag(game.getBlue());
+        game.getMap().placeFlag(game.getRed());
         game.getBlue().getPlayers().clear();
         game.getRed().getPlayers().clear();
 

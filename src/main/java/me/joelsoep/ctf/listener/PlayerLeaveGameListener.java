@@ -5,7 +5,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
@@ -25,7 +24,6 @@ public class PlayerLeaveGameListener implements Listener {
     public void onLeaveGame(PlayerLeaveGameEvent event) {
         Game game = event.getGame();
         CTFPlayer player = event.getPlayer();
-        MapLoader mapLoader = new MapLoader(plugin);
 
         if (game.getPlayers().size() < game.getMinPlayers() && game.isStarting()) {
             if (Main.countdownTask != null) {
@@ -52,7 +50,7 @@ public class PlayerLeaveGameListener implements Listener {
                     return;
                 }
                 oppositeTeam.getFlag().setThief(null);
-                mapLoader.placeFlag(oppositeTeam);
+                game.getMap().placeFlag(oppositeTeam);
                 game.getAudience().sendMessage(
                         MM.deserialize(
                                 "<gray>Team %s's flag has been returned."

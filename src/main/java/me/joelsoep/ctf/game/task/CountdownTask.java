@@ -3,7 +3,6 @@ package me.joelsoep.ctf.game.task;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameStartEvent;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
@@ -15,7 +14,6 @@ import org.bukkit.plugin.Plugin;
 public class CountdownTask {
 
     private final Plugin plugin;
-    private final MapLoader mapLoader;
     private final Component message;
     private Audience audience;
     private final boolean isGameStartCountdown;
@@ -29,7 +27,6 @@ public class CountdownTask {
         this.audience = audience;
         this.seconds = seconds;
         this.isGameStartCountdown = false;
-        this.mapLoader = new MapLoader(plugin);
         countdown();
     }
 
@@ -40,7 +37,6 @@ public class CountdownTask {
         this.seconds = seconds;
         this.isGameStartCountdown = isGameStartCountdown;
         this.game = game;
-        this.mapLoader = new MapLoader(plugin);
         countdown();
     }
 
@@ -70,9 +66,9 @@ public class CountdownTask {
                         if (game.getPlayers().size() == 0) {
                             Bukkit.getLogger().info("CountdownTask: Activated 0-player-function.");
                             game.setState(GameState.ENDED);
-                            mapLoader.reloadMap();
-                            mapLoader.placeFlag(game.getBlue());
-                            mapLoader.placeFlag(game.getRed());
+                            game.getMap().load();
+                            game.getMap().placeFlag(game.getBlue());
+                            game.getMap().placeFlag(game.getRed());
                             game.getBlue().getPlayers().clear();
                             game.getRed().getPlayers().clear();
                             new ResetGameTask(plugin, game);

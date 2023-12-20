@@ -3,7 +3,6 @@ package me.joelsoep.ctf.game.event;
 import lombok.Getter;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.map.MapLoader;
 import me.joelsoep.ctf.game.team.Team;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -16,13 +15,11 @@ public class FlagStealEvent extends Event {
     @Getter private final Game game;
     @Getter private final CTFPlayer stealer;
     @Getter private final Team flagOwner;
-    @Getter private final MapLoader mapLoader;
 
-    public FlagStealEvent(Game game, CTFPlayer stealer, Team flagOwner, MapLoader mapLoader) {
+    public FlagStealEvent(Game game, CTFPlayer stealer, Team flagOwner) {
         this.game = game;
         this.stealer = stealer;
         this.flagOwner = flagOwner;
-        this.mapLoader = mapLoader;
     }
 
     @Override

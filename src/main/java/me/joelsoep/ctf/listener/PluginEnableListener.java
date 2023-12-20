@@ -19,5 +19,6 @@ public class PluginEnableListener implements Listener {
         }
         Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", plugin);
         new MapManager();
+
     }
 }
