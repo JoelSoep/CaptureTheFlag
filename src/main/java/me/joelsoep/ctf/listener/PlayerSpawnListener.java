@@ -3,6 +3,7 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,7 +27,7 @@ public class PlayerSpawnListener implements Listener {
         }
 
         if (game.getState() == GameState.WAITING || game.getState() == GameState.ENDED) {
-            event.setSpawnLocation(new Location(Bukkit.getWorld("CaptureTheFlag"), 516, 35, 13, 138, 0));
+            event.setSpawnLocation(new Location(MapManager.getLobby().getWorld(), 16, 35, 13, 138, 0));
         }
 
         if (game.getState() == GameState.READY || game.getState() == GameState.RUNNING) {

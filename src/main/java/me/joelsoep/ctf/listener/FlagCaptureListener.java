@@ -34,7 +34,7 @@ public class FlagCaptureListener implements Listener {
             return;
         }
 
-       //TODO: make replacer mapLoader.loadChest();
+        game.getMap().resetFeatures();
         team.setPoints(team.getPoints() + 1);
         game.getAudience().sendMessage(MM.deserialize("""
                 <gray>Team %s<gray>'s flag has been captured by %s<gray>!"""

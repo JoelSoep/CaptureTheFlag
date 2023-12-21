@@ -11,17 +11,18 @@ import java.util.ArrayList;
 
 public abstract class LobbyMap extends Map {
 
+    protected final File schematic;
     protected Location spawnLocation;
     protected ArrayList<Location> leaderboardLocations;
 
-    public LobbyMap(String name, World world) {
+    public LobbyMap(String name, File schematic) {
         super(name, "lobby_");
+        this.schematic = schematic;
 
-        this.setWorld(world);
-        load();
+        this.setWorld(createEmptyWorld());
     }
 
-    protected abstract void load();
-    protected abstract Location getSpawnLocation();
-    protected abstract ArrayList<Location> getLeaderboardLocations();
+    public abstract void load();
+    public abstract Location getSpawnLocation();
+    public abstract ArrayList<Location> getLeaderboardLocations();
 }

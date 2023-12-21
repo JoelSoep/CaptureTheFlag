@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.map;
+package me.joelsoep.ctf.util.garbage;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
@@ -58,12 +58,11 @@ public class MapLoader {
     public void placeFlag(Team team) {
         Location flagLocation = team.getFlag().getLocation();
         Material material = team.getFlag().getMaterial();
-        BlockFace blockFace = team.getFlag().getBlockFace();
         Block block = flagLocation.getBlock();
         block.setType(material);
         BlockData blockData = block.getBlockData();
         if (blockData instanceof Rotatable rotatable) {
-            rotatable.setRotation(blockFace);
+         //   rotatable.setRotation(blockFace);
             block.setBlockData(rotatable);
         }
     }

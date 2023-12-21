@@ -107,7 +107,6 @@ public class Game {
                 map.getRedSpawnLocation(),
                 map.getRedFlagLocation()
         );
-        this.red.getFlag().setBlockFace(BlockFace.NORTH);
         this.red.getFlag().setMaterial(Material.RED_BANNER);
 
         this.blue = new Team(
@@ -115,7 +114,6 @@ public class Game {
                 map.getBlueSpawnLocation(),
                 map.getBlueFlagLocation()
         );
-        this.blue.getFlag().setBlockFace(BlockFace.SOUTH);
         this.blue.getFlag().setMaterial(Material.BLUE_BANNER);
     }
 

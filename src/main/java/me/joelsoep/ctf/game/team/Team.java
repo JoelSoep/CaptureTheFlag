@@ -7,7 +7,6 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -22,10 +21,6 @@ public class Team {
     private Audience audience;
     private Location spawn;
     private Flag flag;
-  // private Location flagLocation;
-  //  private Material flagMaterial;
-  //  private BlockFace flagBlockFace;
-   // private CTFPlayer flagThief;
 
     public Team(TeamColor teamColor, Location spawn, Location flagLocation) {
         this.flag = new Flag();
@@ -39,7 +34,6 @@ public class Team {
     public static class Flag {
         private Location location;
         private Material material;
-        private BlockFace blockFace; //TODO: remove from here as this should be map-specific
         private @Nullable CTFPlayer thief;
     }
 

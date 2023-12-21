@@ -2,11 +2,13 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.Leaderboard;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.MapState;
 import me.joelsoep.ctf.map.type.GameMap;
+import me.joelsoep.ctf.map.type.LobbyMap;
 import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -49,12 +51,23 @@ public class WorldLoadListener implements Listener {
             }
 
             if (!mapWorld.getName().equals(world.getName())) {
+                if (map.getState() == MapState.READY) {
+                    return;
+                }
+
+                if (map instanceof LobbyMap lobbyMap) {
+                    lobbyMap.load();
+                    lobbyMap.setState(MapState.READY);
+                    Bukkit.getLogger().info("Added content to map %s.".formatted(map.getName()));
+                    return;
+                }
+
                 if (!(map instanceof GameMap gameMap)) {
                     return;
                 }
                 gameMap.load();
                 gameMap.setState(MapState.READY);
-                Bukkit.getLogger().info("Added content to map %s.".formatted(gameMap.getName()));
+                Bukkit.getLogger().info("Added content to map %s.".formatted(map.getName()));
             }
         });
 
@@ -81,10 +94,10 @@ public class WorldLoadListener implements Listener {
         world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, true);
         world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
         world.setGameRule(GameRule.DO_TILE_DROPS, false);
-
+//TODO: put cleanItemsTask to game maps.
         new CleanItemsTask(plugin, world);
-
-        new Leaderboard(plugin,"kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", new Location(world, 505, 39, 3), Main.mongo.getUserCollection(), "player_kills", 0, true, "&4", "&c");
-        new Leaderboard(plugin, "kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", new Location(world, 505, 39, -4), Main.mongo.getUserCollection(), "player_kd", (double) 1, false, "&3", "&b");
+//TODO: put leaderboards on lobby map.
+       // new Leaderboard(plugin,"kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", new Location(world, 505, 39, 3), Main.mongo.getUserCollection(), "player_kills", 0, true, "&4", "&c");
+       // new Leaderboard(plugin, "kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", new Location(world, 505, 39, -4), Main.mongo.getUserCollection(), "player_kd", (double) 1, false, "&3", "&b");
     }
 }

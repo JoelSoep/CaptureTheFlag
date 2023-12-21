@@ -1,6 +1,9 @@
 package me.joelsoep.ctf.map;
 
+import lombok.Getter;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import me.joelsoep.ctf.util.RandomUtil;
@@ -15,7 +18,7 @@ import java.util.Set;
 public class MapManager {
 
     private static final HashMap<String, Map> gameMaps = new HashMap<>();
-    private LobbyMap lobby;
+    private static LobbyMap lobby;
 
     public MapManager() {
         loadLobby("me.joelsoep.ctf.map.type.lobby");
@@ -23,6 +26,7 @@ public class MapManager {
         GameMap gameMap = getRandomGameMap();
         Main.game.createTeams(gameMap);
         Main.game.setMap(gameMap);
+        Main.game.getRed().setSpawn(gameMap.getRedSpawnLocation());
         Main.game.getMap().placeFlag(Main.game.getRed());
         Main.game.getMap().placeFlag(Main.game.getBlue());
     }
@@ -47,6 +51,8 @@ public class MapManager {
         return gameMaps.values().stream().toList();
     }
 
+    public static LobbyMap getLobby() { return lobby; }
+
     public void loadLobby(String packageName) {
         Reflections reflections = new Reflections(packageName);
         Set<Class<? extends LobbyMap>> mapClasses = reflections.getSubTypesOf(LobbyMap.class);
@@ -62,6 +68,14 @@ public class MapManager {
             LobbyMap lobby = lobbyClass.getDeclaredConstructor().newInstance();
             this.lobby = lobby;
             Bukkit.getLogger().info("Loaded lobby %s".formatted(lobby.getName()));
+
+            if (Bukkit.getWorld(lobby.getWorld().getName()) == null) {
+                return;
+            }
+
+            lobby.load();
+            lobby.setState(MapState.READY);
+            Bukkit.getLogger().info("Added content to map %s.".formatted(lobby.getName()));
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -93,5 +107,16 @@ public class MapManager {
                 exception.printStackTrace();
             }
         });
+    }
+
+    public void registerMapToGame(GameMap map, Game game) {
+        Team red = game.getRed();
+        Team blue = game.getBlue();
+
+        blue.setSpawn(map.getBlueSpawnLocation());
+        blue.getFlag().setLocation(map.getBlueFlagLocation());
+
+        red.setSpawn(map.getRedSpawnLocation());
+        red.getFlag().setLocation(map.getRedFlagLocation());
     }
 }
