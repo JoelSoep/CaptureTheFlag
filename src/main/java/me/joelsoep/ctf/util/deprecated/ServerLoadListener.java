@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.listener;
+package me.joelsoep.ctf.util.deprecated;
 
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import org.bukkit.Bukkit;
@@ -8,11 +8,14 @@ import org.bukkit.WorldType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 
+@Deprecated
+@ApiStatus.ScheduledForRemoval
 public class ServerLoadListener implements Listener {
 
     @EventHandler

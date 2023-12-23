@@ -1,19 +1,17 @@
 package me.joelsoep.ctf.map.type.lobby;
 
-import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import me.joelsoep.ctf.util.FAWE;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DesertLobby extends LobbyMap {
     public DesertLobby() {
-        super("desert", new File(MapManager.getSchematicFolderPath() + "lobby.schem"));
+        super("desert", new File(FileManager.getSchematicFolderPath() + "lobby.schem"));
     }
 
     @Override
@@ -23,11 +21,14 @@ public class DesertLobby extends LobbyMap {
 
     @Override
     public Location getSpawnLocation() {
-        return null;
+        return new Location(getWorld(), 16, 35, 13, 138, 0);
     }
 
     @Override
     public ArrayList<Location> getLeaderboardLocations() {
-        return null;
+        return new ArrayList<>(List.of(
+                new Location(getWorld(), 5, 39, 3),
+                new Location(getWorld(), 5, 39, -3)
+        ));
     }
 }

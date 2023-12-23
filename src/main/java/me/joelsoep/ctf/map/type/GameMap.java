@@ -1,19 +1,17 @@
 package me.joelsoep.ctf.map.type;
 
-import lombok.Getter;
-import lombok.Setter;
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.map.Map;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.TestOnly;
 
 import java.io.File;
 
@@ -26,6 +24,7 @@ public abstract class GameMap extends Map {
         this.schematic = schematic;
 
         this.setWorld(createEmptyWorld());
+        new CleanItemsTask(Main.getInstance(), world);
     }
 
     public abstract void load();
@@ -36,6 +35,7 @@ public abstract class GameMap extends Map {
     public abstract @NotNull Location getBlueFlagLocation();
     public abstract @NotNull Location getBlueSpawnLocation();
     public abstract @NotNull BlockFace getBlueBlockFace();
+    public abstract @NotNull Location getSpectatorSpawnLocation();
     public abstract @NotNull Integer getMaxPlayers();
 
     public void placeFlag(Team team) {

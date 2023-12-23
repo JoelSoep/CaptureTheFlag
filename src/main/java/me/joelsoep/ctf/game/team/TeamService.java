@@ -1,7 +1,7 @@
 package me.joelsoep.ctf.game.team;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 

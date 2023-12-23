@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
@@ -8,6 +7,7 @@ import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -45,7 +45,7 @@ public class PlayerMoveListener implements Listener {
         }
 
         if (player.getLocation().getY() < -99) {
-            player.teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), -118, -17, -97));
+            player.teleport(new Location(game.getMap().getWorld(), -118, -17, -97));
             PlayerDeathEvent deathEvent = new PlayerDeathEvent(player, Arrays.stream(player.getInventory().getContents()).toList(), 0, "");
             Bukkit.getPluginManager().callEvent(deathEvent);
         }

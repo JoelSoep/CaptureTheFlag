@@ -1,8 +1,8 @@
-package me.joelsoep.ctf.util.garbage;
+package me.joelsoep.ctf.util.deprecated;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;

@@ -1,8 +1,8 @@
 package me.joelsoep.ctf.map;
 
-import lombok.Getter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.game.board.LeaderboardService;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
@@ -10,7 +10,6 @@ import me.joelsoep.ctf.util.RandomUtil;
 import org.bukkit.Bukkit;
 import org.reflections.Reflections;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -26,21 +25,7 @@ public class MapManager {
         GameMap gameMap = getRandomGameMap();
         Main.game.createTeams(gameMap);
         Main.game.setMap(gameMap);
-        Main.game.getRed().setSpawn(gameMap.getRedSpawnLocation());
-        Main.game.getMap().placeFlag(Main.game.getRed());
-        Main.game.getMap().placeFlag(Main.game.getBlue());
-    }
-
-    public static String getWorldFolderPath() {
-        String worldFolderPath = Main.getInstance().getDataFolder() + File.separator + "maps" + File.separator;
-        new File(worldFolderPath).mkdirs();
-        return worldFolderPath;
-    }
-
-    public static String getSchematicFolderPath() {
-        String schematicFolderPath = Main.getInstance().getDataFolder() + File.separator + "schematics" + File.separator;
-        new File (schematicFolderPath).mkdirs();
-        return schematicFolderPath;
+        this.registerMapToGame(gameMap, Main.game);
     }
 
     public static GameMap getRandomGameMap() {
@@ -73,9 +58,15 @@ public class MapManager {
                 return;
             }
 
+            if (lobby.getState() == MapState.READY) {
+                return;
+            }
+
             lobby.load();
             lobby.setState(MapState.READY);
-            Bukkit.getLogger().info("Added content to map %s.".formatted(lobby.getName()));
+            LeaderboardService leaderboardService = new LeaderboardService();
+            leaderboardService.setLocationsAndCreate(lobby);
+            Bukkit.getLogger().info("Added content to lobby %s.".formatted(lobby.getName()));
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -102,7 +93,7 @@ public class MapManager {
 
                 gameMap.load();
                 gameMap.setState(MapState.READY);
-                Bukkit.getLogger().info("Added content to map %s.".formatted(gameMap.getName()));
+                Bukkit.getLogger().info("Added content to gameMap %s.".formatted(gameMap.getName()));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

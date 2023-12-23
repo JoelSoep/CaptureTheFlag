@@ -3,13 +3,12 @@ package me.joelsoep.ctf.map;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import lombok.Setter;
-import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -30,17 +29,17 @@ public abstract class Map {
     }
 
     public @Nullable World createEmptyWorld() {
-        WorldCreator worldCreator = new WorldCreator(MapManager.getWorldFolderPath() + "ctf_" + prefix + name);
+        WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath() + prefix + name);
         worldCreator.type(WorldType.FLAT);
         worldCreator.generator(new EmptyChunkGenerator());
         World world = Bukkit.createWorld(worldCreator);
         if (world == null) {
-            Bukkit.getLogger().warning("World %s is null, attempting to get access to it...".formatted("ctf_" + prefix + name));
-            world = Bukkit.getWorld("ctf_" + prefix + name);
+            Bukkit.getLogger().warning("World %s is null, attempting to get access to it...".formatted(prefix + name));
+            world = Bukkit.getWorld(prefix + name);
         }
 
         if (world == null) {
-            Bukkit.getLogger().severe("FATAL: World %s couldn't be found. Aborting world creation...");
+            Bukkit.getLogger().severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(prefix + name));
             return null;
         }
         world.setKeepSpawnInMemory(false);

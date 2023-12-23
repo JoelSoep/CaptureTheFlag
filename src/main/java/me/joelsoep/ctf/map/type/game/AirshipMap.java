@@ -3,7 +3,7 @@ package me.joelsoep.ctf.map.type.game;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.util.FAWE;
 import org.bukkit.Bukkit;
@@ -26,7 +26,7 @@ public class AirshipMap extends GameMap {
     private final Location chestLocation = new Location(getWorld(), -118, -48, -97);
 
     public AirshipMap() {
-        super("airship", new File(MapManager.getSchematicFolderPath() + "airship.schem"));
+        super("airship", new File(FileManager.getSchematicFolderPath() + "airship.schem"));
     }
 
     @Override
@@ -104,6 +104,11 @@ public class AirshipMap extends GameMap {
     @Override
     public @NotNull BlockFace getBlueBlockFace() {
         return BlockFace.SOUTH;
+    }
+
+    @Override
+    public @NotNull Location getSpectatorSpawnLocation() {
+        return new Location(getWorld(), -118, -17, 97);
     }
 
     @Override

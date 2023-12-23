@@ -1,7 +1,7 @@
 package me.joelsoep.ctf.game;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 

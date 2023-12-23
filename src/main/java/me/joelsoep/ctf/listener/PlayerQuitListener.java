@@ -1,9 +1,9 @@
 package me.joelsoep.ctf.listener;
 
 import fr.mrmicky.fastboard.adventure.FastBoard;
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.entity.Player;

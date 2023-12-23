@@ -1,11 +1,11 @@
 package me.joelsoep.ctf.game.board;
 
 import fr.mrmicky.fastboard.adventure.FastBoard;
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

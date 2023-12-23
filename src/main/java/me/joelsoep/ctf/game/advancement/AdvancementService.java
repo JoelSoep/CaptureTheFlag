@@ -1,21 +1,14 @@
 package me.joelsoep.ctf.game.advancement;
 
-import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
-import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
-import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
-import io.papermc.paper.advancement.AdvancementDisplay;
 import lombok.Getter;
-import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.game.kit.BaseKit;
 import org.bukkit.Bukkit;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Range;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
 public class AdvancementService {

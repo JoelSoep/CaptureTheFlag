@@ -15,25 +15,20 @@ import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.database.MongoService;
+import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
 import me.joelsoep.ctf.game.advancement.AdvancementService;
-import me.joelsoep.ctf.listener.ListenerService;
+import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
 import me.joelsoep.ctf.game.task.CountdownTask;
-import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.game.task.QueueCheckGameAvailabilityTask;
 import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
-import org.bukkit.*;
+import me.joelsoep.ctf.listener.ListenerService;
+import me.joelsoep.ctf.map.MapManager;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
     private AdvancementMain advancementMain;
@@ -83,10 +78,8 @@ public final class Main extends JavaPlugin {
           //  Bukkit.getLogger().log(Level.INFO, "Booting CTF-Advancements...");
           //  Main.advancementAPI = new AdvancementAPI(this);
            // Main.advancementService = new AdvancementService();
-
-        //saveFile("schem.zip", "https://download1590.mediafire.com/ugi4gapkncfgbmlMtE7AGRiQSqqEvrIhGvDf_k3cT2WEa0_Mv_QrHjJhO-QqmIC0hYaS67N9WNEp9vRh7tj6iM-ADiNSIKLXYVV3lsvyZWOTiAHb1ovC_tST7diWoEfL_AAxwAtE1DNdgg-cKlCNobb6B3OuiY9gZ-8yQeYSsCE/bchce43dm3xxmhg/schem.zip");
-      //  saveFile("map.schem", "https://dl.soep.me/map.schem");
-        saveFile("lobby.schem", "https://dl.soep.me/lobby.schem");
+        Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", this);
+        new MapManager();
         new ListenerService(this);
         new BroadcastService(this).runAll();
         PaperCommandManager manager = new PaperCommandManager(this);
@@ -100,24 +93,6 @@ public final class Main extends JavaPlugin {
      //   Main.mongo.getConfigCollection().findOneAndUpdate(Filters.eq("_id", 0), new Document("gameCount", Main.mongo.getGameCount()));
         // Plugin shutdown logic
        // this.advancementMain.disable();
-    }
-
-    public void saveFile(String resource, String url) {
-        if (!new File(getDataFolder(), resource).exists()) {
-            try {
-                if (!getDataFolder().exists()) {
-                    getDataFolder().mkdirs();
-                }
-                Bukkit.getLogger().log(Level.INFO, "Downloading " + resource + "...");
-                Files.copy(new URL(url).openStream(), Paths.get(getDataFolder() + File.separator + resource));
-              //  Bukkit.getLogger().log(Level.INFO, "Unzipping " + resource + "...");
-             //   Download.unzip(getDataFolder() + File.separator + resource, String.valueOf(getDataFolder()));
-            } catch (Exception e) {
-                Bukkit.getLogger().log(Level.INFO, "Couldn't create " + resource);
-                e.printStackTrace();
-            }
-        }
-
     }
 
     public static Main getInstance() {

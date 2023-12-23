@@ -1,16 +1,16 @@
-package me.joelsoep.ctf.util.garbage;
+package me.joelsoep.ctf.util.deprecated;
 
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.PatternPane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.task.CountdownTask;
+import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;

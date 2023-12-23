@@ -1,10 +1,8 @@
-package me.joelsoep.ctf.util.garbage;
+package me.joelsoep.ctf.util.deprecated;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.game.special.SpecialService;
-import me.joelsoep.ctf.util.FAWE;
 import me.joelsoep.ctf.game.team.Team;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 

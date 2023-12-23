@@ -1,11 +1,8 @@
 package me.joelsoep.ctf.map.type;
 
-import lombok.Setter;
 import me.joelsoep.ctf.map.Map;
 import org.bukkit.Location;
-import org.bukkit.World;
 
-import javax.annotation.Nullable;
 import java.io.File;
 import java.util.ArrayList;
 

@@ -4,7 +4,6 @@ import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
 public class AdvancementListener implements Listener {
 

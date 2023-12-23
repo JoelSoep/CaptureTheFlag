@@ -1,13 +1,13 @@
-package me.joelsoep.ctf.listener;
+package me.joelsoep.ctf.util.deprecated;
 
-import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.map.MapManager;
-import me.joelsoep.ctf.util.garbage.EntityDamageHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.ApiStatus;
 
+@Deprecated
+@ApiStatus.ScheduledForRemoval
 public class PluginEnableListener implements Listener {
 
     @EventHandler
@@ -17,8 +17,6 @@ public class PluginEnableListener implements Listener {
         if (!(plugin.getName().equals("CapturetheFlag"))) {
             return;
         }
-        Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", plugin);
-        new MapManager();
 
     }
 }

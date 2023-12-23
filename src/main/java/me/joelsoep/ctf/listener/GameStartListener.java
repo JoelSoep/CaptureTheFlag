@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
@@ -8,11 +7,11 @@ import me.joelsoep.ctf.game.event.GameStartEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamService;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -55,7 +54,7 @@ public class GameStartListener implements Listener {
 
         game.getSpectators().forEach(spectator -> {
             spectator.getPlayer().setGameMode(GameMode.SPECTATOR);
-            spectator.getPlayer().teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), -118, -17, -97));
+            spectator.getPlayer().teleport(game.getMap().getSpectatorSpawnLocation());
         });
 
             red.getPlayers().forEach(player -> {

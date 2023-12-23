@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.util.garbage;
+package me.joelsoep.ctf.util.deprecated;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;

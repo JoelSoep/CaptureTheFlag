@@ -2,7 +2,6 @@ package me.joelsoep.ctf.autoBroadcast;
 
 import com.mongodb.Block;
 import com.mongodb.async.client.MongoCollection;
-import com.mongodb.async.client.MongoDatabase;
 import me.joelsoep.ctf.Main;
 import org.bson.Document;
 import org.bukkit.Bukkit;

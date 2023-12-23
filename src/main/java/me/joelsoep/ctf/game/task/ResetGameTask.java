@@ -1,14 +1,14 @@
 package me.joelsoep.ctf.game.task;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
@@ -35,13 +35,13 @@ public class ResetGameTask {
                 List<CTFPlayer> spectatorsToRemove = new ArrayList<>(game.getSpectators());
 
                 playersToRemove.forEach(player -> {
-                    player.getPlayer().teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), 516, 35, 13));
+                    player.getPlayer().teleport(MapManager.getLobby().getSpawnLocation());
                     game.removePlayer(player);
                     player.reset();
                 });
 
                 spectatorsToRemove.forEach(player -> {
-                    player.getPlayer().teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), 516, 35, 13));
+                    player.getPlayer().teleport(MapManager.getLobby().getSpawnLocation());
                     game.removeSpectator(player);
                     player.reset();
                 });

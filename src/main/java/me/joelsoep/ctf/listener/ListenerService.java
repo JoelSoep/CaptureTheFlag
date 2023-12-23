@@ -1,18 +1,12 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.game.kit.BaseKit;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
 
 public class ListenerService {
 

@@ -1,11 +1,10 @@
 package me.joelsoep.ctf.util;
 
-import java.util.Random;
-
-import javax.annotation.Nonnull;
-
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class EmptyChunkGenerator extends ChunkGenerator {
 

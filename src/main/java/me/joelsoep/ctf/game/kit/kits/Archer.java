@@ -2,7 +2,6 @@ package me.joelsoep.ctf.game.kit.kits;
 
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.util.MM;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

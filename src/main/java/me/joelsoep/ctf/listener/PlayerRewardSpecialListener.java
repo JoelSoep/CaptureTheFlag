@@ -1,9 +1,9 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
 import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.event.EventHandler;

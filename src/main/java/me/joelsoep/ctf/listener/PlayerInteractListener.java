@@ -5,7 +5,6 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.gui.AdminPanelGUI;
 import me.joelsoep.ctf.game.gui.KitSelectionGUI;
-import me.joelsoep.ctf.util.garbage.PlayerParticipationGUI;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

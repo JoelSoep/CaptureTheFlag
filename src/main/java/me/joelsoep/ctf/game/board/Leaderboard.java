@@ -4,20 +4,20 @@ import com.mongodb.async.client.AggregateIterable;
 import com.mongodb.async.client.MongoCollection;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
+import me.joelsoep.ctf.Main;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class Leaderboard {
 
-    private final Plugin plugin;
     private Hologram hologram;
-
     private Location location;
     private MongoCollection<Document> collection;
     private String key;
@@ -29,20 +29,26 @@ public class Leaderboard {
     private String darkColor;
     private String lightColor;
 
-    public Leaderboard(Plugin plugin, String internalName, String fancyName, Location location, MongoCollection<Document> collection, String key, Object defaultValue, boolean isInteger, String darkColor, String lightColor) {
-        this.location = location;
+    public Leaderboard(String internalName, String fancyName, MongoCollection<Document> collection, String key, Object defaultValue, boolean isInteger, String darkColor, String lightColor) {
         this.internalName = internalName;
         this.fancyName = fancyName;
         this.collection = collection;
         this.key = key;
-        this.plugin = plugin;
         this.defaultValue = defaultValue;
         this.isInteger = isInteger;
         this.darkColor = darkColor;
         this.lightColor = lightColor;
+    }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-
+    public void create() {
+        if (location == null) {
+            Bukkit.getLogger().severe("Location is null when trying to create Leaderboard %s! Please ensure that the location has been set using setLocation(Location location).".formatted(internalName));
+            return;
+        }
         this.lines = getLines(collection, key);
         this.runTask(0L, 600L);
     }
@@ -120,7 +126,7 @@ public class Leaderboard {
     }
 
     public void runTask(long delay, long repeat) {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 update();

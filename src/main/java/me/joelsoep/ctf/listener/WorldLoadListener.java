@@ -2,14 +2,14 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.game.board.Leaderboard;
-import me.joelsoep.ctf.game.task.CleanItemsTask;
+import me.joelsoep.ctf.game.board.LeaderboardService;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.MapState;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -30,7 +30,7 @@ public class WorldLoadListener implements Listener {
         World world = event.getWorld();
         Game game = Main.game;
 
-        if (!world.getName().toLowerCase(Locale.ROOT).startsWith("plugins/CapturetheFlag/maps/ctf_".toLowerCase(Locale.ROOT))) {
+        if (!world.getName().toLowerCase(Locale.ROOT).startsWith("plugins/CapturetheFlag/maps/".toLowerCase(Locale.ROOT))) {
             Bukkit.getLogger().info("Excluding world %s from ctf-registry".formatted(world.getName()));
             return;
         }
@@ -58,6 +58,8 @@ public class WorldLoadListener implements Listener {
                 if (map instanceof LobbyMap lobbyMap) {
                     lobbyMap.load();
                     lobbyMap.setState(MapState.READY);
+                    LeaderboardService leaderboardService = new LeaderboardService();
+                    leaderboardService.setLocationsAndCreate(lobbyMap);
                     Bukkit.getLogger().info("Added content to map %s.".formatted(map.getName()));
                     return;
                 }
@@ -71,7 +73,6 @@ public class WorldLoadListener implements Listener {
             }
         });
 
-        //TODO: move placeFlag() here to ensure that the world is loaded
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setGameRule(GameRule.FALL_DAMAGE, false);
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements.
@@ -94,10 +95,5 @@ public class WorldLoadListener implements Listener {
         world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, true);
         world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
         world.setGameRule(GameRule.DO_TILE_DROPS, false);
-//TODO: put cleanItemsTask to game maps.
-        new CleanItemsTask(plugin, world);
-//TODO: put leaderboards on lobby map.
-       // new Leaderboard(plugin,"kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", new Location(world, 505, 39, 3), Main.mongo.getUserCollection(), "player_kills", 0, true, "&4", "&c");
-       // new Leaderboard(plugin, "kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", new Location(world, 505, 39, -4), Main.mongo.getUserCollection(), "player_kd", (double) 1, false, "&3", "&b");
     }
 }

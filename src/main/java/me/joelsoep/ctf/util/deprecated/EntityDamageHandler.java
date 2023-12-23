@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.util.garbage;
+package me.joelsoep.ctf.util.deprecated;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

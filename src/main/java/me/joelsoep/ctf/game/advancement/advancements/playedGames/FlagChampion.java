@@ -9,7 +9,6 @@ import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import com.fren_gor.ultimateAdvancementAPI.visibilities.ParentGrantedVisibility;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.advancement.IBaseAdvancement;
-import me.joelsoep.ctf.game.advancement.advancements.playedGames.FlagMaster;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

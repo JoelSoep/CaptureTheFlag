@@ -1,7 +1,6 @@
 package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.player.CTFPlayer;
-import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.player.PlayerService;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

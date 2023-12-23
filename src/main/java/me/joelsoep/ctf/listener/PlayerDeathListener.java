@@ -1,18 +1,18 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
 import me.joelsoep.ctf.game.task.DeathCountdownTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -68,7 +68,7 @@ public class PlayerDeathListener implements Listener {
             ctfPlayer.setKillStreak(0);
             ctfPlayer.getData().setDeaths(ctfPlayer.getData().getDeaths() + 1);
             event.setCancelled(true);
-            player.teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), -118, -17, -97));
+            player.teleport(game.getMap().getSpectatorSpawnLocation());
             new DeathCountdownTask(plugin, ctfPlayer, 5);
 
             if (oppositeTeam.getFlag().getThief() != null) {
@@ -117,7 +117,7 @@ public class PlayerDeathListener implements Listener {
                         """.formatted(team.getTeamColor().getColor() + player.getName())));
             }
         } else {
-            player.teleport(new Location(Bukkit.getWorld("CaptureTheFlag"), 516, 35, 13));
+            player.teleport(MapManager.getLobby().getSpawnLocation());
             event.setCancelled(true);
         }
     }

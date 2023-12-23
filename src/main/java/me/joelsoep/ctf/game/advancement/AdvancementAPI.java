@@ -2,13 +2,10 @@ package me.joelsoep.ctf.game.advancement;
 
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
 import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
-import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import me.joelsoep.ctf.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Set;
-import java.util.logging.Level;
 
 public class AdvancementAPI {
 

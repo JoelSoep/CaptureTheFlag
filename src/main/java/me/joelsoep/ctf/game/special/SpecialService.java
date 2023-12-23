@@ -12,10 +12,8 @@ import java.util.logging.Level;
 
 public class SpecialService {
     private final Map<String, BaseSpecial> specials;
-    private final Plugin plugin;
 
     public SpecialService() {
-        this.plugin = Bukkit.getPluginManager().getPlugin("CapturetheFlag");
         this.specials = new HashMap<>();
     }
 

@@ -6,9 +6,7 @@ import org.bukkit.Bukkit;
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Level;
 
 public class FileManager {
     public static final String domain = "https://dl.soep.me/";
@@ -29,5 +27,17 @@ public class FileManager {
                 }
             }
             return false;
+    }
+
+    public static String getWorldFolderPath() {
+        String worldFolderPath = Main.getInstance().getDataFolder() + File.separator + "maps" + File.separator;
+        new File(worldFolderPath).mkdirs();
+        return worldFolderPath;
+    }
+
+    public static String getSchematicFolderPath() {
+        String schematicFolderPath = Main.getInstance().getDataFolder() + File.separator + "schematics" + File.separator;
+        new File (schematicFolderPath).mkdirs();
+        return schematicFolderPath;
     }
 }

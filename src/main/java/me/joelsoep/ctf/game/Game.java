@@ -2,20 +2,18 @@ package me.joelsoep.ctf.game;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.joelsoep.ctf.map.type.GameMap;
-import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.map.type.GameMap;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
 
 import java.util.ArrayList;
 import java.util.List;
