@@ -7,4 +7,5 @@ description: Capture the Flag plugin for Minecraft 1.19.4
 website: https://soep.me
 load: POSTWORLD
 prefix: CTF
-depend: [FastAsyncWorldEdit]
+depend: [FastAsyncWorldEdit, DecentHolograms, FastAsyncWorldEdit]
+database: true

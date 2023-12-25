@@ -38,7 +38,6 @@ public final class Main extends JavaPlugin {
     public static final KitService kitService = new KitService();
     public static final SpecialService specialService = new SpecialService();
     public static final GameQueue queue = new GameQueue();
-    public static CountdownTask countdownTask;
     public static AdvancementAPI advancementAPI;
     public static AdvancementService advancementService;
 

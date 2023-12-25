@@ -26,8 +26,8 @@ public class PlayerLeaveGameListener implements Listener {
         CTFPlayer player = event.getPlayer();
 
         if (game.getPlayers().size() < game.getMinPlayers() && game.isStarting()) {
-            if (Main.countdownTask != null) {
-                Main.countdownTask.cancel();
+            if (game.getCountdownTask() != null) {
+                game.getCountdownTask().cancel();
                 game.setStarting(false);
                 game.setSpedUp(false);
                 game.getAudience().sendMessage(MM.deserialize("<red>Game preparation has been canceled as there are too few players to start."));

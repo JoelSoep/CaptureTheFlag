@@ -27,34 +27,34 @@ public class PlayerJoinGameListener implements Listener {
                     <gray>[</gray><green>+</green><gray>] %s has joined the game! (%s/%s)"""
                 .formatted(player.getPlayer().getName(), game.getPlayerCount(), game.getMaxPlayers())));
 
-        if (Main.countdownTask != null) {
-            Main.countdownTask.updateAudience(game.getAudience());
+        if (game.getCountdownTask() != null) {
+            game.getCountdownTask().updateAudience(game.getAudience());
         }
 
         if (game.getPlayerCount() >= game.getMinPlayers() && !game.isStarting()) {
-            Main.countdownTask = new CountdownTask(
+            game.setCountdownTask(new CountdownTask(
                     plugin,
                     MM.deserialize("<#63f02b>Game has started!"),
                     game.getAudience(),
                     45,
                     true,
                     game
-            );
+            ));
             game.setStarting(true);
         }
 
         if (game.getPlayerCount() >= game.getMaxPlayers() && game.isStarting() && !game.isSpedUp()) {
-            if (Main.countdownTask != null && Main.countdownTask.getSeconds() > 10) {
-                Main.countdownTask.cancel();
+            if (game.getCountdownTask() != null && game.getCountdownTask().getSeconds() > 10) {
+                game.getCountdownTask().cancel();
             }
-            Main.countdownTask = new CountdownTask(
+            game.setCountdownTask(new CountdownTask(
                     plugin,
                     MM.deserialize("<#63f02b>Game has started!"),
                     game.getAudience(),
                     10,
                     true,
                     game
-            );
+            ));
             game.setSpedUp(true);
         }
     }

@@ -67,22 +67,22 @@ public class AdminPanelGUI extends ChestGui implements Listener {
             if (game.getState() != GameState.WAITING) {
                 return;
             }
-            if (Main.countdownTask != null) {
-                Main.countdownTask.cancel();
+            if (game.getCountdownTask() != null) {
+                game.getCountdownTask().cancel();
             }
             game.setStarting(false);
             game.setSpedUp(false);
             game.getAudience().sendMessage(MM.deserialize("<gray>Game has been force-started by an operator!"));
             game.getAudience().playSound(Sound.sound(Key.key("block.note_block.pling"), Sound.Source.MASTER, 10, 1));
 
-                Main.countdownTask = new CountdownTask(
+                game.setCountdownTask(new CountdownTask(
                         plugin,
                         MM.deserialize("<#63f02b>Game has started!"),
                         game.getAudience(),
                         5,
                         true,
                         game
-                );
+                ));
                 game.setStarting(true);
         });
         this.forceStart.addItem(start, 0, 0);

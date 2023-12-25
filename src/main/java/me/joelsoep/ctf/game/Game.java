@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
+import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.map.type.GameMap;
@@ -15,6 +16,7 @@ import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +40,8 @@ public class Game {
     private GameState state;
     private ArrayList<CTFPlayer> players = new ArrayList<>();
     private ArrayList<CTFPlayer> spectators = new ArrayList<>();
-    private Team winner;
+    private @Nullable Team winner;
+    private CountdownTask countdownTask;
     private boolean isStarting = false;
     private boolean isSpedUp = false;
 

@@ -51,7 +51,7 @@ public class MapManager {
 
         try {
             LobbyMap lobby = lobbyClass.getDeclaredConstructor().newInstance();
-            this.lobby = lobby;
+            MapManager.lobby = lobby;
             Bukkit.getLogger().info("Loaded lobby %s".formatted(lobby.getName()));
 
             if (Bukkit.getWorld(lobby.getWorld().getName()) == null) {
