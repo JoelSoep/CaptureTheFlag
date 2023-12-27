@@ -20,7 +20,7 @@ public class PlayerRewardSpecialListener implements Listener {
 
         if (itemStack == null) {
             player.sendMessage(MM.deserialize("""
-        <red>An error occured while trying to give you your special.
+        <red>An error occurred while trying to give you your special.
         <red>Please report the following error to an administrator: BASESPECIAL_LISTENER_STACK_IS_NULL
         """));
             return;

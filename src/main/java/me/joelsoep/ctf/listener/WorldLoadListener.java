@@ -35,6 +35,7 @@ public class WorldLoadListener implements Listener {
             return;
         }
 
+        Bukkit.getLogger().info("Loading world %s".formatted(world.getName()));
         Bukkit.getLogger().info("Loaded maps rn: %s".formatted(MapManager.getGameMaps().size()));
 
         /**
@@ -95,5 +96,6 @@ public class WorldLoadListener implements Listener {
         world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, true);
         world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
         world.setGameRule(GameRule.DO_TILE_DROPS, false);
+        Bukkit.getLogger().info("Updated gamerules for world %s.".formatted(world.getName()));
     }
 }

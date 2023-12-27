@@ -29,7 +29,7 @@ public class QueuePlayersActionbarTask {
                     player.sendActionBar(MM.deserialize("<gray>Queue position: <yellow>%s<gray>/<yellow>%s".formatted(Main.queue.getPosition(player), Main.queue.getQueue().size())));
                 });
             }
-        }, 0L, 5L * 20L);
+        }, 0L, 4L * 20L);
     }
 
     public void cancel(int id) {

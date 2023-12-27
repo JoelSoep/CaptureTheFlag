@@ -157,4 +157,9 @@ public class DebugCommand extends BaseCommand {
     public void worldTP(Player player, World world) {
         player.teleport(world.getSpawnLocation());
     }
+
+    @Subcommand("credits")
+    public void credits(Player player) {
+        En
+    }
 }

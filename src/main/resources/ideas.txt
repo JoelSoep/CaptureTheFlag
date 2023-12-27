@@ -16,6 +16,7 @@
 16. WHEN RELEASING: MAKE A FORCE GAMEMODE SO MODS CANT JUST CHEAT
 17. Message broadcaster for lobbies
 18. Rule idea: in order to capture a flag, your own flag needs to be on your own place.
+19. Create custom logger which also handles exceptions. log files should be put in plugins/CapturetheFlag/logs
 
 CUSTOM COSMETICS IDEAS:
 - When a player has a flag captured, they can have a custom flag banner pattern

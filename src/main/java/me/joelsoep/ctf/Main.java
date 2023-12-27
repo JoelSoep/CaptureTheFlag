@@ -22,7 +22,6 @@ import me.joelsoep.ctf.game.advancement.AdvancementService;
 import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
-import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.task.QueueCheckGameAvailabilityTask;
 import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
 import me.joelsoep.ctf.listener.ListenerService;
@@ -62,6 +61,7 @@ public final class Main extends JavaPlugin {
                     """);
         }
 
+        new ListenerService(this);
         new BackupPlayerDataTask(this);
         new QueuePlayersActionbarTask(this);
         new QueueCheckGameAvailabilityTask(this);
@@ -79,7 +79,6 @@ public final class Main extends JavaPlugin {
            // Main.advancementService = new AdvancementService();
         Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", this);
         new MapManager();
-        new ListenerService(this);
         new BroadcastService(this).runAll();
         PaperCommandManager manager = new PaperCommandManager(this);
 
