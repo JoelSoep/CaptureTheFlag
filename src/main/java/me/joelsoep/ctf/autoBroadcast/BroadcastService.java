@@ -1,13 +1,18 @@
 package me.joelsoep.ctf.autoBroadcast;
 
-import com.mongodb.Block;
-import com.mongodb.async.client.MongoCollection;
+import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.reactivestreams.client.MongoCollection;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.subscriber.EmptySubscriber;
+import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,30 +24,61 @@ public class BroadcastService {
             this.plugin = plugin;
         }
 
-        MongoCollection<Document> collection = Main.mongo.getAutoBroadcastCollection();
+        MongoCollection<Document> collection = Main.mongoManager.getDatabase().getCollection("autoBroadcast");
 
 
         public void runAll() {
             AtomicInteger count = new AtomicInteger(0);
-            Main.mongo.countDocumentsAsync(Main.mongo.getAutoBroadcastCollection()).whenCompleteAsync((result, throwable) -> {
-                if (result != null) {
-                    count.set(result.intValue());
-                    Bukkit.getLogger().info("Broadcasting %s messages.".formatted(count.get()));
-                } else {
-                    Main.mongo.insertDocumentAsync(Main.mongo.getAutoBroadcastCollection(), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
-                    Bukkit.getLogger().warning("No documents found to autobroadcast!");
+
+            Main.mongoManager.countDocuments(collection, new IStandardSubscriber<Long>() {
+                @Override
+                public void onResult(Long result) {
+                    if (result != null) {
+                        count.set(result.intValue());
+                        Bukkit.getLogger().info("Broadcasting %s messages.".formatted(count.get()));
+                    } else {
+                        Main.mongoManager.insertOne(Main.mongoManager.getDatabase().getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
+                        Bukkit.getLogger().warning("No documents found to autobroadcast!");
+                    }
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    throwable.printStackTrace();
                 }
             });
-            collection.find().forEach(new Block<Document>() {
+
+            List<Document> results = new ArrayList<>();
+            Main.mongoManager.find(collection, new Document(), new Subscriber<>() {
+
                 @Override
-                public void apply(@NotNull Document document) {
-                    new BroadcastMessage(plugin).builder()
-                            .withDuration(document.getInteger("duration"))
-                            .withMessage(document.getString("message"))
-                            .withSound(document.getString("sound"))
-                            .schedule();
+                public void onSubscribe(Subscription s) {
+                    s.request(Long.MAX_VALUE);
                 }
-            }, (result, t) -> {});
+
+                @Override
+                public void onNext(Document document) {
+                    if (document != null) {
+                        results.add(document);
+                    }
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    t.printStackTrace();
+                }
+
+                @Override
+                public void onComplete() {
+                    results.forEach(document -> {
+                        new BroadcastMessage(plugin).builder()
+                                .withDuration(document.getInteger("duration"))
+                                .withMessage(document.getString("message"))
+                                .withSound(document.getString("sound"))
+                                .schedule();
+                    });
+                }
+            });
         }
 
 }

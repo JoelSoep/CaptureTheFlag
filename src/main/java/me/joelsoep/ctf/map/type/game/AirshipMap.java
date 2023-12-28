@@ -108,7 +108,7 @@ public class AirshipMap extends GameMap {
 
     @Override
     public @NotNull Location getSpectatorSpawnLocation() {
-        return new Location(getWorld(), -118, -17, 97);
+        return new Location(getWorld(), -104, -22, -95);
     }
 
     @Override

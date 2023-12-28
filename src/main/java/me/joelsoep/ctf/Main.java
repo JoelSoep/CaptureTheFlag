@@ -12,9 +12,10 @@ package me.joelsoep.ctf;
 
 import co.aikar.commands.PaperCommandManager;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementMain;
+import com.mongodb.ConnectionString;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
-import me.joelsoep.ctf.database.MongoService;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.advancement.AdvancementAPI;
@@ -33,7 +34,8 @@ public final class Main extends JavaPlugin {
     private AdvancementMain advancementMain;
 
     public static Game game = new Game();
-    public static final MongoService mongo = new MongoService();
+    public static final MongoManager mongoManager = new MongoManager(new ConnectionString("mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority"));
+    //public static final MongoService mongo = new MongoService();
     public static final KitService kitService = new KitService();
     public static final SpecialService specialService = new SpecialService();
     public static final GameQueue queue = new GameQueue();

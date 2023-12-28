@@ -224,3 +224,8 @@ If a player is changing their kit and the game starts they dont get their kit FI
 golden apples you get from flags dont stack on the others FIXED
 smash bros can hit people from their own team REMOVED SMASH BROS, FIXED
 
+
+
+spectators spawn at wrong coords
+first time flags dont appear (but you can capture them) FIXED
+game is nullpointerexception kitsortgui

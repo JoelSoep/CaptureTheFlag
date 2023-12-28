@@ -1,13 +1,15 @@
 package me.joelsoep.ctf.game.board;
 
-import com.mongodb.async.client.AggregateIterable;
-import com.mongodb.async.client.MongoCollection;
+import com.mongodb.reactivestreams.client.AggregatePublisher;
+import com.mongodb.reactivestreams.client.MongoCollection;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -61,16 +63,31 @@ public class Leaderboard {
                 new Document("$limit", 10)  // Limit to the top 10
         );
 
-        AggregateIterable<Document> aggregate = collection.aggregate(pipeline);
-        aggregate.into(new ArrayList<>(), (result, t) -> {
-            if (t != null) {
-                future.completeExceptionally(t);
-            } else {
+        List<Document> results = new ArrayList<>();
+        AggregatePublisher<Document> aggregate = collection.aggregate(pipeline);
+        aggregate.subscribe(new Subscriber<>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                s.request(Long.MAX_VALUE);
+            }
+
+            @Override
+            public void onNext(Document document) {
+                results.add(document);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                t.printStackTrace();
+            }
+
+            @Override
+            public void onComplete() {
                 List<String> lines = new ArrayList<>();
                 lines.add(fancyName);
                 lines.add("");
                 int rank = 1;
-                for (Document playerData : result) {
+                for (Document playerData : results) {
                     String playerName = playerData.getString("player_name");
                     Object value;
 
@@ -96,10 +113,9 @@ public class Leaderboard {
                     lines.add(line);
                     rank++;
                 }
-                future.complete(lines); // might cause problems in the future, not sure tho idk if whenComplete() is a better idea in this case?
+                future.complete(lines);
             }
         });
-
         return future;
     }
 

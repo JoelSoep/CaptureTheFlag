@@ -79,6 +79,7 @@ public class PlayerMoveListener implements Listener {
             }
 
             if (Objects.equals(team.getPoints(), game.getMaxPoints())) {
+                Bukkit.getLogger().info("Calling GameEndEvent as team %s won.".formatted(team.getTeamColor().toString()));
                 GameEndEvent endEvent = new GameEndEvent(game, team, oppositeTeam);
                 Bukkit.getPluginManager().callEvent(endEvent);
             }

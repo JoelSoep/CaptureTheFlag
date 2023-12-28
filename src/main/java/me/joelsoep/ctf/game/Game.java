@@ -7,6 +7,7 @@ import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
@@ -59,8 +60,11 @@ public class Game {
         this.setMinKillStreak(1);
         this.setState(GameState.WAITING);
         this.setWinner(null);
+        this.setCountdownTask(null);
         this.setStarting(false);
         this.setSpedUp(false);
+        this.setMap(MapManager.getRandomGameMap());
+        this.createTeams(this.getMap());
         this.setAudience(Audience.audience(concatAudience(players, spectators)));
     }
 

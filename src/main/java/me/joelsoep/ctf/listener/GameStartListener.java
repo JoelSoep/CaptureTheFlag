@@ -86,9 +86,9 @@ public class GameStartListener implements Listener {
             // Game starts: some data is pushed to the database, like the initial players.
 
         List<String> names = List.of(game.getPlayers().stream().map(CTFPlayer::getPlayer).map(Player::getName).toArray(String[]::new));
-        Main.mongo.insertDocumentAsync(Main.mongo.getGameCollection(),
-                new Document("_id", game.getUuid().toString())
-                        .append("players", names)
+
+        Main.mongoManager.insertOne(Main.mongoManager.getDatabase().getCollection("game"), new Document("_id", game.getUuid().toString())
+                .append("players", names)
         );
 
         players.forEach(player -> {

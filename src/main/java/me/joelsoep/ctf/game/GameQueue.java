@@ -30,6 +30,19 @@ public class GameQueue {
         this.audience = Audience.audience(queue);
     }
 
+    public void addPlayer(CTFPlayer player, boolean notify) {
+        getQueue().add(player);
+        if (notify) {
+            player.sendMessage(
+                    MM.deserialize(
+                            "<gray>You've been added to the queue. There are <yellow>%s <gray>players in front of you."
+                                    .formatted(getQueue().size() - 1)
+                    )
+            );
+        }
+        this.audience = Audience.audience(queue);
+    }
+
     public void removePlayer(CTFPlayer player) {
         getQueue().remove(player);
         player.sendMessage(MM.deserialize("<gray>You left the queue."));

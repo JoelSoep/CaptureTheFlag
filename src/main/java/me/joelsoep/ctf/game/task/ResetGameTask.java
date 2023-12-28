@@ -70,26 +70,14 @@ public class ResetGameTask {
                         return;
                     }
 
+                    Main.queue.addPlayer(player, false);
                     if (game.getPlayers().size() >= game.getMaxPlayers()) {
                         player.sendMessage(MM.deserialize("""
                                 <gray>Couldn't add you to the game as it is full!
                                 """));
-                        Main.queue.addPlayer(player);
                         return;
                     }
                 });
-                while (Main.queue.peek() != null && game.getPlayerCount() < game.getMaxPlayers()) {
-                    CTFPlayer queued = Main.queue.getNext();
-                    if (queued == null) {
-                        return;
-                    }
-
-                    game.addPlayer(queued);
-                    queued.getPlayer().sendMessage(MM.deserialize("""
-                        <green>You have been added to a game with uuid %s.
-                        <green>The game will start shortly.
-                        """.formatted(game.getUuid())));
-                }
             }
         }, 400L);
     }

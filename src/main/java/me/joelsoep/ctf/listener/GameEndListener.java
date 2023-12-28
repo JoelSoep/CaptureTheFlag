@@ -3,6 +3,7 @@ package me.joelsoep.ctf.listener;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameEndEvent;
@@ -14,6 +15,7 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.title.Title;
 import org.bson.Document;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -56,15 +58,22 @@ public class GameEndListener implements Listener {
 
         // Push final game data to database.
 
-        Main.mongo.findOneAndUpdateAsync(Main.mongo.getGameCollection(),
+        Main.mongoManager.findOneAndUpdate(Main.mongoManager.getDatabase().getCollection("game"),
                 new Document("_id", game.getUuid().toString()),
                 Updates.combine(
                         Updates.set("winner", winner.getTeamColor().toString())
                 ),
-                options
-        );
+                options, new IStandardSubscriber<Document>() {
+                    @Override
+                    public void onResult(Document result) {
 
-        Main.mongo.setGameCount(Main.mongo.getGameCount() + 1);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                });
 
 
 
@@ -73,13 +82,7 @@ public class GameEndListener implements Listener {
         game.getMap().placeFlag(winner);
         winner.getPlayers().clear();
         loser.getPlayers().clear();
+        Bukkit.getLogger().info("Ending game. GameEndListener was triggered.");
         new ResetGameTask(plugin, game);
-
-     //  Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-      //     @Override
-     //      public void run() {
-    //            Bukkit.spigot().restart();
-    //        }
-  //      }, 400L);
     }
 }

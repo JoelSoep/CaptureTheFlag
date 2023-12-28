@@ -24,6 +24,8 @@ public class MapManager {
         loadGames("me.joelsoep.ctf.map.type.game");
         GameMap gameMap = getRandomGameMap();
         Main.game.createTeams(gameMap);
+        gameMap.placeFlag(Main.game.getBlue());
+        gameMap.placeFlag(Main.game.getRed());
         Main.game.setMap(gameMap);
         this.registerMapToGame(gameMap, Main.game);
     }

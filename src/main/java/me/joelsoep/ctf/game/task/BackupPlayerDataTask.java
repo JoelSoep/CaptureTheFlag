@@ -4,8 +4,10 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -54,11 +56,16 @@ public class BackupPlayerDataTask {
 
                     FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
 
-                    Main.mongo.findOneAndUpdateAsync(Main.mongo.getUserCollection(), Filters.eq("_id", player.getPlayer().getUniqueId().toString()), update, options).thenAccept(result -> {
-                        //System.out.println("Update completed: " + result);
-                    }).exceptionally(throwable -> {
-                        throwable.printStackTrace();
-                        return null;
+                    Main.mongoManager.findOneAndUpdate(Main.mongoManager.getDatabase().getCollection("player"), Filters.eq("_id", player.getPlayer().getUniqueId().toString()), update, options, new IStandardSubscriber<Document>() {
+                        @Override
+                        public void onResult(Document result) {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
                     });
                 }
             }

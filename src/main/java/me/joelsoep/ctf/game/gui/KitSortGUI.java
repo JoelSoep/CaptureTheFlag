@@ -9,6 +9,7 @@ import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -97,8 +98,10 @@ public class KitSortGUI extends ChestGui {
 
         this.setOnClose(event -> {
             // return in case the game is starting in order to prevent the hotbar inventory from overriding the kit.
-            if (ctfPlayer.getGame().getState() != GameState.WAITING) {
-                return;
+            if (ctfPlayer.getGame() != null) {
+                if (ctfPlayer.getGame().getState() != GameState.WAITING) {
+                    return;
+                }
             }
             player.getInventory().clear();
             new Hotbar(player);
@@ -219,17 +222,21 @@ public class KitSortGUI extends ChestGui {
 
             Document finalDoc = new Document("$set", document);
 
-            Main.mongo.findOneAndUpdateAsync(Main.mongo.getUserCollection(), Filters.eq("_id", player.getUniqueId().toString()), finalDoc, options).thenAccept(result -> {
-                if (result != null) {
-                    System.out.println(result);
-                } else {
-                    System.out.println("Result is null");
-                }
-            }).exceptionally(throwable -> {
-                        throwable.printStackTrace();
-                        return null;
+            Main.mongoManager.findOneAndUpdate(Main.mongoManager.getDatabase().getCollection("player"), Filters.eq("_id", player.getUniqueId().toString()), finalDoc, options, new IStandardSubscriber<Document>() {
+                @Override
+                public void onResult(Document result) {
+                    if (result != null) {
+                        System.out.println(result);
+                    } else {
+                        System.out.println("Result is null");
                     }
-            );
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    throwable.printStackTrace();
+                }
+            });
             player.sendMessage(MM.deserialize("<gray>Backed up data to database."));
         }
 
