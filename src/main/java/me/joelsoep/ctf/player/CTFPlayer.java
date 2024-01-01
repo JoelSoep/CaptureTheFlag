@@ -38,14 +38,24 @@ public class CTFPlayer implements Audience {
     private Integer killStreak;
     private BaseKit kit;
     private FastBoard board;
+    private Long cooldown;
 
     public CTFPlayer(Player player) {
         this.player = player;
         this.data = new CTFPlayerData(this);
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
+        this.cooldown = System.currentTimeMillis();
         PlayerService.getPlayers().put(player.getName(), this);
         reset();
+    }
+
+    public boolean hasCooldown() {
+        return cooldown > System.currentTimeMillis();
+    }
+
+    public void setCooldown(Long amount) {
+        this.cooldown = System.currentTimeMillis() + amount;
     }
 
     public void reset() {

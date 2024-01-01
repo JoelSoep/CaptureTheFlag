@@ -1,11 +1,11 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
@@ -41,7 +41,7 @@ public class PlayerLeaveGameListener implements Listener {
             player.setTeam(null);
 
             if (team.getPlayers().size() == 0 && game.getState() != GameState.ENDED) {
-                Bukkit.getLogger().info("Calling GameEndEvent as PlayerLeaveGameEvent was triggered and the team size was 0.");
+                LogModule.GAME.log("Calling GameEndEvent as PlayerLeaveGameEvent was triggered and the team size was 0.");
                 GameEndEvent endEvent = new GameEndEvent(game, oppositeTeam, team);
                 Bukkit.getPluginManager().callEvent(endEvent);
                 return;

@@ -3,6 +3,7 @@ package me.joelsoep.ctf.game.advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
 import lombok.Getter;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.reflections.Reflections;
 
@@ -50,13 +51,13 @@ public class AdvancementService {
             try {
                 if (advancementClass.stream().findFirst().isEmpty()) {
                     for (int i = 0; i < 5; i++) {
-                        Bukkit.getLogger().log(Level.SEVERE, "[CTF] FAILURE | Couldn't find root advancement!");
+                        LogModule.ADVANCEMENT.severe("FAILURE | Couldn't find root advancement!");
                     }
                 }
                 RootAdvancement advancement = advancementClass.stream().findFirst().get().getDeclaredConstructor().newInstance();
                 this.root = advancement;
 
-                Bukkit.getLogger().log(Level.INFO, "Registered root advancement with key " + advancement.getKey());
+                LogModule.ADVANCEMENT.log(Level.INFO, "Registered root advancement with key " + advancement.getKey());
             } catch (InstantiationException | IllegalAccessException
                     | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
@@ -75,7 +76,7 @@ public class AdvancementService {
                 advancement.getClass().getMethod("registerListener").invoke(advancement);
                 advancements.put(advancement.getKey().getKey(), advancement);
 
-                Bukkit.getLogger().log(Level.INFO, "Registered base advancement with key " + advancement.getKey());
+                LogModule.ADVANCEMENT.log("Registered base advancement with key " + advancement.getKey());
             } catch (InstantiationException | IllegalAccessException
                     | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();

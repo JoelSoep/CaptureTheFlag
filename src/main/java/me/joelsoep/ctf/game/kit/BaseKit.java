@@ -4,6 +4,7 @@ import com.destroystokyo.paper.Namespaced;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import net.kyori.adventure.text.Component;
@@ -129,7 +130,7 @@ public abstract class BaseKit {
 
                 ArrayList<ItemStack> originalList = new ArrayList<>(this.items.values());
                 if (originalList.stream().noneMatch(item -> item.getType() == itemStack.getType())) {
-                    Bukkit.getLogger().warning("itemStack is null but shouldnt be null @ giveKitToPlayer " + player.getName() + itemStack.getType());
+                    LogModule.KIT.warning("itemStack is null but shouldnt be null @ giveKitToPlayer " + player.getName() + itemStack.getType());
                     return;
                 }
 

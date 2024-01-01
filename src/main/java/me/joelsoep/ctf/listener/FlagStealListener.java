@@ -3,6 +3,7 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
@@ -26,7 +27,7 @@ public class FlagStealListener implements Listener {
         Team flagOwner = event.getFlagOwner();
 
         if (team == null) {
-            Bukkit.getLogger().log(Level.SEVERE, player.getName() + "\\'s team is null @ flag steal!");
+            LogModule.GAME.severe(player.getName() + "\\'s team is null @ flag steal!");
             return;
         }
 

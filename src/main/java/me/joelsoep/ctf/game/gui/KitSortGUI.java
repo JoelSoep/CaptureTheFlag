@@ -12,6 +12,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
@@ -191,7 +192,7 @@ public class KitSortGUI extends ChestGui {
             return;
         }
 
-        this.items.forEach((integer, itemStack) -> { if (itemStack == null) { return; } Bukkit.getLogger().info("Index: " + integer + ", Type: " + itemStack.getType()); });
+        this.items.forEach((integer, itemStack) -> { if (itemStack == null) { return; } LogModule.KIT.log("Index: " + integer + ", Type: " + itemStack.getType()); });
 
         if (ctfPlayer.getData().getSortedKits().get(kit.getName()) != null) {
             this.ctfPlayer.getData().getSortedKits().replace(kit.getName(), this.items);

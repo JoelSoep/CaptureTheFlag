@@ -1,10 +1,9 @@
 package me.joelsoep.ctf.autoBroadcast;
 
-import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.reactivestreams.client.MongoCollection;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.database.subscriber.EmptySubscriber;
 import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -35,10 +34,10 @@ public class BroadcastService {
                 public void onResult(Long result) {
                     if (result != null) {
                         count.set(result.intValue());
-                        Bukkit.getLogger().info("Broadcasting %s messages.".formatted(count.get()));
+                        LogModule.UTILITY.log("Broadcasting %s messages.".formatted(count.get()));
                     } else {
                         Main.mongoManager.insertOne(Main.mongoManager.getDatabase().getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
-                        Bukkit.getLogger().warning("No documents found to autobroadcast!");
+                        LogModule.UTILITY.warning("No documents found to autobroadcast!");
                     }
                 }
 

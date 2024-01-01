@@ -26,19 +26,23 @@ import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
 import me.joelsoep.ctf.game.task.QueueCheckGameAvailabilityTask;
 import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
 import me.joelsoep.ctf.listener.ListenerService;
+import me.joelsoep.ctf.logger.CTFLogger;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
     private AdvancementMain advancementMain;
 
     public static Game game = new Game();
     public static final MongoManager mongoManager = new MongoManager(new ConnectionString("mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority"));
-    //public static final MongoService mongo = new MongoService();
     public static final KitService kitService = new KitService();
     public static final SpecialService specialService = new SpecialService();
     public static final GameQueue queue = new GameQueue();
+    public static CTFLogger logger = null;
     public static AdvancementAPI advancementAPI;
     public static AdvancementService advancementService;
 
@@ -49,6 +53,7 @@ public final class Main extends JavaPlugin {
       // this.advancementMain = new AdvancementMain(this);
       //  this.advancementMain.load();
         instance = this;
+        logger = new CTFLogger();
     }
 
     @Override
@@ -56,7 +61,7 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
 
         if (!getServer().getAllowFlight()) {
-            Bukkit.getLogger().warning("""
+           LogModule.CORE.log(Level.WARNING,"""
                     This server disallows player flight.
                     It is highly recommended to allow flight, as disabling this could cause issues.
                     Keeping allow flight disabled is at your own risk.

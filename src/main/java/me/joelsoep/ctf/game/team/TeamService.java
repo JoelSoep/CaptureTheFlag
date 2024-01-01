@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.game.team;
 
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
@@ -18,11 +19,11 @@ public class TeamService {
         ArrayList<CTFPlayer> bluePlayers = game.getBlue().getPlayers();
         ArrayList<CTFPlayer> redPlayers = game.getRed().getPlayers();
 
-        Bukkit.getLogger().info("red players size: " + redPlayers.size());
-        Bukkit.getLogger().info("blue players size: " + bluePlayers.size());
+        LogModule.GAME.log("red players size: " + redPlayers.size());
+        LogModule.GAME.log("blue players size: " + bluePlayers.size());
 
-        Bukkit.getLogger().log(Level.INFO, "Picked players before team randomization (registered in game): ");
-        game.getPlayers().forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName()); });
+        LogModule.GAME.log("Picked players before team randomization (registered in game): ");
+        game.getPlayers().forEach(player -> { LogModule.GAME.log(player.getPlayer().getName()); });
 
         if (players.size() == 0) {
             game.getAudience().sendMessage(MM.deserialize("<red>Couldn't create teams as there are no players to join!"));
@@ -34,8 +35,8 @@ public class TeamService {
             players.clear();
             players.addAll(newPlayers);
             game.setPlayers(players);
-            Bukkit.getLogger().log(Level.INFO, "Picked players at team randomization: ");
-            game.getPlayers().forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName()); });
+            LogModule.GAME.log("Picked players at team randomization: ");
+            game.getPlayers().forEach(player -> { LogModule.GAME.log(player.getPlayer().getName()); });
         }
 
         for (CTFPlayer player : players) {
@@ -47,13 +48,13 @@ public class TeamService {
                 player.setTeam(game.getRed());
             }
         }
-        Bukkit.getLogger().log(Level.INFO, "Team red: ");
-        redPlayers.forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName());});
-        Bukkit.getLogger().log(Level.INFO, "Team blue: ");
-        bluePlayers.forEach(player -> { Bukkit.getLogger().log(Level.INFO, player.getPlayer().getName());});
+        LogModule.GAME.log("Team red: ");
+        redPlayers.forEach(player -> { LogModule.GAME.log(player.getPlayer().getName());});
+        LogModule.GAME.log("Team blue: ");
+        bluePlayers.forEach(player -> { LogModule.GAME.log(player.getPlayer().getName());});
 
         game.getPlayers().forEach(player -> {
-            Bukkit.getLogger().info("""
+            LogModule.GAME.log("""
                 ---- DEBUG LOG FOR PLAYER %s | GAME START ----
                 CTFPlayer Team: %s
                 CTFPlayer Game: %s

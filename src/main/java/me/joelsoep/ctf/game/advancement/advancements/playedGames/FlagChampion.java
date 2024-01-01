@@ -10,6 +10,7 @@ import com.fren_gor.ultimateAdvancementAPI.visibilities.ParentGrantedVisibility;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.advancement.IBaseAdvancement;
 import me.joelsoep.ctf.game.event.GameEndEvent;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -38,7 +39,7 @@ public class FlagChampion extends BaseAdvancement implements ParentGrantedVisibi
             event.getGame().getPlayers().forEach(player -> {
                 Advancement advancement = tab.getAdvancement(AdvancementKey.fromString("ctf:flag_master"));
                 if (advancement == null) {
-                    Bukkit.getLogger().log(Level.SEVERE, "ctf:flag_master is null, couldn't give parent reward");
+                    LogModule.ADVANCEMENT.warning("ctf:flag_master is null, couldn't give parent reward");
                     return;
                 }
                 if (advancement.getProgression(player.getPlayer()) >= advancement.getMaxProgression()) {

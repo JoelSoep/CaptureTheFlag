@@ -5,6 +5,7 @@ import com.mongodb.reactivestreams.client.MongoCollection;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -48,7 +49,7 @@ public class Leaderboard {
 
     public void create() {
         if (location == null) {
-            Bukkit.getLogger().severe("Location is null when trying to create Leaderboard %s! Please ensure that the location has been set using setLocation(Location location).".formatted(internalName));
+            LogModule.UTILITY.warning("Location is null when trying to create Leaderboard %s! Please ensure that the location has been set using setLocation(Location location).".formatted(internalName));
             return;
         }
         this.lines = getLines(collection, key);

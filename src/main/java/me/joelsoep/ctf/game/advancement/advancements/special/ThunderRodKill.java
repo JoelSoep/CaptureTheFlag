@@ -7,6 +7,7 @@ import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameT
 import com.fren_gor.ultimateAdvancementAPI.visibilities.ParentGrantedVisibility;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.advancement.IBaseAdvancement;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -53,7 +54,7 @@ public class ThunderRodKill extends BaseAdvancement implements ParentGrantedVisi
                 return;
             }
 
-            Bukkit.getLogger().log(Level.INFO, player.getLastDamageCause().getCause().toString());
+            LogModule.ADVANCEMENT.log(player.getLastDamageCause().getCause().toString());
             if (player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LIGHTNING ) {
                 incrementProgression(killer);
             }

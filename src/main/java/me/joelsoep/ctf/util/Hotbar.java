@@ -1,5 +1,8 @@
 package me.joelsoep.ctf.util;
 
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.PlayerService;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -8,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
+
+import static me.joelsoep.ctf.util.Hotbar.Static.giveQueueBlock;
 
 public class Hotbar {
 
@@ -18,6 +23,7 @@ public class Hotbar {
         player.getInventory().clear();
         giveKitSelectionItem();
         giveAdminMenu();
+        giveQueueBlock(player);
     }
 
     private void giveKitSelectionItem() {
@@ -74,5 +80,49 @@ public class Hotbar {
         meta.addItemFlags(ItemFlag.HIDE_DYE);
         adminPanel.setItemMeta(meta);
         this.player.getInventory().setItem(8, adminPanel);
+    }
+
+    public static class Static {
+
+        public static void giveQueueBlock(Player player) {
+            CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+            if (ctfPlayer == null) {
+                return;
+            }
+
+           if (Main.queue.getQueue().contains(ctfPlayer) || Main.game.getPlayers().contains(ctfPlayer)) {
+               player.getInventory().setItem(6, getEnqueuedItemStack());
+           } else {
+               player.getInventory().setItem(6, getDequeuedItemStack());
+           }
+        }
+
+        public static ItemStack getEnqueuedItemStack() {
+            ItemStack queueBlock = new ItemStack(Material.LIME_CONCRETE);
+            ItemMeta itemMeta = queueBlock.getItemMeta();
+
+            Component displayName = MM.deserialize("<green>You are queued");
+            itemMeta.displayName(displayName);
+
+            Component lore = MM.deserialize("<gray>Right-click to dequeue.");
+            itemMeta.lore(Collections.singletonList(lore));
+
+            queueBlock.setItemMeta(itemMeta);
+            return queueBlock;
+        }
+
+        public static ItemStack getDequeuedItemStack() {
+            ItemStack queueBlock = new ItemStack(Material.RED_CONCRETE);
+            ItemMeta itemMeta = queueBlock.getItemMeta();
+
+            Component displayName = MM.deserialize("<red>You are not in the queue.");
+            itemMeta.displayName(displayName);
+
+            Component lore = MM.deserialize("<gray>Right-click to enqueue.");
+            itemMeta.lore(Collections.singletonList(lore));
+
+            queueBlock.setItemMeta(itemMeta);
+            return queueBlock;
+        }
     }
 }

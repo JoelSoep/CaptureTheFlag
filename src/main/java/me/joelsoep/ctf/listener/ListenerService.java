@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.listener;
 
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -34,7 +35,7 @@ public class ListenerService {
                 }
 
                 Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
-                Bukkit.getLogger().info("Registered listener " + listener.getClass().getName());
+                LogModule.LISTENER.log("Registered listener " + listener.getClass().getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }

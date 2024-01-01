@@ -5,6 +5,9 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.gui.AdminPanelGUI;
 import me.joelsoep.ctf.game.gui.KitSelectionGUI;
+import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,6 +18,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * TODO: Make it so this class is not depending on the game state, but rather if a player is in a game or not.
+ */
+
 public class PlayerInteractListener implements Listener {
 
     @EventHandler
@@ -24,14 +31,44 @@ public class PlayerInteractListener implements Listener {
             return;
         }
         Player player = event.getPlayer();
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
         Material material = event.getMaterial();
         ItemStack item = event.getItem();
+
         if (item == null) {
             return;
         }
 
+        if (ctfPlayer == null) {
+            return;
+        }
+
+        if (ctfPlayer.hasCooldown()) {
+            return;
+        }
+
+        ctfPlayer.setCooldown(500L);
+
         if (material == Material.BOOK) {
             new KitSelectionGUI(player, Main.kitService);
+            return;
+        }
+
+        if (material == Material.LIME_CONCRETE) {
+            if (Main.queue.getQueue().contains(ctfPlayer)) {
+                Main.queue.removePlayer(ctfPlayer);
+            }
+
+            if (Main.game.getPlayers().contains(ctfPlayer) && game.getState() == GameState.WAITING) {
+                Main.game.removePlayer(ctfPlayer);
+            }
+            Hotbar.Static.giveQueueBlock(player);
+            return;
+        }
+
+        if (material == Material.RED_CONCRETE) {
+            Main.queue.addPlayer(ctfPlayer);
+            Hotbar.Static.giveQueueBlock(player);
             return;
         }
 

@@ -7,6 +7,7 @@ import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import org.bukkit.Bukkit;
@@ -79,7 +80,7 @@ public class PlayerMoveListener implements Listener {
             }
 
             if (Objects.equals(team.getPoints(), game.getMaxPoints())) {
-                Bukkit.getLogger().info("Calling GameEndEvent as team %s won.".formatted(team.getTeamColor().toString()));
+                LogModule.GAME.log("Calling GameEndEvent as team %s won.".formatted(team.getTeamColor().toString()));
                 GameEndEvent endEvent = new GameEndEvent(game, team, oppositeTeam);
                 Bukkit.getPluginManager().callEvent(endEvent);
             }

@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.task;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.ParticipationState;
@@ -49,10 +50,12 @@ public class ResetGameTask {
                 game.getPlayers().clear();
                 game.getSpectators().clear();
 
-                Bukkit.getLogger().info("Before assignment - Main.game identity: " + System.identityHashCode(Main.game));
+                LogModule.CORE.log("Before assignment - Main.game identity: " + System.identityHashCode(Main.game));
                 game.reset();
-                Bukkit.getLogger().info("After assignment - Main.game identity: " + System.identityHashCode(Main.game));
-                Bukkit.getLogger().info("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
+                LogModule.CORE.log("After assignment - Main.game identity: " + System.identityHashCode(Main.game));
+                LogModule.CORE.log("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
+                LogModule.CORE.log("END OF LOG FILE --- NEW GAME");
+                Main.logger.resetFileHandler(game.getUuid().toString());
 
                 PlayerService.getPlayers().values().forEach(player -> {
                     new Hotbar(player.getPlayer());

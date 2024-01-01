@@ -3,6 +3,7 @@ package me.joelsoep.ctf.player;
 import lombok.Data;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -151,8 +152,8 @@ public class CTFPlayerData {
 
 // Now you have the parsed data in the parsedData HashMap
                     parsedData.forEach((name, innerMap) -> {
-                        Bukkit.getLogger().info("Name: " + name);
-                        Bukkit.getLogger().info("Inner Map: " + innerMap);
+                        LogModule.PLAYER.log("Name: " + name);
+                        LogModule.PLAYER.log("Inner Map: " + innerMap);
                     });
 
                     HashMap<String, HashMap<Integer, ItemStack>> serialized = new HashMap<>();
@@ -163,14 +164,14 @@ public class CTFPlayerData {
                             return;
                         }
 
-                        Bukkit.getLogger().info("Data: " + data.toString());
+                        LogModule.PLAYER.log("Data: " + data.toString());
 
                         BaseKit kit = optionalKit.get();
                         HashMap<Integer, ItemStack> mappedStack = new HashMap<>();
                         data.forEach((dataInteger, material) -> {
                             kit.getItems().forEach((kitInteger, item) -> {
                                 if (item.getType() == material) {
-                                    Bukkit.getLogger().info("Placement: " + dataInteger + " material: " + item.getType());
+                                    LogModule.PLAYER.log("Placement: " + dataInteger + " material: " + item.getType());
                                     mappedStack.put(dataInteger, item);
                                 }
                             });

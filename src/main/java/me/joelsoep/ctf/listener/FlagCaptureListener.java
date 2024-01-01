@@ -5,6 +5,7 @@ import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
@@ -30,7 +31,7 @@ public class FlagCaptureListener implements Listener {
         Team flagOwner = event.getFlagOwner();
 
         if (team == null) {
-            Bukkit.getLogger().log(Level.SEVERE, player.getName() + "\\'s team is null @ flag capture!");
+            LogModule.GAME.severe(player.getName() + "\\'s team is null @ flag capture!");
             return;
         }
 

@@ -10,6 +10,7 @@ import com.fren_gor.ultimateAdvancementAPI.visibilities.ParentGrantedVisibility;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.advancement.IBaseAdvancement;
 import me.joelsoep.ctf.game.event.GameEndEvent;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -31,7 +32,7 @@ public class FlagNovice extends BaseAdvancement implements ParentGrantedVisibili
     public void giveReward(@NotNull Player player) {
         Advancement advancement = Main.advancementAPI.getTab().getAdvancement(AdvancementKey.fromString("ctf:flag_warrior"));
         if (advancement == null) {
-            Bukkit.getLogger().log(Level.SEVERE, "Couldn't give advancement reward because ctf:flag_warrior is null!");
+            LogModule.ADVANCEMENT.warning("Couldn't give advancement reward because ctf:flag_warrior is null!");
             return;
         }
         advancement.setProgression(player, 10);

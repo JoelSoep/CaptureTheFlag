@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.special;
 
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.RandomUtil;
@@ -25,13 +26,13 @@ public class SpecialService {
             try {
                 BaseSpecial special = specialClass.getDeclaredConstructor().newInstance();
                 if (plugin == null) {
-                    Bukkit.getLogger().log(Level.WARNING, "Couldn't register special item " + special.getName() + " because plugin is null.");
+                    LogModule.SPECIAL.warning("Couldn't register special item " + special.getName() + " because plugin is null.");
                     return;
                 }
                 Bukkit.getPluginManager().registerEvents(special, plugin);
 
                 specials.put(special.getName().toLowerCase(), special);
-                Bukkit.getLogger().log(Level.INFO, "Registered special item " + special.getName());
+                LogModule.SPECIAL.log("Registered special item " + special.getName());
             } catch (ReflectiveOperationException e) {
                 // ReflectiveOperationException is the parent class of various reflective exceptions
                 e.printStackTrace();
@@ -64,7 +65,7 @@ public class SpecialService {
         int randomIndex = RandomUtil.get().nextInt(list.size());
         BaseSpecial special = list.get(randomIndex);
         if (special == null) {
-            Bukkit.getLogger().info("Special is null");
+            LogModule.SPECIAL.log("Special is null");
             return null;
         }
         return special;

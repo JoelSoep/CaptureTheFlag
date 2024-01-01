@@ -14,6 +14,7 @@ import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
 import me.joelsoep.ctf.file.FileManager;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -66,12 +67,12 @@ public class FAWE {
                 }
             } catch (Exception e) {
                 if (e instanceof FileNotFoundException) {
-                    Bukkit.getLogger().severe("Couldn't find file " + file.getName() + "!");
+                    LogModule.MAP.severe("Couldn't find file " + file.getName() + "!");
                     if (failed) {
-                        Bukkit.getLogger().severe("Attempt to get file %s failed! Cannot load world.");
+                        LogModule.MAP.severe("Attempt to get file %s failed! Cannot load world.");
                         return false;
                     }
-                    Bukkit.getLogger().severe("Attempting to download file %s...".formatted(file.getName()));
+                    LogModule.FILE.severe("Attempting to download file %s...".formatted(file.getName()));
                     FileManager.requestFile(file.getName(), "schematics" + File.separator + file.getName());
                     failed = true;
                     paste(file, location);

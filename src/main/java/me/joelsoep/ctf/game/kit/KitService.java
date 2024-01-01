@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.kit;
 
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
@@ -29,7 +30,7 @@ public class KitService {
             try {
                 BaseKit kit = kitClass.getDeclaredConstructor().newInstance();
                 kits.put(kit.getName().toLowerCase(), kit);
-                Bukkit.getLogger().log(Level.INFO, "Loaded kit " + kit.getName());
+                LogModule.KIT.log("Loaded kit " + kit.getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }

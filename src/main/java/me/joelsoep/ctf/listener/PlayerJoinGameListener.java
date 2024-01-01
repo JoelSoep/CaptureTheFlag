@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.listener;
 
-import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;

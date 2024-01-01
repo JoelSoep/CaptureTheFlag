@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.util.deprecated;
 
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -17,12 +18,12 @@ public class EntityDamageHandler {
     public EntityDamageHandler() {
         Plugin plugin = Bukkit.getPluginManager().getPlugin("CapturetheFlag");
         if (plugin == null) {
-            Bukkit.getLogger().severe("ERROR: Plugin CTF is null @EntityDamageHandler!!");
-            Bukkit.getLogger().severe("ERROR: Plugin CTF is null @EntityDamageHandler!!");
+            LogModule.UTILITY.severe("ERROR: Plugin CTF is null @EntityDamageHandler!!");
+            LogModule.UTILITY.severe("ERROR: Plugin CTF is null @EntityDamageHandler!!");
             return;
         }
         this.plugin = plugin;
-        Bukkit.getLogger().info("[CTF] Booted EntityDamageHandler!");
+        LogModule.UTILITY.log("[CTF] Booted EntityDamageHandler!");
     }
 
     public void setLastDamager(Player player, @Nullable Player damager, EntityDamageEvent.DamageCause cause) {

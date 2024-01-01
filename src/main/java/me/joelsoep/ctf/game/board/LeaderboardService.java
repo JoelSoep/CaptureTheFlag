@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.board;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,13 +27,13 @@ public class LeaderboardService {
             Leaderboard leaderboard = leaderboards.get(i);
 
             if (leaderboard == null) {
-                Bukkit.getLogger().warning("Leaderboards are up");
+                LogModule.UTILITY.warning("Leaderboards are up");
                 return;
             }
             Location location = lobbyMap.getLeaderboardLocations().get(i);
 
             if (location == null) {
-                Bukkit.getLogger().warning("Locations are up.");
+                LogModule.UTILITY.warning("Locations are up.");
                 return;
             }
             leaderboard.setLocation(location);

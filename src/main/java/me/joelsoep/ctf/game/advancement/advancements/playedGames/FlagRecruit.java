@@ -9,6 +9,7 @@ import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.advancement.IBaseAdvancement;
 import me.joelsoep.ctf.game.event.GameEndEvent;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -30,7 +31,7 @@ public class FlagRecruit extends BaseAdvancement implements IBaseAdvancement {
     public void giveReward(@NotNull Player player) {
         Advancement advancement = Main.advancementAPI.getTab().getAdvancement(AdvancementKey.fromString("ctf:flag_novice"));
         if (advancement == null) {
-            Bukkit.getLogger().log(Level.SEVERE, "Couldn't give advancement reward because ctf:flag_novice is null!");
+            LogModule.ADVANCEMENT.severe("Couldn't give advancement reward because ctf:flag_novice is null!");
             return;
         }
         advancement.setProgression(player, 1);

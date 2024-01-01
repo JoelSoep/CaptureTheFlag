@@ -4,6 +4,7 @@ import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.util.FAWE;
 import org.bukkit.Bukkit;
@@ -53,7 +54,7 @@ public class AirshipMap extends GameMap {
             for (int i = 0; i < 5; i++) {
                 ItemStack item = Main.specialService.getRandomSpecial().getItemStack();
                 if (item == null) {
-                    Bukkit.getLogger().log(Level.INFO, "Special is null at getChest()");
+                    LogModule.MAP.log("Special is null at getChest()");
                     continue;
                 }
                 chest.getBlockInventory().setItem(i, item);

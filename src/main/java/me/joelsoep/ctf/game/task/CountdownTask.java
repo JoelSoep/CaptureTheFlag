@@ -3,6 +3,7 @@ package me.joelsoep.ctf.game.task;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameStartEvent;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
@@ -59,12 +60,12 @@ public class CountdownTask {
                 }
 
                 if (seconds == 0) {
-                    Bukkit.getLogger().info("SECONDS = 0 @ Countdowntask");
+                    LogModule.GAME.log("SECONDS = 0 @ Countdowntask");
                     if (isGameStartCountdown && game.getState() == GameState.READY) {
                         game.setState(GameState.RUNNING);
-                        Bukkit.getLogger().info("Updated game state to RUNNING");
+                        LogModule.GAME.log("Updated game state to RUNNING");
                         if (game.getPlayers().size() == 0) {
-                            Bukkit.getLogger().info("CountdownTask: Activated 0-player-function.");
+                            LogModule.GAME.log("CountdownTask: Activated 0-player-function.");
                             game.setState(GameState.ENDED);
                             game.getMap().load();
                             game.getMap().placeFlag(game.getBlue());
@@ -80,7 +81,7 @@ public class CountdownTask {
                     if (isGameStartCountdown && game.getState() == GameState.WAITING) {
                         GameStartEvent event = new GameStartEvent(game);
                         Bukkit.getPluginManager().callEvent(event);
-                        Bukkit.getLogger().info("GameStartEvent trigger @Countdowntask");
+                        LogModule.GAME.log("GameStartEvent trigger @Countdowntask");
                     }
                     cancel();
                 }

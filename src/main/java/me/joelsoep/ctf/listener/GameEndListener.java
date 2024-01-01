@@ -10,6 +10,7 @@ import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.task.CongratulationEffectTask;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -82,7 +83,7 @@ public class GameEndListener implements Listener {
         game.getMap().placeFlag(winner);
         winner.getPlayers().clear();
         loser.getPlayers().clear();
-        Bukkit.getLogger().info("Ending game. GameEndListener was triggered.");
+        LogModule.GAME.log("Ending game. GameEndListener was triggered.");
         new ResetGameTask(plugin, game);
     }
 }

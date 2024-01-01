@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.file;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 
 import java.io.File;
@@ -17,11 +18,11 @@ public class FileManager {
                     if (!Main.getInstance().getDataFolder().exists()) {
                         Main.getInstance().getDataFolder().mkdirs();
                     }
-                    Bukkit.getLogger().info("Downloading " + fileName + "...");
+                    LogModule.FILE.log("Downloading " + fileName + "...");
                     Files.copy(new URL(DOMAIN + fileName).openStream(), Paths.get(Main.getInstance().getDataFolder() + File.separator + resource));
                     return true;
                 } catch (Exception e) {
-                    Bukkit.getLogger().info("Couldn't create " + resource);
+                    LogModule.FILE.warning("Couldn't create " + resource);
                     e.printStackTrace();
                     return false;
                 }

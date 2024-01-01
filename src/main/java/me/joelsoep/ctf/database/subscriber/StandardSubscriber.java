@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.database.subscriber;
 
-import com.mongodb.client.result.InsertOneResult;
 import lombok.Getter;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;

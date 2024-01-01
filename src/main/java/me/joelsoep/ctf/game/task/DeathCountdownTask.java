@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.task;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.kits.Warrior;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
@@ -34,7 +35,7 @@ public class DeathCountdownTask {
                 }
 
                 if (player.getTeam() == null) {
-                    Bukkit.getLogger().warning("Player team is null @ DeathCountdownTask: " + player.getPlayer().getName());
+                    LogModule.GAME.severe("Player team is null @ DeathCountdownTask: " + player.getPlayer().getName());
                     cancel();
                     return;
                 }

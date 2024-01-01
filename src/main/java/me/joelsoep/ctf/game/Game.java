@@ -7,6 +7,7 @@ import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -106,7 +107,7 @@ public class Game {
     }
 
     public void createTeams(GameMap map) {
-        Bukkit.getWorlds().forEach(world -> Bukkit.getLogger().info(world.getName()));
+        Bukkit.getWorlds().forEach(world -> LogModule.GAME.log(world.getName()));
         this.red = new Team(
                 TeamColor.RED,
                 map.getRedSpawnLocation(),

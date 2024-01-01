@@ -4,6 +4,7 @@ import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.file.FileManager;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -34,12 +35,12 @@ public abstract class Map {
         worldCreator.generator(new EmptyChunkGenerator());
         World world = Bukkit.createWorld(worldCreator);
         if (world == null) {
-            Bukkit.getLogger().warning("World %s is null, attempting to get access to it...".formatted(prefix + name));
+            LogModule.MAP.warning("World %s is null, attempting to get access to it...".formatted(prefix + name));
             world = Bukkit.getWorld(prefix + name);
         }
 
         if (world == null) {
-            Bukkit.getLogger().severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(prefix + name));
+            LogModule.MAP.severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(prefix + name));
             return null;
         }
         world.setKeepSpawnInMemory(false);

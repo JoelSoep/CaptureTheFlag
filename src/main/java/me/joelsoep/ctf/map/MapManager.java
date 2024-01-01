@@ -4,6 +4,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.board.LeaderboardService;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import me.joelsoep.ctf.util.RandomUtil;
@@ -45,7 +46,7 @@ public class MapManager {
         Set<Class<? extends LobbyMap>> mapClasses = reflections.getSubTypesOf(LobbyMap.class);
 
         if (mapClasses.stream().findFirst().isEmpty()) {
-            Bukkit.getLogger().severe("Couldn't find any lobbies! Shutting down...");
+            LogModule.MAP.severe("Couldn't find any lobbies! Shutting down...");
             Bukkit.getPluginManager().disablePlugin(Main.getInstance());
             return;
         }
@@ -54,7 +55,7 @@ public class MapManager {
         try {
             LobbyMap lobby = lobbyClass.getDeclaredConstructor().newInstance();
             MapManager.lobby = lobby;
-            Bukkit.getLogger().info("Loaded lobby %s".formatted(lobby.getName()));
+            LogModule.MAP.log("Loaded lobby %s".formatted(lobby.getName()));
 
             if (Bukkit.getWorld(lobby.getWorld().getName()) == null) {
                 return;
@@ -68,7 +69,7 @@ public class MapManager {
             lobby.setState(MapState.READY);
             LeaderboardService leaderboardService = new LeaderboardService();
             leaderboardService.setLocationsAndCreate(lobby);
-            Bukkit.getLogger().info("Added content to lobby %s.".formatted(lobby.getName()));
+            LogModule.MAP.log("Added content to lobby %s.".formatted(lobby.getName()));
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -79,7 +80,7 @@ public class MapManager {
         Set<Class<? extends GameMap>> mapClasses = reflections.getSubTypesOf(GameMap.class);
 
         if (mapClasses.stream().findFirst().isEmpty()) {
-            Bukkit.getLogger().severe("Couldn't find any game maps! Shutting down...");
+            LogModule.MAP.severe("Couldn't find any game maps! Shutting down...");
             Bukkit.getPluginManager().disablePlugin(Main.getInstance());
             return;
         }
@@ -87,7 +88,7 @@ public class MapManager {
             try {
                 GameMap gameMap = map.getDeclaredConstructor().newInstance();
                 gameMaps.put(map.getName(), gameMap);
-                Bukkit.getLogger().info("Loaded gameMap %s".formatted(gameMap.getName()));
+                LogModule.MAP.log("Loaded gameMap %s".formatted(gameMap.getName()));
 
                 if (Bukkit.getWorld(gameMap.getWorld().getName()) == null) {
                     return;
@@ -95,7 +96,7 @@ public class MapManager {
 
                 gameMap.load();
                 gameMap.setState(MapState.READY);
-                Bukkit.getLogger().info("Added content to gameMap %s.".formatted(gameMap.getName()));
+                LogModule.MAP.log("Added content to gameMap %s.".formatted(gameMap.getName()));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

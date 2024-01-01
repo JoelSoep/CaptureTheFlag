@@ -3,6 +3,7 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.board.LeaderboardService;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.MapState;
 import me.joelsoep.ctf.map.type.GameMap;
@@ -16,6 +17,7 @@ import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Locale;
+import java.util.logging.Level;
 
 public class WorldLoadListener implements Listener {
 
@@ -31,12 +33,12 @@ public class WorldLoadListener implements Listener {
         Game game = Main.game;
 
         if (!world.getName().toLowerCase(Locale.ROOT).startsWith("plugins/CapturetheFlag/maps/".toLowerCase(Locale.ROOT))) {
-            Bukkit.getLogger().info("Excluding world %s from ctf-registry".formatted(world.getName()));
+            LogModule.CORE.log("Excluding world %s from ctf-registry".formatted(world.getName()));
             return;
         }
 
-        Bukkit.getLogger().info("Loading world %s".formatted(world.getName()));
-        Bukkit.getLogger().info("Loaded maps rn: %s".formatted(MapManager.getGameMaps().size()));
+        LogModule.CORE.log("Loading world %s".formatted(world.getName()));
+        LogModule.MAP.log("Loaded maps rn: %s".formatted(MapManager.getGameMaps().size()));
 
         /**
          * We attempt to load the world here as well as on map initialization, since it's a race condition:
@@ -47,7 +49,7 @@ public class WorldLoadListener implements Listener {
         MapManager.getGameMaps().forEach(map -> {
             World mapWorld = map.getWorld();
             if (mapWorld == null) {
-                Bukkit.getLogger().warning("Couldn't load map %s because it's world is null!".formatted(map.getName()));
+                LogModule.MAP.log(Level.WARNING, "Couldn't load map %s because it's world is null!".formatted(map.getName()));
                 return;
             }
 
@@ -61,7 +63,7 @@ public class WorldLoadListener implements Listener {
                     lobbyMap.setState(MapState.READY);
                     LeaderboardService leaderboardService = new LeaderboardService();
                     leaderboardService.setLocationsAndCreate(lobbyMap);
-                    Bukkit.getLogger().info("Added content to map %s.".formatted(map.getName()));
+                    LogModule.MAP.log("Added content to map %s.".formatted(map.getName()));
                     return;
                 }
 
@@ -70,7 +72,7 @@ public class WorldLoadListener implements Listener {
                 }
                 gameMap.load();
                 gameMap.setState(MapState.READY);
-                Bukkit.getLogger().info("Added content to map %s.".formatted(map.getName()));
+                LogModule.MAP.log("Added content to map %s.".formatted(map.getName()));
             }
         });
 
@@ -96,6 +98,6 @@ public class WorldLoadListener implements Listener {
         world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, true);
         world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
         world.setGameRule(GameRule.DO_TILE_DROPS, false);
-        Bukkit.getLogger().info("Updated gamerules for world %s.".formatted(world.getName()));
+        LogModule.CORE.log("Updated gamerules for world %s.".formatted(world.getName()));
     }
 }

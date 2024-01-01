@@ -7,6 +7,7 @@ import me.joelsoep.ctf.game.event.GameStartEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamService;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
@@ -36,7 +37,7 @@ public class GameStartListener implements Listener {
         Team blue = game.getBlue();
 
         game.setState(GameState.READY);
-        Bukkit.getLogger().info("Updated game state to READY");
+        LogModule.GAME.log("Updated game state to READY");
         game.setStarting(false);
         game.setSpedUp(false);
         TeamService.setTeams(game);
