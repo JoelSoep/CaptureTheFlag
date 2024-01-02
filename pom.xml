@@ -53,10 +53,6 @@
                             <shadedPattern>me.joelsoep.ctf.fastboard</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>com.fren_gor.ultimateAdvancementAPI</pattern>
-                            <shadedPattern>me.joelsoep.ctf.libs.com.fren_gor.ultimateAdvancementAPI</shadedPattern>
-                        </relocation>
-                        <relocation>
                             <pattern>io.papermc.lib</pattern>
                             <shadedPattern>me.joelsoep.ctf.paperlib</shadedPattern> <!-- Replace this -->
                         </relocation>
@@ -148,17 +144,6 @@
             <groupId>fr.mrmicky</groupId>
             <artifactId>fastboard</artifactId>
             <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.frengor</groupId>
-            <artifactId>ultimateadvancementapi-shadeable</artifactId>
-            <version>2.2.5</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.lingala.zip4j</groupId>
-            <artifactId>zip4j</artifactId>
-            <version>2.11.5</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
