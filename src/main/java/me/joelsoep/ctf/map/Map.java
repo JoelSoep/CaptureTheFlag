@@ -30,7 +30,8 @@ public abstract class Map {
     }
 
     public @Nullable World createEmptyWorld() {
-        WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath() + prefix + name);
+        String sanitizedWorldName = (this.prefix + this.name).replaceAll("[^a-z0-9/._-]", "_");
+        WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath() + sanitizedWorldName);
         worldCreator.type(WorldType.FLAT);
         worldCreator.generator(new EmptyChunkGenerator());
         World world = Bukkit.createWorld(worldCreator);

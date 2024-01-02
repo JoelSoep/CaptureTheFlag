@@ -50,6 +50,7 @@ public class ResetGameTask {
                 game.getPlayers().clear();
                 game.getSpectators().clear();
 
+                LogModule.CORE.log("Resetting game with UUId " + game.getUuid().toString());
                 LogModule.CORE.log("Before assignment - Main.game identity: " + System.identityHashCode(Main.game));
                 game.reset();
                 LogModule.CORE.log("After assignment - Main.game identity: " + System.identityHashCode(Main.game));
@@ -58,8 +59,6 @@ public class ResetGameTask {
                 Main.logger.resetFileHandler(game.getUuid().toString());
 
                 PlayerService.getPlayers().values().forEach(player -> {
-                    new Hotbar(player.getPlayer());
-
                     if (player.getGame() != null) {
                         return;
                     }
@@ -80,6 +79,10 @@ public class ResetGameTask {
                                 """));
                         return;
                     }
+                });
+
+                PlayerService.getPlayers().values().forEach(player -> {
+                    new Hotbar(player.getPlayer());
                 });
             }
         }, 400L);

@@ -13,12 +13,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class MirrorUse extends BaseAdvancement implements ParentGrantedVisibility, IBaseAdvancement {
+public class MirrorUse /** extends BaseAdvancement implements ParentGrantedVisibility, IBaseAdvancement **/ {
 
     private AdvancementTab tab;
 
     public MirrorUse() {
-        super("mirror_use",
+    /**    super("mirror_use",
                 new AdvancementDisplay(
                         Material.END_CRYSTAL,
                         "Instant Karma",
@@ -31,11 +31,11 @@ public class MirrorUse extends BaseAdvancement implements ParentGrantedVisibilit
                         ),
                 new Capturer(),
                 1
-        );
+        ); **/
         this.tab = Main.advancementAPI.getTab();
     }
 
-    @Override
+  //  @Override
     public void registerListener() {
         this.tab.getEventManager().register(tab, PlayerDeathEvent.class, event -> {
             Player player = event.getPlayer();
@@ -50,7 +50,7 @@ public class MirrorUse extends BaseAdvancement implements ParentGrantedVisibilit
             }
 
             if (player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.DRAGON_BREATH ) {
-                incrementProgression(killer);
+    //            incrementProgression(killer);
             }
 
         });

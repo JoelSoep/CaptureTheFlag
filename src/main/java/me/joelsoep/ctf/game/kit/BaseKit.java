@@ -146,8 +146,8 @@ public abstract class BaseKit {
 
         HashMap<Integer, ItemStack> finalList = finalSorted == null ? sorted : finalSorted;
         for (Map.Entry<Integer, ItemStack> entry : finalList.entrySet()) {
-            // remove NBT data from golden apples so they stack
-            ItemStack item = entry.getValue().getType() == Material.GOLDEN_APPLE ? new ItemStack(Material.GOLDEN_APPLE, entry.getValue().getAmount()) : entry.getValue();
+            // remove NBT data from stackables so they stack on top of each other
+            ItemStack item = entry.getValue().getMaxStackSize() > 1 ? new ItemStack(entry.getValue().getType(), entry.getValue().getAmount()) : entry.getValue();
 
             int slot = entry.getKey();
             inventory.setItem(slot, item);

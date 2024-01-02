@@ -19,7 +19,7 @@ public class FileManager {
                         Main.getInstance().getDataFolder().mkdirs();
                     }
                     LogModule.FILE.log("Downloading " + fileName + "...");
-                    Files.copy(new URL(DOMAIN + fileName).openStream(), Paths.get(Main.getInstance().getDataFolder() + File.separator + resource));
+                    Files.copy(new URL(DOMAIN + fileName).openStream(), Paths.get(Main.getInstance().getDataFolder().getPath(), resource));
                     return true;
                 } catch (Exception e) {
                     LogModule.FILE.warning("Couldn't create " + resource);

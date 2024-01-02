@@ -8,6 +8,7 @@ import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -118,6 +119,7 @@ public class PlayerDeathListener implements Listener {
             }
         } else {
             player.teleport(MapManager.getLobby().getSpawnLocation());
+            new Hotbar(player);
             event.setCancelled(true);
         }
     }

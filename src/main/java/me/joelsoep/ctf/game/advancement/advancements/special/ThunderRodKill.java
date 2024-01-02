@@ -17,11 +17,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.logging.Level;
 
-public class ThunderRodKill extends BaseAdvancement implements ParentGrantedVisibility, IBaseAdvancement {
+public class ThunderRodKill /** extends BaseAdvancement implements ParentGrantedVisibility, IBaseAdvancement **/ {
     private AdvancementTab tab;
 
     public ThunderRodKill() {
-        super(
+    /**    super(
                 "thunder_rod_kill",
                 new AdvancementDisplay(
                         Material.BLAZE_ROD,
@@ -34,11 +34,11 @@ public class ThunderRodKill extends BaseAdvancement implements ParentGrantedVisi
                         "Kill your enemy with a Thunder Rod!"
                 ),
                 new MirrorUse()
-        );
+        ); **/
         this.tab = Main.advancementAPI.getTab();
     }
 
-    @Override
+  //  @Override
     public void registerListener() {
         this.tab.getEventManager().register(tab, PlayerDeathEvent.class, EventPriority.HIGHEST, event -> {
             Player player = event.getPlayer();
@@ -56,7 +56,7 @@ public class ThunderRodKill extends BaseAdvancement implements ParentGrantedVisi
 
             LogModule.ADVANCEMENT.log(player.getLastDamageCause().getCause().toString());
             if (player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LIGHTNING ) {
-                incrementProgression(killer);
+            //    incrementProgression(killer);
             }
 
         });

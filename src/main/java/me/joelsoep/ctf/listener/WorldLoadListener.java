@@ -78,7 +78,7 @@ public class WorldLoadListener implements Listener {
 
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setGameRule(GameRule.FALL_DAMAGE, false);
-        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, true); // change when implementing custom advancements.
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         world.setGameRule(GameRule.DISABLE_RAIDS, true);
         world.setGameRule(GameRule.DO_WARDEN_SPAWNING, false);
         world.setGameRule(GameRule.DO_MOB_LOOT, false);

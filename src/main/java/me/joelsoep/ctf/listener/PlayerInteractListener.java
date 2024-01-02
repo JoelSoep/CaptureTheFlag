@@ -67,6 +67,13 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.RED_CONCRETE) {
+            if (Main.queue.getQueue().contains(ctfPlayer)) {
+                return;
+            }
+
+            if (Main.game.getPlayers().contains(ctfPlayer)) {
+                return;
+            }
             Main.queue.addPlayer(ctfPlayer);
             Hotbar.Static.giveQueueBlock(player);
             return;

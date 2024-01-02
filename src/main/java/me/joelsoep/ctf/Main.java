@@ -29,7 +29,6 @@ import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.CTFLogger;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -50,8 +49,8 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onLoad() {
-      // this.advancementMain = new AdvancementMain(this);
-      //  this.advancementMain.load();
+       // this.advancementMain = new AdvancementMain(this);
+       // this.advancementMain.load();
         instance = this;
         logger = new CTFLogger();
     }
@@ -72,18 +71,18 @@ public final class Main extends JavaPlugin {
         new BackupPlayerDataTask(this);
         new QueuePlayersActionbarTask(this);
         new QueueCheckGameAvailabilityTask(this);
-      //  this.advancementMain.enableMySQL(
-       //         "network",
-       //         "admin",
-       //         "ctf",
-       //         "23.88.124.188",
-       //         3306,
-       //         10,
-       //         6000
-       // );
-          //  Bukkit.getLogger().log(Level.INFO, "Booting CTF-Advancements...");
-          //  Main.advancementAPI = new AdvancementAPI(this);
-           // Main.advancementService = new AdvancementService();
+       // this.advancementMain.enableMySQL(
+        //        "network",
+        //        "admin",
+         //       "ctf",
+         //       "23.88.124.188",
+         //       3306,
+          //      10,
+          //      6000
+      //  );
+         //   LogModule.CORE.log("Booting CTF-Advancements...");
+         //   Main.advancementAPI = new AdvancementAPI(this);
+         //   Main.advancementService = new AdvancementService();
         Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", this);
         new MapManager();
         new BroadcastService(this).runAll();
@@ -96,7 +95,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
      //   Main.mongo.getConfigCollection().findOneAndUpdate(Filters.eq("_id", 0), new Document("gameCount", Main.mongo.getGameCount()));
-        // Plugin shutdown logic
+        //Plugin shutdown logic
        // this.advancementMain.disable();
     }
 

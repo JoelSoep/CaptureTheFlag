@@ -3,6 +3,7 @@ package me.joelsoep.ctf.game.advancement;
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
 import com.fren_gor.ultimateAdvancementAPI.UltimateAdvancementAPI;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Set;
@@ -15,13 +16,13 @@ public class AdvancementAPI {
 
     public AdvancementAPI(Plugin plugin) {
         this.plugin = plugin;
-      //  this.api = UltimateAdvancementAPI.getInstance(plugin);
+     //   this.api = UltimateAdvancementAPI.getInstance(plugin);
       //  if (this.api == null) {
-        //    Bukkit.getLogger().log(Level.SEVERE, "UltimateAdvancementAPI is not enabled or not found.");
-        //    // Handle the error or disable the CTF plugin if necessary.
-       // } else {
-       //     this.tab = api.createAdvancementTab("ctf");
-     //   }
+     //       LogModule.ADVANCEMENT.severe("UltimateAdvancementAPI is not enabled or not found.");
+            // Handle the error or disable the CTF plugin if necessary.
+    //    } else {
+    //        this.tab = api.createAdvancementTab("ctf");
+   //     }
     }
 
     public void registerTab() {

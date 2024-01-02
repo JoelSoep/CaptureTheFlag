@@ -11,6 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+// TODO: Make something like PlayerService.handleLogout() and move parts of this code to there
+
 public class PlayerQuitListener implements Listener {
 
     @EventHandler

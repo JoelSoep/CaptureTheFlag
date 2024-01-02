@@ -36,7 +36,7 @@ public class PlayerJoinListener implements Listener {
                 player.sendMessage(MM.deserialize("<gray>yellow>You've been added to the queue as the current game is full."));
                 Main.queue.addPlayer(ctfPlayer);
             } else {
-                game.addPlayer(ctfPlayer);
+                Main.queue.addPlayer(ctfPlayer);
             }
             new Hotbar(ctfPlayer.getPlayer());
             ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer, plugin);

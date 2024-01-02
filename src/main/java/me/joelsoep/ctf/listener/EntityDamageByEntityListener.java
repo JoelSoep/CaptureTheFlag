@@ -22,6 +22,8 @@ public class EntityDamageByEntityListener implements Listener {
         Entity entityDamager = event.getDamager();
         Game game = Main.game;
 
+        // TODO: Clean up stuff from entitydamagehandler
+
         if (!(entity instanceof Player player)) {
             return;
         }

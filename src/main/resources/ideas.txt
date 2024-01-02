@@ -229,3 +229,6 @@ smash bros can hit people from their own team REMOVED SMASH BROS, FIXED
 spectators spawn at wrong coords
 first time flags dont appear (but you can capture them) FIXED
 game is nullpointerexception kitsortgui
+
+after a game has finished, players are able to queue again lol
+players can put their items in a chest and collect them again after respawning
