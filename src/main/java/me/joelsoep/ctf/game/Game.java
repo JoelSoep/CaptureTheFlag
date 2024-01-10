@@ -7,6 +7,7 @@ import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.game.team.TeamService;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
@@ -36,6 +37,8 @@ public class Game {
     private Integer minPlayers = 2;
     private Integer maxPoints = 3;
     private Integer minKillStreak = 1;
+    private Long gameTime = 10L * 60L * 1000L;
+    private Long startTime;
     private Team red;
     private Team blue;
     private Audience audience;
@@ -55,7 +58,6 @@ public class Game {
     public void reset() {
         this.setUuid(UUID.randomUUID());
         this.setPlayerCount(0);
-        this.setMaxPlayers(20);
         this.setMinPlayers(2);
         this.setMaxPoints(3);
         this.setMinKillStreak(1);
@@ -65,12 +67,13 @@ public class Game {
         this.setStarting(false);
         this.setSpedUp(false);
         this.setMap(MapManager.getRandomGameMap());
+        TeamService.getTeams().clear();
         this.createTeams(this.getMap());
         this.setAudience(Audience.audience(concatAudience(players, spectators)));
     }
 
     public void addPlayer(CTFPlayer player) {
-        if (players.size() >= this.getMaxPlayers()) {
+        if (players.size() >= this.getMap().getMaxPlayers()) {
             player.sendMessage(MM.deserialize("""
                     <red>Couldn't add you to the game.
                     <red>Reason: The game has reached the maximum amount of players."""));

@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.util;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import net.kyori.adventure.text.Component;
@@ -24,6 +25,10 @@ public class Hotbar {
         giveKitSelectionItem();
         giveAdminMenu();
         giveQueueBlock(player);
+
+        if (LocalConfig.isAllowCustomTeams()) {
+            giveTeamSelectionMenuItem();
+        }
     }
 
     private void giveKitSelectionItem() {
@@ -42,25 +47,18 @@ public class Hotbar {
         this.player.getInventory().setItem(4, kitSelector);
     }
 
-    /***
-     * Deprecated.
-     * Please use the new Queue block instead over the Participation menu,
-     * as the Participation menu is scheduled for removal.
-     */
-    
-    @Deprecated
-    private void giveParticipationMenuItem() {
-        ItemStack participationMenu = new ItemStack(Material.ENDER_EYE);
-        ItemMeta itemMeta = participationMenu.getItemMeta();
+    private void giveTeamSelectionMenuItem() {
+        ItemStack teamMenu = new ItemStack(Material.GRAY_BANNER);
+        ItemMeta itemMeta = teamMenu.getItemMeta();
 
-        Component displayName = MM.deserialize("<gold>Participation Menu</gold>");
+        Component displayName = MM.deserialize("<blue>Team Selection</blue>");
         itemMeta.displayName(displayName);
 
-        Component lore = MM.deserialize("<gray>Right-click to set your participation availability");
+        Component lore = MM.deserialize("<gray>Right-click to select a team!");
         itemMeta.lore(Collections.singletonList(lore));
 
-        participationMenu.setItemMeta(itemMeta);
-        this.player.getInventory().setItem(6, participationMenu);
+        teamMenu.setItemMeta(itemMeta);
+        this.player.getInventory().setItem(2, teamMenu);
     }
 
     private void giveAdminMenu() {

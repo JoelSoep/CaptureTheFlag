@@ -145,12 +145,12 @@ public class DebugCommand extends BaseCommand {
         onlinePlayer.getPlayer().getInventory().addItem(BaseKit.getBlocks(finalTeam, 64));
     }
 
-    @Subcommand("setmaxplayers")
-    public void setMaxPlayers(Player player, int integer) {
-        Game game = Main.game;
-        game.setMaxPlayers(integer);
-        player.sendMessage(MM.deserialize("<gray>Updated max players to <yellow>" + game.getMaxPlayers()));
-    }
+   // @Subcommand("setmaxplayers")
+    //public void setMaxPlayers(Player player, int integer) {
+   //     Game game = Main.game;
+   //     game.getMap().setMaxPlayers(integer);
+   //     player.sendMessage(MM.deserialize("<gray>Updated max players to <yellow>" + game.getMap().getMaxPlayers()));
+   // }
 
     @Subcommand("worldtp")
     @CommandCompletion("@worlds")

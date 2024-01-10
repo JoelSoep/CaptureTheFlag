@@ -8,7 +8,7 @@ import java.util.HashMap;
 @Getter
 public class PlayerService {
 
-    private static HashMap<String, CTFPlayer> players = new HashMap<>();
+    private static final HashMap<String, CTFPlayer> players = new HashMap<>();
     private static Audience audience = Audience.audience(players.values());
 
     public static void addPlayer(CTFPlayer player) {

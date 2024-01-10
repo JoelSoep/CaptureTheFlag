@@ -24,7 +24,7 @@ public class PlayerJoinGameListener implements Listener {
 
         game.getAudience().sendMessage(MM.deserialize("""
                     <gray>[</gray><green>+</green><gray>] %s has joined the game! (%s/%s)"""
-                .formatted(player.getPlayer().getName(), game.getPlayerCount(), game.getMaxPlayers())));
+                .formatted(player.getPlayer().getName(), game.getPlayerCount(), game.getMap().getMaxPlayers())));
 
         if (game.getCountdownTask() != null) {
             game.getCountdownTask().updateAudience(game.getAudience());
@@ -42,7 +42,7 @@ public class PlayerJoinGameListener implements Listener {
             game.setStarting(true);
         }
 
-        if (game.getPlayerCount() >= game.getMaxPlayers() && game.isStarting() && !game.isSpedUp()) {
+        if (game.getPlayerCount() >= game.getMap().getMaxPlayers() && game.isStarting() && !game.isSpedUp()) {
             if (game.getCountdownTask() != null && game.getCountdownTask().getSeconds() > 10) {
                 game.getCountdownTask().cancel();
             }

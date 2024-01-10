@@ -46,7 +46,7 @@ public class CTFPlayer implements Audience {
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
         this.cooldown = System.currentTimeMillis();
-        PlayerService.getPlayers().put(player.getName(), this);
+        PlayerService.addPlayer(this);
         reset();
     }
 

@@ -26,7 +26,7 @@ public class PlayerQuitListener implements Listener {
 
         Game game = ctfPlayer.getGame();
 
-        PlayerService.getPlayers().remove(player.getName(), ctfPlayer);
+        PlayerService.removePlayer(ctfPlayer);
         if (Main.queue.getQueue().contains(ctfPlayer)) {
             Main.queue.removePlayer(ctfPlayer);
         }

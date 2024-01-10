@@ -29,11 +29,12 @@ public class QueueCheckGameAvailabilityTask {
                     return;
                 }
 
-                if (game.getMaxPlayers() == game.getPlayers().size()) {
+                if (game.getMap().getMaxPlayers() == game.getPlayers().size()) {
                     return;
                 }
 
-                while (!Main.queue.getQueue().isEmpty() && game.getMaxPlayers() != game.getPlayers().size()) {
+
+                while (!Main.queue.getQueue().isEmpty() && game.getMap().getMaxPlayers() != game.getPlayers().size()) {
                     CTFPlayer player = Main.queue.getNext();
                     if (player == null) {
                         continue;
@@ -42,10 +43,10 @@ public class QueueCheckGameAvailabilityTask {
                     game.addPlayer(player);
                 }
             }
-        }, 0L, 5L * 20L);
+        }, 0L, 20L);
     }
 
-    public void cancel(int id) {
+    public void cancel() {
         Bukkit.getScheduler().cancelTask(id);
     }
 }

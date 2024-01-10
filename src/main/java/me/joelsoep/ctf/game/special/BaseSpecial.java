@@ -20,6 +20,7 @@ public abstract class BaseSpecial<T extends Event> implements Listener {
     public BaseSpecial(String name) {
         this.name = name;
         itemStack = this.setItemStack();
+        itemStack.addItemFlags(ItemFlag.HIDE_DYE);
     }
 
     public abstract ItemStack setItemStack();

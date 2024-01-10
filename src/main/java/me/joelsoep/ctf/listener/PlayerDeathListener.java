@@ -35,6 +35,7 @@ public class PlayerDeathListener implements Listener {
         Player player = event.getPlayer();
         Player killer = player.getKiller();
         CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+        event.deathMessage(null);
 
         if (ctfPlayer == null) {
             return;
@@ -69,7 +70,7 @@ public class PlayerDeathListener implements Listener {
             ctfPlayer.setKillStreak(0);
             ctfPlayer.getData().setDeaths(ctfPlayer.getData().getDeaths() + 1);
             event.setCancelled(true);
-            player.teleport(game.getMap().getSpectatorSpawnLocation());
+            player.teleport(game.getMap().getCenterLocation());
             new DeathCountdownTask(plugin, ctfPlayer, 5);
 
             if (oppositeTeam.getFlag().getThief() != null) {

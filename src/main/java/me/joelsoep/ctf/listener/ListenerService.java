@@ -35,7 +35,7 @@ public class ListenerService {
                 }
 
                 Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
-                LogModule.LISTENER.log("Registered listener " + listener.getClass().getName());
+                LogModule.CORE.log("Registered listener " + listener.getClass().getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }

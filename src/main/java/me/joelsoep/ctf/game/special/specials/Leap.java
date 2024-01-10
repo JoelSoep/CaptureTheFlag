@@ -21,7 +21,6 @@ public class Leap extends BaseSpecial<PlayerInteractEvent> {
         ItemStack item = new ItemStack(Material.RABBIT_FOOT);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(MM.deserialize("<yellow>Leap of Faith"));
-        meta.addItemFlags(ItemFlag.HIDE_DYE);
         item.setItemMeta(meta);
         return item;
     }
@@ -37,10 +36,15 @@ public class Leap extends BaseSpecial<PlayerInteractEvent> {
         Player player = event.getPlayer();
 
         player.setVelocity(player.getLocation().getDirection().multiply(2));
+
+        if (itemStack == null) {
+            return;
+        }
+
         if (itemStack.getAmount() == 1) {
             player.getInventory().remove(itemStack);
         } else {
-            event.getItem().setAmount(itemStack.getAmount() - 1);
+            itemStack.setAmount(itemStack.getAmount() - 1);
         }
     }
 }

@@ -9,14 +9,6 @@ public class AdvancementListener implements Listener {
 
     @EventHandler
     public void onAdvance(PlayerAdvancementCriterionGrantEvent event) {
-        if (event.getAdvancement().getRoot().getDisplay() == null) {
-            return;
-        }
-        if (!event.getAdvancement().getRoot().getDisplay().title().equals(Component.text("Capture the Flag"))) {
-            event.setCancelled(true);
-            return;
-        }
-
-
+        event.setCancelled(true);
     }
 }

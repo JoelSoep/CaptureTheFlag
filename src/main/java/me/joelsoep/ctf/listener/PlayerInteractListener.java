@@ -5,11 +5,17 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.gui.AdminPanelGUI;
 import me.joelsoep.ctf.game.gui.KitSelectionGUI;
+import me.joelsoep.ctf.game.gui.TeamSelectionGUI;
+import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.map.type.game.AirshipMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +33,8 @@ public class PlayerInteractListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Game game = Main.game;
-        if (!(game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_AIR || game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+
+        if (!(event.getAction() == Action.RIGHT_CLICK_AIR || game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
         Player player = event.getPlayer();
@@ -51,6 +58,15 @@ public class PlayerInteractListener implements Listener {
 
         if (material == Material.BOOK) {
             new KitSelectionGUI(player, Main.kitService);
+            return;
+        }
+
+        if (material == Material.GRAY_BANNER) {
+            if (game.getState() != GameState.WAITING) {
+                player.sendMessage(MM.deserialize("<red>Can't open the team selector right now, please try once the current game is over."));
+                return;
+            }
+            new TeamSelectionGUI(player);
             return;
         }
 

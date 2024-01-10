@@ -49,7 +49,7 @@ public class CTFPlayerData {
             @Override
             public void onComplete() {
                 if (resultDocument[0] == null) {
-                    Main.mongoManager.insertOne(Main.mongoManager.getDatabase().getCollection("player"), new Document(
+                    Main.mongoManager.insertOne(Main.mongoManager.getCollection("player"), new Document(
                             "_id", player.getPlayer().getUniqueId().toString())
                             .append("player_name", name)
                             .append("player_kills", 0)

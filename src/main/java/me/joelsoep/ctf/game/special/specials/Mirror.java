@@ -18,7 +18,7 @@ public class Mirror extends BaseSpecial<DummyEvent> {
     public ItemStack setItemStack() {
         ItemStack item = new ItemStack(Material.END_CRYSTAL);
         ItemMeta meta = item.getItemMeta();
-        meta.addItemFlags(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ATTRIBUTES);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.displayName(MM.deserialize("<dark_purple>Mirror"));
         item.setItemMeta(meta);
         return item;

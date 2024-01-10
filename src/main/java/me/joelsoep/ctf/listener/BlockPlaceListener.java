@@ -24,6 +24,12 @@ public class BlockPlaceListener implements Listener {
             }
         }
         if (game.getState() == GameState.RUNNING) {
+            if (!(game.getMap().isLocationInMapSize(event.getBlockPlaced().getLocation()))) {
+                event.setCancelled(true);
+                player.sendMessage(MM.deserialize("<red>You can't place blocks beyond the map!"));
+                return;
+            }
+
             if (blockLocation.getBlockX() == game.getRed().getFlag().getLocation().getBlockX() && blockLocation.getBlockZ() == game.getRed().getFlag().getLocation().getBlockZ() || blockLocation.getBlockX() == game.getBlue().getFlag().getLocation().getBlockX() && blockLocation.getBlockZ() == game.getBlue().getFlag().getLocation().getBlockZ()) {
                 if (event.getBlockPlaced().getLocation().getBlockY() < -32) {
                     event.setCancelled(true);

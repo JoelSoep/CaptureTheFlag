@@ -12,6 +12,7 @@ import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
+import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -50,7 +51,7 @@ public class PlayerMoveListener implements Listener {
         if (player.getLocation().getY() < -99) {
             switch (game.getState()) {
                 case WAITING, ENDED -> player.teleport(MapManager.getLobby().getSpawnLocation());
-                case READY, RUNNING -> player.teleport(game.getMap().getSpectatorSpawnLocation());
+                case READY, RUNNING -> player.teleport(game.getMap().getCenterLocation());
             }
 
             if (game.getState() == GameState.ENDED) {

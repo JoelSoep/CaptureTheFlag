@@ -31,13 +31,22 @@ public class CTFLogger {
 
     public void resetFileHandler(String fileName) {
         try {
+            this.closeFileHandler();
             this.fileHandler = new FileHandler(FileManager.getLogFolderPath() + fileName + ".log");
             this.fileHandler.setFormatter(new CTFLoggerFormatter());
             logger.setLevel(Level.ALL);
             logger.addHandler(fileHandler);
+            LogModule.CORE.log("--- START OF NEW LOG FILE ---");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void closeFileHandler() {
+        if (this.fileHandler == null) {
+            return;
+        }
+        this.fileHandler.close();;
     }
 
     private static class CTFLoggerFormatter extends Formatter {

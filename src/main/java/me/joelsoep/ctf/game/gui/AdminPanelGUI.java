@@ -9,9 +9,11 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.task.CountdownTask;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -27,21 +29,24 @@ public class AdminPanelGUI extends ChestGui implements Listener {
     private Game game;
     private PatternPane background;
     private StaticPane forceStart;
+    private StaticPane serverRestart;
 
     public AdminPanelGUI(Player player) {
         super(3, "Admin Panel");
         this.player = player;
         this.game = Main.game;
 
+        this.serverRestart = new StaticPane(1, 1, 1, 1);
         this.forceStart = new StaticPane(4, 1, 1, 1);
         this.background = new PatternPane(0, 0, 9, 3, new Pattern(
                 "111111111",
-                "111101111",
+                "101101111",
                 "111111111"
         ));
 
         this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
         this.addPane(background);
+        this.addPane(serverRestart);
         this.addPane(forceStart);
         this.openMenu();
     }
@@ -62,6 +67,17 @@ public class AdminPanelGUI extends ChestGui implements Listener {
         ));
         startStack.setItemMeta(startMeta);
 
+        ItemStack serverRestartStack = new ItemStack(Material.NETHER_STAR);
+        ItemMeta serverRestartMeta = serverRestartStack.getItemMeta();
+        serverRestartMeta.displayName(MM.deserialize("<red>Restart server"));
+        serverRestartMeta.lore(List.of(
+                MM.deserialize("<gray>Restart the server")
+        ));
+        serverRestartStack.setItemMeta(serverRestartMeta);
+
+        GuiItem serverRestart = new GuiItem(serverRestartStack, event -> {
+            new RestartConfirmGUI(player);
+        });
 
         GuiItem start = new GuiItem(startStack, event -> {
             if (game.getState() != GameState.WAITING) {
@@ -85,6 +101,7 @@ public class AdminPanelGUI extends ChestGui implements Listener {
                 ));
                 game.setStarting(true);
         });
+        this.serverRestart.addItem(serverRestart, 0, 0);
         this.forceStart.addItem(start, 0, 0);
         this.show(player);
     }

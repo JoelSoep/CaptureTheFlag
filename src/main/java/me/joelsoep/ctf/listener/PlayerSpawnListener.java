@@ -28,7 +28,7 @@ public class PlayerSpawnListener implements Listener {
         }
 
         if (game.getState() == GameState.READY || game.getState() == GameState.RUNNING) {
-            event.setSpawnLocation(game.getMap().getSpectatorSpawnLocation());
+            event.setSpawnLocation(game.getMap().getCenterLocation());
         }
     }
 }

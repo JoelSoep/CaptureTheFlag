@@ -28,7 +28,6 @@ public class TNT extends BaseSpecial<PlayerInteractEvent> {
         ItemStack itemStack = new ItemStack(Material.TNT);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.displayName(MM.deserialize("<red>Super TNT"));
-        itemMeta.addItemFlags(ItemFlag.HIDE_DYE);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }

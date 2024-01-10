@@ -36,7 +36,7 @@ public class BroadcastService {
                         count.set(result.intValue());
                         LogModule.UTILITY.log("Broadcasting %s messages.".formatted(count.get()));
                     } else {
-                        Main.mongoManager.insertOne(Main.mongoManager.getDatabase().getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
+                        Main.mongoManager.insertOne(Main.mongoManager.getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
                         LogModule.UTILITY.warning("No documents found to autobroadcast!");
                     }
                 }

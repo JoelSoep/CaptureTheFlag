@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.task;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameStartEvent;
@@ -63,6 +64,9 @@ public class CountdownTask {
                     LogModule.GAME.log("SECONDS = 0 @ Countdowntask");
                     if (isGameStartCountdown && game.getState() == GameState.READY) {
                         game.setState(GameState.RUNNING);
+                        game.setStartTime(System.currentTimeMillis());
+                        game.setGameTime(System.currentTimeMillis() + (10L * 60L * 1000L));
+                        new GameTimerTask(Main.getInstance(), game);
                         LogModule.GAME.log("Updated game state to RUNNING");
                         if (game.getPlayers().size() == 0) {
                             LogModule.GAME.log("CountdownTask: Activated 0-player-function.");

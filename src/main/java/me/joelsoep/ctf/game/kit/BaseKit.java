@@ -147,8 +147,13 @@ public abstract class BaseKit {
         HashMap<Integer, ItemStack> finalList = finalSorted == null ? sorted : finalSorted;
         for (Map.Entry<Integer, ItemStack> entry : finalList.entrySet()) {
             // remove NBT data from stackables so they stack on top of each other
-            ItemStack item = entry.getValue().getMaxStackSize() > 1 ? new ItemStack(entry.getValue().getType(), entry.getValue().getAmount()) : entry.getValue();
 
+            ItemStack item;
+            if (entry.getValue().getItemFlags().contains(ItemFlag.HIDE_DYE)) {
+                item = entry.getValue();
+            } else {
+                item = entry.getValue().getMaxStackSize() > 1 ? new ItemStack(entry.getValue().getType(), entry.getValue().getAmount()) : entry.getValue();
+            }
             int slot = entry.getKey();
             inventory.setItem(slot, item);
         }
@@ -182,7 +187,7 @@ public abstract class BaseKit {
         ArrayList<Namespaced> list = new ArrayList<>(Material.values().length);
         List.of(Material.values()).forEach(value -> list.add(value.getKey()));
         itemMeta.setPlaceableKeys(list);
-        itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_ATTRIBUTES);
+        itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }

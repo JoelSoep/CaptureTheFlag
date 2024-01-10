@@ -55,7 +55,7 @@ public class GameStartListener implements Listener {
 
         game.getSpectators().forEach(spectator -> {
             spectator.getPlayer().setGameMode(GameMode.SPECTATOR);
-            spectator.getPlayer().teleport(game.getMap().getSpectatorSpawnLocation());
+            spectator.getPlayer().teleport(game.getMap().getCenterLocation());
         });
 
             red.getPlayers().forEach(player -> {
@@ -88,7 +88,7 @@ public class GameStartListener implements Listener {
 
         List<String> names = List.of(game.getPlayers().stream().map(CTFPlayer::getPlayer).map(Player::getName).toArray(String[]::new));
 
-        Main.mongoManager.insertOne(Main.mongoManager.getDatabase().getCollection("game"), new Document("_id", game.getUuid().toString())
+        Main.mongoManager.insertOne(Main.mongoManager.getCollection("game"), new Document("_id", game.getUuid().toString())
                 .append("players", names)
         );
 

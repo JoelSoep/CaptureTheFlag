@@ -7,6 +7,7 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class Team {
         this.spawn = spawn;
         this.flag.location = flagLocation;
         this.audience = Audience.audience(players);
+
+        TeamService.getTeams().add(this);
     }
 
     @Data
@@ -39,11 +42,13 @@ public class Team {
 
     public void addPlayer(CTFPlayer player) {
         players.add(player);
+        player.setTeam(this);
         this.audience = Audience.audience(players);
     }
 
     public void removePlayer(CTFPlayer player) {
         players.remove(player);
+        player.setTeam(null);
         this.audience = Audience.audience(players);
     }
 

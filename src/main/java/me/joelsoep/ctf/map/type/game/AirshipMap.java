@@ -4,22 +4,29 @@ import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
+import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.util.FAWE;
-import org.bukkit.Bukkit;
+import me.joelsoep.ctf.util.MM;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.util.List;
-import java.util.logging.Level;
+import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("unused")
 public class AirshipMap extends GameMap {
@@ -34,12 +41,71 @@ public class AirshipMap extends GameMap {
     public void load() {
         FAWE.paste(this.schematic, new Location(getWorld(), 0, 50, 0));
         setChest();
-        setChestHologram();
+        world.setSpawnLocation(getCenterLocation());
+        createChestHandle();
     }
 
     @Override
     public void resetFeatures() {
         setChest();
+    }
+
+    public void createChestHandle() {
+
+        Interaction interaction = new Interaction(event -> {
+            Game game = Main.game;
+            if (game.getState() == GameState.RUNNING) {
+                Player player = event.getPlayer();
+                if (event.getClickedBlock() == null) {
+                    return;
+                }
+
+                if (event.getClickedBlock().getState() instanceof Chest chest) {
+                    if (player.getGameMode() == GameMode.SPECTATOR) {
+                        event.setCancelled(true);
+                        return;
+                    }
+                    if (player.getGameMode() != GameMode.ADVENTURE) {
+                        return;
+                    }
+                    if (!(game.getMap() instanceof AirshipMap airshipMap)) {
+                        return;
+                    }
+
+                    if (!(chest.getLocation().getWorld().getName().equals(airshipMap.getWorld().getName()))) {
+                        return;
+                    }
+                    airshipMap.openChest(player);
+                    event.setCancelled(true);
+                }
+            }
+        });
+    }
+
+    public void openChest(Player player) {
+        Chest chest = getChest();
+        if (chest == null) {
+            return;
+        }
+
+        if (Main.game.getState() != GameState.RUNNING) {
+            return;
+        }
+
+        if (chest.isOpen()) {
+            return;
+        }
+
+        chest.getBlockInventory().forEach(itemStack -> {
+            if (itemStack == null) {
+                return;
+            }
+            player.getInventory().addItem(itemStack);
+        });
+        chest.getBlockInventory().clear();
+        setChestOpened(true);
+        player.sendMessage(MM.deserialize("<green>Claimed chest!<br><gray>Check you inventory for more details."));
+        LogModule.MAP.log("Player %s claimed the treasure chest in airship-map!".formatted(player.getName()));
     }
 
     private void setChest() {
@@ -58,11 +124,35 @@ public class AirshipMap extends GameMap {
                     continue;
                 }
                 chest.getBlockInventory().setItem(i, item);
+                setChestOpened(false);
+                setClosedChestHologram();
             }
         }
     }
 
-    private void setChestHologram() {
+    private @Nullable Chest getChest() {
+        Block block = chestLocation.getBlock();
+        if (!(block.getState() instanceof Chest chest)) {
+            return null;
+        }
+        return chest;
+    }
+
+    private void setChestOpened(boolean value) {
+        Chest chest = getChest();
+        if (chest == null) {
+            LogModule.MAP.warning("CHEST IS NULL! @ AirshipMap");
+            return;
+        }
+        if (value) {
+            chest.open();
+            setOpenChestHologram();
+            return;
+        }
+        chest.close();
+    }
+
+    private void setClosedChestHologram() {
         Hologram hologram = DHAPI.getHologram("special_chest");
         if (hologram != null) {
             DHAPI.removeHologram("special_chest");
@@ -75,6 +165,24 @@ public class AirshipMap extends GameMap {
         DHAPI.createHologram("special_chest", chestLocation.clone().add(0, 3, 0).toCenterLocation(), List.of(
                 "&a&lTreasure Chest!",
                 "&7Find great items in this chest!"));
+    }
+
+    private void setOpenChestHologram() {
+        Hologram hologram = DHAPI.getHologram("special_chest");
+        if (hologram != null) {
+            DHAPI.removeHologram("special_chest");
+            DHAPI.createHologram("special_chest", chestLocation.clone().add(0, 3, 0).toCenterLocation(), List.of(
+                    "&c&lThis treasure chest",
+                    "&c&lalready been opened!",
+                    "&7Please try again later."
+            ));
+            return;
+        }
+        DHAPI.createHologram("special_chest", chestLocation.clone().add(0, 3, 0).toCenterLocation(), List.of(
+                "&c&lThis treasure chest",
+                "&c&lalready been opened!",
+                "&7Please try again later."
+        ));
     }
 
     @Override
@@ -107,13 +215,22 @@ public class AirshipMap extends GameMap {
         return BlockFace.SOUTH;
     }
 
+    /**
+     *
+     * @return the location that is the spectator spawn location as well as the center of the map
+     */
     @Override
-    public @NotNull Location getSpectatorSpawnLocation() {
+    public @NotNull Location getCenterLocation() {
         return new Location(getWorld(), -104, -22, -95);
     }
 
     @Override
     public @NotNull Integer getMaxPlayers() {
-        return 20;
+        return 14;
+    }
+
+    @Override
+    public @NotNull Integer getWorldSize() {
+        return 155;
     }
 }

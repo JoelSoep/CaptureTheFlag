@@ -26,7 +26,6 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
     public ItemStack setItemStack() {
         ItemStack item = new ItemStack(Material.BLAZE_ROD, 1);
         ItemMeta itemMeta = item.getItemMeta();
-        itemMeta.addItemFlags(ItemFlag.HIDE_DYE);
         itemMeta.displayName(MM.deserialize("<gold>Thunder Rod"));
         item.setItemMeta(itemMeta);
         return item;

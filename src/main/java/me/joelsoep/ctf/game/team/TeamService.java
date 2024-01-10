@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.team;
 
+import lombok.Getter;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -11,6 +12,9 @@ import java.util.List;
 import java.util.logging.Level;
 
 public class TeamService {
+
+    @Getter
+    private static final List<Team> teams = new ArrayList<>();
 
     public static void setTeams(Game game) {
         ArrayList<CTFPlayer> players = game.getPlayers();
@@ -30,8 +34,8 @@ public class TeamService {
             return;
         }
 
-        if (players.size() > game.getMaxPlayers()) {
-            List<CTFPlayer> newPlayers = players.subList(0, game.getMaxPlayers() - 1);
+        if (players.size() > game.getMap().getMaxPlayers()) {
+            List<CTFPlayer> newPlayers = players.subList(0, game.getMap().getMaxPlayers() - 1);
             players.clear();
             players.addAll(newPlayers);
             game.setPlayers(players);
@@ -40,12 +44,13 @@ public class TeamService {
         }
 
         for (CTFPlayer player : players) {
+            if (player.getTeam() != null) {
+                return;
+            }
             if (bluePlayers.size() <= redPlayers.size()) {
                 blue.addPlayer(player);
-                player.setTeam(game.getBlue());
             } else {
                 red.addPlayer(player);
-                player.setTeam(game.getRed());
             }
         }
         LogModule.GAME.log("Team red: ");

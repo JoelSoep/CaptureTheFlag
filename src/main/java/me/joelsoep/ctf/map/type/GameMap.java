@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.map.type;
 
+import lombok.Data;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.game.team.Team;
@@ -35,8 +36,28 @@ public abstract class GameMap extends Map {
     public abstract @NotNull Location getBlueFlagLocation();
     public abstract @NotNull Location getBlueSpawnLocation();
     public abstract @NotNull BlockFace getBlueBlockFace();
-    public abstract @NotNull Location getSpectatorSpawnLocation();
+    public abstract @NotNull Location getCenterLocation();
     public abstract @NotNull Integer getMaxPlayers();
+    public abstract @NotNull Integer getWorldSize();
+
+    public boolean isLocationInMapSize(Location location) {
+        if (location.getBlock().getX() > getCenterLocation().getBlock().getX() + getWorldSize()) {
+            return false;
+        }
+
+        if (location.getBlock().getX() < getCenterLocation().getBlock().getX() - getWorldSize()) {
+            return false;
+        }
+
+        if (location.getBlock().getZ() > getCenterLocation().getBlock().getZ() + getWorldSize()) {
+            return false;
+        }
+
+        if (location.getBlock().getZ() < getCenterLocation().getBlock().getZ() - getWorldSize()) {
+            return false;
+        }
+        return true;
+    }
 
     public void placeFlag(Team team) {
         Material material = team.getFlag().getMaterial();

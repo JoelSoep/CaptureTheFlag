@@ -15,6 +15,7 @@ import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.title.Title;
+import net.kyori.adventure.title.TitlePart;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -37,6 +38,18 @@ public class GameEndListener implements Listener {
         Team loser = event.getLoser();
         game.setWinner(winner);
         game.setState(GameState.ENDED);
+
+        if (winner == null || loser == null) {
+            game.getMap().load();
+            game.getMap().placeFlag(game.getRed());
+            game.getMap().placeFlag(game.getBlue());
+            game.getRed().getPlayers().clear();
+            game.getBlue().getPlayers().clear();
+            game.getAudience().sendTitlePart(TitlePart.TITLE, MM.deserialize("<yellow>Tied"));
+            LogModule.GAME.log("Ending game. GameEndListener was triggered.");
+            new ResetGameTask(plugin, game);
+            return;
+        }
 
         winner.getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 1, 1));
         Color color = winner.getTeamColor() == game.getRed().getTeamColor() ? Color.RED : Color.BLUE;

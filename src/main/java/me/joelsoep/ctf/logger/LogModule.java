@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import java.util.logging.Level;
 
 public enum LogModule {
-    LISTENER("[LISTENER] "),
     DATABASE("[DATABASE] "),
     COMMAND("[COMMANDMANAGER] "),
     UTILITY("[UTILITY] "),
@@ -18,7 +17,7 @@ public enum LogModule {
     CORE("[CORE] "),
     PLAYER("[PLAYERSERVICE] ");
 
-    private String prefix;
+    private final String prefix;
 
     LogModule(String prefix) {
         this.prefix = prefix;

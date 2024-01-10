@@ -3,6 +3,7 @@ package me.joelsoep.ctf.map;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
@@ -10,8 +11,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 @Getter
 public abstract class Map {
@@ -29,6 +35,19 @@ public abstract class Map {
         this.world = null;
     }
 
+    protected class Interaction implements Listener {
+
+        public Interaction(Consumer<PlayerInteractEvent> action) {
+            Bukkit.getPluginManager().registerEvents(new Listener() {
+
+                @EventHandler
+                public void onInteract(PlayerInteractEvent event) {
+                    action.accept(event);
+                }
+            }, Main.getInstance());
+        }
+    }
+
     public @Nullable World createEmptyWorld() {
         String sanitizedWorldName = (this.prefix + this.name).replaceAll("[^a-z0-9/._-]", "_");
         WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath() + sanitizedWorldName);
@@ -44,6 +63,7 @@ public abstract class Map {
             LogModule.MAP.severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(prefix + name));
             return null;
         }
+
         world.setKeepSpawnInMemory(false);
         PaperLib.getChunkAtAsync(world.getSpawnLocation(), true);
         return world;
