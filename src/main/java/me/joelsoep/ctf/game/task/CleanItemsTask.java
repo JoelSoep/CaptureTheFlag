@@ -26,7 +26,7 @@ public class CleanItemsTask {
         }, 60L * 20L, 60L * 20L);
     }
 
-    public void cancel(int id) {
+    public void cancel() {
         Bukkit.getScheduler().cancelTask(id);
     }
 }

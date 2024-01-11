@@ -32,7 +32,7 @@ public class QueuePlayersActionbarTask {
         }, 0L, 2L * 20L);
     }
 
-    public void cancel(int id) {
+    public void cancel() {
         Bukkit.getScheduler().cancelTask(id);
     }
 }

@@ -38,6 +38,10 @@ public class BackupPlayerDataTask {
                         player.getData().setDeaths(0);
                     }
 
+                    if (player.getData().getCaptures() == null) {
+                        player.getData().setCaptures(0);
+                    }
+
                     double kd = (double) player.getData().getKills() / (double) player.getData().getDeaths();
                     if (Double.isInfinite(kd)) {
                         kd = player.getData().getKills();
@@ -51,22 +55,18 @@ public class BackupPlayerDataTask {
                             Updates.set("player_name", player.getPlayer().getName()),
                             Updates.set("player_kills", player.getData().getKills()),
                             Updates.set("player_deaths", player.getData().getDeaths()),
-                            Updates.set("player_kd", roundedNumber)
+                            Updates.set("player_kd", roundedNumber),
+                            Updates.set("flag_captures", player.getData().getCaptures())
                     );
 
                     FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
 
-                    Main.mongoManager.findOneAndUpdate(Main.mongoManager.getDatabase().getCollection("player"), Filters.eq("_id", player.getPlayer().getUniqueId().toString()), update, options, new IStandardSubscriber<Document>() {
-                        @Override
-                        public void onResult(Document result) {
-
-                        }
-
-                        @Override
-                        public void onError(Throwable throwable) {
-                            throwable.printStackTrace();
-                        }
-                    });
+                    Main.mongoManager.findOneAndUpdate(
+                            Main.mongoManager.getCollection("player"),
+                            Filters.eq("_id", player.getPlayer().getUniqueId().toString()),
+                            update,
+                            options
+                    );
                 }
             }
         }, 600L, 600L);

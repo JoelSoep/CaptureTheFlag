@@ -23,6 +23,7 @@ public class CTFPlayerData {
     private Date lastSeen;
     private Integer kills;
     private Integer deaths;
+    private Integer captures;
     private Double kd;
 
     public CTFPlayerData(CTFPlayer player) {
@@ -54,7 +55,8 @@ public class CTFPlayerData {
                             .append("player_name", name)
                             .append("player_kills", 0)
                             .append("player_deaths", 0)
-                            .append("player_login_streak", 1)
+                            .append("flag_captures", 0)
+                            .append("login_streak", 1)
                             .append("player_kd", (double) 1)
                     );
                     kills = 0;
@@ -98,12 +100,17 @@ public class CTFPlayerData {
                         deaths = 0;
                     }
 
+                    if (captures == null) {
+                        captures = 0;
+                    }
+
                     if (kd == null) {
                         kd = (double) 1;
                     }
 
                     kills = result.getInteger("player_kills");
                     deaths = result.getInteger("player_deaths");
+                    captures = result.getInteger("flag_captures");
 
                     kd = result.getDouble("player_kd");
 

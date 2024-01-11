@@ -10,6 +10,7 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -98,7 +99,11 @@ public class CountdownTask {
         this.audience = audience;
     }
     public void message(int seconds) {
-        audience.sendMessage(MM.deserialize("<gray>Starting in <green>%s<gray> seconds.".formatted(seconds)));
+        if (this.isGameStartCountdown && game.getState() == GameState.READY) {
+            audience.showTitle(Title.title(MM.deserialize("<green>%s".formatted(seconds)), MM.deserialize("")));
+        } else {
+            audience.sendMessage(MM.deserialize("<gray>Starting in <green>%s<gray> seconds.".formatted(seconds)));
+        }
         audience.playSound(Sound.sound(Key.key("block.note_block.hat"), Sound.Source.MASTER, 1, 1));
     }
 

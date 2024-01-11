@@ -54,6 +54,11 @@ public class MongoManager {
         publisher.subscribe(new StandardSubscriber<>(Interface).getSubscriber());
     }
 
+    public void findOneAndUpdate(MongoCollection<Document> collection, @NotNull Bson filter, @NotNull Bson update, FindOneAndUpdateOptions options) {
+        Publisher<Document> publisher = collection.findOneAndUpdate(filter, update, options);
+        publisher.subscribe(new EmptySubscriber<Document>().getSubscriber());
+    }
+
     public void countDocuments(MongoCollection<Document> collection, IStandardSubscriber<Long> Interface) {
         Publisher<Long> publisher = collection.countDocuments();
         publisher.subscribe(new StandardSubscriber<>(Interface).getSubscriber());

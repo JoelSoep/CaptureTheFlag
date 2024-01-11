@@ -43,6 +43,7 @@ public class FlagCaptureListener implements Listener {
         game.getAudience().playSound(Sound.sound(Key.key("entity.player.levelup"), Sound.Source.MASTER, 1, 1));
         player.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 1));
         player.getInventory().setHelmet(BaseKit.getHelmet(ctfPlayer.getTeam().getTeamColor() == TeamColor.BLUE ? Color.BLUE : Color.RED));
+        ctfPlayer.getData().setCaptures(ctfPlayer.getData().getCaptures() + 1);
         game.getMap().placeFlag(flagOwner);
         player.setGlowing(false);
         flagOwner.getFlag().setThief(null);

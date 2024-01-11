@@ -34,9 +34,8 @@ public class PlayerJoinListener implements Listener {
 
         if (game.getState() == GameState.WAITING) {
             ctfPlayer.reset();
-            // Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke " + player.getName() + " everything");
             if (game.getPlayerCount() >= game.getMap().getMaxPlayers()) {
-                player.sendMessage(MM.deserialize("<gray>yellow>You've been added to the queue as the current game is full."));
+                player.sendMessage(MM.deserialize("<gray>You've been added to the queue as the current game is full."));
                 Main.queue.addPlayer(ctfPlayer);
             } else {
                 Main.queue.addPlayer(ctfPlayer);

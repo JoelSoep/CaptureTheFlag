@@ -21,10 +21,10 @@ public class GameTimerTask {
     public GameTimerTask(Plugin plugin, Game game) {
         this.plugin = plugin;
         this.game = game;
-        clean();
+        start();
     }
 
-    private void clean() {
+    private void start() {
         this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {

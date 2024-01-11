@@ -3,6 +3,7 @@ package me.joelsoep.ctf.listener;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.subscriber.EmptySubscriber;
 import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
@@ -25,10 +26,10 @@ import org.bukkit.plugin.Plugin;
 
 public class GameEndListener implements Listener {
 
-    private Plugin plugin;
+    private final Plugin plugin;
 
-    public GameEndListener(Plugin plugin) {
-        this.plugin = plugin;
+    public GameEndListener() {
+        this.plugin = Main.getInstance();
     }
 
     @EventHandler
@@ -77,17 +78,7 @@ public class GameEndListener implements Listener {
                 Updates.combine(
                         Updates.set("winner", winner.getTeamColor().toString())
                 ),
-                options, new IStandardSubscriber<Document>() {
-                    @Override
-                    public void onResult(Document result) {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                });
+                options);
 
 
 

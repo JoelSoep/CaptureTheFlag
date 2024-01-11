@@ -16,8 +16,9 @@
 17. Message broadcaster for lobbies DONE
 18. Rule idea: in order to capture a flag, your own flag needs to be on your own place.
 19. Create custom logger which also handles exceptions. log files should be put in plugins/CapturetheFlag/logs DONE
-20. Add a timer
-21. Add custom teams
+20. Add a timer DONE
+21. Add custom teams DONE
+22. add ranking leagues (platinum league, gold league, etc)
 
 CUSTOM COSMETICS IDEAS:
 - When a player has a flag captured, they can have a custom flag banner pattern
