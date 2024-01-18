@@ -15,7 +15,6 @@ import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.logger.LogModule;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.io.File;

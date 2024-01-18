@@ -2,6 +2,7 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.FlagCaptureEvent;
+import me.joelsoep.ctf.game.event.FlagReturnEvent;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
@@ -17,8 +18,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.logging.Level;
 
 public class FlagCaptureListener implements Listener {
 
@@ -44,8 +43,8 @@ public class FlagCaptureListener implements Listener {
         player.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE, 1));
         player.getInventory().setHelmet(BaseKit.getHelmet(ctfPlayer.getTeam().getTeamColor() == TeamColor.BLUE ? Color.BLUE : Color.RED));
         ctfPlayer.getData().setCaptures(ctfPlayer.getData().getCaptures() + 1);
-        game.getMap().placeFlag(flagOwner);
-        player.setGlowing(false);
-        flagOwner.getFlag().setThief(null);
+
+        FlagReturnEvent returnEvent = new FlagReturnEvent(game, flagOwner, player);
+        Bukkit.getPluginManager().callEvent(returnEvent);
     }
 }

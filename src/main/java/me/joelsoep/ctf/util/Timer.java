@@ -1,7 +1,5 @@
 package me.joelsoep.ctf.util;
 
-import me.joelsoep.ctf.logger.LogModule;
-
 import java.util.concurrent.TimeUnit;
 
 public class Timer {

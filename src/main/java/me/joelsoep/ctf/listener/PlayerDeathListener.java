@@ -2,9 +2,11 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.game.event.FlagReturnEvent;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
 import me.joelsoep.ctf.game.task.DeathCountdownTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
@@ -38,15 +40,18 @@ public class PlayerDeathListener implements Listener {
         event.deathMessage(null);
 
         if (ctfPlayer == null) {
+            LogModule.GAME.log("ctf player is null on death event: %s".formatted(player.getName()));
             return;
         }
 
         if (ctfPlayer.getTeam() == null) {
+            LogModule.GAME.log("ctf team for player %s is null @ DeathEvent".formatted(player.getName()));
             return;
         }
 
         Game game = ctfPlayer.getGame();
         if (game == null) {
+            LogModule.GAME.log("game is null! at player death event: %s".formatted(player.getName()));
             return;
         }
 
@@ -77,14 +82,14 @@ public class PlayerDeathListener implements Listener {
                 if (!(oppositeTeam.getFlag().getThief().equals(ctfPlayer))) {
                     return;
                 }
-                game.getMap().placeFlag(oppositeTeam);
-                oppositeTeam.getFlag().setThief(null);
+                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, player);
+                Bukkit.getPluginManager().callEvent(returnEvent);
+
                 game.getAudience().sendMessage(
                         MM.deserialize(
                                 "<gray>Team %s<gray>'s flag has been returned."
-                                        .formatted(oppositeTeam.getTeamColor().getPrefix()))
+                                        .formatted(team.getTeamColor().getPrefix()))
                 );
-
             }
             if (killer != null) {
                 CTFPlayer ctfKiller = PlayerService.getPlayers().get(killer.getName());
@@ -118,6 +123,8 @@ public class PlayerDeathListener implements Listener {
                         <gray>%s <gray>died.
                         """.formatted(team.getTeamColor().getColor() + player.getName())));
             }
+        } else if (game.getState() == GameState.ENDED) {
+            player.teleport(ctfPlayer.getTeam().getSpawn());
         } else {
             player.teleport(MapManager.getLobby().getSpawnLocation());
             new Hotbar(player);

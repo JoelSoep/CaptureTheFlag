@@ -14,6 +14,8 @@ import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import java.time.Duration;
+
 public class CountdownTask {
 
     private final Plugin plugin;
@@ -100,7 +102,9 @@ public class CountdownTask {
     }
     public void message(int seconds) {
         if (this.isGameStartCountdown && game.getState() == GameState.READY) {
-            audience.showTitle(Title.title(MM.deserialize("<green>%s".formatted(seconds)), MM.deserialize("")));
+            Title.Times times = Title.Times.times(Duration.ZERO, Duration.ofSeconds(1L), Duration.ofMillis(500L));
+            Title title = Title.title(MM.deserialize("<green><bold>%s".formatted(seconds)), MM.deserialize(""), times);
+            audience.showTitle(title);
         } else {
             audience.sendMessage(MM.deserialize("<gray>Starting in <green>%s<gray> seconds.".formatted(seconds)));
         }

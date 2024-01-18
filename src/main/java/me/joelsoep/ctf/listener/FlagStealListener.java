@@ -6,15 +6,12 @@ import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
-import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.logging.Level;
 
 public class FlagStealListener implements Listener {
 
@@ -40,5 +37,6 @@ public class FlagStealListener implements Listener {
         game.getAudience().sendMessage(MM.deserialize("""
                 <gray>Team %s<gray>'s flag has been stolen by %s<gray>!"""
                 .formatted(flagOwner.getTeamColor().getPrefix(), team.getTeamColor().getColor() + player.getName())));
+
     }
 }

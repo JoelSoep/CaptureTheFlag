@@ -4,13 +4,11 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.reflections.Reflections;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.logging.Level;
 
 public class KitService {
     private final Map<String, BaseKit> kits;

@@ -6,12 +6,7 @@ import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Objects;
 
 public class GameTimerTask {
     private final Plugin plugin;

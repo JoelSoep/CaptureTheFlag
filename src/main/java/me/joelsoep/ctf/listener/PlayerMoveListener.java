@@ -12,7 +12,6 @@ import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
-import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

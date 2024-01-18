@@ -5,7 +5,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;

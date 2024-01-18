@@ -23,6 +23,10 @@ public enum LogModule {
         this.prefix = prefix;
     }
 
+    public void logOnly(Level level, String message) {
+        CTFLogger.getLogger().log(level, prefix + message);
+    }
+
     public void log(Level level, String message) {
         CTFLogger.getLogger().log(level, prefix + message);
         Bukkit.getLogger().log(level, prefix + message);

@@ -19,6 +19,17 @@
 20. Add a timer DONE
 21. Add custom teams DONE
 22. add ranking leagues (platinum league, gold league, etc)
+23. add spectator command
+24. create max height for a map to build
+25. when a player has a flag equipped, let an entity glow at the base flag so they know where they should go. only once who have the flag equipped can see it
+26. killstreak bonusses: 3 kills = 1 golden apple or smth
+27. special idea: snowball which builds a wall when landing
+28. maybe do not allow some special items to be used as a flag holder
+29. u could have 2 seperate flags that u need get 3 times each which are on opposite sides of the "ship"
+30. acid arrow idea: when shot it makes concrete blocks into gravity blocks
+31. give archer kit a shield
+32. after a game has ended and you get to the chest, you can put items in it and when the next game starts theres items in it
+
 
 CUSTOM COSMETICS IDEAS:
 - When a player has a flag captured, they can have a custom flag banner pattern
@@ -235,3 +246,5 @@ game is nullpointerexception kitsortgui FIXED
 
 after a game has finished, players are able to queue again lol FIXED
 players can put their items in a chest and collect them again after respawning FIXED
+
+when players have selected their teams, if you dont select a team you wont enter the game

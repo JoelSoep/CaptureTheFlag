@@ -2,6 +2,7 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.game.event.FlagReturnEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.team.Team;
@@ -51,8 +52,8 @@ public class PlayerLeaveGameListener implements Listener {
                 if (!(oppositeTeam.getFlag().getThief().equals(player))) {
                     return;
                 }
-                oppositeTeam.getFlag().setThief(null);
-                game.getMap().placeFlag(oppositeTeam);
+                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, player.getPlayer());
+                Bukkit.getPluginManager().callEvent(returnEvent);
                 game.getAudience().sendMessage(
                         MM.deserialize(
                                 "<gray>Team %s's flag has been returned."

@@ -28,7 +28,8 @@ public class DesertLobby extends LobbyMap {
     public ArrayList<Location> getLeaderboardLocations() {
         return new ArrayList<>(List.of(
                 new Location(getWorld(), 5, 39, 3),
-                new Location(getWorld(), 5, 39, -3)
+                new Location(getWorld(), 5, 39, -3),
+                new Location(getWorld(), 0, 39, 3)
         ));
     }
 }

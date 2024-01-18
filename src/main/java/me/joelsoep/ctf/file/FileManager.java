@@ -2,7 +2,6 @@ package me.joelsoep.ctf.file;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
-import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.net.URL;

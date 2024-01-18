@@ -7,7 +7,7 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ public class Team {
     public static class Flag {
         private Location location;
         private Material material;
+        private ArmorStand stand;
         private @Nullable CTFPlayer thief;
     }
 

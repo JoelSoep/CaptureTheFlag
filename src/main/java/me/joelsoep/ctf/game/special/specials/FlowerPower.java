@@ -12,6 +12,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class FlowerPower extends BaseSpecial<PlayerInteractEvent> {
+    private static final int EFFECT_DURATION = 7 * 20;
+    private static final int EFFECT_AMPLIFIER = 2;
+
     public FlowerPower() {
         super("FlowerPower");
     }
@@ -35,7 +38,7 @@ public class FlowerPower extends BaseSpecial<PlayerInteractEvent> {
         ItemStack itemStack = event.getItem();
         Player player = event.getPlayer();
 
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 7 * 20, 2, true, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, EFFECT_DURATION, EFFECT_AMPLIFIER, true, false, false));
 
         if (itemStack == null) {
             return;

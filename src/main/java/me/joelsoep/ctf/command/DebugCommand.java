@@ -4,9 +4,11 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
+import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -15,6 +17,7 @@ import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 @CommandAlias("debug|dbg")
@@ -157,4 +160,34 @@ public class DebugCommand extends BaseCommand {
     public void worldTP(Player player, World world) {
         player.teleport(world.getSpawnLocation());
     }
+
+    @Subcommand("allowteamselector")
+    public void teamSelector(Player player, boolean value) {
+        LocalConfig.setAllowCustomTeams(value);
+        player.sendMessage(MM.deserialize("<gray>Updated value to <yellow>%s<gray>.".formatted(value)));
+    }
+
+    @Subcommand("givespecial")
+    @CommandCompletion("@players")
+    public void giveSpecial(Player player, OnlinePlayer target, @Single String specialString, @Optional Integer amount) {
+        if (target == null) {
+            player.sendMessage(MM.deserialize("Target is null!"));
+            return;
+        }
+
+        BaseSpecial<?> special = Main.specialService.getSpecial(specialString);
+        if (special == null) {
+            player.sendMessage(MM.deserialize("special is null!"));
+            return;
+        }
+        ItemStack itemStack = special.getItemStack();
+        if (itemStack == null) {
+            player.sendMessage(MM.deserialize("itemstack is null!"));
+            return;
+        }
+
+        itemStack.setAmount(amount != null ? amount : 1);
+        player.getInventory().addItem(itemStack);
+    }
+
 }

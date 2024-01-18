@@ -28,6 +28,13 @@ public abstract class BaseSpecial<T extends Event> implements Listener {
     @EventHandler
     public abstract void onUse(T event);
 
+    /**
+     * Additional listeners can be overrided with this function.
+     * @param event the event to listen to.
+     */
+
+    public void onUse(Class<? extends Event> event) {}
+
     public String getName() {
         return this.name;
     }

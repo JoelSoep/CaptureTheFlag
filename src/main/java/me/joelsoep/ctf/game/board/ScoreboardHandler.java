@@ -42,7 +42,7 @@ public class ScoreboardHandler implements Listener {
             board.updateTitle(MM.deserialize("<green><bold>Capture the Flag"));
             board.updateLines(
                     message(""),
-                    message("<gold>⌚ <reset>Time left: <gold>" + (game.getState() == GameState.RUNNING ? Timer.formatTimer(game.getGameTime() - System.currentTimeMillis()) : Timer.formatTimer(game.getGameTime()))),
+                    message("<gold>⌚ <reset>Time left: <gold>" + (game.getState() == GameState.RUNNING ? Timer.formatTimer(game.getGameTime() - System.currentTimeMillis()) : Timer.formatTimer(game.getGameTime() + 1))),
                     message(""),
                     message(game.getBlue().getTeamColor().getColor() + "⚐ <reset>Captures: " + game.getBlue().getTeamColor().getColor() + game.getBlue().getPoints() + "<reset>/" + game.getBlue().getTeamColor().getColor() + game.getMaxPoints()),
                     message(game.getRed().getTeamColor().getColor() + "⚐ <reset>Captures: " + game.getRed().getTeamColor().getColor() + game.getRed().getPoints() + "<reset>/" + game.getRed().getTeamColor().getColor() + game.getMaxPoints()),

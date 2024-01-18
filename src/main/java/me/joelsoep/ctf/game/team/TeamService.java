@@ -5,11 +5,9 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
-import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public class TeamService {
 
@@ -31,6 +29,7 @@ public class TeamService {
 
         if (players.size() == 0) {
             game.getAudience().sendMessage(MM.deserialize("<red>Couldn't create teams as there are no players to join!"));
+            LogModule.GAME.log("No teams created --- players.size() == 0");
             return;
         }
 
@@ -45,7 +44,7 @@ public class TeamService {
 
         for (CTFPlayer player : players) {
             if (player.getTeam() != null) {
-                return;
+                continue;
             }
             if (bluePlayers.size() <= redPlayers.size()) {
                 blue.addPlayer(player);

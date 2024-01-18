@@ -22,6 +22,7 @@ public class Hotbar {
     public Hotbar(Player player) {
         this.player = player;
         player.getInventory().clear();
+        giveTutorialBook();
         giveKitSelectionItem();
         giveAdminMenu();
         giveQueueBlock(player);
@@ -48,7 +49,7 @@ public class Hotbar {
     }
 
     private void giveTeamSelectionMenuItem() {
-        ItemStack teamMenu = new ItemStack(Material.GRAY_BANNER);
+        ItemStack teamMenu = new ItemStack(Material.YELLOW_BANNER);
         ItemMeta itemMeta = teamMenu.getItemMeta();
 
         Component displayName = MM.deserialize("<blue>Team Selection</blue>");
@@ -78,6 +79,20 @@ public class Hotbar {
         meta.addItemFlags(ItemFlag.HIDE_DYE);
         adminPanel.setItemMeta(meta);
         this.player.getInventory().setItem(8, adminPanel);
+    }
+
+    private void giveTutorialBook() {
+        ItemStack tutorial = new ItemStack(Material.KNOWLEDGE_BOOK);
+        ItemMeta meta = tutorial.getItemMeta();
+
+        Component displayName = MM.deserialize("<#FFD700>Tutorial Book");
+        meta.displayName(displayName);
+
+        // no lore cuz the knowledge book errors
+
+        meta.addItemFlags(ItemFlag.HIDE_DYE);
+        tutorial.setItemMeta(meta);
+        this.player.getInventory().setItem(0, tutorial);
     }
 
     public static class Static {

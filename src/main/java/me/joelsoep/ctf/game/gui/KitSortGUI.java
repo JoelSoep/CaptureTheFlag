@@ -18,7 +18,6 @@ import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

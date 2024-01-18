@@ -8,7 +8,6 @@ import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.MapState;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
-import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;

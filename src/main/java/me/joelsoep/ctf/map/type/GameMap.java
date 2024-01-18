@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.map.type;
 
-import lombok.Data;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.game.team.Team;

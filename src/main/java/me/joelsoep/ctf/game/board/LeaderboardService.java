@@ -4,7 +4,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.LobbyMap;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
@@ -17,8 +16,9 @@ public class LeaderboardService {
 
     public LeaderboardService() {
         leaderboards = new ArrayList<>(List.of(
-                new Leaderboard("kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", Main.mongoManager.getDatabase().getCollection("player"), "player_kills", 0, true, "&4", "&c"),
-                new Leaderboard("kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", Main.mongoManager.getDatabase().getCollection("player"), "player_kd", (double) 1, false, "&3", "&b")
+                new Leaderboard("kill_leaderboard", "&4&l☠ &c&lKills Leaderboard &4&l☠", Main.mongoManager.getCollection("player"), "player_kills", 0, true, "&4", "&c"),
+                new Leaderboard("kd_leaderboard", "&3&l♠ &b&lK/D Leaderboard &3&l♠", Main.mongoManager.getCollection("player"), "player_kd", (double) 1, false, "&3", "&b"),
+                new Leaderboard("capture_leaderboard", "&6&l⚐ &e&lCaptures Leaderboard &6&l⚐", Main.mongoManager.getCollection("player"), "flag_captures", 0, true, "&6", "&e")
         ));
     }
 

@@ -6,11 +6,11 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Leap extends BaseSpecial<PlayerInteractEvent> {
+    private static final double VELOCITY_MULTIPLIER = 1.75;
 
     public Leap() {
         super("Leap");
@@ -35,7 +35,7 @@ public class Leap extends BaseSpecial<PlayerInteractEvent> {
         ItemStack itemStack = event.getItem();
         Player player = event.getPlayer();
 
-        player.setVelocity(player.getLocation().getDirection().multiply(2));
+        player.setVelocity(player.getLocation().getDirection().multiply(VELOCITY_MULTIPLIER));
 
         if (itemStack == null) {
             return;

@@ -12,8 +12,10 @@ package me.joelsoep.ctf;
 
 import co.aikar.commands.PaperCommandManager;
 import com.mongodb.ConnectionString;
+import lombok.Getter;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
+import me.joelsoep.ctf.command.SpectateCommand;
 import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameQueue;
@@ -25,14 +27,19 @@ import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
 import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.CTFLogger;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.map.Map;
 import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.map.type.GameMap;
+import org.bukkit.World;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
 
-    public static Game game = new Game();
+    @Getter public static Game game = new Game();
     public static final MongoManager mongoManager = new MongoManager(new ConnectionString("mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority"));
     public static final KitService kitService = new KitService();
     public static final SpecialService specialService = new SpecialService();
@@ -70,12 +77,25 @@ public final class Main extends JavaPlugin {
         PaperCommandManager manager = new PaperCommandManager(this);
 
         manager.registerCommand(new DebugCommand(this));
+        manager.registerCommand(new SpectateCommand());
                 // Plugin startup logic
     }
 
     @Override
     public void onDisable() {
         Main.logger.closeFileHandler();
+
+        for (Map map : MapManager.getGameMaps()) {
+            if (!(map instanceof GameMap)) {
+                return;
+            }
+            World world = map.getWorld();
+            for (Entity entity : world.getEntities()) {
+                if (entity instanceof ArmorStand) {
+                    entity.remove();
+                }
+            }
+        }
     }
 
     public static Main getInstance() {

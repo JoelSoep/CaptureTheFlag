@@ -11,7 +11,6 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -8,7 +8,6 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -195,10 +194,11 @@ public abstract class BaseKit {
     public ItemStack getDefaultPickaxe() {
         ItemStack itemStack = new ItemStack(Material.STONE_PICKAXE);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        ArrayList<Namespaced> list = new ArrayList<>(List.of(Material.BLUE_CONCRETE.getKey(), Material.RED_CONCRETE.getKey()));
+        ArrayList<Namespaced> list = new ArrayList<>(List.of(Material.BLUE_CONCRETE.getKey(), Material.RED_CONCRETE.getKey(), Material.RED_CONCRETE_POWDER.getKey(), Material.BLUE_CONCRETE_POWDER.getKey()));
         itemMeta.setUnbreakable(true);
         itemMeta.setDestroyableKeys(list);
         itemStack.setItemMeta(itemMeta);
+        itemStack.addItemFlags(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_UNBREAKABLE);
         return itemStack;
     }
 }

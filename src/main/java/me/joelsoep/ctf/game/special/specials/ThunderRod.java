@@ -10,13 +10,13 @@ import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
 
 public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
+    private static final int MAX_DISTANCE = 55;
 
     public ThunderRod() {
         super("ThunderRod");
@@ -39,12 +39,12 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
         }
 
         Player player = event.getPlayer();
-        if (player.getTargetBlockExact(55) == null) {
+        if (player.getTargetBlockExact(MAX_DISTANCE) == null) {
             player.sendActionBar(MM.deserialize("<red>Focus on a block to summon lightning!"));
             return;
         }
 
-        Location location = Objects.requireNonNull(player.getTargetBlockExact(55)).getLocation();
+        Location location = Objects.requireNonNull(player.getTargetBlockExact(MAX_DISTANCE)).getLocation();
         Entity entity = player.getWorld().spawnEntity(location, EntityType.LIGHTNING);
         if (entity instanceof LightningStrike lightning) {
             lightning.setCausingPlayer(player);

@@ -9,7 +9,6 @@ import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 
 import java.util.*;
-import java.util.logging.Level;
 
 public class SpecialService {
     private final Map<String, BaseSpecial> specials;

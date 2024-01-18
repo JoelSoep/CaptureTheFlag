@@ -9,11 +9,9 @@ import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamService;
-import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -22,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TeamSelectionGUI extends ChestGui {
     private final PatternPane background;
@@ -32,12 +31,12 @@ public class TeamSelectionGUI extends ChestGui {
 
         this.background = new PatternPane(0, 0, 9, 3, Pane.Priority.LOWEST, new Pattern(
                 "111111111",
-                "110000011",
+                "111010111",
                 "111111111"
         ));
 
         this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
-        this.teamsPane = new OutlinePane(2, 1, 9, 3, Pane.Priority.HIGHEST);
+        this.teamsPane = new OutlinePane(3, 1, 9, 3, Pane.Priority.HIGHEST);
         this.setOnGlobalClick(event -> { event.setCancelled(true); });
         this.addPane(background);
         this.addPane(teamsPane);
@@ -46,7 +45,13 @@ public class TeamSelectionGUI extends ChestGui {
     }
 
     private void loadTeams(Player player) {
+        AtomicInteger iteration = new AtomicInteger();
         TeamService.getTeams().forEach(team -> {
+
+            // solution for the time being ig, or forever if i decide that the max amount of teams will stay at 2
+            if (iteration.get() == 1) {
+                this.teamsPane.addItem(new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
+            }
             ItemStack itemStack = new ItemStack(team.getTeamColor().getMaterial());
             ItemMeta itemMeta = itemStack.getItemMeta();
             itemMeta.displayName(MM.deserialize(team.getTeamColor().getPrefix()));
@@ -61,6 +66,7 @@ public class TeamSelectionGUI extends ChestGui {
             }
 
             this.teamsPane.addItem(new GuiItem(itemStack, event -> handleButtonClick(team, player)));
+            iteration.getAndIncrement();
         });
     }
 

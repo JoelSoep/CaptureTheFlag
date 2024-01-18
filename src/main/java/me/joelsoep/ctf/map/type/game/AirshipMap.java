@@ -19,14 +19,12 @@ import org.bukkit.block.Chest;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("unused")
 public class AirshipMap extends GameMap {

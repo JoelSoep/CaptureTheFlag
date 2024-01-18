@@ -5,7 +5,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.reactivestreams.Subscriber;

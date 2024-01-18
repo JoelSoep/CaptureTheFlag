@@ -1,0 +1,173 @@
+package me.joelsoep.ctf.game.special.specials;
+
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.game.task.FallingBlockRemovalTask;
+import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.util.ItemBuilder;
+import me.joelsoep.ctf.util.MM;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AcidArrow extends BaseSpecial<PlayerInteractEvent> {
+    private static final double ARROW_VELOCITY_MULTIPLIER = 1.5;
+    private static final double ADDITIONAL_SHOOT_HEIGHT = 1.5;
+    private static final long CHAIN_REACTION_DELAY = 5L;
+    private static final int MAX_BREAKABLE_BLOCKS = 12;
+
+    public AcidArrow() {
+        super("AcidArrow");
+    }
+
+    @Override
+    public ItemStack setItemStack() {
+        return new ItemBuilder(Material.TIPPED_ARROW)
+                .setName(MM.deserialize("<aqua>Acid Arrow"))
+                .build();
+    }
+
+    @Override
+    @EventHandler
+    public void onUse(PlayerInteractEvent event) {
+        if (!isEqual(event, getItemStack())) {
+            return;
+        }
+
+        ItemStack itemStack = event.getItem();
+        Player player = event.getPlayer();
+
+        Entity entity = player.getWorld().spawnEntity(player.getLocation().clone().add(0, ADDITIONAL_SHOOT_HEIGHT, 0), EntityType.SPECTRAL_ARROW);
+        if (!(entity instanceof SpectralArrow arrow)) {
+            return;
+        }
+        arrow.setVelocity(player.getLocation().getDirection().multiply(ARROW_VELOCITY_MULTIPLIER));
+        arrow.customName(MM.deserialize("acid_arrow"));
+
+        if (itemStack == null) {
+            return;
+        }
+
+        if (itemStack.getAmount() == 1) {
+            player.getInventory().remove(itemStack);
+        } else {
+            itemStack.setAmount(itemStack.getAmount() - 1);
+        }
+    }
+
+    @EventHandler
+    public void onUse(ProjectileHitEvent event) {
+        if (!(event.getEntity() instanceof SpectralArrow arrow)) {
+            return;
+        }
+        Component customName = arrow.customName();
+        if (customName == null) {
+            return;
+        }
+
+        if (!(customName.equals(MM.deserialize("acid_arrow")))) {
+            return;
+        }
+
+        Block block = event.getHitBlock();
+
+        if (block == null) {
+            return;
+        }
+
+        if (!(block.getType() == Material.BLUE_CONCRETE || block.getType() == Material.RED_CONCRETE)) {
+            return;
+        }
+        Material material = null;
+
+        if (block.getType() == Material.BLUE_CONCRETE) {
+            material = Material.BLUE_CONCRETE_POWDER;
+        }
+
+        if (block.getType() == Material.RED_CONCRETE) {
+            material = Material.RED_CONCRETE_POWDER;
+        }
+
+        if (material == null) {
+            return;
+        }
+
+        event.setCancelled(true);
+        destroyBlocks(block, material, MAX_BREAKABLE_BLOCKS);
+
+    }
+
+    @EventHandler
+    public void onUse(EntityChangeBlockEvent event) {
+        Entity entity = event.getEntity();
+        Block block = event.getBlock();
+
+        if (!(entity instanceof FallingBlock fallingBlock)) {
+            return;
+        }
+        if (event.getTo() != Material.RED_CONCRETE_POWDER && event.getTo() != Material.BLUE_CONCRETE_POWDER) {
+            return;
+        }
+        new FallingBlockRemovalTask(fallingBlock);
+    }
+
+    public void getBlocks(@NotNull Block block, List<Block> list) {
+        LogModule.CORE.log("INIT getBlocks, type requested is " + block.getType());
+        getDirectRelatives(block).forEach(member -> {
+            LogModule.CORE.log(member.getType().toString());
+            if (member.getType() == block.getType()) {
+                if (list.contains(member)) {
+                    return;
+                }
+                LogModule.CORE.log("MADE IT");
+                list.add(member);
+                getBlocks(member, list);
+            }
+        });
+    }
+
+    public void destroyBlocks(@NotNull Block block, Material replacement, int amount) {
+        List<Block> familyBlocks = new ArrayList<>();
+        familyBlocks.add(block);
+        getBlocks(block, familyBlocks);
+        for (int i = 0; i < amount; i++) {
+            if (i >= familyBlocks.size()) {
+                LogModule.CORE.log("size: %s, index: %s".formatted(familyBlocks.size(), i));
+                return;
+            }
+            Block breakable = familyBlocks.get(i);
+            if (breakable == null) {
+                break;
+            }
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    breakable.setType(replacement);
+                }
+            }, i * CHAIN_REACTION_DELAY);
+        }
+    }
+
+    public List<Block> getDirectRelatives(@NotNull Block block) {
+        return List.of(
+                block.getRelative(BlockFace.UP),
+                block.getRelative(BlockFace.DOWN),
+                block.getRelative(BlockFace.WEST),
+                block.getRelative(BlockFace.EAST),
+                block.getRelative(BlockFace.NORTH),
+                block.getRelative(BlockFace.SOUTH)
+        );
+    }
+}
