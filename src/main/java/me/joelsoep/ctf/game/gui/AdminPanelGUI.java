@@ -32,7 +32,7 @@ public class AdminPanelGUI extends ChestGui implements Listener {
     public AdminPanelGUI(Player player) {
         super(3, "Admin Panel");
         this.player = player;
-        this.game = Main.game;
+        this.game = Main.getGame();
 
         this.serverRestart = new StaticPane(1, 1, 1, 1);
         this.forceStart = new StaticPane(4, 1, 1, 1);

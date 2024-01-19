@@ -44,16 +44,16 @@ public class SpectateCommand extends BaseCommand {
             return;
         }
 
-        if (Main.game.getState() != GameState.READY && Main.game.getState() != GameState.RUNNING) {
+        if (Main.getGame().getState() != GameState.READY && Main.getGame().getState() != GameState.RUNNING) {
             player.sendMessage(MM.deserialize("<gray>Toggled spectator mode. You will start spectating once the match begins."));
             ctfPlayer.setParticipationState(ParticipationState.SPECTATING);
             player.setGameMode(GameMode.ADVENTURE);
-            Main.game.addSpectator(ctfPlayer);
+            Main.getGame().addSpectator(ctfPlayer);
             return;
         }
 
-        player.teleport(Main.game.getMap().getCenterLocation());
-        Main.game.addSpectator(ctfPlayer);
+        player.teleport(Main.getGame().getMap().getCenterLocation());
+        Main.getGame().addSpectator(ctfPlayer);
         player.setGameMode(GameMode.SPECTATOR);
         player.sendMessage(MM.deserialize("<gray>You are now spectating the current match. If you'd like to quit spectating, use /spectate again."));
         ctfPlayer.setParticipationState(ParticipationState.SPECTATING);

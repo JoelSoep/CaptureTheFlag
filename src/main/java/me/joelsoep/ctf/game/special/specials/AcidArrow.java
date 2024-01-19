@@ -14,15 +14,17 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AcidArrow extends BaseSpecial<PlayerInteractEvent> {
+public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
     private static final double ARROW_VELOCITY_MULTIPLIER = 1.5;
     private static final double ADDITIONAL_SHOOT_HEIGHT = 1.5;
     private static final long CHAIN_REACTION_DELAY = 5L;
@@ -34,31 +36,36 @@ public class AcidArrow extends BaseSpecial<PlayerInteractEvent> {
 
     @Override
     public ItemStack setItemStack() {
-        return new ItemBuilder(Material.TIPPED_ARROW)
+        return new ItemBuilder(Material.SPECTRAL_ARROW)
                 .setName(MM.deserialize("<aqua>Acid Arrow"))
+                .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS)
                 .build();
     }
 
     @Override
     @EventHandler
-    public void onUse(PlayerInteractEvent event) {
-        if (!isEqual(event, getItemStack())) {
+    public void onUse(EntityShootBowEvent event) {
+
+        Entity livingEntity = event.getEntity();
+        Entity projectile = event.getProjectile();
+        ItemStack itemStack = event.getConsumable();
+
+        if (!(livingEntity instanceof Player player)) {
             return;
         }
-
-        ItemStack itemStack = event.getItem();
-        Player player = event.getPlayer();
-
-        Entity entity = player.getWorld().spawnEntity(player.getLocation().clone().add(0, ADDITIONAL_SHOOT_HEIGHT, 0), EntityType.SPECTRAL_ARROW);
-        if (!(entity instanceof SpectralArrow arrow)) {
-            return;
-        }
-        arrow.setVelocity(player.getLocation().getDirection().multiply(ARROW_VELOCITY_MULTIPLIER));
-        arrow.customName(MM.deserialize("acid_arrow"));
 
         if (itemStack == null) {
             return;
         }
+
+        if (setItemStack().getType() != itemStack.getType() || !itemStack.hasItemFlag(ItemFlag.HIDE_DYE)) {
+            return;
+        }
+        if (!(projectile instanceof SpectralArrow arrow)) {
+            return;
+        }
+
+        arrow.customName(MM.deserialize("acid_arrow"));
 
         if (itemStack.getAmount() == 1) {
             player.getInventory().remove(itemStack);
@@ -124,14 +131,12 @@ public class AcidArrow extends BaseSpecial<PlayerInteractEvent> {
     }
 
     public void getBlocks(@NotNull Block block, List<Block> list) {
-        LogModule.CORE.log("INIT getBlocks, type requested is " + block.getType());
         getDirectRelatives(block).forEach(member -> {
             LogModule.CORE.log(member.getType().toString());
             if (member.getType() == block.getType()) {
                 if (list.contains(member)) {
                     return;
                 }
-                LogModule.CORE.log("MADE IT");
                 list.add(member);
                 getBlocks(member, list);
             }
@@ -144,7 +149,6 @@ public class AcidArrow extends BaseSpecial<PlayerInteractEvent> {
         getBlocks(block, familyBlocks);
         for (int i = 0; i < amount; i++) {
             if (i >= familyBlocks.size()) {
-                LogModule.CORE.log("size: %s, index: %s".formatted(familyBlocks.size(), i));
                 return;
             }
             Block breakable = familyBlocks.get(i);

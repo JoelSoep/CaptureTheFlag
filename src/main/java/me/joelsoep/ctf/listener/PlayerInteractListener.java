@@ -30,7 +30,7 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        Game game = Main.game;
+        Game game = Main.getGame();
 
         if (!(event.getAction() == Action.RIGHT_CLICK_AIR || game.getState() == GameState.WAITING && event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
             return;
@@ -62,7 +62,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.BOOK) {
-            new KitSelectionGUI(player, Main.kitService);
+            new KitSelectionGUI(player, Main.getKitService());
             return;
         }
 
@@ -76,12 +76,12 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.LIME_CONCRETE) {
-            if (Main.queue.getQueue().contains(ctfPlayer)) {
-                Main.queue.removePlayer(ctfPlayer);
+            if (Main.getQueue().getQueue().contains(ctfPlayer)) {
+                Main.getQueue().removePlayer(ctfPlayer);
             }
 
-            if (Main.game.getPlayers().contains(ctfPlayer) && game.getState() == GameState.WAITING) {
-                Main.game.removePlayer(ctfPlayer);
+            if (Main.getGame().getPlayers().contains(ctfPlayer) && game.getState() == GameState.WAITING) {
+                Main.getGame().removePlayer(ctfPlayer);
             }
             ctfPlayer.setParticipationState(ParticipationState.UNAVAILABLE);
             Hotbar.Static.giveQueueBlock(player);
@@ -89,14 +89,14 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.RED_CONCRETE) {
-            if (Main.queue.getQueue().contains(ctfPlayer)) {
+            if (Main.getQueue().getQueue().contains(ctfPlayer)) {
                 return;
             }
 
-            if (Main.game.getPlayers().contains(ctfPlayer)) {
+            if (Main.getGame().getPlayers().contains(ctfPlayer)) {
                 return;
             }
-            Main.queue.addPlayer(ctfPlayer);
+            Main.getQueue().addPlayer(ctfPlayer);
             ctfPlayer.setParticipationState(ParticipationState.AVAILABLE);
             Hotbar.Static.giveQueueBlock(player);
             return;

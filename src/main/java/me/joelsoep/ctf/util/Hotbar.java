@@ -103,7 +103,7 @@ public class Hotbar {
                 return;
             }
 
-           if (Main.queue.getQueue().contains(ctfPlayer) || Main.game.getPlayers().contains(ctfPlayer)) {
+           if (Main.getQueue().getQueue().contains(ctfPlayer) || Main.getGame().getPlayers().contains(ctfPlayer)) {
                player.getInventory().setItem(6, getEnqueuedItemStack());
            } else {
                player.getInventory().setItem(6, getDequeuedItemStack());

@@ -19,6 +19,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -49,34 +50,37 @@ public class AirshipMap extends GameMap {
     }
 
     public void createChestHandle() {
-
         Interaction interaction = new Interaction(event -> {
-            Game game = Main.game;
-            if (game.getState() == GameState.RUNNING) {
-                Player player = event.getPlayer();
-                if (event.getClickedBlock() == null) {
-                    return;
-                }
-
-                if (event.getClickedBlock().getState() instanceof Chest chest) {
-                    if (player.getGameMode() == GameMode.SPECTATOR) {
-                        event.setCancelled(true);
-                        return;
-                    }
-                    if (player.getGameMode() != GameMode.ADVENTURE) {
-                        return;
-                    }
-                    if (!(game.getMap() instanceof AirshipMap airshipMap)) {
-                        return;
-                    }
-
-                    if (!(chest.getLocation().getWorld().getName().equals(airshipMap.getWorld().getName()))) {
-                        return;
-                    }
-                    airshipMap.openChest(player);
-                    event.setCancelled(true);
-                }
+            Game game = Main.getGame();
+            if (game.getState() != GameState.RUNNING) {
+                event.setCancelled(true);
+                return;
             }
+            Player player = event.getPlayer();
+            if (event.getClickedBlock() == null) {
+                return;
+            }
+
+            if (!(event.getClickedBlock().getState() instanceof Chest chest)) {
+                return;
+            }
+
+            if (player.getGameMode() == GameMode.SPECTATOR) {
+                event.setCancelled(true);
+                return;
+            }
+            if (player.getGameMode() != GameMode.ADVENTURE) {
+                return;
+            }
+            if (!(game.getMap() instanceof AirshipMap airshipMap)) {
+                return;
+            }
+
+            if (!(chest.getLocation().getWorld().getName().equals(airshipMap.getWorld().getName()))) {
+                return;
+            }
+            airshipMap.openChest(player);
+            event.setCancelled(true);
         });
     }
 
@@ -86,7 +90,7 @@ public class AirshipMap extends GameMap {
             return;
         }
 
-        if (Main.game.getState() != GameState.RUNNING) {
+        if (Main.getGame().getState() != GameState.RUNNING) {
             return;
         }
 
@@ -116,7 +120,7 @@ public class AirshipMap extends GameMap {
                 chest.setBlockData(rotatable);
             }
             for (int i = 0; i < 5; i++) {
-                ItemStack item = Main.specialService.getRandomSpecial().getItemStack();
+                ItemStack item = Main.getSpecialService().getRandomSpecial().getItemStack();
                 if (item == null) {
                     LogModule.MAP.log("Special is null at getChest()");
                     continue;
@@ -230,5 +234,10 @@ public class AirshipMap extends GameMap {
     @Override
     public @NotNull Integer getWorldSize() {
         return 155;
+    }
+
+    @Override
+    public @NotNull Integer getMaxBuildHeight() {
+        return 25;
     }
 }

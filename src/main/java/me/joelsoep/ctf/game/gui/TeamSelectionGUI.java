@@ -56,7 +56,7 @@ public class TeamSelectionGUI extends ChestGui {
             ItemMeta itemMeta = itemStack.getItemMeta();
             itemMeta.displayName(MM.deserialize(team.getTeamColor().getPrefix()));
             itemMeta.lore(List.of(
-                    MM.deserialize("<gray>%s/%s".formatted(team.getPlayers().size(), Main.game.getMap().getMaxPlayers() / TeamService.getTeams().size()))
+                    MM.deserialize("<gray>%s/%s".formatted(team.getPlayers().size(), Main.getGame().getMap().getMaxPlayers() / TeamService.getTeams().size()))
             ));
             itemStack.setItemMeta(itemMeta);
 
@@ -94,7 +94,7 @@ public class TeamSelectionGUI extends ChestGui {
             return;
         }
 
-        if (team.getPlayers().size() >= Main.game.getMap().getMaxPlayers() / TeamService.getTeams().size()) {
+        if (team.getPlayers().size() >= Main.getGame().getMap().getMaxPlayers() / TeamService.getTeams().size()) {
             player.sendMessage(MM.deserialize("<red>Can't join this team as it's full already!"));
             new TeamSelectionGUI(player);
             return;

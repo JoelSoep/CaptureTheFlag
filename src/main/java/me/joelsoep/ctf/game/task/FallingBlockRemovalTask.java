@@ -44,14 +44,10 @@ public class FallingBlockRemovalTask {
                 Block block = location.getBlock();
 
                 if (block.getType() != Material.BLUE_CONCRETE_POWDER && block.getType() != Material.RED_CONCRETE_POWDER) {
-                    LogModule.CORE.log("type mismatch: type=" + block.getType());
                     return;
                 }
 
-                LogModule.CORE.log("MADE IT! type=" + block.getType());
-                LogModule.CORE.log("LOCATION:" + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ());
                 World world = block.getWorld();
-
                 // don't ask me why, but if we just try to block.setType() it won't work.
                 world.getBlockAt(block.getLocation()).setType(Material.AIR);
                 world.spawnParticle(Particle.VILLAGER_ANGRY, block.getLocation(), 1);

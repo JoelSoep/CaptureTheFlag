@@ -25,7 +25,7 @@ public class CTFLogger {
             }
         });
         customHandler.setLevel(Level.ALL);
-        resetFileHandler(Main.game.getUuid().toString());
+        resetFileHandler(Main.getGame().getUuid().toString());
         logger.addHandler(customHandler);
     }
 

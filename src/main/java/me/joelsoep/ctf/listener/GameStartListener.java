@@ -87,17 +87,17 @@ public class GameStartListener implements Listener {
 
         List<String> names = List.of(game.getPlayers().stream().map(CTFPlayer::getPlayer).map(Player::getName).toArray(String[]::new));
 
-        Main.mongoManager.insertOne(Main.mongoManager.getCollection("game"), new Document("_id", game.getUuid().toString())
+        Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("game"), new Document("_id", game.getUuid().toString())
                 .append("players", names)
         );
 
         players.forEach(player -> {
             player.getPlayer().closeInventory();
             if (player.getKit() == null) {
-                player.setKit(Main.kitService.getAllKits().get(0));
+                player.setKit(Main.getKitService().getAllKits().get(0));
             }
 
-            Main.kitService.giveKitToPlayer(player.getPlayer(), player.getKit().getName());
+            Main.getKitService().giveKitToPlayer(player.getPlayer(), player.getKit().getName());
         });
 
         new CountdownTask(

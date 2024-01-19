@@ -11,7 +11,7 @@ public class InventoryDragListener implements Listener {
 
     @EventHandler
     public void onDrag(InventoryDragEvent event) {
-        Game game = Main.game;
+        Game game = Main.getGame();
 
         if (game.getState() == GameState.WAITING || game.getState() == GameState.ENDED) {
             event.setCancelled(true);

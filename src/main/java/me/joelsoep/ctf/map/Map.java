@@ -34,7 +34,7 @@ public abstract class Map {
         this.world = null;
     }
 
-    protected class Interaction implements Listener {
+    protected static class Interaction implements Listener {
 
         public Interaction(Consumer<PlayerInteractEvent> action) {
             Bukkit.getPluginManager().registerEvents(new Listener() {

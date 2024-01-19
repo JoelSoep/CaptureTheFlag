@@ -148,6 +148,6 @@ public class KitSelectionGUI extends ChestGui implements Listener {
             ctfPlayer.setKit(kit);
             player.sendMessage(MM.deserialize("<#91e344>Selected ").append(kit.getStyledName()));
         }
-        new KitSelectionGUI(player, Main.kitService);
+        new KitSelectionGUI(player, Main.getKitService());
     }
 }

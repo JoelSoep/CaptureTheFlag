@@ -15,7 +15,7 @@ public class BlockPlaceListener implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        Game game = Main.game;
+        Game game = Main.getGame();
         Location blockLocation = event.getBlockPlaced().getLocation();
 
         if (game.getState() != GameState.RUNNING) {

@@ -36,7 +36,7 @@ public class ScoreboardHandler implements Listener {
     }
 
     public void update(FastBoard board) {
-        Game game = Main.game;
+        Game game = Main.getGame();
         if (game.getState() == GameState.RUNNING || game.getState() == GameState.READY) {
 
             board.updateTitle(MM.deserialize("<green><bold>Capture the Flag"));

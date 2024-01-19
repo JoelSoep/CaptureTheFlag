@@ -25,7 +25,7 @@ import org.bukkit.plugin.Plugin;
 public class DebugCommand extends BaseCommand {
     private final Plugin plugin;
 
-    Game game = Main.game;
+    Game game = Main.getGame();
 
     public DebugCommand(Plugin plugin) {
         this.plugin = plugin;
@@ -150,7 +150,7 @@ public class DebugCommand extends BaseCommand {
 
    // @Subcommand("setmaxplayers")
     //public void setMaxPlayers(Player player, int integer) {
-   //     Game game = Main.game;
+   //     Game game = Main.getGame();
    //     game.getMap().setMaxPlayers(integer);
    //     player.sendMessage(MM.deserialize("<gray>Updated max players to <yellow>" + game.getMap().getMaxPlayers()));
    // }
@@ -175,7 +175,7 @@ public class DebugCommand extends BaseCommand {
             return;
         }
 
-        BaseSpecial<?> special = Main.specialService.getSpecial(specialString);
+        BaseSpecial<?> special = Main.getSpecialService().getSpecial(specialString);
         if (special == null) {
             player.sendMessage(MM.deserialize("special is null!"));
             return;

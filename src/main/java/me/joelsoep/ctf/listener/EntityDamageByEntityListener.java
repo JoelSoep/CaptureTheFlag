@@ -18,7 +18,7 @@ public class EntityDamageByEntityListener implements Listener {
     public void onDamage(EntityDamageByEntityEvent event) {
         Entity entity = event.getEntity();
         Entity entityDamager = event.getDamager();
-        Game game = Main.game;
+        Game game = Main.getGame();
 
         // TODO: Clean up stuff from entitydamagehandler
 

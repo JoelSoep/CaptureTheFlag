@@ -15,7 +15,7 @@ public class PlayerRewardSpecialListener implements Listener {
     @EventHandler
     public void onReward(PlayerRewardSpecialEvent event) {
         CTFPlayer player = event.getPlayer();
-        BaseSpecial<?> special = Main.specialService.getRandomSpecial();
+        BaseSpecial<?> special = Main.getSpecialService().getRandomSpecial();
         ItemStack itemStack = special.getItemStack();
 
         if (itemStack == null) {

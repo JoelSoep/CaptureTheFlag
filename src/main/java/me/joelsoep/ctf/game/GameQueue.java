@@ -15,7 +15,7 @@ public class GameQueue {
     private Game game;
 
     public GameQueue() {
-        this.game = Main.game;
+        this.game = Main.getGame();
         this.queue = new LinkedList<>();
     }
 

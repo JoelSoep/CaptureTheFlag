@@ -14,7 +14,7 @@ public class InventoryClickListener implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        Game game = Main.game;
+        Game game = Main.getGame();
 
         if (game.getState() == GameState.WAITING && event.getClick() == ClickType.SWAP_OFFHAND) {
             event.setCancelled(true);

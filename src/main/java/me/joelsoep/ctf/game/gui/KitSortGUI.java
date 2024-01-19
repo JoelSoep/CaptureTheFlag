@@ -105,7 +105,7 @@ public class KitSortGUI extends ChestGui {
             }
             player.getInventory().clear();
             new Hotbar(player);
-            new KitSelectionGUI((Player) event.getPlayer(), Main.kitService);
+            new KitSelectionGUI((Player) event.getPlayer(), Main.getKitService());
         });
 
         this.setOnGlobalDrag(event -> {
@@ -222,7 +222,7 @@ public class KitSortGUI extends ChestGui {
 
             Document finalDoc = new Document("$set", document);
 
-            Main.mongoManager.findOneAndUpdate(Main.mongoManager.getDatabase().getCollection("player"), Filters.eq("_id", player.getUniqueId().toString()), finalDoc, options, new IStandardSubscriber<Document>() {
+            Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getDatabase().getCollection("player"), Filters.eq("_id", player.getUniqueId().toString()), finalDoc, options, new IStandardSubscriber<Document>() {
                 @Override
                 public void onResult(Document result) {
                     if (result != null) {

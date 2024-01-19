@@ -48,7 +48,7 @@ public class DeathCountdownTask {
                     if (player.getKit() == null) {
                         player.setKit(new Warrior());
                     }
-                    Main.kitService.giveKitToPlayer(player.getPlayer(), player.getKit().getName());
+                    Main.getKitService().giveKitToPlayer(player.getPlayer(), player.getKit().getName());
                     cancel();
                 }
                 actionbar(seconds);

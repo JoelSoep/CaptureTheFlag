@@ -14,7 +14,7 @@ public class QueueCheckGameAvailabilityTask {
 
     public QueueCheckGameAvailabilityTask(Plugin plugin) {
         this.plugin = plugin;
-        this.game = Main.game;
+        this.game = Main.getGame();
         check();
     }
 
@@ -25,7 +25,7 @@ public class QueueCheckGameAvailabilityTask {
                 if (game.getState() != GameState.WAITING) {
                     return;
                 }
-                if (Main.queue.getQueue().isEmpty()) {
+                if (Main.getQueue().getQueue().isEmpty()) {
                     return;
                 }
 
@@ -34,8 +34,8 @@ public class QueueCheckGameAvailabilityTask {
                 }
 
 
-                while (!Main.queue.getQueue().isEmpty() && game.getMap().getMaxPlayers() != game.getPlayers().size()) {
-                    CTFPlayer player = Main.queue.getNext();
+                while (!Main.getQueue().getQueue().isEmpty() && game.getMap().getMaxPlayers() != game.getPlayers().size()) {
+                    CTFPlayer player = Main.getQueue().getNext();
                     if (player == null) {
                         continue;
                     }

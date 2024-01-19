@@ -114,8 +114,8 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
                 attacker.setKiller(player);
                 player.playSound(Sound.sound(Key.key("item.shield.break"), Sound.Source.MASTER, 10, (float) 1.1));
                 attacker.playSound(Sound.sound(Key.key("item.shield.break"), Sound.Source.MASTER, 10, (float) 1.1));
-                Main.game.getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 10, (float) 1.08));
-                Main.game.getAudience().sendMessage(MM.deserialize("<gray>%s <gray>mirrored %s<gray>'s Smash Attack!".formatted(ctfPlayer.getTeam().getTeamColor().getColor() + player.getName(), ctfAttacker.getTeam().getTeamColor().getColor() + attacker.getName())));
+                Main.getGame().getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 10, (float) 1.08));
+                Main.getGame().getAudience().sendMessage(MM.deserialize("<gray>%s <gray>mirrored %s<gray>'s Smash Attack!".formatted(ctfPlayer.getTeam().getTeamColor().getColor() + player.getName(), ctfAttacker.getTeam().getTeamColor().getColor() + attacker.getName())));
                 task(attacker);
                 yoink(attacker, player);
                 event.setCancelled(true);
@@ -128,7 +128,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             }
             player.setVelocity(new Vector(0, 5, 0).multiply(20));
             player.setKiller(attacker);
-            Main.game.getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 10, (float) 1.08));
+            Main.getGame().getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 10, (float) 1.08));
             task(player);
             yoink(player, attacker);
             attacker.setHealth(4);

@@ -11,7 +11,7 @@ public class PlayerSwapHandItemsListener implements Listener {
 
     @EventHandler
     public void onSwap(PlayerSwapHandItemsEvent event) {
-        Game game = Main.game;
+        Game game = Main.getGame();
         if (game.getState() == GameState.WAITING) {
             event.setCancelled(true);
         }

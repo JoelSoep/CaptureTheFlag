@@ -59,8 +59,8 @@ public class BackupPlayerDataTask {
 
                     FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
 
-                    Main.mongoManager.findOneAndUpdate(
-                            Main.mongoManager.getCollection("player"),
+                    Main.getMongoManager().findOneAndUpdate(
+                            Main.getMongoManager().getCollection("player"),
                             Filters.eq("_id", player.getPlayer().getUniqueId().toString()),
                             update,
                             options

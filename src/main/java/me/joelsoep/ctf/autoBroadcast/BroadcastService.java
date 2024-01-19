@@ -22,20 +22,20 @@ public class BroadcastService {
             this.plugin = plugin;
         }
 
-        MongoCollection<Document> collection = Main.mongoManager.getDatabase().getCollection("autoBroadcast");
+        MongoCollection<Document> collection = Main.getMongoManager().getDatabase().getCollection("autoBroadcast");
 
 
         public void runAll() {
             AtomicInteger count = new AtomicInteger(0);
 
-            Main.mongoManager.countDocuments(collection, new IStandardSubscriber<Long>() {
+            Main.getMongoManager().countDocuments(collection, new IStandardSubscriber<Long>() {
                 @Override
                 public void onResult(Long result) {
                     if (result != null) {
                         count.set(result.intValue());
                         LogModule.UTILITY.log("Broadcasting %s messages.".formatted(count.get()));
                     } else {
-                        Main.mongoManager.insertOne(Main.mongoManager.getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
+                        Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
                         LogModule.UTILITY.warning("No documents found to autobroadcast!");
                     }
                 }
@@ -47,7 +47,7 @@ public class BroadcastService {
             });
 
             List<Document> results = new ArrayList<>();
-            Main.mongoManager.find(collection, new Document(), new Subscriber<>() {
+            Main.getMongoManager().find(collection, new Document(), new Subscriber<>() {
 
                 @Override
                 public void onSubscribe(Subscription s) {

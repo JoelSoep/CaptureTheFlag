@@ -25,9 +25,21 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Game game = Main.game;
+        Game game = Main.getGame();
         CTFPlayer ctfPlayer = new CTFPlayer(player);
         event.joinMessage(null);
+
+        if (!Main.getInstance().getServer().getAllowFlight()) {
+            if (!(player.hasPermission("ctf.admin"))) {
+                return;
+            }
+            player.sendMessage(MM.deserialize("""
+                                        <gray>[<red><bold>CTF-ALERT</bold><gray>]
+                                        <red>This server disallows player flight.
+                                        <red>It is highly recommended to allow flight, as disabling this could cause issues.
+                                        <red>Keeping allow flight disabled is at your own risk.
+                    """));
+        }
 
         ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer);
         ctfPlayer.setBoard(scoreboardHandler.getBoard());
@@ -36,9 +48,9 @@ public class PlayerJoinListener implements Listener {
             ctfPlayer.reset();
             if (game.getPlayerCount() >= game.getMap().getMaxPlayers()) {
                 player.sendMessage(MM.deserialize("<gray>You've been added to the queue as the current game is full."));
-                Main.queue.addPlayer(ctfPlayer);
+                Main.getQueue().addPlayer(ctfPlayer);
             } else {
-                Main.queue.addPlayer(ctfPlayer);
+                Main.getQueue().addPlayer(ctfPlayer);
             }
             new Hotbar(ctfPlayer.getPlayer());
         }
@@ -51,7 +63,7 @@ public class PlayerJoinListener implements Listener {
                     <gray>The game has already started.
                     <gray>You have been put in spectator mode.
                     """));
-            Main.queue.addPlayer(ctfPlayer);
+            Main.getQueue().addPlayer(ctfPlayer);
         }
 
         if (game.getState() == GameState.ENDED) {

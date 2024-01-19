@@ -36,7 +36,7 @@ public class PlayerMoveListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
-        Game game = Main.game;
+        Game game = Main.getGame();
         Location location = event.getTo().toCenterLocation();
 
         if (!event.hasChangedBlock()) {

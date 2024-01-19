@@ -29,7 +29,7 @@ public class WorldLoadListener implements Listener {
     @EventHandler
     public void onWorldLoad(WorldLoadEvent event) {
         World world = event.getWorld();
-        Game game = Main.game;
+        Game game = Main.getGame();
 
         if (!world.getName().toLowerCase(Locale.ROOT).startsWith("plugins/CapturetheFlag/maps/".toLowerCase(Locale.ROOT))) {
             LogModule.CORE.log("Excluding world %s from ctf-registry".formatted(world.getName()));

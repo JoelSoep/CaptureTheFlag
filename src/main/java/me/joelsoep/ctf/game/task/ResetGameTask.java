@@ -51,12 +51,12 @@ public class ResetGameTask {
                 game.getSpectators().clear();
 
                 LogModule.CORE.log("Resetting game with UUId " + game.getUuid().toString());
-                LogModule.CORE.log("Before assignment - Main.game identity: " + System.identityHashCode(Main.game));
+                LogModule.CORE.log("Before assignment - Main.getGame() identity: " + System.identityHashCode(Main.getGame()));
                 game.reset();
-                LogModule.CORE.log("After assignment - Main.game identity: " + System.identityHashCode(Main.game));
+                LogModule.CORE.log("After assignment - Main.getGame() identity: " + System.identityHashCode(Main.getGame()));
                 LogModule.CORE.log("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
                 LogModule.CORE.log("END OF LOG FILE --- NEW GAME");
-                Main.logger.resetFileHandler(game.getUuid().toString());
+                Main.getLogger().resetFileHandler(game.getUuid().toString());
 
                 PlayerService.getPlayers().values().forEach(player -> {
                     if (player.getGame() != null) {
@@ -72,7 +72,7 @@ public class ResetGameTask {
                         return;
                     }
 
-                    Main.queue.addPlayer(player, false);
+                    Main.getQueue().addPlayer(player, false);
                     if (game.getPlayers().size() >= game.getMap().getMaxPlayers()) {
                         player.sendMessage(MM.deserialize("""
                                 <gray>Couldn't add you to the game as it is full!

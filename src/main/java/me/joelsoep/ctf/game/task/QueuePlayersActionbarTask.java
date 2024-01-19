@@ -18,15 +18,15 @@ public class QueuePlayersActionbarTask {
         this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
-                if (Main.queue.getQueue() == null) {
+                if (Main.getQueue().getQueue() == null) {
                     return;
                 }
 
-                Main.queue.getQueue().forEach(player -> {
+                Main.getQueue().getQueue().forEach(player -> {
                     if (player == null) {
                         return;
                     }
-                    player.sendActionBar(MM.deserialize("<gray>Queue position: <yellow>%s<gray>/<yellow>%s".formatted(Main.queue.getPosition(player), Main.queue.getQueue().size())));
+                    player.sendActionBar(MM.deserialize("<gray>Queue position: <yellow>%s<gray>/<yellow>%s".formatted(Main.getQueue().getPosition(player), Main.getQueue().getQueue().size())));
                 });
             }
         }, 0L, 2L * 20L);

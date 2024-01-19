@@ -24,11 +24,11 @@ public class MapManager {
         loadLobby("me.joelsoep.ctf.map.type.lobby");
         loadGames("me.joelsoep.ctf.map.type.game");
         GameMap gameMap = getRandomGameMap();
-        Main.game.createTeams(gameMap);
-        gameMap.placeFlag(Main.game.getBlue());
-        gameMap.placeFlag(Main.game.getRed());
-        Main.game.setMap(gameMap);
-        this.registerMapToGame(gameMap, Main.game);
+        Main.getGame().createTeams(gameMap);
+        gameMap.placeFlag(Main.getGame().getBlue());
+        gameMap.placeFlag(Main.getGame().getRed());
+        Main.getGame().setMap(gameMap);
+        this.registerMapToGame(gameMap, Main.getGame());
     }
 
     public static GameMap getRandomGameMap() {

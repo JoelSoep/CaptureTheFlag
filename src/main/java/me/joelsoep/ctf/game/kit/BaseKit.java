@@ -79,7 +79,7 @@ public abstract class BaseKit {
 
     public void giveKitToPlayer(Player player) {
         PlayerInventory inventory = player.getInventory();
-        Game game = Main.game;
+        Game game = Main.getGame();
         CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
 
         if (ctfPlayer == null) {

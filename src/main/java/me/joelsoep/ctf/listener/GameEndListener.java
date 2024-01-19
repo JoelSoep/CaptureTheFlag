@@ -70,7 +70,7 @@ public class GameEndListener implements Listener {
 
         // Push final game data to database.
 
-        Main.mongoManager.findOneAndUpdate(Main.mongoManager.getDatabase().getCollection("game"),
+        Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getDatabase().getCollection("game"),
                 new Document("_id", game.getUuid().toString()),
                 Updates.combine(
                         Updates.set("winner", winner.getTeamColor().toString())

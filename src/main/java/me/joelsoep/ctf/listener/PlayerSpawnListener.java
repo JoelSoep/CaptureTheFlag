@@ -13,7 +13,7 @@ public class PlayerSpawnListener implements Listener {
 
     @EventHandler
     public void onSpawn(PlayerSpawnLocationEvent event) {
-        Game game = Main.game;
+        Game game = Main.getGame();
 
         if (MapManager.getLobby().getSpawnLocation() == null) {
             event.getPlayer().kick(MM.deserialize("""

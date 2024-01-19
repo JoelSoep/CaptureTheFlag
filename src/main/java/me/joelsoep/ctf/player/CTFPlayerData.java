@@ -30,7 +30,7 @@ public class CTFPlayerData {
         this.name = player.getPlayer().getName();
 
         final Document[] resultDocument = new Document[1];
-        Main.mongoManager.find(Main.mongoManager.getDatabase().getCollection("player"), new Document("_id", player.getPlayer().getUniqueId().toString()), new Subscriber<Document>() {
+        Main.getMongoManager().find(Main.getMongoManager().getDatabase().getCollection("player"), new Document("_id", player.getPlayer().getUniqueId().toString()), new Subscriber<Document>() {
             @Override
             public void onSubscribe(Subscription s) {
                 s.request(1);
@@ -49,7 +49,7 @@ public class CTFPlayerData {
             @Override
             public void onComplete() {
                 if (resultDocument[0] == null) {
-                    Main.mongoManager.insertOne(Main.mongoManager.getCollection("player"), new Document(
+                    Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("player"), new Document(
                             "_id", player.getPlayer().getUniqueId().toString())
                             .append("player_name", name)
                             .append("player_kills", 0)
@@ -68,7 +68,7 @@ public class CTFPlayerData {
 
         public void fetchData() {
             final Document[] futureDocument = new Document[1];
-            Main.mongoManager.find(Main.mongoManager.getDatabase().getCollection("player"), new Document("_id", player.getPlayer().getUniqueId().toString()), new Subscriber<>() {
+            Main.getMongoManager().find(Main.getMongoManager().getDatabase().getCollection("player"), new Document("_id", player.getPlayer().getUniqueId().toString()), new Subscriber<>() {
                 @Override
                 public void onSubscribe(Subscription s) {
                     s.request(1);
@@ -165,7 +165,7 @@ public class CTFPlayerData {
                     HashMap<String, HashMap<Integer, ItemStack>> serialized = new HashMap<>();
 
                     parsedData.forEach((kitName, data) -> {
-                        Optional<BaseKit> optionalKit = Main.kitService.getAllKits().stream().filter(kitIterate -> Objects.equals(kitIterate.getName(), kitName)).findFirst();
+                        Optional<BaseKit> optionalKit = Main.getKitService().getAllKits().stream().filter(kitIterate -> Objects.equals(kitIterate.getName(), kitName)).findFirst();
                         if (optionalKit.isEmpty()) {
                             return;
                         }

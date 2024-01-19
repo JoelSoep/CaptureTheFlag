@@ -27,24 +27,19 @@ import me.joelsoep.ctf.game.task.QueuePlayersActionbarTask;
 import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.CTFLogger;
 import me.joelsoep.ctf.logger.LogModule;
-import me.joelsoep.ctf.map.Map;
 import me.joelsoep.ctf.map.MapManager;
-import me.joelsoep.ctf.map.type.GameMap;
-import org.bukkit.World;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
 
-    @Getter public static Game game = new Game();
-    public static final MongoManager mongoManager = new MongoManager(new ConnectionString("mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority"));
-    public static final KitService kitService = new KitService();
-    public static final SpecialService specialService = new SpecialService();
-    public static final GameQueue queue = new GameQueue();
-    public static CTFLogger logger = null;
+    @Getter private static final Game game = new Game();
+    @Getter private static final MongoManager mongoManager = new MongoManager(new ConnectionString("mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority"));
+    @Getter private static final KitService kitService = new KitService();
+    @Getter private static final SpecialService specialService = new SpecialService();
+    @Getter private static final GameQueue queue = new GameQueue();
+    @Getter private static CTFLogger logger = null;
 
     private static Main instance;
 
@@ -71,7 +66,7 @@ public final class Main extends JavaPlugin {
         new QueuePlayersActionbarTask(this);
         new QueueCheckGameAvailabilityTask(this);
 
-        Main.specialService.loadSpecials("me.joelsoep.ctf.game.special.specials", this);
+        Main.getSpecialService().loadSpecials("me.joelsoep.ctf.game.special.specials", this);
         new MapManager();
         new BroadcastService(this).runAll();
         PaperCommandManager manager = new PaperCommandManager(this);
@@ -84,18 +79,6 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         Main.logger.closeFileHandler();
-
-        for (Map map : MapManager.getGameMaps()) {
-            if (!(map instanceof GameMap)) {
-                return;
-            }
-            World world = map.getWorld();
-            for (Entity entity : world.getEntities()) {
-                if (entity instanceof ArmorStand) {
-                    entity.remove();
-                }
-            }
-        }
     }
 
     public static Main getInstance() {
