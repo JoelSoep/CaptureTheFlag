@@ -39,14 +39,14 @@ public final class Main extends JavaPlugin {
     @Getter private static final KitService kitService = new KitService();
     @Getter private static final SpecialService specialService = new SpecialService();
     @Getter private static final GameQueue queue = new GameQueue();
-    @Getter private static CTFLogger logger = null;
+    @Getter private static CTFLogger CTFLogger = null;
 
     private static Main instance;
 
     @Override
     public void onLoad() {
         instance = this;
-        logger = new CTFLogger();
+        CTFLogger = new CTFLogger();
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Main.logger.closeFileHandler();
+        Main.getCTFLogger().closeFileHandler();
     }
 
     public static Main getInstance() {
