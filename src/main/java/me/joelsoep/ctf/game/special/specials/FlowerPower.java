@@ -20,7 +20,7 @@ public class FlowerPower extends BaseSpecial<PlayerInteractEvent> {
     }
 
     @Override
-    public ItemStack setItemStack() {
+    public ItemStack getItemStack() {
         ItemStack item = new ItemStack(Material.WHITE_TULIP);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(MM.deserialize("<aqua>Flower Power"));
@@ -31,7 +31,7 @@ public class FlowerPower extends BaseSpecial<PlayerInteractEvent> {
     @Override
     @EventHandler
     public void onUse(PlayerInteractEvent event) {
-        if (!this.isEqual(event, setItemStack())) {
+        if (!this.isEqual(event, getItemStack())) {
             return;
         }
 

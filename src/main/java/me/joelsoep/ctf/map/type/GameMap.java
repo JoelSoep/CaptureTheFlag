@@ -39,6 +39,7 @@ public abstract class GameMap extends Map {
     public abstract @NotNull Integer getMaxPlayers();
     public abstract @NotNull Integer getWorldSize();
     public abstract @NotNull Integer getMaxBuildHeight();
+    public abstract @NotNull Integer getDeathHeight();
 
     public boolean isLocationInMapSize(Location location) {
         if (location.getBlock().getY() > getMaxBuildHeight()) {

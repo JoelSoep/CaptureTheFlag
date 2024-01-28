@@ -35,7 +35,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
     }
 
     @Override
-    public ItemStack setItemStack() {
+    public ItemStack getItemStack() {
         return new ItemBuilder(Material.SPECTRAL_ARROW)
                 .setName(MM.deserialize("<aqua>Acid Arrow"))
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS)
@@ -45,7 +45,6 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
     @Override
     @EventHandler
     public void onUse(EntityShootBowEvent event) {
-
         Entity livingEntity = event.getEntity();
         Entity projectile = event.getProjectile();
         ItemStack itemStack = event.getConsumable();
@@ -58,7 +57,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
             return;
         }
 
-        if (setItemStack().getType() != itemStack.getType() || !itemStack.hasItemFlag(ItemFlag.HIDE_DYE)) {
+        if (getItemStack().getType() != itemStack.getType() || !itemStack.hasItemFlag(ItemFlag.HIDE_DYE)) {
             return;
         }
         if (!(projectile instanceof SpectralArrow arrow)) {
@@ -66,12 +65,6 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
         }
 
         arrow.customName(MM.deserialize("acid_arrow"));
-
-        if (itemStack.getAmount() == 1) {
-            player.getInventory().remove(itemStack);
-        } else {
-            itemStack.setAmount(itemStack.getAmount() - 1);
-        }
     }
 
     @EventHandler

@@ -23,7 +23,7 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
     }
 
     @Override
-    public ItemStack setItemStack() {
+    public ItemStack getItemStack() {
         ItemStack item = new ItemStack(Material.BLAZE_ROD, 1);
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.displayName(MM.deserialize("<gold>Thunder Rod"));
@@ -34,7 +34,7 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
     @Override
     @EventHandler
     public void onUse(PlayerInteractEvent event) {
-        if (!this.isEqual(event, setItemStack())) {
+        if (!this.isEqual(event, getItemStack())) {
             return;
         }
 
@@ -48,6 +48,10 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
         Entity entity = player.getWorld().spawnEntity(location, EntityType.LIGHTNING);
         if (entity instanceof LightningStrike lightning) {
             lightning.setCausingPlayer(player);
+        }
+
+        if (event.getItem() == null) {
+            return;
         }
 
         if (event.getItem().getAmount() == 1) {

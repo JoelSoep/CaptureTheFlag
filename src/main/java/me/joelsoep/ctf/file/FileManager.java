@@ -11,14 +11,14 @@ import java.nio.file.Paths;
 public class FileManager {
     public static final String DOMAIN = "https://dl.soep.me/";
 
-    public static boolean requestFile(String fileName, String resource) {
+    public static boolean requestFile(String fileName, FileType type, String resource) {
             if (!new File(Main.getInstance().getDataFolder(), resource).exists()) {
                 try {
                     if (!Main.getInstance().getDataFolder().exists()) {
                         Main.getInstance().getDataFolder().mkdirs();
                     }
                     LogModule.FILE.log("Downloading " + fileName + "...");
-                    Files.copy(new URL(DOMAIN + fileName).openStream(), Paths.get(Main.getInstance().getDataFolder().getPath(), resource));
+                    Files.copy(new URL(DOMAIN + type.getPath() + fileName).openStream(), Paths.get(Main.getInstance().getDataFolder().getPath(), resource));
                     return true;
                 } catch (Exception e) {
                     LogModule.FILE.warning("Couldn't create " + resource);

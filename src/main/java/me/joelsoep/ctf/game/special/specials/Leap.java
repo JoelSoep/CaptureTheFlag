@@ -17,7 +17,7 @@ public class Leap extends BaseSpecial<PlayerInteractEvent> {
     }
 
     @Override
-    public ItemStack setItemStack() {
+    public ItemStack getItemStack() {
         ItemStack item = new ItemStack(Material.RABBIT_FOOT);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(MM.deserialize("<yellow>Leap of Faith"));
@@ -28,7 +28,7 @@ public class Leap extends BaseSpecial<PlayerInteractEvent> {
     @Override
     @EventHandler
     public void onUse(PlayerInteractEvent event) {
-        if (!this.isEqual(event, setItemStack())) {
+        if (!this.isEqual(event, getItemStack())) {
             return;
         }
 

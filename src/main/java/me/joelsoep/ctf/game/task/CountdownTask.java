@@ -74,7 +74,6 @@ public class CountdownTask {
                         if (game.getPlayers().size() == 0) {
                             LogModule.GAME.log("CountdownTask: Activated 0-player-function.");
                             game.setState(GameState.ENDED);
-                            game.getMap().load();
                             game.getMap().placeFlag(game.getBlue());
                             game.getMap().placeFlag(game.getRed());
                             game.getBlue().getPlayers().clear();

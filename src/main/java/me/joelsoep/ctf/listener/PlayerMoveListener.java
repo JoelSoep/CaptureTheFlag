@@ -8,6 +8,7 @@ import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.map.Map;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
@@ -43,15 +44,20 @@ public class PlayerMoveListener implements Listener {
             return;
         }
 
+        if (game == null) {
+            return;
+        }
+
         if (ctfPlayer == null) {
             return;
         }
 
-        if (player.getLocation().getY() < -99) {
-            switch (game.getState()) {
-                case WAITING, ENDED -> player.teleport(MapManager.getLobby().getSpawnLocation());
-                case READY, RUNNING -> player.teleport(game.getMap().getCenterLocation());
-            }
+        if (game.getState() == GameState.WAITING && player.getLocation().getY() < -99) {
+            player.teleport(MapManager.getLobby().getSpawnLocation());
+            return;
+        }
+
+        if (player.getLocation().getY() < game.getMap().getDeathHeight()) {
 
             if (game.getState() == GameState.ENDED) {
                 new Hotbar(player);

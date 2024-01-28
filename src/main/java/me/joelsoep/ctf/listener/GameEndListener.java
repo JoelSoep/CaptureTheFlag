@@ -38,7 +38,6 @@ public class GameEndListener implements Listener {
         game.setState(GameState.ENDED);
 
         if (winner == null || loser == null) {
-            game.getMap().load();
             game.getMap().placeFlag(game.getRed());
             game.getMap().placeFlag(game.getBlue());
             game.getRed().getPlayers().clear();
@@ -79,7 +78,6 @@ public class GameEndListener implements Listener {
 
 
 
-        game.getMap().load();
         game.getMap().placeFlag(loser);
         game.getMap().placeFlag(winner);
         winner.getPlayers().clear();

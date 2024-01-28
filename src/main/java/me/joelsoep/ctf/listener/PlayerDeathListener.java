@@ -11,6 +11,7 @@ import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
+import me.joelsoep.ctf.util.KillStreakHandler;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -118,6 +119,7 @@ public class PlayerDeathListener implements Listener {
                 game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>has been killed by %s<gray>!"""
                         .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
+                new KillStreakHandler(ctfKiller);
             } else {
                 game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>died.

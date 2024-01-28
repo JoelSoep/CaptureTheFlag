@@ -180,14 +180,14 @@ public class DebugCommand extends BaseCommand {
             player.sendMessage(MM.deserialize("special is null!"));
             return;
         }
-        ItemStack itemStack = special.getItemStack();
+        ItemStack itemStack = special.getItem();
         if (itemStack == null) {
             player.sendMessage(MM.deserialize("itemstack is null!"));
             return;
         }
 
         itemStack.setAmount(amount != null ? amount : 1);
-        player.getInventory().addItem(itemStack);
+        target.getPlayer().getInventory().addItem(itemStack);
     }
 
 }

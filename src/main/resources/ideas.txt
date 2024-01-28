@@ -29,6 +29,7 @@
 30. acid arrow idea: when shot it makes concrete blocks into gravity blocks DONE
 31. give archer kit a shield
 32. after a game has ended and you get to the chest, you can put items in it and when the next game starts theres items in it
+33. bossbar event showcaser
 
 
 CUSTOM COSMETICS IDEAS:
@@ -248,3 +249,7 @@ after a game has finished, players are able to queue again lol FIXED
 players can put their items in a chest and collect them again after respawning FIXED
 
 when players have selected their teams, if you dont select a team you wont enter the game FIXED
+
+
+custom death fall height per map
+kill streak messages are fucked

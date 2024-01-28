@@ -41,7 +41,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
     }
 
     @Override
-    public ItemStack setItemStack() {
+    public ItemStack getItemStack() {
         ItemStack item = new ItemStack(Material.GOLDEN_SWORD);
         ItemMeta meta = item.getItemMeta();
         meta.addItemFlags(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ATTRIBUTES);
@@ -83,7 +83,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             return;
         }
 
-        if (item.getType() == setItemStack().getType() && item.hasItemFlag(ItemFlag.HIDE_DYE)) {
+        if (item.getType() == getItemStack().getType() && item.hasItemFlag(ItemFlag.HIDE_DYE)) {
             ItemStack offHand = player.getInventory().getItemInOffHand();
             ItemStack mainHand = player.getInventory().getItemInMainHand();
             ItemStack possibleMirror = null;

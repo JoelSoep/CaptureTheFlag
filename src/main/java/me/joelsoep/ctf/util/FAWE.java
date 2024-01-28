@@ -14,6 +14,7 @@ import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
 import me.joelsoep.ctf.file.FileManager;
+import me.joelsoep.ctf.file.FileType;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Location;
 
@@ -72,7 +73,7 @@ public class FAWE {
                         return false;
                     }
                     LogModule.FILE.severe("Attempting to download file %s...".formatted(file.getName()));
-                    FileManager.requestFile(file.getName(), "schematics" + File.separator + file.getName());
+                    FileManager.requestFile(file.getName(), FileType.SCHEMATIC, "schematics" + File.separator + file.getName());
                     failed = true;
                     paste(file, location);
                     return true;

@@ -40,8 +40,7 @@ public final class Main extends JavaPlugin {
     @Getter private static final SpecialService specialService = new SpecialService();
     @Getter private static final GameQueue queue = new GameQueue();
     @Getter private static CTFLogger CTFLogger = null;
-
-    private static Main instance;
+    @Getter private static Main instance = null;
 
     @Override
     public void onLoad() {
@@ -73,15 +72,10 @@ public final class Main extends JavaPlugin {
 
         manager.registerCommand(new DebugCommand(this));
         manager.registerCommand(new SpectateCommand());
-                // Plugin startup logic
     }
 
     @Override
     public void onDisable() {
         Main.getCTFLogger().closeFileHandler();
-    }
-
-    public static Main getInstance() {
-        return instance;
     }
 }

@@ -23,7 +23,7 @@ public class TNT extends BaseSpecial<PlayerInteractEvent> {
     }
 
     @Override
-    public ItemStack setItemStack() {
+    public ItemStack getItemStack() {
         ItemStack itemStack = new ItemStack(Material.TNT);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.displayName(MM.deserialize("<red>Super TNT"));
@@ -34,7 +34,7 @@ public class TNT extends BaseSpecial<PlayerInteractEvent> {
     @Override
     @EventHandler
     public void onUse(PlayerInteractEvent event) {
-        if (!this.isEqual(event, setItemStack())) {
+        if (!this.isEqual(event, getItemStack())) {
             return;
         }
 

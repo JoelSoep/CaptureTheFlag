@@ -47,6 +47,7 @@ public class ResetGameTask {
                     player.reset();
                 });
 
+                game.getMap().load();
                 game.getPlayers().clear();
                 game.getSpectators().clear();
 

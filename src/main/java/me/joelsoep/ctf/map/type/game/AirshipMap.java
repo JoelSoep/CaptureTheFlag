@@ -27,10 +27,9 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public class AirshipMap extends GameMap {
 
-    private final Location chestLocation = new Location(getWorld(), -118, -48, -97);
+    private final Location chestLocation = new Location(getWorld(), -14, 24, -2);
 
     public AirshipMap() {
         super("airship", new File(FileManager.getSchematicFolderPath() + "airship.schem"));
@@ -50,7 +49,7 @@ public class AirshipMap extends GameMap {
     }
 
     public void createChestHandle() {
-        Interaction interaction = new Interaction(event -> {
+        new Interaction(event -> {
             Game game = Main.getGame();
             if (game.getState() != GameState.RUNNING) {
                 event.setCancelled(true);
@@ -120,7 +119,7 @@ public class AirshipMap extends GameMap {
                 chest.setBlockData(rotatable);
             }
             for (int i = 0; i < 5; i++) {
-                ItemStack item = Main.getSpecialService().getRandomSpecial().getItemStack();
+                ItemStack item = Main.getSpecialService().getRandomSpecial().getItem();
                 if (item == null) {
                     LogModule.MAP.log("Special is null at getChest()");
                     continue;
@@ -189,12 +188,12 @@ public class AirshipMap extends GameMap {
 
     @Override
     public @NotNull Location getRedFlagLocation() {
-        return new Location(this.getWorld(), -117, -34, -50);
+        return new Location(this.getWorld(), -13, 38, 45);
     }
 
     @Override
     public @NotNull Location getRedSpawnLocation() {
-        return new Location(getWorld(), -70, -26.5, -49.5, -180, 0);
+        return new Location(getWorld(), 34.5, 45.5, 45.5, -180, 0);
     }
 
     @Override
@@ -204,12 +203,12 @@ public class AirshipMap extends GameMap {
 
     @Override
     public @NotNull Location getBlueFlagLocation() {
-        return new Location(getWorld(), -117, -34, -145);
+        return new Location(getWorld(), -13, 38, -50);
     }
 
     @Override
     public @NotNull Location getBlueSpawnLocation() {
-        return new Location(getWorld(), -70, -26.5, -144.5);
+        return new Location(getWorld(), 34.5, 45.5, -49.5);
     }
 
     @Override
@@ -219,11 +218,11 @@ public class AirshipMap extends GameMap {
 
     /**
      *
-     * @return the location that is the spectator spawn location as well as the center of the map
+     * @return The location that is the spectator spawn location as well as the center of the map
      */
     @Override
     public @NotNull Location getCenterLocation() {
-        return new Location(getWorld(), -104, -22, -95);
+        return new Location(getWorld(), -4, 46, -1);
     }
 
     @Override
@@ -238,6 +237,11 @@ public class AirshipMap extends GameMap {
 
     @Override
     public @NotNull Integer getMaxBuildHeight() {
-        return 25;
+        return 123;
+    }
+
+    @Override
+    public @NotNull Integer getDeathHeight() {
+        return -40;
     }
 }
