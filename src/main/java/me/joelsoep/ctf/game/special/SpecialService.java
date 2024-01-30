@@ -1,5 +1,7 @@
 package me.joelsoep.ctf.game.special;
 
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
@@ -17,18 +19,14 @@ public class SpecialService {
         this.specials = new HashMap<>();
     }
 
-    public void loadSpecials(String packageName, Plugin plugin) {
-        Reflections reflections = new Reflections(packageName);
+    public void loadSpecials() {
+        Reflections reflections = new Reflections(FileManager.SPECIAL_PATH);
         Set<Class<? extends BaseSpecial>> specialClasses = reflections.getSubTypesOf(BaseSpecial.class);
 
         for (Class<? extends BaseSpecial> specialClass : specialClasses) {
             try {
                 BaseSpecial special = specialClass.getDeclaredConstructor().newInstance();
-                if (plugin == null) {
-                    LogModule.SPECIAL.warning("Couldn't register special item " + special.getName() + " because plugin is null.");
-                    return;
-                }
-                Bukkit.getPluginManager().registerEvents(special, plugin);
+                Bukkit.getPluginManager().registerEvents(special, Main.getInstance());
 
                 specials.put(special.getName().toLowerCase(), special);
                 LogModule.SPECIAL.log("Registered special item " + special.getName());

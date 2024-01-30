@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.kit;
 
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
@@ -15,12 +16,12 @@ public class KitService {
 
     public KitService() {
         this.kits = new HashMap<>();
-        loadKits("me.joelsoep.ctf.game.kit.kits");
+        loadKits();
     }
 
-    private void loadKits(String packageName) {
+    private void loadKits() {
         // Use reflection to find all classes that extend BaseKit in the specified package
-        Reflections reflections = new Reflections(packageName);
+        Reflections reflections = new Reflections(FileManager.KIT_PATH);
         Set<Class<? extends BaseKit>> kitClasses = reflections.getSubTypesOf(BaseKit.class);
 
         // Instantiate and load all found kit classes

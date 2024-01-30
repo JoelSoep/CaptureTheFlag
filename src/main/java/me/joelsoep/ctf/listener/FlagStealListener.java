@@ -30,6 +30,7 @@ public class FlagStealListener implements Listener {
 
         ItemStack helmet = new ItemStack(flagOwner.getFlag().getMaterial());
         helmet.addUnsafeEnchantment(Enchantment.BINDING_CURSE, 1);
+        game.getXPCollector().write(ctfPlayer, 25);
         player.getInventory().setHelmet(helmet);
         game.getMap().removeFlag(flagOwner);
         flagOwner.getFlag().setThief(ctfPlayer);

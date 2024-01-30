@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 
 public class FileManager {
     public static final String DOMAIN = "https://dl.soep.me/";
+    public static final String SPECIAL_PATH = "me.joelsoep.ctf.game.special.specials";
+    public static final String KIT_PATH = "me.joelsoep.ctf.game.kit.kits";
 
     public static boolean requestFile(String fileName, FileType type, String resource) {
             if (!new File(Main.getInstance().getDataFolder(), resource).exists()) {

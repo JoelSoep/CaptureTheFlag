@@ -36,6 +36,7 @@ public class FlagCaptureListener implements Listener {
 
         game.getMap().resetFeatures();
         team.setPoints(team.getPoints() + 1);
+        game.getXPCollector().write(ctfPlayer, 100);
         game.getAudience().sendMessage(MM.deserialize("""
                 <gray>Team %s<gray>'s flag has been captured by %s<gray>!"""
                 .formatted(flagOwner.getTeamColor().getPrefix(), team.getTeamColor().getColor() + player.getName())));

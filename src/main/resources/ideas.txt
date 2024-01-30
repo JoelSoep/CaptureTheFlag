@@ -37,6 +37,7 @@ CUSTOM COSMETICS IDEAS:
 - Custom kill messages
 - Custom win animations
 - Custom finishers
+- Custom lose effects
 
 GLITCHES / BUGS:
 Kits need to be fixed FIXED

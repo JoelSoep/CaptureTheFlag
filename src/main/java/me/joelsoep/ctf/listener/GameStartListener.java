@@ -66,7 +66,7 @@ public class GameStartListener implements Listener {
                 player.getPlayer().playerListName(
                         MM.deserialize(
                                 red.getTeamColor().getPrefix())
-                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()))
                 );
             });
 
@@ -79,7 +79,7 @@ public class GameStartListener implements Listener {
                 player.getPlayer().playerListName(
                         MM.deserialize(
                                         blue.getTeamColor().getPrefix())
-                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()))
                 );
         });
 

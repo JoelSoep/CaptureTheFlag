@@ -11,14 +11,19 @@ import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.player.experience.Level;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 @CommandAlias("debug|dbg")
 @CommandPermission("ctf.admin")
@@ -114,7 +119,6 @@ public class DebugCommand extends BaseCommand {
         game.setState(GameState.ENDED);
         player.sendMessage(MM.deserialize("<yellow>Ending game..."));
 
-        game.getMap().load();
         game.getMap().placeFlag(game.getBlue());
         game.getMap().placeFlag(game.getRed());
         game.getBlue().getPlayers().clear();
@@ -188,6 +192,40 @@ public class DebugCommand extends BaseCommand {
 
         itemStack.setAmount(amount != null ? amount : 1);
         target.getPlayer().getInventory().addItem(itemStack);
+    }
+
+    @Subcommand("setmap")
+    public void setMap(Player player, String mapName) {
+        GameMap map = MapManager.getGameMap(mapName);
+        if (map == null) {
+            player.sendMessage(MM.deserialize("The map is null."));
+            return;
+        }
+        Game game = Main.getGame();
+        MapManager.registerMapToGame(map, Main.getGame());
+        game.setMap(map);
+        player.sendMessage("Updated map.");
+    }
+
+    @Subcommand("listmaps")
+    public void listMaps(Player player) {
+        AtomicReference<String> str = new AtomicReference<>("Maps: <br>");
+        MapManager.getGameMaps().forEach(map -> {
+            String addition = map.getName() + "<br>";
+            str.set(str.get().concat(addition));
+        });
+        player.sendMessage(MM.deserialize(str.get()));
+    }
+
+    @Subcommand("xp")
+    public void xp(Player player, int amount) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+
+        Level.gainExperience(ctfPlayer, amount);
     }
 
 }

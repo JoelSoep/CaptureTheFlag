@@ -65,6 +65,11 @@ public class GameEndListener implements Listener {
                 ),
                 MM.deserialize("<gray>Better luck next time!")));
 
+        game.getPlayers().forEach(player -> {
+            player.sendMessage(MM.deserialize("<yellow>You have earned <green>%s <yellow> experience during the match!".formatted(game.getXPCollector().read(player))));
+        });
+        game.getXPCollector().sendAll();
+
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
 
         // Push final game data to database.

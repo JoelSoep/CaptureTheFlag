@@ -12,17 +12,18 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.player.experience.Level;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,6 +46,7 @@ public class Game {
     private GameState state;
     private ArrayList<CTFPlayer> players = new ArrayList<>();
     private ArrayList<CTFPlayer> spectators = new ArrayList<>();
+    private MatchExperienceCollector XPCollector = new MatchExperienceCollector();
     private @Nullable Team winner;
     private CountdownTask countdownTask;
     private boolean isStarting = false;
@@ -53,6 +55,49 @@ public class Game {
     public Game() {
         this.audience = Audience.audience(concatAudience(players, spectators));
         this.state = GameState.WAITING;
+    }
+
+    /**
+     * This class exists to collect all experience gained in a match.
+     * After the match, we deliver the experience to the player via sendAll()
+     * and clear the collector.
+     */
+
+    public static class MatchExperienceCollector {
+        private final Map<@NotNull String, @NotNull Integer> collector;
+
+        public MatchExperienceCollector() {
+            this.collector = new HashMap<>();
+        }
+
+        public void write(CTFPlayer player, int xp) {
+            Integer potentialXP = collector.get(player.getPlayer().getName());
+            if (potentialXP == null) {
+                potentialXP = 0;
+            }
+            collector.put(player.getPlayer().getName(), potentialXP + xp);
+        }
+
+        public int read(CTFPlayer player) {
+            Integer xp = this.collector.get(player.getPlayer().getName());
+            return xp != null ? xp : 0;
+        }
+
+        public void sendAll() {
+            this.collector.forEach((string, xp) -> {
+                CTFPlayer player = PlayerService.getPlayers().get(string);
+                if (player == null) {
+                    LogModule.GAME.log("player %s is null while sending xp".formatted(string));
+                    return;
+                }
+
+                Level.gainExperience(player, xp);
+            });
+        }
+
+        public void empty() {
+            this.collector.clear();
+        }
     }
 
     public void reset() {

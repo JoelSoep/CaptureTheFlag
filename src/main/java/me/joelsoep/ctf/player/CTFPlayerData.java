@@ -4,6 +4,7 @@ import lombok.Data;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.player.experience.Level;
 import org.bson.Document;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -23,6 +24,7 @@ public class CTFPlayerData {
     private Integer kills;
     private Integer deaths;
     private Integer captures;
+    private Integer experience;
     private Double kd;
 
     public CTFPlayerData(CTFPlayer player) {
@@ -57,8 +59,12 @@ public class CTFPlayerData {
                             .append("flag_captures", 0)
                             .append("login_streak", 1)
                             .append("player_kd", (double) 1)
+                            .append("experience", 0)
                     );
                     kills = 0;
+                    deaths = 0;
+                    experience = 0;
+                    captures = 0;
                 } else {
                     fetchData();
                 }
@@ -107,9 +113,15 @@ public class CTFPlayerData {
                         kd = (double) 1;
                     }
 
+                    if (experience == null) {
+                        experience = 0;
+                    }
+
                     kills = result.getInteger("player_kills");
                     deaths = result.getInteger("player_deaths");
                     captures = result.getInteger("flag_captures");
+                    experience = result.getInteger("experience");
+                    player.setLevel(Level.getLevel(player));
 
                     kd = result.getDouble("player_kd");
 

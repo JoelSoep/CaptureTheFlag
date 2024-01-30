@@ -49,6 +49,11 @@ public class MongoManager {
         publisher.subscribe(subscriber);
     }
 
+    public void findOne(MongoCollection<Document> collection, @NotNull Bson filter, Subscriber<Document> subscriber) {
+        Publisher<Document> publisher = collection.find(filter);
+        publisher.subscribe(subscriber);
+    }
+
     public void findOneAndUpdate(MongoCollection<Document> collection, @NotNull Bson filter, @NotNull Bson update, FindOneAndUpdateOptions options, IStandardSubscriber<Document> Interface) {
         Publisher<Document> publisher = collection.findOneAndUpdate(filter, update, options);
         publisher.subscribe(new StandardSubscriber<>(Interface).getSubscriber());

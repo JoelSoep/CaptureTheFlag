@@ -57,20 +57,8 @@ public class WorldLoadListener implements Listener {
                     return;
                 }
 
-                if (map instanceof LobbyMap lobbyMap) {
-                    lobbyMap.load();
-                    lobbyMap.setState(MapState.READY);
-                    LeaderboardService leaderboardService = new LeaderboardService();
-                    leaderboardService.setLocationsAndCreate(lobbyMap);
-                    LogModule.MAP.log("Added content to map %s.".formatted(map.getName()));
-                    return;
-                }
-
-                if (!(map instanceof GameMap gameMap)) {
-                    return;
-                }
-                gameMap.load();
-                gameMap.setState(MapState.READY);
+                map.load();
+                map.setState(MapState.READY);
                 LogModule.MAP.log("Added content to map %s.".formatted(map.getName()));
             }
         });

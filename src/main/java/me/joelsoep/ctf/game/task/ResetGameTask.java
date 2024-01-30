@@ -50,6 +50,7 @@ public class ResetGameTask {
                 game.getMap().load();
                 game.getPlayers().clear();
                 game.getSpectators().clear();
+                game.getXPCollector().empty();
 
                 LogModule.CORE.log("Resetting game with UUId " + game.getUuid().toString());
                 LogModule.CORE.log("Before assignment - Main.getGame() identity: " + System.identityHashCode(Main.getGame()));

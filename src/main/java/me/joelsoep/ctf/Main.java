@@ -65,7 +65,7 @@ public final class Main extends JavaPlugin {
         new QueuePlayersActionbarTask(this);
         new QueueCheckGameAvailabilityTask(this);
 
-        Main.getSpecialService().loadSpecials("me.joelsoep.ctf.game.special.specials", this);
+        Main.getSpecialService().loadSpecials();
         new MapManager();
         new BroadcastService(this).runAll();
         PaperCommandManager manager = new PaperCommandManager(this);

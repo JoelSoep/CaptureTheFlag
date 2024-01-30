@@ -24,6 +24,7 @@ public abstract class GameMap extends Map {
         this.schematic = schematic;
 
         this.setWorld(createEmptyWorld());
+        world.setSpawnLocation(getCenterLocation());
         new CleanItemsTask(Main.getInstance(), world);
     }
 

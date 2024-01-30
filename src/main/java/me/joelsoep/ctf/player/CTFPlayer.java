@@ -39,12 +39,14 @@ public class CTFPlayer implements Audience {
     private BaseKit kit;
     private FastBoard board;
     private Long cooldown;
+    private Integer level;
 
     public CTFPlayer(Player player) {
         this.player = player;
         this.data = new CTFPlayerData(this);
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
+        this.level = 1;
         this.cooldown = System.currentTimeMillis();
         PlayerService.addPlayer(this);
         reset();
@@ -64,7 +66,7 @@ public class CTFPlayer implements Audience {
         this.setKillStreak(0);
 
         player.getInventory().clear();
-        player.playerListName(MM.deserialize("<gray>" + player.getName()));
+        player.playerListName(MM.deserialize("<gray>" + player.getName() + " ✪" + player.getLevel()));
         player.displayName(MM.deserialize("<gray>" + player.getName()));
         player.setGameMode(GameMode.ADVENTURE);
         player.setGlowing(false);

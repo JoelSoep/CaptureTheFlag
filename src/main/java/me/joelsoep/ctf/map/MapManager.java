@@ -14,29 +14,36 @@ import org.reflections.Reflections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class MapManager {
 
-    private static final HashMap<String, Map> gameMaps = new HashMap<>();
+    private static final HashMap<String, GameMap> gameMaps = new HashMap<>();
     private static LobbyMap lobby;
 
     public MapManager() {
         loadLobby("me.joelsoep.ctf.map.type.lobby");
         loadGames("me.joelsoep.ctf.map.type.game");
+        if (gameMaps.values().size() == 0) {
+            LogModule.MAP.severe("NO MAPS FOUND!!");
+            Bukkit.shutdown();
+            return;
+        }
         GameMap gameMap = getRandomGameMap();
         Main.getGame().createTeams(gameMap);
-        gameMap.placeFlag(Main.getGame().getBlue());
-        gameMap.placeFlag(Main.getGame().getRed());
-        Main.getGame().setMap(gameMap);
-        this.registerMapToGame(gameMap, Main.getGame());
+        registerMapToGame(gameMap, Main.getGame());
     }
 
     public static GameMap getRandomGameMap() {
-        return (GameMap) gameMaps.values().stream().toList().get(RandomUtil.get().nextInt(gameMaps.size()));
+        return gameMaps.values().stream().toList().get(RandomUtil.get().nextInt(gameMaps.size()));
     }
 
-    public static List<Map> getGameMaps() {
+    public static List<GameMap> getGameMaps() {
         return gameMaps.values().stream().toList();
+    }
+
+    public static GameMap getGameMap(String name) {
+        return gameMaps.get(name);
     }
 
     public static LobbyMap getLobby() { return lobby; }
@@ -54,6 +61,14 @@ public class MapManager {
 
         try {
             LobbyMap lobby = lobbyClass.getDeclaredConstructor().newInstance();
+            CompletableFuture<Boolean> future = lobby.isGloballyEnabled();
+            LogModule.MAP.log("Initiating maploader for lobbymap %s".formatted(lobby.getName()));
+            boolean enabled = future.join();
+            LogModule.MAP.log("Joined future!");
+            if (!enabled) {
+                LogModule.MAP.log("Did not enable lobby map %s, as it is disabled.".formatted(lobby.getName()));
+                return;
+            }
             MapManager.lobby = lobby;
             LogModule.MAP.log("Loaded lobby %s".formatted(lobby.getName()));
 
@@ -87,7 +102,15 @@ public class MapManager {
         mapClasses.forEach(map -> {
             try {
                 GameMap gameMap = map.getDeclaredConstructor().newInstance();
-                gameMaps.put(map.getName(), gameMap);
+                CompletableFuture<Boolean> future = gameMap.isGloballyEnabled();
+                LogModule.MAP.log("Initiating maploader for gamemap %s".formatted(gameMap.getName()));
+                boolean enabled = future.join();
+                LogModule.MAP.log("Joined future!");
+                if (!enabled) {
+                    LogModule.MAP.log("Did not enable game map %s, as it is disabled.".formatted(gameMap.getName()));
+                    return;
+                }
+                gameMaps.put(gameMap.getName(), gameMap);
                 LogModule.MAP.log("Loaded gameMap %s".formatted(gameMap.getName()));
 
                 if (Bukkit.getWorld(gameMap.getWorld().getName()) == null) {
@@ -103,7 +126,7 @@ public class MapManager {
         });
     }
 
-    public void registerMapToGame(GameMap map, Game game) {
+    public static void registerMapToGame(GameMap map, Game game) {
         Team red = game.getRed();
         Team blue = game.getBlue();
 
@@ -112,5 +135,9 @@ public class MapManager {
 
         red.setSpawn(map.getRedSpawnLocation());
         red.getFlag().setLocation(map.getRedFlagLocation());
+
+        map.placeFlag(Main.getGame().getBlue());
+        map.placeFlag(Main.getGame().getRed());
+        Main.getGame().setMap(map);
     }
 }

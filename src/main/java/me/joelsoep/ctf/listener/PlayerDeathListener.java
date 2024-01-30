@@ -120,6 +120,7 @@ public class PlayerDeathListener implements Listener {
                         <gray>%s <gray>has been killed by %s<gray>!"""
                         .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
                 new KillStreakHandler(ctfKiller);
+                game.getXPCollector().write(ctfKiller, 15);
             } else {
                 game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>died.

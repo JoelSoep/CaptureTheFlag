@@ -10,6 +10,7 @@ import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.Timer;
 import net.kyori.adventure.text.Component;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -58,7 +59,7 @@ public class ScoreboardHandler implements Listener {
             board.updateLines(
                     message(""),
                     message("<gold>➥ <reset>Players: <gold>" + game.getPlayerCount() + "<reset>/<gold>" + game.getMap().getMaxPlayers()),
-                    message("<gold>☄ <reset>Map: <gold>" + StringUtils.capitalize(game.getMap().getName())),
+                    message("<gold>☄ <reset>Map: <gold>" + WordUtils.capitalize(game.getMap().getName().replace("_", " "))),
                     message(""),
                     message("<italic><gold>mcmanhunt.com")
             );
