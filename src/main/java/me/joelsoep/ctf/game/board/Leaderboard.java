@@ -82,6 +82,11 @@ public class Leaderboard {
                 t.printStackTrace();
             }
 
+            /**
+             * DO NOT TOUCH
+             * shit code, but will break if you change shit
+             */
+
             @Override
             public void onComplete() {
                 List<String> lines = new ArrayList<>();

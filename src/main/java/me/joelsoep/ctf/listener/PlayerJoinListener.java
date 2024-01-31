@@ -5,6 +5,7 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.GameMode;
@@ -26,7 +27,7 @@ public class PlayerJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Game game = Main.getGame();
-        CTFPlayer ctfPlayer = new CTFPlayer(player);
+        CTFPlayer ctfPlayer = PlayerService.createPlayer(player);
         event.joinMessage(null);
 
         if (!Main.getInstance().getServer().getAllowFlight()) {

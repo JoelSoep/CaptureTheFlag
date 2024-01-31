@@ -156,14 +156,14 @@ public class Game {
 
     public void createTeams(GameMap map) {
         Bukkit.getWorlds().forEach(world -> LogModule.GAME.log(world.getName()));
-        this.red = new Team(
+        this.red = TeamService.createTeam(
                 TeamColor.RED,
                 map.getRedSpawnLocation(),
                 map.getRedFlagLocation()
         );
         this.red.getFlag().setMaterial(Material.RED_BANNER);
 
-        this.blue = new Team(
+        this.blue = TeamService.createTeam(
                 TeamColor.BLUE,
                 map.getBlueSpawnLocation(),
                 map.getBlueFlagLocation()
@@ -171,7 +171,7 @@ public class Game {
         this.blue.getFlag().setMaterial(Material.BLUE_BANNER);
     }
 
-    public List<CTFPlayer> concatAudience(List<CTFPlayer> arr1, List<CTFPlayer> arr2) {
+    private List<CTFPlayer> concatAudience(List<CTFPlayer> arr1, List<CTFPlayer> arr2) {
         return Stream.concat(arr1.stream(), arr2.stream())
                 .collect(Collectors.toList());
     }

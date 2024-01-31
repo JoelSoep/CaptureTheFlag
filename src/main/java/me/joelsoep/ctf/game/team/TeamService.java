@@ -5,6 +5,7 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
+import org.bukkit.Location;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,12 @@ public class TeamService {
 
     @Getter
     private static final List<Team> teams = new ArrayList<>();
+
+    public static Team createTeam(TeamColor color, Location spawn, Location flagLocation) {
+        Team team = new Team(color, spawn, flagLocation);
+        getTeams().add(team);
+        return team;
+    }
 
     public static void setTeams(Game game) {
         ArrayList<CTFPlayer> players = game.getPlayers();

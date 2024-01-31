@@ -6,7 +6,7 @@ import org.reactivestreams.Subscription;
 
 public class EmptySubscriber<T> {
     @Getter
-    private Subscriber<T> subscriber;
+    private final Subscriber<T> subscriber;
     public EmptySubscriber() {
         subscriber = new Subscriber<T>() {
             @Override

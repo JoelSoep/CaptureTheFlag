@@ -2,6 +2,7 @@ package me.joelsoep.ctf.player;
 
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
@@ -10,6 +11,12 @@ public class PlayerService {
 
     private static final HashMap<String, CTFPlayer> players = new HashMap<>();
     private static Audience audience = Audience.audience(players.values());
+
+    public static CTFPlayer createPlayer(Player player) {
+        CTFPlayer ctfPlayer = new CTFPlayer(player);
+        addPlayer(ctfPlayer);
+        return ctfPlayer;
+    }
 
     public static void addPlayer(CTFPlayer player) {
         players.put(player.getPlayer().getName(), player);

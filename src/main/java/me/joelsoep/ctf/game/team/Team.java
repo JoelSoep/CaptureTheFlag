@@ -23,14 +23,12 @@ public class Team {
     private Location spawn;
     private Flag flag;
 
-    public Team(TeamColor teamColor, Location spawn, Location flagLocation) {
+    protected Team(TeamColor teamColor, Location spawn, Location flagLocation) {
         this.flag = new Flag();
         this.teamColor = teamColor;
         this.spawn = spawn;
         this.flag.location = flagLocation;
         this.audience = Audience.audience(players);
-
-        TeamService.getTeams().add(this);
     }
 
     @Data

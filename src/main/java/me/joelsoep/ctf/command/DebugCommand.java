@@ -22,9 +22,11 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.TestOnly;
 
 import java.util.concurrent.atomic.AtomicReference;
 
+@TestOnly
 @CommandAlias("debug|dbg")
 @CommandPermission("ctf.admin")
 public class DebugCommand extends BaseCommand {

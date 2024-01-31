@@ -41,14 +41,13 @@ public class CTFPlayer implements Audience {
     private Long cooldown;
     private Integer level;
 
-    public CTFPlayer(Player player) {
+    protected CTFPlayer(Player player) {
         this.player = player;
         this.data = new CTFPlayerData(this);
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
         this.level = 1;
         this.cooldown = System.currentTimeMillis();
-        PlayerService.addPlayer(this);
         reset();
     }
 

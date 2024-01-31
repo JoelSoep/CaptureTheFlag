@@ -5,7 +5,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 public class StandardSubscriber<T> {
-   @Getter private Subscriber<T> subscriber;
+   @Getter private final Subscriber<T> subscriber;
     public StandardSubscriber(IStandardSubscriber<T> Interface) {
         subscriber = new Subscriber<T>() {
             @Override

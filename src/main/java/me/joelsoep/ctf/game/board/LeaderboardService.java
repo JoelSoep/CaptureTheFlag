@@ -12,7 +12,6 @@ import java.util.List;
 public class LeaderboardService {
 
     private ArrayList<Leaderboard> leaderboards;
-    private Game game = Main.getGame();
 
     public LeaderboardService() {
         leaderboards = new ArrayList<>(List.of(

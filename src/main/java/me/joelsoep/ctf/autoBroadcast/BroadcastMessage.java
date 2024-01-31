@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.autoBroadcast;
 
+import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
@@ -53,7 +54,9 @@ public class BroadcastMessage {
                 PlayerService.getAudience().sendMessage(MM.deserialize(message));
 
                 if (sound != null) {
-                    Bukkit.getOnlinePlayers().forEach(player -> player.playSound(Sound.sound(Key.key(sound), Sound.Source.MASTER, 1, 1)));
+                    Bukkit.getOnlinePlayers().stream()
+                            .filter(player -> player.getWorld().getName().equals(MapManager.getLobby().getWorld().getName()))
+                            .forEach(player -> player.playSound(Sound.sound(Key.key(sound), Sound.Source.MASTER, 1, 1)));
                 }
 
             }
