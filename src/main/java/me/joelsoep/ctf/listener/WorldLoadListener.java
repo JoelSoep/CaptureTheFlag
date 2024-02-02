@@ -2,29 +2,19 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.game.board.LeaderboardService;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.MapState;
-import me.joelsoep.ctf.map.type.GameMap;
-import me.joelsoep.ctf.map.type.LobbyMap;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Locale;
 import java.util.logging.Level;
 
 public class WorldLoadListener implements Listener {
-
-    private final Plugin plugin;
-
-    public WorldLoadListener(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @EventHandler
     public void onWorldLoad(WorldLoadEvent event) {

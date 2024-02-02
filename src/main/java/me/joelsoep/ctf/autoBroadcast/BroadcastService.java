@@ -11,19 +11,11 @@ import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BroadcastService {
 
-        private final Plugin plugin;
-
-        public BroadcastService(Plugin plugin) {
-            this.plugin = plugin;
-        }
-
         MongoCollection<Document> collection = Main.getMongoManager().getDatabase().getCollection("autoBroadcast");
-
 
         public void runAll() {
             AtomicInteger count = new AtomicInteger(0);
@@ -35,7 +27,6 @@ public class BroadcastService {
                         count.set(result.intValue());
                         LogModule.UTILITY.log("Broadcasting %s messages.".formatted(count.get()));
                     } else {
-                       // Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("autoBroadcast"), new Document(Map.of("_id", "0", "message", "Example message", "duration", 300000)));
                         LogModule.UTILITY.warning("No documents found to autobroadcast!");
                     }
                 }
@@ -69,7 +60,7 @@ public class BroadcastService {
                 @Override
                 public void onComplete() {
                     results.forEach(document -> {
-                        new BroadcastMessage(plugin).builder()
+                        BroadcastMessage.builder()
                                 .withDuration(document.getInteger("duration"))
                                 .withMessage(document.getString("message"))
                                 .withSound(document.getString("sound"))

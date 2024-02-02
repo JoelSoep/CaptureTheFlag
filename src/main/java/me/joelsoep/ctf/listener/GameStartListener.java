@@ -15,17 +15,11 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameStartListener implements Listener {
-
-    private final Plugin plugin;
-    public GameStartListener(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @EventHandler
     public void onStart(GameStartEvent event) {
@@ -101,7 +95,6 @@ public class GameStartListener implements Listener {
         });
 
         new CountdownTask(
-                plugin,
                 MM.deserialize("<#63f02b>Fight!"),
                 game.getAudience(),
                 7,

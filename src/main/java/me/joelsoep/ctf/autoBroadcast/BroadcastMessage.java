@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.autoBroadcast;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
@@ -10,18 +11,12 @@ import org.bukkit.plugin.Plugin;
 
 public class BroadcastMessage {
 
-    private final Plugin plugin;
     private String message;
     private String sound;
     private Long duration;
 
-
-    public BroadcastMessage(Plugin plugin) {
-        this.plugin = plugin;
-    }
-
-    public BroadcastMessage builder() {
-        return this;
+    public static BroadcastMessage builder() {
+        return new BroadcastMessage();
     }
 
     public BroadcastMessage withMessage(String message) {
@@ -40,7 +35,7 @@ public class BroadcastMessage {
     }
 
     public void schedule() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 if (message == null) {

@@ -1,7 +1,6 @@
 package me.joelsoep.ctf.game.board;
 
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import org.bukkit.Location;

@@ -7,7 +7,6 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.RandomUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.reflections.Reflections;
 
 import java.util.*;

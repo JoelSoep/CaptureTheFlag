@@ -27,7 +27,7 @@ public class Hotbar {
         giveAdminMenu();
         giveQueueBlock(player);
 
-        if (LocalConfig.isAllowCustomTeams()) {
+        if (LocalConfig.ALLOW_CUSTOM_TEAMS) {
             giveTeamSelectionMenuItem();
         }
     }

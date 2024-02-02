@@ -21,17 +21,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class PlayerDeathListener implements Listener {
-
-    private final Plugin plugin;
-
-    public PlayerDeathListener(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
@@ -77,7 +70,7 @@ public class PlayerDeathListener implements Listener {
             ctfPlayer.getData().setDeaths(ctfPlayer.getData().getDeaths() + 1);
             event.setCancelled(true);
             player.teleport(game.getMap().getCenterLocation());
-            new DeathCountdownTask(plugin, ctfPlayer, 5);
+            new DeathCountdownTask(ctfPlayer, 5);
 
             if (oppositeTeam.getFlag().getThief() != null) {
                 if (!(oppositeTeam.getFlag().getThief().equals(ctfPlayer))) {

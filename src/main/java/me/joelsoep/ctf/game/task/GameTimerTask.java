@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.task;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameEndEvent;
@@ -9,18 +10,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 public class GameTimerTask {
-    private final Plugin plugin;
     private final Game game;
     private int id;
 
-    public GameTimerTask(Plugin plugin, Game game) {
-        this.plugin = plugin;
+    public GameTimerTask(Game game) {
         this.game = game;
         start();
     }
 
     private void start() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 if (game.getState() == GameState.ENDED) {

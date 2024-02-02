@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.task;
 
+import me.joelsoep.ctf.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -7,18 +8,16 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
 
 public class CleanItemsTask {
-    private final Plugin plugin;
     private final World world;
     private int id;
 
-    public CleanItemsTask(Plugin plugin, World world) {
-        this.plugin = plugin;
+    public CleanItemsTask(World world) {
         this.world = world;
         clean();
     }
 
     private void clean() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 world.getEntities().stream().filter(entity -> entity.getType() == EntityType.DROPPED_ITEM).forEach(Entity::remove);

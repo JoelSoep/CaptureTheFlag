@@ -15,18 +15,16 @@ public class DeathCountdownTask {
 
     private int id;
     private int seconds;
-    private Plugin plugin;
     private CTFPlayer player;
 
-    public DeathCountdownTask(Plugin plugin, CTFPlayer player, int seconds) {
-        this.plugin = plugin;
+    public DeathCountdownTask(CTFPlayer player, int seconds) {
         this.player = player;
         this.seconds = seconds;
         this.countdown();
     }
 
     public void countdown() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 if (player == null || !player.getPlayer().isOnline()) {

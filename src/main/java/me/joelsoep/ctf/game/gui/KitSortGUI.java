@@ -154,6 +154,11 @@ public class KitSortGUI extends ChestGui {
             index++;
         }
 
+        /**
+         * We ensure that the items that are put in the kit to be saved are also in the default sorted kit.
+         * This is to avoid cheaters potentially spawning items in and saving them to a kit.
+         */
+
         AtomicBoolean invalid = new AtomicBoolean(false);
         ArrayList<ItemStack> verifier = new ArrayList<>(kit.getItems().values());
         verifier.forEach(itemStack -> {

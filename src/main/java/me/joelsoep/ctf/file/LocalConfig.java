@@ -1,12 +1,12 @@
 package me.joelsoep.ctf.file;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class LocalConfig {
-    @Getter
-    @Setter
-    public static boolean allowCustomTeams = true;
+    public static boolean ALLOW_CUSTOM_TEAMS = true;
+
+    public static String MONGO_CONNECTION_STRING = "mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority";
+
+
 }

@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.game.special;
 
-import me.joelsoep.ctf.game.special.specials.Mirror;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
@@ -12,10 +11,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.*;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 public abstract class BaseSpecial<T extends Event> implements Listener {
     protected String name;

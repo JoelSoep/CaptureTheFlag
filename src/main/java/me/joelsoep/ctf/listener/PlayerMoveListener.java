@@ -8,7 +8,6 @@ import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
-import me.joelsoep.ctf.map.Map;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
@@ -20,17 +19,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public class PlayerMoveListener implements Listener {
 
-    private final Plugin plugin;
-
-    public PlayerMoveListener(Plugin plugin) {
-        this.plugin = plugin;
+    public PlayerMoveListener() {
     }
 
     @EventHandler

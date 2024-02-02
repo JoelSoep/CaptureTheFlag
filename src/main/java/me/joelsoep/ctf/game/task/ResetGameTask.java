@@ -10,25 +10,22 @@ import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResetGameTask {
 
-    private final Plugin plugin;
     private Game game;
     private Integer id;
 
-    public ResetGameTask(Plugin plugin, Game game) {
-        this.plugin = plugin;
+    public ResetGameTask(Game game) {
         this.game = game;
         reset();
     }
 
     public void reset() {
-        this.id = Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 // Create a copy of game.getPlayers() to avoid ConcurrentModificationException

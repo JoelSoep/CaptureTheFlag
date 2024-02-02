@@ -17,8 +17,8 @@ public class BackupPlayerDataTask {
     private final Plugin plugin;
     private int id;
 
-    public BackupPlayerDataTask(Plugin plugin) {
-        this.plugin = plugin;
+    public BackupPlayerDataTask() {
+        this.plugin = Main.getInstance();
         run();
     }
 

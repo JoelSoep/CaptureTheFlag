@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.listener;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -13,8 +14,8 @@ public class ListenerService {
 
     private final Plugin plugin;
 
-    public ListenerService(Plugin plugin) {
-        this.plugin = plugin;
+    public ListenerService() {
+        this.plugin = Main.getInstance();
         loadAndRegisterListeners("me.joelsoep.ctf.listener");
     }
 

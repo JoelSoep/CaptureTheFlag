@@ -6,16 +6,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 public class QueuePlayersActionbarTask {
-    private final Plugin plugin;
     private int id;
 
-    public QueuePlayersActionbarTask(Plugin plugin) {
-        this.plugin = plugin;
+    public QueuePlayersActionbarTask() {
         actionbar();
     }
 
     private void actionbar() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 if (Main.getQueue().getQueue() == null) {

@@ -9,7 +9,6 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.Timer;
 import net.kyori.adventure.text.Component;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;

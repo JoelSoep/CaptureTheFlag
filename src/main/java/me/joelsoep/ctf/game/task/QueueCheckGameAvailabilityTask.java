@@ -8,18 +8,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 public class QueueCheckGameAvailabilityTask {
-    private final Plugin plugin;
     private Game game;
     private int id;
 
-    public QueueCheckGameAvailabilityTask(Plugin plugin) {
-        this.plugin = plugin;
+    public QueueCheckGameAvailabilityTask() {
         this.game = Main.getGame();
         check();
     }
 
     private void check() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 if (game.getState() != GameState.WAITING) {

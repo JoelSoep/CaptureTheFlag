@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.game.task;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.player.CTFPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 
 public class CongratulationEffectTask {
 
-    private final Plugin plugin;
     private ArrayList<CTFPlayer> winner;
     private final Color color;
     private final int amount;
@@ -23,8 +23,7 @@ public class CongratulationEffectTask {
     private Integer id;
     private int turns = 0;
 
-    public CongratulationEffectTask(Plugin plugin, ArrayList<CTFPlayer> winner, Color color, Integer amount) {
-        this.plugin = plugin;
+    public CongratulationEffectTask(ArrayList<CTFPlayer> winner, Color color, Integer amount) {
         this.winner = winner;
         this.color = color;
         this.amount = amount;
@@ -33,7 +32,7 @@ public class CongratulationEffectTask {
     }
 
     public void run() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 for (CTFPlayer ctfPlayer : winner) {

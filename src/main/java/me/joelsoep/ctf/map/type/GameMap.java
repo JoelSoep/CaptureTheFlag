@@ -25,7 +25,7 @@ public abstract class GameMap extends Map {
 
         this.setWorld(createEmptyWorld());
         world.setSpawnLocation(getCenterLocation());
-        new CleanItemsTask(Main.getInstance(), world);
+        new CleanItemsTask(world);
     }
 
     public abstract void load();

@@ -21,7 +21,6 @@ import net.kyori.adventure.title.Title;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.TestOnly;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -30,13 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @CommandAlias("debug|dbg")
 @CommandPermission("ctf.admin")
 public class DebugCommand extends BaseCommand {
-    private final Plugin plugin;
-
     Game game = Main.getGame();
-
-    public DebugCommand(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @Default
     @CatchUnknown
@@ -127,7 +120,7 @@ public class DebugCommand extends BaseCommand {
         game.getRed().getPlayers().clear();
 
         game.getAudience().showTitle(Title.title(MM.deserialize("<yellow>Tied"), MM.deserialize("<gray>Game was ended by an operator")));
-        new ResetGameTask(plugin, game);
+        new ResetGameTask(game);
     }
 
     @Subcommand("giveblocks")
@@ -169,7 +162,7 @@ public class DebugCommand extends BaseCommand {
 
     @Subcommand("allowteamselector")
     public void teamSelector(Player player, boolean value) {
-        LocalConfig.setAllowCustomTeams(value);
+        LocalConfig.ALLOW_CUSTOM_TEAMS = value;
         player.sendMessage(MM.deserialize("<gray>Updated value to <yellow>%s<gray>.".formatted(value)));
     }
 

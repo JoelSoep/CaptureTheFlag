@@ -2,7 +2,6 @@ package me.joelsoep.ctf.player.experience;
 
 import me.joelsoep.ctf.game.event.PlayerLevelUpEvent;
 import me.joelsoep.ctf.player.CTFPlayer;
-import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 
 public class Level {

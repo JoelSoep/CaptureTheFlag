@@ -23,12 +23,6 @@ import org.bukkit.plugin.Plugin;
 
 public class GameEndListener implements Listener {
 
-    private final Plugin plugin;
-
-    public GameEndListener() {
-        this.plugin = Main.getInstance();
-    }
-
     @EventHandler
     public void onEnd(GameEndEvent event) {
         Game game = event.getGame();
@@ -44,13 +38,13 @@ public class GameEndListener implements Listener {
             game.getBlue().getPlayers().clear();
             game.getAudience().sendTitlePart(TitlePart.TITLE, MM.deserialize("<yellow>Tied"));
             LogModule.GAME.log("Ending game. GameEndListener was triggered.");
-            new ResetGameTask(plugin, game);
+            new ResetGameTask(game);
             return;
         }
 
         winner.getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 1, 1));
         Color color = winner.getTeamColor() == game.getRed().getTeamColor() ? Color.RED : Color.BLUE;
-        new CongratulationEffectTask(plugin, winner.getPlayers(), color,3);
+        new CongratulationEffectTask(winner.getPlayers(), color,3);
         winner.getAudience().showTitle(Title.title(
                 MM.deserialize(
                         "<#3ff21b>You won!"
@@ -88,6 +82,6 @@ public class GameEndListener implements Listener {
         winner.getPlayers().clear();
         loser.getPlayers().clear();
         LogModule.GAME.log("Ending game. GameEndListener was triggered.");
-        new ResetGameTask(plugin, game);
+        new ResetGameTask(game);
     }
 }

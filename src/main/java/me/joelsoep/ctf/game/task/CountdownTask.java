@@ -12,13 +12,11 @@ import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 import java.time.Duration;
 
 public class CountdownTask {
 
-    private final Plugin plugin;
     private final Component message;
     private Audience audience;
     private final boolean isGameStartCountdown;
@@ -26,8 +24,7 @@ public class CountdownTask {
     private Game game;
     private int id;
 
-    public CountdownTask(Plugin plugin, Component message, Audience audience, int seconds) {
-        this.plugin = plugin;
+    public CountdownTask(Component message, Audience audience, int seconds) {
         this.message = message;
         this.audience = audience;
         this.seconds = seconds;
@@ -35,8 +32,7 @@ public class CountdownTask {
         countdown();
     }
 
-    public CountdownTask(Plugin plugin, Component message, Audience audience, int seconds, boolean isGameStartCountdown, Game game) {
-        this.plugin = plugin;
+    public CountdownTask(Component message, Audience audience, int seconds, boolean isGameStartCountdown, Game game) {
         this.message = message;
         this.audience = audience;
         this.seconds = seconds;
@@ -46,7 +42,7 @@ public class CountdownTask {
     }
 
     public void countdown() {
-        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
+        this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
                 if (seconds == 45) {
@@ -69,7 +65,7 @@ public class CountdownTask {
                         game.setState(GameState.RUNNING);
                         game.setStartTime(System.currentTimeMillis());
                         game.setGameTime(System.currentTimeMillis() + (10L * 60L * 1000L));
-                        new GameTimerTask(Main.getInstance(), game);
+                        new GameTimerTask(game);
                         LogModule.GAME.log("Updated game state to RUNNING");
                         if (game.getPlayers().size() == 0) {
                             LogModule.GAME.log("CountdownTask: Activated 0-player-function.");
@@ -78,7 +74,7 @@ public class CountdownTask {
                             game.getMap().placeFlag(game.getRed());
                             game.getBlue().getPlayers().clear();
                             game.getRed().getPlayers().clear();
-                            new ResetGameTask(plugin, game);
+                            new ResetGameTask(game);
                         }
                     }
 

@@ -2,13 +2,10 @@ package me.joelsoep.ctf.map;
 
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
-import com.sk89q.util.StringUtil;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.database.MongoManager;
-import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;

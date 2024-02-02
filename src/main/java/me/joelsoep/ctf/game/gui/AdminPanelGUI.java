@@ -90,7 +90,6 @@ public class AdminPanelGUI extends ChestGui implements Listener {
             game.getAudience().playSound(Sound.sound(Key.key("block.note_block.pling"), Sound.Source.MASTER, 10, 1));
 
                 game.setCountdownTask(new CountdownTask(
-                        plugin,
                         MM.deserialize("<#63f02b>Game has started!"),
                         game.getAudience(),
                         5,

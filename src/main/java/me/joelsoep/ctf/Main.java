@@ -17,6 +17,7 @@ import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.command.SpectateCommand;
 import me.joelsoep.ctf.database.MongoManager;
+import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.kit.KitService;
@@ -35,7 +36,7 @@ import java.util.logging.Level;
 public final class Main extends JavaPlugin {
 
     @Getter private static final Game game = new Game();
-    @Getter private static final MongoManager mongoManager = new MongoManager(new ConnectionString("mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority"));
+    @Getter private static final MongoManager mongoManager = new MongoManager(new ConnectionString(LocalConfig.MONGO_CONNECTION_STRING));
     @Getter private static final KitService kitService = new KitService();
     @Getter private static final SpecialService specialService = new SpecialService();
     @Getter private static final GameQueue queue = new GameQueue();
@@ -60,17 +61,17 @@ public final class Main extends JavaPlugin {
                     """);
         }
 
-        new ListenerService(this);
-        new BackupPlayerDataTask(this);
-        new QueuePlayersActionbarTask(this);
-        new QueueCheckGameAvailabilityTask(this);
+        new ListenerService();
+        new BackupPlayerDataTask();
+        new QueuePlayersActionbarTask();
+        new QueueCheckGameAvailabilityTask();
 
         Main.getSpecialService().loadSpecials();
         new MapManager();
-        new BroadcastService(this).runAll();
+        new BroadcastService().runAll();
         PaperCommandManager manager = new PaperCommandManager(this);
 
-        manager.registerCommand(new DebugCommand(this));
+        manager.registerCommand(new DebugCommand());
         manager.registerCommand(new SpectateCommand());
     }
 

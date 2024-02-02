@@ -12,15 +12,8 @@ import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
 public class PlayerLeaveGameListener implements Listener {
-
-    private final Plugin plugin;
-
-    public PlayerLeaveGameListener(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @EventHandler
     public void onLeaveGame(PlayerLeaveGameEvent event) {
