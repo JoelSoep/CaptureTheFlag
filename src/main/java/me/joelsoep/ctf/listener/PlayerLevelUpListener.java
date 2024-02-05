@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.PlayerLevelUpEvent;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -19,6 +20,7 @@ public class PlayerLevelUpListener implements Listener {
             return;
         }
 
+        player.getBalance().giveCoins(10);
         player.sendMessage(MM.deserialize("<green>Level up! <yellow>%s".formatted(player.getLevel())));
         player.getPlayer().playerListName(MM.deserialize("<gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()));
     }

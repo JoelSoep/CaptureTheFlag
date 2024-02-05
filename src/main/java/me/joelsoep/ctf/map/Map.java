@@ -14,6 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -121,5 +122,9 @@ public abstract class Map {
             }
         });
         return future;
+    }
+
+    public void clearEntities() {
+        getWorld().getEntities().forEach(Entity::remove);
     }
 }

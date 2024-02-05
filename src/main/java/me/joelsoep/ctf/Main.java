@@ -29,6 +29,9 @@ import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.CTFLogger;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.util.MM;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -42,6 +45,7 @@ public final class Main extends JavaPlugin {
     @Getter private static final GameQueue queue = new GameQueue();
     @Getter private static CTFLogger CTFLogger = null;
     @Getter private static Main instance = null;
+    @Getter private static BackupPlayerDataTask backupTask = null;
 
     @Override
     public void onLoad() {
@@ -60,9 +64,8 @@ public final class Main extends JavaPlugin {
                     Keeping allow flight disabled is at your own risk.
                     """);
         }
-
+        backupTask = new BackupPlayerDataTask();
         new ListenerService();
-        new BackupPlayerDataTask();
         new QueuePlayersActionbarTask();
         new QueueCheckGameAvailabilityTask();
 
@@ -77,6 +80,9 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Bukkit.broadcast(MM.deserialize("BACKING UP ALL PLAYERS BEFORE SHUTDOWN"));
+        Main.getBackupTask().backupAll();
+        Bukkit.broadcast(MM.deserialize("DONE!"));
         Main.getCTFLogger().closeFileHandler();
     }
 }

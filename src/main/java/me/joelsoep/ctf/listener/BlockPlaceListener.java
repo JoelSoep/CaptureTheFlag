@@ -21,6 +21,7 @@ public class BlockPlaceListener implements Listener {
         if (game.getState() != GameState.RUNNING) {
             if (!player.hasPermission("ctf.admin")) {
                 event.setCancelled(true);
+                event.setBuild(false);
             }
         }
         if (game.getState() == GameState.RUNNING) {

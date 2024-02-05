@@ -36,6 +36,7 @@ public class AirshipMap extends GameMap {
 
     @Override
     public void load() {
+        clearEntities();
         FAWE.paste(this.schematic, new Location(getWorld(), 0, 50, 0));
         setChest();
         createChestHandle();

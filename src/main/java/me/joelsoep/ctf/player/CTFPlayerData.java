@@ -5,6 +5,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.experience.Level;
+import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -21,11 +22,12 @@ public class CTFPlayerData {
 
     private HashMap<String, HashMap<Integer, ItemStack>> sortedKits = new HashMap<>();
     private Date lastSeen;
-    private Integer kills;
-    private Integer deaths;
-    private Integer captures;
-    private Integer experience;
-    private Double kd;
+    private Integer kills = 0;
+    private Integer deaths = 0;
+    private Integer captures = 0;
+    private Integer experience = 0;
+    private Integer coins = 0;
+    private Double kd = (double) 1;
 
     public CTFPlayerData(CTFPlayer player) {
         this.player = player;
@@ -60,11 +62,8 @@ public class CTFPlayerData {
                             .append("login_streak", 1)
                             .append("player_kd", (double) 1)
                             .append("experience", 0)
+                            .append("coins", 0)
                     );
-                    kills = 0;
-                    deaths = 0;
-                    experience = 0;
-                    captures = 0;
                 } else {
                     fetchData();
                 }
@@ -97,33 +96,17 @@ public class CTFPlayerData {
                         return;
                     }
                     Document result = futureDocument[0];
-                    if (kills == null) {
-                        kills = 0;
-                    }
-
-                    if (deaths == null) {
-                        deaths = 0;
-                    }
-
-                    if (captures == null) {
-                        captures = 0;
-                    }
-
-                    if (kd == null) {
-                        kd = (double) 1;
-                    }
-
-                    if (experience == null) {
-                        experience = 0;
-                    }
 
                     kills = result.getInteger("player_kills");
                     deaths = result.getInteger("player_deaths");
                     captures = result.getInteger("flag_captures");
                     experience = result.getInteger("experience");
+                    coins = result.getInteger("coins");
                     player.setLevel(Level.getLevel(player));
 
                     kd = result.getDouble("player_kd");
+
+                    player.getPlayer().playerListName(MM.deserialize("<gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()));
 
                     List<Object> resultList = result.getList("sortedKits", Object.class);
                     if (resultList == null) {

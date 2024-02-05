@@ -36,7 +36,7 @@ public class GameEndListener implements Listener {
             game.getMap().placeFlag(game.getBlue());
             game.getRed().getPlayers().clear();
             game.getBlue().getPlayers().clear();
-            game.getAudience().sendTitlePart(TitlePart.TITLE, MM.deserialize("<yellow>Tied"));
+            game.getAudience().showTitle(Title.title(MM.deserialize("<yellow>Tied"), MM.deserialize("")));
             LogModule.GAME.log("Ending game. GameEndListener was triggered.");
             new ResetGameTask(game);
             return;

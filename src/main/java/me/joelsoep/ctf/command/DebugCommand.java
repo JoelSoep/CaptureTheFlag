@@ -4,6 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
@@ -221,6 +222,23 @@ public class DebugCommand extends BaseCommand {
         }
 
         Level.gainExperience(ctfPlayer, amount);
+    }
+
+    @Subcommand("setbalance")
+    public void setBalance(Player player, @Optional OnlinePlayer target, int amount) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+
+        CTFPlayer ctfTarget = PlayerService.getPlayers().get(target.getPlayer().getName());
+        if (ctfTarget == null) {
+            ctfTarget = ctfPlayer;
+            return;
+        }
+
+        player.sendMessage(MM.deserialize("Transaction succession state: " + EconomyManager.set(ctfTarget, amount)));
     }
 
 }

@@ -57,6 +57,9 @@ public class ScoreboardHandler implements Listener {
             board.updateTitle(MM.deserialize("<green><bold>Capture the Flag"));
             board.updateLines(
                     message(""),
+                    message("<gold>⛃ <reset>Coins: <gold>" + player.getData().getCoins()),
+                    message("<gold>✪ <reset>Level: <gold>" + player.getLevel()),
+                    message(""),
                     message("<gold>➥ <reset>Players: <gold>" + game.getPlayerCount() + "<reset>/<gold>" + game.getMap().getMaxPlayers()),
                     message("<gold>☄ <reset>Map: <gold>" + WordUtils.capitalize(game.getMap().getName().replace("_", " "))),
                     message(""),

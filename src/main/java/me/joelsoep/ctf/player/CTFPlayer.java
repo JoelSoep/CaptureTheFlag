@@ -3,6 +3,7 @@ package me.joelsoep.ctf.player;
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
@@ -31,6 +32,7 @@ public class CTFPlayer implements Audience {
 
     private final Player player;
     private final CTFPlayerData data;
+    private final Balance balance;
 
     private Game game;
     private ParticipationState participationState;
@@ -44,6 +46,7 @@ public class CTFPlayer implements Audience {
     protected CTFPlayer(Player player) {
         this.player = player;
         this.data = new CTFPlayerData(this);
+        this.balance = new Balance(this);
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
         this.level = 1;
@@ -65,7 +68,7 @@ public class CTFPlayer implements Audience {
         this.setKillStreak(0);
 
         player.getInventory().clear();
-        player.playerListName(MM.deserialize("<gray>" + player.getName() + " ✪" + player.getLevel()));
+        player.playerListName(MM.deserialize("<gray>" + player.getName() + " ✪" + this.getLevel()));
         player.displayName(MM.deserialize("<gray>" + player.getName()));
         player.setGameMode(GameMode.ADVENTURE);
         player.setGlowing(false);
@@ -82,6 +85,31 @@ public class CTFPlayer implements Audience {
         });
     }
 
+
+    public static class Balance {
+        private final CTFPlayer player;
+
+        public Balance(CTFPlayer player) {
+            this.player = player;
+        }
+        public void giveCoins(int amount) {
+            boolean success = EconomyManager.increment(player, amount);
+            if (success) {
+                player.sendMessage(MM.deserialize("<gray>You've received <gold>%s <gray>coins!".formatted(amount)));
+            } else {
+                player.sendMessage(MM.deserialize("<red>A transaction for <gold>%s <red>coins failed. Please contact an administrator."));
+            }
+        }
+
+        public void takeCoins(int amount) {
+            boolean success = EconomyManager.subtract(player, amount);
+            if (success) {
+                player.sendMessage(MM.deserialize("<gold>%s <gray>coins were taken from your account.".formatted(amount)));
+            } else {
+                player.sendMessage(MM.deserialize("<red>You do not have enough coins to complete this transaction!"));
+            }
+        }
+    }
     @Override
     public void showTitle(@NotNull Title title) {
         player.showTitle(title);
