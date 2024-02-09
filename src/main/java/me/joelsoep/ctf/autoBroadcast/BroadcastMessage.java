@@ -46,7 +46,9 @@ public class BroadcastMessage {
                     throw new IllegalStateException("No duration found for broadcast message.");
                 }
 
-                PlayerService.getAudience().sendMessage(MM.deserialize(message));
+                Bukkit.getOnlinePlayers().stream()
+                        .filter(player -> player.getWorld().getName().equals(MapManager.getLobby().getWorld().getName()))
+                        .forEach(player -> player.sendMessage(MM.deserialize(message)));
 
                 if (sound != null) {
                     Bukkit.getOnlinePlayers().stream()

@@ -10,11 +10,13 @@ public class PlayerLevelUpEvent extends Event {
     public static final HandlerList handlers = new HandlerList();
 
    @Getter  private final CTFPlayer player;
-   @Getter private final Integer level;
+   @Getter private final Integer oldLevel;
+   @Getter private final Integer newLevel;
 
-    public PlayerLevelUpEvent(CTFPlayer player, Integer level) {
+    public PlayerLevelUpEvent(CTFPlayer player, Integer oldLevel, Integer newLevel) {
         this.player = player;
-        this.level = level;
+        this.oldLevel = oldLevel;
+        this.newLevel = newLevel;
     }
 
     @Override

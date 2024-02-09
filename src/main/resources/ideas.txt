@@ -252,5 +252,10 @@ players can put their items in a chest and collect them again after respawning F
 when players have selected their teams, if you dont select a team you wont enter the game FIXED
 
 
-custom death fall height per map
-kill streak messages are fucked
+custom death fall height per map FIXED
+kill streak messages are fucked FIXED
+
+players can build on flag FIXED
+level calculation seems to be fucked, i leveled up from 12 to 33 from 145 exp while its usually much harder. FIXED
+
+flag didnt appear in desert map for some reason? could access it tho >> only blue flag in desert dragon

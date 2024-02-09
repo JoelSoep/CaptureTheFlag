@@ -84,7 +84,7 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
         meta.addEffect(FireworkEffect.builder()
                 .withFade(Color.YELLOW)
                 .withTrail()
-                        .withColor(Color.FUCHSIA)
+                .withColor(Color.FUCHSIA)
                 .with(FireworkEffect.Type.BURST)
                 .build());
         firework.setFireworkMeta(meta);

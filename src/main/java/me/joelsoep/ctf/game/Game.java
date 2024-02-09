@@ -115,6 +115,7 @@ public class Game {
         TeamService.getTeams().clear();
         this.createTeams(this.getMap());
         this.setAudience(Audience.audience(concatAudience(players, spectators)));
+        MapManager.registerMapToGame(this.getMap(), this);
     }
 
     public void addPlayer(CTFPlayer player) {

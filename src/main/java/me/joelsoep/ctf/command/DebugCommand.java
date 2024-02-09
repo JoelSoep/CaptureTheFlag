@@ -19,6 +19,7 @@ import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.player.experience.Level;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -235,10 +236,15 @@ public class DebugCommand extends BaseCommand {
         CTFPlayer ctfTarget = PlayerService.getPlayers().get(target.getPlayer().getName());
         if (ctfTarget == null) {
             ctfTarget = ctfPlayer;
-            return;
         }
 
         player.sendMessage(MM.deserialize("Transaction succession state: " + EconomyManager.set(ctfTarget, amount)));
     }
 
+    @Subcommand("simulatexp")
+    public void simulate(Player player) {
+        for (int i = 0; i < 150; i++) {
+            Bukkit.broadcast(MM.deserialize("Level %s: %s".formatted(i + 1, Level.getXPForNextLevel(i))));
+        }
+    }
 }

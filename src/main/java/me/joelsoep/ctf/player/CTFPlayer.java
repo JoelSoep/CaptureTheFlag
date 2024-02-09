@@ -92,6 +92,7 @@ public class CTFPlayer implements Audience {
         public Balance(CTFPlayer player) {
             this.player = player;
         }
+
         public void giveCoins(int amount) {
             boolean success = EconomyManager.increment(player, amount);
             if (success) {
@@ -110,6 +111,9 @@ public class CTFPlayer implements Audience {
             }
         }
     }
+
+
+
     @Override
     public void showTitle(@NotNull Title title) {
         player.showTitle(title);
@@ -139,6 +143,8 @@ public class CTFPlayer implements Audience {
     public void sendMessage(@NotNull Component message) {
         player.sendMessage(message);
     }
+
+    public void sendMessage(@NotNull String message) { player.sendMessage(MM.deserialize(message)); }
 
     @Override
     public void sendMessage(@NotNull Component message, ChatType.@NotNull Bound boundChatType) {

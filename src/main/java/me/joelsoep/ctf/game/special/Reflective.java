@@ -10,5 +10,6 @@ public interface Reflective<T extends Event> {
      * This method is not supposed to use the @EventHandler Annotation.
      * @param event The event to use to reflect.
      */
+
     void reflect(T event, Player player, Player reflector);
 }

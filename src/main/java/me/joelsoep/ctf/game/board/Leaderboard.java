@@ -6,6 +6,7 @@ import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.util.ModifiableObject;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 public class Leaderboard {
 
@@ -31,6 +34,7 @@ public class Leaderboard {
     private List<String> lines;
     private String darkColor;
     private String lightColor;
+    private Consumer<ModifiableObject> consumer = null;
 
     public Leaderboard(String internalName, String fancyName, MongoCollection<Document> collection, String key, Object defaultValue, boolean isInteger, String darkColor, String lightColor) {
         this.internalName = internalName;
@@ -41,6 +45,18 @@ public class Leaderboard {
         this.isInteger = isInteger;
         this.darkColor = darkColor;
         this.lightColor = lightColor;
+    }
+
+    public Leaderboard(String internalName, String fancyName, MongoCollection<Document> collection, String key, Object defaultValue, boolean isInteger, String darkColor, String lightColor, Consumer<ModifiableObject> consumer) {
+        this.internalName = internalName;
+        this.fancyName = fancyName;
+        this.collection = collection;
+        this.key = key;
+        this.defaultValue = defaultValue;
+        this.isInteger = isInteger;
+        this.darkColor = darkColor;
+        this.lightColor = lightColor;
+        this.consumer = consumer;
     }
 
     public void setLocation(Location location) {
@@ -113,6 +129,17 @@ public class Leaderboard {
                         } else {
                             value = (int) defaultValue;
                         }
+                    }
+
+                    AtomicReference<Object> modified = new AtomicReference<>(null);
+                    if (consumer != null) {
+                        ModifiableObject modifiableObject = new ModifiableObject(value);
+                        consumer.accept(modifiableObject);
+                        modified.set(modifiableObject.getObject());
+                    }
+
+                    if (modified.get() != null) {
+                        value = modified.get();
                     }
 
                     String line = darkColor + rank + ". &r" + playerName + " - " + lightColor + value.toString();

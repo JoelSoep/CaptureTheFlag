@@ -81,3 +81,83 @@ java.lang.LinkageError: loader constraint violation: when resolving method 'org.
         at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
         at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
         at java.lang.Thread.run(Thread.java:840) ~[?:?]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [18:34:27 ERROR]: [reactor.core.publisher.Operators] Operator called default onErrorDropped
+        reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because the return value of "me.joelsoep.ctf.player.CTFPlayerData.getExperience()" is null
+        Caused by: java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because the return value of "me.joelsoep.ctf.player.CTFPlayerData.getExperience()" is null
+                at me.joelsoep.ctf.player.experience.Level.experienceToLevel(Level.java:49) ~[ctf-1.0.jar:?]
+                at me.joelsoep.ctf.player.experience.Level.getLevel(Level.java:14) ~[ctf-1.0.jar:?]
+                at me.joelsoep.ctf.player.CTFPlayerData$2.onComplete(CTFPlayerData.java:105) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.StrictSubscriber.onComplete(StrictSubscriber.java:123) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxCreate$BaseSink.complete(FluxCreate.java:460) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxCreate$BufferAsyncSink.drain(FluxCreate.java:840) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxCreate$BufferAsyncSink.complete(FluxCreate.java:753) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxCreate$SerializedFluxSink.drainLoop(FluxCreate.java:247) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxCreate$SerializedFluxSink.drain(FluxCreate.java:213) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxCreate$SerializedFluxSink.complete(FluxCreate.java:204) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.BatchCursorFlux.lambda$recurseCursor$5(BatchCursorFlux.java:106) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:171) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoCreate$DefaultMonoSink.success(MonoCreate.java:172) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.BatchCursor.lambda$next$1(BatchCursor.java:50) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.operation.AsyncQueryBatchCursor.next(AsyncQueryBatchCursor.java:178) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.BatchCursor.lambda$next$2(BatchCursor.java:42) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoCreate.subscribe(MonoCreate.java:58) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.Mono.subscribe(Mono.java:4444) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.Mono.subscribeWith(Mono.java:4510) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.Mono.subscribe(Mono.java:4272) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.BatchCursorFlux.recurseCursor(BatchCursorFlux.java:112) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.BatchCursorFlux.lambda$subscribe$0(BatchCursorFlux.java:61) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.LambdaMonoSubscriber.onNext(LambdaMonoSubscriber.java:171) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:82) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondComplete(MonoFlatMap.java:245) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:305) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:180) ~[ctf-1.0.jar:?]
+                at reactor.core.publisher.MonoCreate$DefaultMonoSink.success(MonoCreate.java:172) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.MongoOperationPublisher.lambda$sinkToCallback$33(MongoOperationPublisher.java:525) ~[ctf-1.0.jar:?]
+                at com.mongodb.reactivestreams.client.internal.OperationExecutorImpl.lambda$execute$2(OperationExecutorImpl.java:94) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.function.RetryingAsyncCallbackSupplier$RetryingCallback.onResult(RetryingAsyncCallbackSupplier.java:116) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.function.AsyncCallbackSupplier.lambda$whenComplete$1(AsyncCallbackSupplier.java:97) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.operation.FindOperation.lambda$exceptionTransformingCallback$6(FindOperation.java:369) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.operation.AsyncOperationHelper.lambda$transformingReadCallback$19(AsyncOperationHelper.java:442) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.DefaultServer$DefaultServerProtocolExecutor.lambda$executeAsync$0(DefaultServer.java:249) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.CommandProtocolImpl.lambda$executeAsync$0(CommandProtocolImpl.java:88) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.lambda$sendAndReceiveAsync$1(DefaultConnectionPool.java:802) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.UsageTrackingInternalConnection.lambda$sendAndReceiveAsync$1(UsageTrackingInternalConnection.java:155) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.async.ErrorHandlingResultCallback.onResult(ErrorHandlingResultCallback.java:47) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendCommandMessageAsync$0(InternalStreamConnection.java:555) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:849) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.InternalStreamConnection$MessageHeaderCallback$MessageCallback.onResult(InternalStreamConnection.java:812) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.InternalStreamConnection$3.completed(InternalStreamConnection.java:671) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.InternalStreamConnection$3.completed(InternalStreamConnection.java:668) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.AsynchronousChannelStream$BasicCompletionHandler.completed(AsynchronousChannelStream.java:252) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.AsynchronousChannelStream$BasicCompletionHandler.completed(AsynchronousChannelStream.java:235) ~[ctf-1.0.jar:?]
+                at com.mongodb.internal.connection.tlschannel.async.AsynchronousTlsChannel.lambda$read$4(AsynchronousTlsChannel.java:122) ~[ctf-1.0.jar:?]
+                at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
+                at java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+                at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+                at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]

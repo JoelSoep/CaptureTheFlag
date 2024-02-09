@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 @Getter
@@ -16,6 +17,10 @@ public class PlayerService {
         CTFPlayer ctfPlayer = new CTFPlayer(player);
         addPlayer(ctfPlayer);
         return ctfPlayer;
+    }
+
+    public static @Nullable CTFPlayer getPlayer(String name) {
+        return players.get(name);
     }
 
     public static void addPlayer(CTFPlayer player) {
