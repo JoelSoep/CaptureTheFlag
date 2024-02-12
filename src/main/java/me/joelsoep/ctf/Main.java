@@ -16,6 +16,7 @@ import lombok.Getter;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
 import me.joelsoep.ctf.command.DebugCommand;
 import me.joelsoep.ctf.command.SpectateCommand;
+import me.joelsoep.ctf.cosmetic.CosmeticManager;
 import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
@@ -43,6 +44,7 @@ public final class Main extends JavaPlugin {
     @Getter private static final KitService kitService = new KitService();
     @Getter private static final SpecialService specialService = new SpecialService();
     @Getter private static final GameQueue queue = new GameQueue();
+    @Getter private static CosmeticManager cosmeticManager;
     @Getter private static CTFLogger CTFLogger = null;
     @Getter private static Main instance = null;
     @Getter private static BackupPlayerDataTask backupTask = null;
@@ -65,7 +67,8 @@ public final class Main extends JavaPlugin {
                     """);
         }
         backupTask = new BackupPlayerDataTask();
-        new ListenerService();
+        cosmeticManager = new CosmeticManager();
+        new ListenerService("me.joelsoep.ctf.listener");
         new QueuePlayersActionbarTask();
         new QueueCheckGameAvailabilityTask();
 

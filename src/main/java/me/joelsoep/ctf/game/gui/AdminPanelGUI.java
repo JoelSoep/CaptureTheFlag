@@ -9,6 +9,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.task.CountdownTask;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -74,6 +75,7 @@ public class AdminPanelGUI extends ChestGui implements Listener {
         serverRestartStack.setItemMeta(serverRestartMeta);
 
         GuiItem serverRestart = new GuiItem(serverRestartStack, event -> {
+            LogModule.CORE.log("ATTEMPT TO OPEN RESTART_CONFIRM_GUI");
             new RestartConfirmGUI(player);
         });
 

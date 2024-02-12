@@ -27,6 +27,7 @@ public class InventoryClickListener implements Listener {
         if (event.getCurrentItem() == null) {
             return;
         }
+
         if (event.getSlotType().equals(InventoryType.SlotType.ARMOR) && !event.getCurrentItem().getType().equals(Material.AIR)) {
             event.setCancelled(true);
         }

@@ -1,5 +1,7 @@
 package me.joelsoep.ctf.listener;
 
+import me.joelsoep.ctf.cosmetic.Cosmetic;
+import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.FlagReturnEvent;
@@ -17,10 +19,14 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -62,7 +68,9 @@ public class PlayerDeathListener implements Listener {
             Team oppositeTeam = ctfPlayer.getTeam().equals(game.getRed()) ? game.getBlue() : game.getRed();
 
             player.setGameMode(GameMode.SPECTATOR);
+            player.getOpenInventory().close();
             player.getInventory().clear();
+            clearCraftingSlots(player);
             player.setHealth(20);
             player.setFoodLevel(20);
             player.setGlowing(false);
@@ -109,9 +117,14 @@ public class PlayerDeathListener implements Listener {
                     killer.setHealth(killer.getHealth() + 7);
                 }
 
-                game.getAudience().sendMessage(MM.deserialize("""
+                Cosmetic cosmetic = ctfKiller.getCosmetics().getAppliedCosmetic(CosmeticType.DEATH_MESSAGE);
+                if (cosmetic == null) {
+                    game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>has been killed by %s<gray>!"""
-                        .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
+                            .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
+                    return;
+                }
+
                 new KillStreakHandler(ctfKiller);
                 game.getXPCollector().write(ctfKiller, 15);
             } else {
@@ -125,6 +138,17 @@ public class PlayerDeathListener implements Listener {
             player.teleport(MapManager.getLobby().getSpawnLocation());
             new Hotbar(player);
             event.setCancelled(true);
+        }
+    }
+
+    private void clearCraftingSlots(Player player) {
+        for (int i = 0; i < 5; i++) {
+            ItemStack item = player.getInventory().getItem(i);
+            if (item == null) {
+                continue;
+            }
+            LogModule.CORE.log("yep " + i);
+            item.setType(Material.AIR);
         }
     }
 }

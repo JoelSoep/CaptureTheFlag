@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class LocalConfig {
-    public static boolean ALLOW_CUSTOM_TEAMS = true;
+    public static boolean ALLOW_CUSTOM_TEAMS = false;
 
     public static boolean FORCE_GAME_MODE = false;
 

@@ -33,8 +33,6 @@ public class BlockPlaceListener implements Listener {
                 return;
             }
 
-            // TODO: here are the troublemakers lol, fix it so it depends on flag height EDIT: for the flag location it's fixed. Not for spawn tho. You can build everywhere there.
-
             if (blockLocation.getBlockX() == game.getRed().getFlag().getLocation().getBlockX() && blockLocation.getBlockZ() == game.getRed().getFlag().getLocation().getBlockZ() || blockLocation.getBlockX() == game.getBlue().getFlag().getLocation().getBlockX() && blockLocation.getBlockZ() == game.getBlue().getFlag().getLocation().getBlockZ()) {
                 Team team;
                 if (blockLocation.getBlockX() == game.getRed().getFlag().getLocation().getBlockX() && blockLocation.getBlockZ() == game.getRed().getFlag().getLocation().getBlockZ()) {
@@ -49,7 +47,6 @@ public class BlockPlaceListener implements Listener {
                 }
             }
             if (blockLocation.getBlockX() == game.getRed().getSpawn().getBlockX() && blockLocation.getBlockZ() == game.getRed().getSpawn().getBlockZ() || blockLocation.getBlockX() == game.getBlue().getSpawn().getBlockX() && blockLocation.getBlockZ() == game.getBlue().getSpawn().getBlockZ()) {
-                LogModule.CORE.log("MADE IT TO BLOCKX ETC");
                 Team team;
                 if (blockLocation.getBlockX() == game.getRed().getSpawn().getBlockX() && blockLocation.getBlockZ() == game.getRed().getSpawn().getBlockZ()) {
                     team = game.getRed();
@@ -58,7 +55,6 @@ public class BlockPlaceListener implements Listener {
                 }
                 if (blockLocation.getBlockY() > team.getSpawn().clone().subtract(0, 2,0).getBlockY() && blockLocation.getBlockY() < team.getSpawn().clone().add(0, 3, 0).getBlockY()) {
                     event.setCancelled(true);
-                    LogModule.CORE.log("cancel event");
                     player.sendMessage(MM.deserialize("<red>You cannot place that here!"));
                 }
                 return;

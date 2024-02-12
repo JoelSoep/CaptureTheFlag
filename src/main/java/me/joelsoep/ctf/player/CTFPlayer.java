@@ -3,6 +3,8 @@ package me.joelsoep.ctf.player;
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.cosmetic.Cosmetic;
+import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.BaseKit;
@@ -22,7 +24,9 @@ import net.kyori.adventure.title.TitlePart;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -33,6 +37,7 @@ public class CTFPlayer implements Audience {
     private final Player player;
     private final CTFPlayerData data;
     private final Balance balance;
+    private final Cosmetics cosmetics;
 
     private Game game;
     private ParticipationState participationState;
@@ -47,6 +52,7 @@ public class CTFPlayer implements Audience {
         this.player = player;
         this.data = new CTFPlayerData(this);
         this.balance = new Balance(this);
+        this.cosmetics = new Cosmetics();
         this.participationState = ParticipationState.AVAILABLE;
         this.killStreak = 0;
         this.level = 1;
@@ -85,12 +91,27 @@ public class CTFPlayer implements Audience {
         });
     }
 
+    public static class Cosmetics {
+        private final HashMap<CosmeticType, Cosmetic> appliedCosmetics = new HashMap<>();
+
+        public @Nullable Cosmetic getAppliedCosmetic(CosmeticType type) {
+            return appliedCosmetics.get(type);
+        }
+
+        public void setAppliedCosmetic(CosmeticType type, Cosmetic cosmetic) {
+            appliedCosmetics.put(type, cosmetic);
+        }
+    }
 
     public static class Balance {
         private final CTFPlayer player;
 
         public Balance(CTFPlayer player) {
             this.player = player;
+        }
+
+        public int getCoins() {
+            return EconomyManager.get(player);
         }
 
         public void giveCoins(int amount) {

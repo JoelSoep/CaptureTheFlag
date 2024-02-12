@@ -29,6 +29,8 @@ public class Hotbar {
 
         if (LocalConfig.ALLOW_CUSTOM_TEAMS) {
             giveTeamSelectionMenuItem();
+        } else {
+            giveCosmeticsItem();
         }
     }
 
@@ -60,6 +62,14 @@ public class Hotbar {
 
         teamMenu.setItemMeta(itemMeta);
         this.player.getInventory().setItem(2, teamMenu);
+    }
+
+    private void giveCosmeticsItem() {
+        ItemStack item = new ItemBuilder(Material.POPPY)
+                .setName("<light_purple>Cosmetics Menu")
+                .setLore(MM.deserialize("<gray>Right-click to open"))
+                .build();
+        player.getInventory().setItem(2, item);
     }
 
     private void giveAdminMenu() {

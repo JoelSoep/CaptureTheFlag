@@ -4,6 +4,9 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.cosmetic.Cosmetic;
+import me.joelsoep.ctf.cosmetic.CosmeticManager;
+import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
@@ -25,6 +28,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 @TestOnly
@@ -246,5 +250,34 @@ public class DebugCommand extends BaseCommand {
         for (int i = 0; i < 150; i++) {
             Bukkit.broadcast(MM.deserialize("Level %s: %s".formatted(i + 1, Level.getXPForNextLevel(i))));
         }
+    }
+
+    @Subcommand("setcosmetic")
+    public void setCosmetic(Player player, CosmeticType cosmeticType, String cosmeticName) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+
+        Cosmetic cosmetic = Main.getCosmeticManager().getCosmetic(cosmeticType, cosmeticName);
+        if (cosmetic == null) {
+            player.sendMessage(MM.deserialize("The cosmetic is null!"));
+            return;
+        }
+        ctfPlayer.getCosmetics().setAppliedCosmetic(cosmeticType, cosmetic);
+        ctfPlayer.sendMessage(MM.deserialize("Set %s as your cosmetic for type %s".formatted(cosmetic.getName(), cosmeticType.toString())));
+    }
+
+    @Subcommand("listcosmetics")
+    public void listCosmetics(Player player, CosmeticType type) {
+        HashMap<String, Cosmetic> map = Main.getCosmeticManager().getCosmetics().get(type);
+        if (map == null) {
+            player.sendMessage(MM.deserialize("No cosmetics found."));
+            return;
+        }
+        map.forEach((string, cosmetic) -> {
+            player.sendMessage(MM.deserialize(string));
+        });
     }
 }

@@ -12,11 +12,8 @@ import java.util.Set;
 
 public class ListenerService {
 
-    private final Plugin plugin;
-
-    public ListenerService() {
-        this.plugin = Main.getInstance();
-        loadAndRegisterListeners("me.joelsoep.ctf.listener");
+    public ListenerService(String packageName) {
+        loadAndRegisterListeners(packageName);
     }
 
     public void loadAndRegisterListeners(String packageName) {
@@ -29,13 +26,13 @@ public class ListenerService {
                 Listener listener;
                 try {
                     constructor = listenerClass.getDeclaredConstructor(Plugin.class);
-                    listener = constructor.newInstance(plugin);
+                    listener = constructor.newInstance(Main.getInstance());
                 } catch (NoSuchMethodException e) {
                     constructor = listenerClass.getDeclaredConstructor();
                     listener = constructor.newInstance();
                 }
 
-                Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
+                Bukkit.getServer().getPluginManager().registerEvents(listener, Main.getInstance());
                 LogModule.CORE.log("Registered listener " + listener.getClass().getName());
             } catch (Exception e) {
                 e.printStackTrace();

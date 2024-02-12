@@ -15,7 +15,8 @@ public enum LogModule {
     FILE("[FILEMANAGER] "),
     GAME("[GAME] "),
     CORE("[CORE] "),
-    PLAYER("[PLAYERSERVICE] ");
+    PLAYER("[PLAYERSERVICE] "),
+    COSMETIC("[COSMETICS] ");
 
     private final String prefix;
 

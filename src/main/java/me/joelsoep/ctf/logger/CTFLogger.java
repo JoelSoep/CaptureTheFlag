@@ -3,6 +3,7 @@ package me.joelsoep.ctf.logger;
 import lombok.Getter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
+import org.bukkit.Bukkit;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,6 +65,7 @@ public class CTFLogger {
         @Override
         public void uncaughtException(Thread t, Throwable e) {
             LogModule.CORE.severe("Uncaught exception thread " + t.getName() + ": " + System.lineSeparator() + e.getMessage());
+            e.printStackTrace();
         }
     }
 

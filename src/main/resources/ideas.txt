@@ -22,7 +22,7 @@
 23. add spectator command DONE
 24. create max height for a map to build DONE
 25. when a player has a flag equipped, let an entity glow at the base flag so they know where they should go. only once who have the flag equipped can see it
-26. killstreak bonusses: 3 kills = 1 golden apple or smth
+26. killstreak bonusses: 3 kills = 1 golden apple or smth DONE
 27. special idea: snowball which builds a wall when landing
 28. maybe do not allow some special items to be used as a flag holder
 29. u could have 2 seperate flags that u need get 3 times each which are on opposite sides of the "ship"
@@ -38,6 +38,7 @@ CUSTOM COSMETICS IDEAS:
 - Custom win animations
 - Custom finishers
 - Custom lose effects
+- armor trims
 
 GLITCHES / BUGS:
 Kits need to be fixed FIXED
@@ -259,3 +260,5 @@ players can build on flag FIXED
 level calculation seems to be fucked, i leveled up from 12 to 33 from 145 exp while its usually much harder. FIXED
 
 flag didnt appear in desert map for some reason? could access it tho >> only blue flag in desert dragon
+
+if you put 4 things in your crafting slot, then die you get it after death
