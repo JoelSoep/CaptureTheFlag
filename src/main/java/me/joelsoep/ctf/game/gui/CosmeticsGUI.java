@@ -57,7 +57,7 @@ public class CosmeticsGUI extends ChestGui {
                 .setName(MM.deserialize("<light_purple>Death Messages"))
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
                 .build(), event -> {
-            player.sendMessage(MM.deserialize("WIP"));
+            new DeathMessageCosmeticGUI(player);
         });
     }
 

@@ -8,6 +8,7 @@ import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.CosmeticManager;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
@@ -24,6 +25,8 @@ import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.WorldCreator;
+import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
@@ -279,5 +282,19 @@ public class DebugCommand extends BaseCommand {
         map.forEach((string, cosmetic) -> {
             player.sendMessage(MM.deserialize(string));
         });
+    }
+
+    @Subcommand("createworld")
+    public void createWorld(Player player, @Single String name) {
+        MapManager.createEmptyWorld(name);
+        player.sendMessage(MM.deserialize("Created world with name %s".formatted(name)));
+    }
+
+    @Subcommand("loadworld")
+    public void loadWorld(Player player, @Single String name) {
+        String path = FileManager.getWorldFolderPath() + name;
+        WorldCreator creator = new WorldCreator(path);
+        Bukkit.createWorld(creator);
+        player.sendMessage("done");
     }
 }

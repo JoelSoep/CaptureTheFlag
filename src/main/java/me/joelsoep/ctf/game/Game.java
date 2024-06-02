@@ -71,6 +71,10 @@ public class Game {
         }
 
         public void write(CTFPlayer player, int xp) {
+            if (player == null) {
+                return;
+            }
+
             Integer potentialXP = collector.get(player.getPlayer().getName());
             if (potentialXP == null) {
                 potentialXP = 0;
@@ -79,6 +83,10 @@ public class Game {
         }
 
         public int read(CTFPlayer player) {
+            if (player == null) {
+                return 0;
+            }
+
             Integer xp = this.collector.get(player.getPlayer().getName());
             return xp != null ? xp : 0;
         }

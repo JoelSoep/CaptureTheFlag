@@ -12,6 +12,7 @@ import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,10 +26,11 @@ import java.util.Set;
 public abstract class DeathMessageCosmetic extends Cosmetic {
    @Getter private final String deathMessage;
 
-    protected DeathMessageCosmetic(String name, CosmeticRarity rarity) {
+    public DeathMessageCosmetic(String name, CosmeticRarity rarity) {
         super(name, CosmeticType.DEATH_MESSAGE);
         this.setRarity(rarity);
         this.deathMessage = getMessage();
+        this.setLogo(Material.PAPER);
     }
 
     /**

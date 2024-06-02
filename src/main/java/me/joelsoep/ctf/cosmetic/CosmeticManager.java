@@ -8,6 +8,7 @@ import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.reflections.Reflections;
 
@@ -37,6 +38,15 @@ public class CosmeticManager {
         }
 
         return map.get(name);
+    }
+
+    public @Nullable List<Cosmetic> getCosmetics(CosmeticType type) {
+        HashMap<String, Cosmetic> map = cosmetics.get(type);
+        if (map == null) {
+            return null;
+        }
+
+        return List.copyOf(map.values());
     }
 
     public void addCosmetic(CosmeticType type, Cosmetic cosmetic) {

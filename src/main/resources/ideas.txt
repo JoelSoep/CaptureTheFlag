@@ -30,6 +30,9 @@
 31. give archer kit a shield
 32. after a game has ended and you get to the chest, you can put items in it and when the next game starts theres items in it
 33. bossbar event showcaser
+34. variety: RANDOMNESS
+
+35 Procedurally generated worlds, cut a border in the middle and cut the grounds so it creates an illusion of flying islands
 
 
 CUSTOM COSMETICS IDEAS:
@@ -262,3 +265,4 @@ level calculation seems to be fucked, i leveled up from 12 to 33 from 145 exp wh
 flag didnt appear in desert map for some reason? could access it tho >> only blue flag in desert dragon
 
 if you put 4 things in your crafting slot, then die you get it after death
+make flag beacon

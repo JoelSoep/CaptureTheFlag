@@ -91,6 +91,11 @@
 
     <repositories>
         <repository>
+            <id>CodeMC</id>
+            <name>CodeMC Maven Repository</name>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>mvn-central</id>
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
@@ -129,6 +134,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.popcraft</groupId>
+            <artifactId>chunky-common</artifactId>
+            <version>1.3.38</version>
+            <scope>provided</scope>
+        </dependency>
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-reactivestreams</artifactId>

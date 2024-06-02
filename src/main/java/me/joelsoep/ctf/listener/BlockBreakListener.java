@@ -14,6 +14,9 @@ public class BlockBreakListener implements Listener {
     public void onBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+        if (player.hasPermission("ctf.admin")) {
+            return;
+        }
 
         if (ctfPlayer == null) {
             return;

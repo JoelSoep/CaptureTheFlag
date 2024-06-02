@@ -58,24 +58,7 @@ public abstract class Map {
     }
 
     public @Nullable World createEmptyWorld() {
-        // this has a bug wth the letter d for some reason String sanitizedWorldName = (this.prefix + this.name).replaceAll("[^a-z0-9/._-]", "_");
-        WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath() + this.prefix + this.name);
-        worldCreator.type(WorldType.FLAT);
-        worldCreator.generator(new EmptyChunkGenerator());
-        World world = Bukkit.createWorld(worldCreator);
-        if (world == null) {
-            LogModule.MAP.warning("World %s is null, attempting to get access to it...".formatted(prefix + name));
-            world = Bukkit.getWorld(prefix + name);
-        }
-
-        if (world == null) {
-            LogModule.MAP.severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(prefix + name));
-            return null;
-        }
-
-        world.setKeepSpawnInMemory(false);
-        PaperLib.getChunkAtAsync(world.getSpawnLocation(), true);
-        return world;
+        return MapManager.createEmptyWorld(prefix + name);
     }
 
     public CompletableFuture<Boolean> isGloballyEnabled() {

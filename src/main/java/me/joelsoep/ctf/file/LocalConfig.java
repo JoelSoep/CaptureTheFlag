@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.file;
 
 import lombok.Data;
+import me.joelsoep.ctf.Main;
 
 @Data
 public class LocalConfig {
@@ -8,7 +9,7 @@ public class LocalConfig {
 
     public static boolean FORCE_GAME_MODE = false;
 
-    public static String MONGO_CONNECTION_STRING = "mongodb+srv://admin:uFrJ2m8zDDhALE9i@ctf.bh3mqpu.mongodb.net/?retryWrites=true&w=majority";
+    public static String MONGO_CONNECTION_STRING = Main.getInstance().getConfig().getString("mongodb-uri");
 
 
 }

@@ -1,16 +1,24 @@
 package me.joelsoep.ctf.map;
 
+import io.papermc.lib.PaperLib;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.board.LeaderboardService;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
+import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import me.joelsoep.ctf.util.RandomUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
+import org.bukkit.generator.ChunkGenerator;
 import org.reflections.Reflections;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -139,5 +147,48 @@ public class MapManager {
         map.placeFlag(Main.getGame().getBlue());
         map.placeFlag(Main.getGame().getRed());
         Main.getGame().setMap(map);
+    }
+
+    public static @Nullable
+    World createEmptyWorld(String name) {
+        // this has a bug wth the letter d for some reason String sanitizedWorldName = (this.prefix + this.name).replaceAll("[^a-z0-9/._-]", "_");
+        WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath().replace('\\', '/') + name);
+        worldCreator.type(WorldType.FLAT);
+        worldCreator.generator(new EmptyChunkGenerator());
+        World world = Bukkit.createWorld(worldCreator);
+        if (world == null) {
+            LogModule.MAP.warning("World %s is null, attempting to get access to it...".formatted(name));
+            world = Bukkit.getWorld(name);
+        }
+
+        if (world == null) {
+            LogModule.MAP.severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(name));
+            return null;
+        }
+
+        world.setKeepSpawnInMemory(false);
+        PaperLib.getChunkAtAsync(world.getSpawnLocation(), true);
+        return world;
+    }
+
+    public static @Nullable World createEmptyWorld(String name, ChunkGenerator generator) {
+        // this has a bug wth the letter d for some reason String sanitizedWorldName = (this.prefix + this.name).replaceAll("[^a-z0-9/._-]", "_");
+        WorldCreator worldCreator = new WorldCreator(FileManager.getWorldFolderPath() + name);
+        worldCreator.type(WorldType.FLAT);
+        worldCreator.generator(generator);
+        World world = Bukkit.createWorld(worldCreator);
+        if (world == null) {
+            LogModule.MAP.warning("World %s is null, attempting to get access to it...".formatted(name));
+            world = Bukkit.getWorld(name);
+        }
+
+        if (world == null) {
+            LogModule.MAP.severe("FATAL: World %s couldn't be found. Aborting world creation...".formatted(name));
+            return null;
+        }
+
+        world.setKeepSpawnInMemory(true);
+        //PaperLib.getChunkAtAsync(world.getSpawnLocation(), true);
+        return world;
     }
 }

@@ -6,6 +6,7 @@ import me.joelsoep.ctf.file.FileManager;
 import org.bukkit.Bukkit;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.*;
 
@@ -16,8 +17,8 @@ public class CTFLogger {
    Handler customHandler = new ConsoleHandler();
 
     public CTFLogger() {
-        logger.setUseParentHandlers(false);
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+        logger.setUseParentHandlers(true);
+        //Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         customHandler.setFormatter(new SimpleFormatter() {
 
             @Override
@@ -65,7 +66,9 @@ public class CTFLogger {
         @Override
         public void uncaughtException(Thread t, Throwable e) {
             LogModule.CORE.severe("Uncaught exception thread " + t.getName() + ": " + System.lineSeparator() + e.getMessage());
-            e.printStackTrace();
+            Arrays.stream(e.getStackTrace()).toList().forEach(element -> LogModule.CORE.severe(element.toString()));
+            System.err.println(e.getMessage());
+            Arrays.stream(e.getStackTrace()).toList().forEach(element -> System.err.println(element.toString()));
         }
     }
 

@@ -17,11 +17,14 @@ public class ScoreboardHandler implements Listener {
 
     private final CTFPlayer player;
     private final FastBoard board;
+    private String additionalMessage;
     private int id;
 
     public ScoreboardHandler(CTFPlayer player) {
         this.player = player;
         this.board = new FastBoard(player.getPlayer());
+
+        additionalMessage = Main.getInstance().getConfig().getString("additional-message") == null ? "Build: Alpha" : Main.getInstance().getConfig().getString("additional-message");
 
        this.id =  Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
@@ -49,7 +52,7 @@ public class ScoreboardHandler implements Listener {
                     message(""),
                     message("<gold>☠ <reset>Killstreak: <gold>" + player.getKillStreak()),
                     message(""),
-                    message("<italic><gold>mcmanhunt.com")
+                    message("<italic><gold>" + additionalMessage)
             );
         }
 
@@ -63,7 +66,7 @@ public class ScoreboardHandler implements Listener {
                     message("<gold>➥ <reset>Players: <gold>" + game.getPlayerCount() + "<reset>/<gold>" + game.getMap().getMaxPlayers()),
                     message("<gold>☄ <reset>Map: <gold>" + WordUtils.capitalize(game.getMap().getName().replace("_", " "))),
                     message(""),
-                    message("<italic><gold>mcmanhunt.com")
+                    message("<italic><gold>" + additionalMessage)
             );
         }
 
@@ -75,7 +78,7 @@ public class ScoreboardHandler implements Listener {
                     message("<gray>The game has ended."),
                     message(winner == null ? "<gray>Tied" : "<gray>Team " + winner.getTeamColor().getPrefix() + " <gray>has won!"),
                     message(""),
-                    message("<italic><gold>mcmanhunt.com")
+                    message("<italic><gold>" + additionalMessage)
             );
         }
     }

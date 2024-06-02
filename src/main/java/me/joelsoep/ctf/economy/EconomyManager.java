@@ -56,6 +56,7 @@ public class EconomyManager {
         if (amount < 0) {
             return false;
         }
+
         player.getData().setCoins(amount);
         return true;
     }

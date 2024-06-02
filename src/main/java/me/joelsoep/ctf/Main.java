@@ -1,5 +1,5 @@
 /**
- * © 2023 Hendrik Joël Soepenberg. All rights reserved.
+ * © 2023-2024 Hendrik Joël Soepenberg. All rights reserved.
  *
  * This software is proprietary and confidential.
  * Unauthorized copying, modification, or distribution of this software,
@@ -40,7 +40,7 @@ import java.util.logging.Level;
 public final class Main extends JavaPlugin {
 
     @Getter private static final Game game = new Game();
-    @Getter private static final MongoManager mongoManager = new MongoManager(new ConnectionString(LocalConfig.MONGO_CONNECTION_STRING));
+    @Getter private static MongoManager mongoManager = null;
     @Getter private static final KitService kitService = new KitService();
     @Getter private static final SpecialService specialService = new SpecialService();
     @Getter private static final GameQueue queue = new GameQueue();
@@ -53,6 +53,17 @@ public final class Main extends JavaPlugin {
     public void onLoad() {
         instance = this;
         CTFLogger = new CTFLogger();
+
+        String mongodb_uri = getConfig().getString("mongodb-uri");
+
+        if (mongodb_uri == null) {
+            LogModule.CORE.severe("""
+                    The config.yml does not include a valid connection string.
+                    Aborting.""");
+            Bukkit.getServer().shutdown();
+            return;
+        }
+        mongoManager = new MongoManager(new ConnectionString(mongodb_uri));
     }
 
     @Override
@@ -66,6 +77,7 @@ public final class Main extends JavaPlugin {
                     Keeping allow flight disabled is at your own risk.
                     """);
         }
+
         backupTask = new BackupPlayerDataTask();
         cosmeticManager = new CosmeticManager();
         new ListenerService("me.joelsoep.ctf.listener");

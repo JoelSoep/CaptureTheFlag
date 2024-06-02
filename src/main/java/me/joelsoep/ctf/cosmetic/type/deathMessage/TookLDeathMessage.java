@@ -2,11 +2,13 @@ package me.joelsoep.ctf.cosmetic.type.deathMessage;
 
 import me.joelsoep.ctf.cosmetic.CosmeticRarity;
 import me.joelsoep.ctf.cosmetic.type.DeathMessageCosmetic;
+import me.joelsoep.ctf.util.MM;
 import org.jetbrains.annotations.NotNull;
 
 public class TookLDeathMessage extends DeathMessageCosmetic {
     public TookLDeathMessage() {
-        super("TookL", CosmeticRarity.COMMON);
+        super("TookL", CosmeticRarity.EPIC);
+        this.setDisplayName(MM.deserialize("You took an L!"));
     }
 
     @Override
