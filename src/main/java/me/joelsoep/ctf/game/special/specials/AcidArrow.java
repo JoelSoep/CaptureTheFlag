@@ -127,7 +127,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
 
     public void getBlocks(@NotNull Block block, List<Block> list) {
         getDirectRelatives(block).forEach(member -> {
-            LogModule.CORE.log(member.getType().toString());
+           // LogModule.CORE.log(member.getType().toString());
             if (member.getType() == block.getType()) {
                 if (list.contains(member)) {
                     return;

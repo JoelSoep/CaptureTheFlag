@@ -13,6 +13,6 @@ public class TookLDeathMessage extends DeathMessageCosmetic {
 
     @Override
     protected @NotNull String getMessage() {
-        return "<yellow>%p <gray>took a huge L while he died fighting against <yellow>%k<gray>!";
+        return "<yellow>%p <gray>took a huge L when they died fighting <yellow>%k<gray>!";
     }
 }

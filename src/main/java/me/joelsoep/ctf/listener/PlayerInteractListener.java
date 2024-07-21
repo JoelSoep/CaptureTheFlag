@@ -102,6 +102,11 @@ public class PlayerInteractListener implements Listener {
             if (Main.getGame().getPlayers().contains(ctfPlayer)) {
                 return;
             }
+
+            if (Main.getGame().getSpectators().contains(ctfPlayer)) {
+                Main.getGame().removeSpectator(ctfPlayer);
+                ctfPlayer.sendMessage(MM.deserialize("<gray>You stopped spectating."));
+            }
             Main.getQueue().addPlayer(ctfPlayer);
             ctfPlayer.setParticipationState(ParticipationState.AVAILABLE);
             Hotbar.Static.giveQueueBlock(player);
@@ -109,7 +114,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (event.getMaterial() == Material.COMMAND_BLOCK) {
-            if (!player.hasPermission("ctf.admin")) {
+            if (!player.hasPermission("ctf.admin") && !player.isOp()) {
                 player.sendMessage(MM.deserialize("<red>You do not have permission to use this!"));
                 return;
             }

@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+@Deprecated
 public class CustomChunkGenerator extends ChunkGenerator {
 
     public CustomChunkGenerator(String name, Biome biom) {

@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.command;
 
 import co.aikar.commands.BaseCommand;
+import co.aikar.commands.RegisteredCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import me.joelsoep.ctf.Main;
@@ -14,6 +15,7 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.map.MapManager;
@@ -32,12 +34,13 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 @TestOnly
 @CommandAlias("debug|dbg")
 @CommandPermission("ctf.admin")
-public class DebugCommand extends BaseCommand {
+public final class DebugCommand extends BaseCommand {
     Game game = Main.getGame();
 
     @Default
@@ -296,5 +299,19 @@ public class DebugCommand extends BaseCommand {
         WorldCreator creator = new WorldCreator(path);
         Bukkit.createWorld(creator);
         player.sendMessage("done");
+    }
+
+    @Subcommand("listspecials")
+    public void listSpecials(Player player) {
+        List<BaseSpecial> specials = Main.getSpecialService().getAllSpecials();
+        player.sendMessage(MM.deserialize("<gray>There are <yellow>%s <gray>active specials: \n".formatted(specials.size())));
+        specials.forEach(special -> {
+            player.sendMessage(MM.deserialize("<yellow>" + special.getName()));
+        });
+    }
+
+    @Subcommand("sleep")
+    public void sleep(Player player) {
+        player.sleep(player.getLocation(), true);
     }
 }

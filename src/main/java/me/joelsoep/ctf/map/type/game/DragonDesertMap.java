@@ -61,6 +61,11 @@ public class DragonDesertMap extends GameMap {
     }
 
     @Override
+    public @NotNull Integer getMinPlayers() {
+        return 8;
+    }
+
+    @Override
     public @NotNull Integer getMaxPlayers() {
         return 20;
     }

@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.player;
 
 import fr.mrmicky.fastboard.adventure.FastBoard;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
@@ -48,6 +49,16 @@ public class CTFPlayer implements Audience {
     private Long cooldown;
     private Integer level;
 
+    // start admin section
+
+    /**
+     * The elevation state of the administrator.
+     * If the administrator is elevated, some rules can be bypassed,
+     * like placing or breaking blocks in the lobby.
+     */
+
+    private boolean elevated;
+
     protected CTFPlayer(Player player) {
         this.player = player;
         this.data = new CTFPlayerData(this);
@@ -57,6 +68,7 @@ public class CTFPlayer implements Audience {
         this.killStreak = 0;
         this.level = 1;
         this.cooldown = System.currentTimeMillis();
+        this.elevated = false;
         reset();
     }
 

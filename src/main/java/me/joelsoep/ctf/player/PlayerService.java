@@ -10,7 +10,9 @@ import java.util.HashMap;
 @Getter
 public class PlayerService {
 
+    @Getter
     private static final HashMap<String, CTFPlayer> players = new HashMap<>();
+    @Getter
     private static Audience audience = Audience.audience(players.values());
 
     public static CTFPlayer createPlayer(Player player) {
@@ -33,11 +35,4 @@ public class PlayerService {
         audience = Audience.audience(players.values());
     }
 
-    public static HashMap<String, CTFPlayer> getPlayers() {
-        return players;
-    }
-
-    public static Audience getAudience() {
-        return audience;
-    }
 }

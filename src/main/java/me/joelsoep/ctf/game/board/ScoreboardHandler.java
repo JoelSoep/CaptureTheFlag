@@ -66,6 +66,8 @@ public class ScoreboardHandler implements Listener {
                     message("<gold>➥ <reset>Players: <gold>" + game.getPlayerCount() + "<reset>/<gold>" + game.getMap().getMaxPlayers()),
                     message("<gold>☄ <reset>Map: <gold>" + WordUtils.capitalize(game.getMap().getName().replace("_", " "))),
                     message(""),
+                    message("<gold>\uD83D\uDD25 <reset>Win streak: <gold>" + player.getData().getWinStreak()),
+                    message(""),
                     message("<italic><gold>" + additionalMessage)
             );
         }

@@ -60,7 +60,7 @@ public class RestartConfirmGUI extends ChestGui {
         itemMeta.lore(List.of(
                 MM.deserialize("<gray>Announces a server restart."),
                 MM.deserialize("<gray>Only for emergency use."),
-                MM.deserialize("<gray>The server restart in 15 seconds.")
+                MM.deserialize("<gray>The server restarts in 15 seconds.")
         ));
         itemStack.setItemMeta(itemMeta);
         return itemStack;

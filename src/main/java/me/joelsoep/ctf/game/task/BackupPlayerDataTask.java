@@ -58,6 +58,10 @@ public class BackupPlayerDataTask {
             player.getData().setCoins(0);
         }
 
+        if (player.getData().getWinStreak() == null) {
+            player.getData().setWinStreak(0);
+        }
+
         double kd = (double) player.getData().getKills() / (double) player.getData().getDeaths();
         if (Double.isInfinite(kd)) {
             kd = player.getData().getKills();
@@ -74,7 +78,8 @@ public class BackupPlayerDataTask {
                 Updates.set("player_kd", roundedNumber),
                 Updates.set("flag_captures", player.getData().getCaptures()),
                 Updates.set("experience", player.getData().getExperience()),
-                Updates.set("coins", player.getData().getCoins())
+                Updates.set("coins", player.getData().getCoins()),
+                Updates.set("win_streak", player.getData().getWinStreak())
         );
 
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);

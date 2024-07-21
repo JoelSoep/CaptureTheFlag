@@ -92,25 +92,19 @@ public abstract class BaseSpecial<T extends Event> implements Listener {
 
         if (inventory.getItemInMainHand().getType() == Material.END_CRYSTAL) {
             if (inventory.getItemInMainHand().hasItemFlag(ItemFlag.HIDE_DYE)) {
-                decrementItem(player, inventory.getItemInMainHand());
+                inventory.getItemInMainHand().subtract();
+                LogModule.SPECIAL.log("removing %s from player %s. MAIN HAND".formatted(inventory.getItemInMainHand().getType(), player.getName()));
                 return true;
             }
         }
 
         if (inventory.getItemInOffHand().getType() == Material.END_CRYSTAL) {
             if (inventory.getItemInOffHand().hasItemFlag(ItemFlag.HIDE_DYE)) {
-                decrementItem(player, inventory.getItemInOffHand());
+                inventory.getItemInOffHand().subtract();
+                LogModule.SPECIAL.log("removing %s from player %s. OFF HAND".formatted(inventory.getItemInOffHand().getType(), player.getName()));
                 return true;
             }
         }
         return false;
-    }
-
-    protected void decrementItem(Player player, ItemStack itemStack) {
-        if (itemStack.getAmount() == 1) {
-            player.getInventory().remove(itemStack);
-        } else {
-            itemStack.setAmount(itemStack.getAmount() - 1);
-        }
     }
 }

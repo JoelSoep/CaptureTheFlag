@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.special;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 
 public interface Reflective<T extends Event> {
 
@@ -11,5 +12,5 @@ public interface Reflective<T extends Event> {
      * @param event The event to use to reflect.
      */
 
-    void reflect(T event, Player player, Player reflector);
+    void reflect(T event, @NotNull Player player, @NotNull Player reflector);
 }

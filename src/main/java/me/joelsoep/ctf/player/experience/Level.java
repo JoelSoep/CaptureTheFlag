@@ -8,7 +8,7 @@ import org.bukkit.Bukkit;
 public class Level {
 
     /**
-     * Placeholder for calculations. Player's start with 0 experience.
+     * Placeholder for calculations. Players start with 0 experience.
      */
 
     private static final int BASE_XP = 100;

@@ -1,15 +1,16 @@
-package me.joelsoep.ctf.logger;
+package me.joelsoep.ctf.util.deprecated;
 
 import lombok.Getter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
-import org.bukkit.Bukkit;
+import me.joelsoep.ctf.logger.LogModule;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.*;
 
+@Deprecated
 public class CTFLogger {
    @Getter
    private static final Logger logger = Logger.getLogger("CTF");

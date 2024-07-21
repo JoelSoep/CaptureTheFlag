@@ -51,7 +51,7 @@ public class AdminPanelGUI extends ChestGui implements Listener {
     }
 
     public void openMenu() {
-        if (!player.hasPermission("ctf.admin")) {
+        if (!player.hasPermission("ctf.admin") && !player.isOp()) {
             return;
         }
 

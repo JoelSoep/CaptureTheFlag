@@ -173,7 +173,7 @@ public class AirshipMap extends GameMap {
             DHAPI.removeHologram("special_chest");
             DHAPI.createHologram("special_chest", chestLocation.clone().add(0, 3, 0).toCenterLocation(), List.of(
                     "&c&lThis treasure chest",
-                    "&c&lalready been opened!",
+                    "&c&lhas already been opened!",
                     "&7Please try again later."
             ));
             return;
@@ -222,6 +222,11 @@ public class AirshipMap extends GameMap {
     @Override
     public @NotNull Location getCenterLocation() {
         return new Location(getWorld(), -4, 46, -1);
+    }
+
+    @Override
+    public @NotNull Integer getMinPlayers() {
+        return 6;
     }
 
     @Override

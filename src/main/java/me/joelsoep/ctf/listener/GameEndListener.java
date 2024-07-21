@@ -42,6 +42,14 @@ public class GameEndListener implements Listener {
             return;
         }
 
+        winner.getPlayers().forEach(player -> {
+            player.getData().setWinStreak(player.getData().getWinStreak() + 1);
+        });
+
+        loser.getPlayers().forEach(player -> {
+            player.getData().setWinStreak(0);
+        });
+
         winner.getAudience().playSound(Sound.sound(Key.key("entity.firework_rocket.launch"), Sound.Source.MASTER, 1, 1));
         Color color = winner.getTeamColor() == game.getRed().getTeamColor() ? Color.RED : Color.BLUE;
         new CongratulationEffectTask(winner.getPlayers(), color,3);

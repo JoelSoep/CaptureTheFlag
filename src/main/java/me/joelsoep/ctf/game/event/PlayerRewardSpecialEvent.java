@@ -6,11 +6,12 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class PlayerRewardSpecialEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
-    @Getter private final CTFPlayer player;
+    private final CTFPlayer player;
 
     public PlayerRewardSpecialEvent(CTFPlayer player) {
         this.player = player;

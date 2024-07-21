@@ -37,6 +37,7 @@ public abstract class GameMap extends Map {
     public abstract @NotNull Location getBlueSpawnLocation();
     public abstract @NotNull BlockFace getBlueBlockFace();
     public abstract @NotNull Location getCenterLocation();
+    public abstract @NotNull Integer getMinPlayers();
     public abstract @NotNull Integer getMaxPlayers();
     public abstract @NotNull Integer getWorldSize();
     public abstract @NotNull Integer getMaxBuildHeight();

@@ -73,7 +73,7 @@ public class Hotbar {
     }
 
     private void giveAdminMenu() {
-        if (!player.hasPermission("ctf.admin")) {
+        if (!player.hasPermission("ctf.admin") && !player.isOp()) {
             return;
         }
 

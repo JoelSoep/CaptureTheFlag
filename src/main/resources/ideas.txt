@@ -31,8 +31,11 @@
 32. after a game has ended and you get to the chest, you can put items in it and when the next game starts theres items in it
 33. bossbar event showcaser
 34. variety: RANDOMNESS
+35. Add winstreak
+36. For admins: add elevateperms command
+37. Add something like a weekend-rush event, which would grant players extra xp or coins during weekend or other days
 
-35 Procedurally generated worlds, cut a border in the middle and cut the grounds so it creates an illusion of flying islands
+35 Procedurally generated worlds, cut a border in the middle and cut the grounds so it creates an illusion of flying islands SCRAPPED
 
 
 CUSTOM COSMETICS IDEAS:
@@ -266,3 +269,5 @@ flag didnt appear in desert map for some reason? could access it tho >> only blu
 
 if you put 4 things in your crafting slot, then die you get it after death
 make flag beacon
+
+fireworkrider special only clears reflector if mirror is in mainhand, offhand case should be added

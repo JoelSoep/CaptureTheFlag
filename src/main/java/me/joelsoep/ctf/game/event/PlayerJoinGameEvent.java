@@ -7,12 +7,13 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class PlayerJoinGameEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
-    @Getter private final Game game;
-    @Getter private final CTFPlayer player;
+    private final Game game;
+    private final CTFPlayer player;
 
     public PlayerJoinGameEvent(Game game, CTFPlayer player) {
         this.game = game;

@@ -16,6 +16,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.jetbrains.annotations.NotNull;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implements Reflective<EntityDamageByEntityEvent> {
@@ -47,15 +48,15 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
 
         if (isReflective(player)) {
             reflect(event, damager, player);
-            decrementItem(damager, damager.getInventory().getItemInMainHand());
+            damager.getInventory().getItemInMainHand().subtract();
             return;
         }
         spawnFirework(player).addPassenger(player);
-        decrementItem(damager, damager.getInventory().getItemInMainHand());
+        damager.getInventory().getItemInMainHand().subtract();
     }
 
     @Override
-    public void reflect(EntityDamageByEntityEvent event, Player player, Player reflector) {
+    public void reflect(EntityDamageByEntityEvent event, @NotNull Player player, @NotNull Player reflector) {
         Mirror.playUseSound(player, reflector);
         spawnFirework(player).addPassenger(player);
         Mirror.sendReflectorMessage(player, this, reflector);

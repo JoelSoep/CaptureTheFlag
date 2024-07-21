@@ -8,12 +8,13 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class FlagReturnEvent extends Event {
     public static final HandlerList handlers = new HandlerList();
 
-    @Getter private final Game game;
-    @Getter private final Team flagOwner;
-    @Getter private final Player flagHolder;
+    private final Game game;
+    private final Team flagOwner;
+    private final Player flagHolder;
 
     public FlagReturnEvent(Game game, Team flagOwner, Player flagHolder) {
         this.game = game;

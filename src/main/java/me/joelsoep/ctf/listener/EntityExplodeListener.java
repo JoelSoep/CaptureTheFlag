@@ -11,21 +11,27 @@ import java.util.Iterator;
 import java.util.List;
 
 public class EntityExplodeListener implements Listener {
+    private static final List<String> DESTROYABLE_BLOCKS = List.of(
+            "BLUE_CONCRETE",
+            "RED_CONCRETE",
+            "BLUE_CONCRETE_POWDER",
+            "RED_CONCRETE_POWDER"
+    );
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent event) {
-        if (event.getEntity().getType() == EntityType.PRIMED_TNT) {
-            ArrayList<String> list = new ArrayList<>();
-            list.add("BLUE_CONCRETE");
-            list.add("RED_CONCRETE");
-            List<Block> destroyed = event.blockList();
-            Iterator<Block> iterator = destroyed.iterator();
-            while (iterator.hasNext()) {
-                Block block = iterator.next();
-                String name = block.getType().toString();
-                if (!list.contains(name))
-                    iterator.remove();
-            }
+        if (event.getEntity().getType() != EntityType.PRIMED_TNT) {
+            return;
+        }
+
+        List<Block> destroyed = event.blockList();
+        Iterator<Block> iterator = destroyed.iterator();
+
+        while (iterator.hasNext()) {
+            Block block = iterator.next();
+            String name = block.getType().toString();
+            if (!DESTROYABLE_BLOCKS.contains(name))
+                iterator.remove();
         }
     }
 }

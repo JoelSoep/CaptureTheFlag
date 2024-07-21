@@ -8,13 +8,14 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class FlagCaptureEvent extends Event {
 
     public static final HandlerList handlers = new HandlerList();
 
-    @Getter private final Game game;
-    @Getter private final CTFPlayer ctfPlayer;
-    @Getter private final Team flagOwner;
+    private final Game game;
+    private final CTFPlayer ctfPlayer;
+    private final Team flagOwner;
 
     public FlagCaptureEvent(Game game, CTFPlayer ctfPlayer, Team flagOwner) {
         this.game = game;

@@ -5,6 +5,8 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -21,9 +23,16 @@ public class BlockPlaceListener implements Listener {
         Location blockLocation = event.getBlockPlaced().getLocation();
 
         if (game.getState() != GameState.RUNNING) {
-            if (!player.hasPermission("ctf.admin")) {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+            if (ctfPlayer == null) {
+                player.sendMessage(MM.deserialize("<red>Couldn't place block because your profile could not be fetched."));
                 event.setCancelled(true);
-                event.setBuild(false);
+                return;
+            }
+
+            if (ctfPlayer.isElevated()) {
+                event.setCancelled(true);
+                return;
             }
         }
         if (game.getState() == GameState.RUNNING) {

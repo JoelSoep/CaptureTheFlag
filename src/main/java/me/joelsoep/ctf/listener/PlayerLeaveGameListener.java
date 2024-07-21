@@ -8,8 +8,10 @@ import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.util.IntUtils;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -19,6 +21,7 @@ public class PlayerLeaveGameListener implements Listener {
     public void onLeaveGame(PlayerLeaveGameEvent event) {
         Game game = event.getGame();
         CTFPlayer player = event.getPlayer();
+        LogModule.GAME.log("init");
 
         if (game.getPlayers().size() < game.getMinPlayers() && game.isStarting()) {
             if (game.getCountdownTask() != null) {
@@ -28,13 +31,15 @@ public class PlayerLeaveGameListener implements Listener {
                 game.getAudience().sendMessage(MM.deserialize("<red>Game preparation has been canceled as there are too few players to start."));
             }
         }
+
+        editWinStreak(game, player);
         if (player.getTeam() != null) {
             Team team = player.getTeam();
             Team oppositeTeam = player.getTeam() == game.getRed() ? game.getBlue() : game.getRed();
             team.removePlayer(player);
             player.setTeam(null);
 
-            if (team.getPlayers().size() == 0 && game.getState() != GameState.ENDED) {
+            if (team.getPlayers().isEmpty() && game.getState() != GameState.ENDED) {
                 LogModule.GAME.log("Calling GameEndEvent as PlayerLeaveGameEvent was triggered and the team size was 0.");
                 GameEndEvent endEvent = new GameEndEvent(game, oppositeTeam, team);
                 Bukkit.getPluginManager().callEvent(endEvent);
@@ -53,6 +58,17 @@ public class PlayerLeaveGameListener implements Listener {
                                         .formatted(oppositeTeam.getTeamColor().getPrefix()))
                 );
             }
+        }
+    }
+
+    public void editWinStreak(Game game, CTFPlayer player) {
+        if (game.getState() == GameState.RUNNING) {
+            // if the difference in size between teams is more than 20%, the player can leave without penalty.
+            if (!(IntUtils.isWithinPercentage(game.getRed().getPlayers().size(), game.getBlue().getPlayers().size(), 20))) {
+                return;
+            }
+            player.getData().setWinStreak(0);
+            LogModule.GAME.log("Win streak of %s has been reset because he left the game while it was running.".formatted(player.getPlayer().getName()));
         }
     }
 }

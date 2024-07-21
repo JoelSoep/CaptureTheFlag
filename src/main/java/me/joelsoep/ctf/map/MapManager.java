@@ -188,7 +188,6 @@ public class MapManager {
         }
 
         world.setKeepSpawnInMemory(true);
-        //PaperLib.getChunkAtAsync(world.getSpawnLocation(), true);
         return world;
     }
 }

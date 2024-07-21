@@ -6,12 +6,13 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+@Getter
 public class PlayerLevelUpEvent extends Event {
     public static final HandlerList handlers = new HandlerList();
 
-   @Getter  private final CTFPlayer player;
-   @Getter private final Integer oldLevel;
-   @Getter private final Integer newLevel;
+   private final CTFPlayer player;
+   private final Integer oldLevel;
+   private final Integer newLevel;
 
     public PlayerLevelUpEvent(CTFPlayer player, Integer oldLevel, Integer newLevel) {
         this.player = player;

@@ -27,6 +27,7 @@ public class CTFPlayerData {
     private Integer captures = 0;
     private Integer experience = 0;
     private Integer coins = 0;
+    private Integer winStreak = 0;
     private Double kd = (double) 1;
 
     public CTFPlayerData(CTFPlayer player) {
@@ -63,6 +64,7 @@ public class CTFPlayerData {
                             .append("player_kd", (double) 1)
                             .append("experience", 0)
                             .append("coins", 0)
+                            .append("win_streak", 0)
                     );
                 } else {
                     fetchData();
@@ -102,6 +104,7 @@ public class CTFPlayerData {
                     captures = result.getInteger("flag_captures");
                     experience = result.getInteger("experience");
                     coins = result.getInteger("coins");
+                    winStreak = result.getInteger("win_streak");
                     player.setLevel(Level.getLevel(player));
 
                     kd = result.getDouble("player_kd");

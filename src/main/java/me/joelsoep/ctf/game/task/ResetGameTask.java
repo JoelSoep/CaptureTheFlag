@@ -54,8 +54,6 @@ public class ResetGameTask {
                 game.reset();
                 LogModule.CORE.log("After assignment - Main.getGame() identity: " + System.identityHashCode(Main.getGame()));
                 LogModule.CORE.log("Verifying game UUID @ ResetGameTask: " + game.getUuid().toString());
-                LogModule.CORE.log("END OF LOG FILE --- NEW GAME");
-                Main.getCTFLogger().resetFileHandler(game.getUuid().toString());
 
                 PlayerService.getPlayers().values().forEach(player -> {
                     if (player.getGame() != null) {
