@@ -2,6 +2,7 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.player.effect.EffectListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -14,6 +15,7 @@ public class ListenerService {
 
     public ListenerService(String packageName) {
         loadAndRegisterListeners(packageName);
+        registerManually();
     }
 
     public void loadAndRegisterListeners(String packageName) {
@@ -38,5 +40,9 @@ public class ListenerService {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void registerManually() {
+        Bukkit.getServer().getPluginManager().registerEvents(new EffectListener(), Main.getInstance());
     }
 }

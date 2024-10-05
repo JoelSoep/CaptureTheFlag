@@ -81,7 +81,7 @@ public class KitSelectionGUI extends ChestGui implements Listener {
 
             // If the kit is enabled, make the item glow
             if (isKitEnabled(player, kit)) {
-                kitItem.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+                kitItem.addUnsafeEnchantment(Enchantment.PROJECTILE_PROTECTION, 1);
             }
 
             this.setOnGlobalClick(event -> { event.setCancelled(true); });

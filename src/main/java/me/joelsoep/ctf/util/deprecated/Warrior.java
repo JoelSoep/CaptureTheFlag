@@ -27,22 +27,22 @@ public class Warrior {
         ItemMeta leggingsMeta = leggings.getItemMeta();
         ItemMeta bootsMeta = boots.getItemMeta();
 
-        helmetMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
+        helmetMeta.addEnchant(Enchantment.PROTECTION, 2, false);
         helmetMeta.setUnbreakable(true);
         helmetMeta.displayName(miniMessage.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ʜᴇʟᴍᴇᴛ"));
         helmet.setItemMeta(helmetMeta);
 
-        chestPlateMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
+        chestPlateMeta.addEnchant(Enchantment.PROTECTION, 2, false);
         chestPlateMeta.setUnbreakable(true);
         chestPlateMeta.displayName(miniMessage.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ᴄʜᴇѕᴛᴘʟᴀᴛᴇ"));
         chestPlate.setItemMeta(chestPlateMeta);
 
-        leggingsMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
+        leggingsMeta.addEnchant(Enchantment.PROTECTION, 2, false);
         leggingsMeta.setUnbreakable(true);
         leggingsMeta.displayName(miniMessage.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ʟᴇɢɢɪɴɢѕ"));
         leggings.setItemMeta(leggingsMeta);
 
-        bootsMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
+        bootsMeta.addEnchant(Enchantment.PROTECTION, 2, false);
         bootsMeta.setUnbreakable(true);
         bootsMeta.displayName(miniMessage.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ʙᴏᴏᴛѕ"));
         boots.setItemMeta(bootsMeta);
@@ -51,7 +51,7 @@ public class Warrior {
     private void modifyUtils() {
         ItemMeta swordMeta = sword.getItemMeta();
 
-        swordMeta.addEnchant(Enchantment.DAMAGE_ALL, 2,false);
+        swordMeta.addEnchant(Enchantment.SHARPNESS, 2,false);
         swordMeta.addEnchant(Enchantment.SWEEPING_EDGE, 2, false);
         swordMeta.setUnbreakable(true);
         swordMeta.displayName(miniMessage.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ѕᴡᴏʀᴅ"));

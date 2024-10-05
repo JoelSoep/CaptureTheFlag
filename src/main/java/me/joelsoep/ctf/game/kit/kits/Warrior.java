@@ -13,16 +13,16 @@ public class Warrior extends BaseKit {
 
     @Override
     public void setArmor() {
-        armor[0] = new ItemStack(Material.CHAINMAIL_BOOTS);
+        armor[0] = new ItemStack(Material.IRON_BOOTS);
         armor[1] = new ItemStack(Material.IRON_LEGGINGS);
-        armor[2] = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+        armor[2] = new ItemStack(Material.IRON_CHESTPLATE);
         armor[3] = new ItemStack(Material.IRON_HELMET);
     }
 
     @Override
     public void setItems() {
         items.put(7, new ItemStack(Material.GOLDEN_APPLE, 1));
-        items.put(0, new ItemStack(Material.IRON_AXE));
+        items.put(0, new ItemStack(Material.DIAMOND_AXE));
         items.put(1, getDefaultPickaxe());
         items.put(2, new ItemStack(Material.GRAY_CONCRETE));
         items.put(8, new ItemStack(Material.CROSSBOW));

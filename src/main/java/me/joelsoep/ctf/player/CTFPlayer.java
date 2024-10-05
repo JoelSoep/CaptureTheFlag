@@ -10,6 +10,7 @@ import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.effect.PlayerEffect;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
@@ -22,12 +23,15 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.title.TitlePart;
+import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -39,6 +43,7 @@ public class CTFPlayer implements Audience {
     private final CTFPlayerData data;
     private final Balance balance;
     private final Cosmetics cosmetics;
+    private final @NotNull List<PlayerEffect> effects;
 
     private Game game;
     private ParticipationState participationState;
@@ -59,6 +64,8 @@ public class CTFPlayer implements Audience {
 
     private boolean elevated;
 
+    // end admin section
+    
     protected CTFPlayer(Player player) {
         this.player = player;
         this.data = new CTFPlayerData(this);
@@ -69,7 +76,16 @@ public class CTFPlayer implements Audience {
         this.level = 1;
         this.cooldown = System.currentTimeMillis();
         this.elevated = false;
+        this.effects = new ArrayList<>();
         reset();
+    }
+
+    public void addEffect(@NotNull PlayerEffect effect) {
+        this.effects.add(effect);
+    }
+
+    public void removeEffect(@NotNull PlayerEffect effect) {
+        this.effects.remove(effect);
     }
 
     public boolean hasCooldown() {

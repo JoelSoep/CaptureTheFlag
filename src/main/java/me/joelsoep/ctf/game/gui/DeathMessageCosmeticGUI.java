@@ -79,7 +79,7 @@ public class DeathMessageCosmeticGUI extends ChestGui {
                     .build();
 
             if (enabled) {
-                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+                itemStack.addUnsafeEnchantment(Enchantment.UNBREAKING, 1);
             }
 
             final Component finalDisplayName = displayName;

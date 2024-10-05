@@ -135,6 +135,7 @@ public abstract class BaseKit {
 
                 //Bukkit.getLogger().info("Material: " + itemStack.getType() + " Amount: " + originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
 
+                //TODO: add enchantment support
                 itemStack.setAmount(originalList.stream().filter(item -> item.getType() == itemStack.getType()).findFirst().get().getAmount());
 
                 if (itemStack.getType() == Material.GRAY_CONCRETE) {
@@ -154,6 +155,7 @@ public abstract class BaseKit {
                 item = entry.getValue().getMaxStackSize() > 1 ? new ItemStack(entry.getValue().getType(), entry.getValue().getAmount()) : entry.getValue();
             }
             int slot = entry.getKey();
+
             inventory.setItem(slot, item);
         }
 

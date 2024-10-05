@@ -12,6 +12,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.damage.DamageSource;
+import org.bukkit.damage.DamageType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -132,7 +134,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             task(player);
             yoink(player, attacker);
             attacker.setHealth(4);
-            attacker.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 7, 1, true, false, true));
+            attacker.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 7, 1, true, false, true));
             event.setCancelled(true);
         }
 
@@ -182,7 +184,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             @Override
             public void run() {
                 i[0]++;
-                player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, player.getLocation(), 20);
+                player.getWorld().spawnParticle(Particle.SMOKE, player.getLocation(), 20);
                 if (i[0] == 30) {
                     cancel(id[0]);
                 }
@@ -201,7 +203,8 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             public void run() {
                 if (player.getGameMode() != GameMode.SPECTATOR) {
                     player.setLastDamageCause(new EntityDamageEvent(player, EntityDamageEvent.DamageCause.DRAGON_BREATH, 0));
-                    PlayerDeathEvent deathEvent =new PlayerDeathEvent(player, Arrays.stream(player.getInventory().getContents()).toList(), 0, Component.empty());
+                    DamageSource damageSource = DamageSource.builder(DamageType.PLAYER_ATTACK).withCausingEntity(attacker).withDamageLocation(player.getLocation()).build();
+                    PlayerDeathEvent deathEvent = new PlayerDeathEvent(player, damageSource,  Arrays.stream(player.getInventory().getContents()).toList(), 0, Component.empty());
                     Bukkit.getPluginManager().callEvent(deathEvent);
                 }
             }

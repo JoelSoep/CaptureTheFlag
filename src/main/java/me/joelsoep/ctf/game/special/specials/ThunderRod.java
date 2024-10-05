@@ -45,7 +45,7 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
         }
 
         Location location = Objects.requireNonNull(player.getTargetBlockExact(MAX_DISTANCE)).getLocation();
-        Entity entity = player.getWorld().spawnEntity(location, EntityType.LIGHTNING);
+        Entity entity = player.getWorld().spawnEntity(location, EntityType.LIGHTNING_BOLT);
         if (entity instanceof LightningStrike lightning) {
             lightning.setCausingPlayer(player);
         }

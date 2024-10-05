@@ -16,7 +16,7 @@ public abstract class Cosmetic implements Listener {
     private CosmeticRarity rarity;
     private Component displayName;
     private Material logo;
-    private Integer price;
+    private Integer price; // remove this later, price should be a shop-based variable.
 
     protected Cosmetic(String name, CosmeticType type) {
         this.name = name;

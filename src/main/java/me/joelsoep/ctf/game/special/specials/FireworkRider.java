@@ -13,11 +13,11 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jetbrains.annotations.NotNull;
-import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implements Reflective<EntityDamageByEntityEvent> {
     public FireworkRider() {
@@ -79,7 +79,7 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
     }
 
     public Firework spawnFirework(Player rider) {
-        Firework firework = (Firework) rider.getWorld().spawnEntity(rider.getEyeLocation().toBlockLocation(), EntityType.FIREWORK);
+        Firework firework = (Firework) rider.getWorld().spawnEntity(rider.getEyeLocation().toBlockLocation(), EntityType.FIREWORK_ROCKET);
         FireworkMeta meta = firework.getFireworkMeta();
         meta.setPower(2);
         meta.addEffect(FireworkEffect.builder()

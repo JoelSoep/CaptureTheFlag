@@ -20,7 +20,7 @@ public class CleanItemsTask {
         this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
-                world.getEntities().stream().filter(entity -> entity.getType() == EntityType.DROPPED_ITEM).forEach(Entity::remove);
+                world.getEntities().stream().filter(entity -> entity.getType() == EntityType.ITEM).forEach(Entity::remove);
             }
         }, 60L * 20L, 60L * 20L);
     }

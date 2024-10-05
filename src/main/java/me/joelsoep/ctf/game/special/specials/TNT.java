@@ -40,7 +40,7 @@ public class TNT extends BaseSpecial<PlayerInteractEvent> {
 
         Player player = event.getPlayer();
         @NotNull Vector vector = player.getLocation().getDirection();
-        Entity tnt = player.getWorld().spawnEntity(player.getLocation(), EntityType.PRIMED_TNT);
+        Entity tnt = player.getWorld().spawnEntity(player.getLocation(), EntityType.TNT);
 
         if (event.getItem().getAmount() == 1) {
             player.getInventory().remove(event.getItem());

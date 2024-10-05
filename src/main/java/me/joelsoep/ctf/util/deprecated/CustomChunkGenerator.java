@@ -27,8 +27,8 @@ public class CustomChunkGenerator extends ChunkGenerator {
             LogModule.MAP.log("bruhsdafsdf");
             return;
         }
-        this.generateNoise(getInfo(world), RandomUtil.get(), 0, 0, getData(world));
-        this.generateSurface(getInfo(world), RandomUtil.get(), 0, 0, getData(world));
+       // this.generateNoise(getInfo(world), RandomUtil.get(), 0, 0, getData(world));
+       // this.generateSurface(getInfo(world), RandomUtil.get(), 0, 0, getData(world));
         //this.generateSurface(getInfo(world), RandomUtil.get(), 0, 0, getData(world));
 
     }
@@ -43,7 +43,7 @@ public class CustomChunkGenerator extends ChunkGenerator {
         return false;
     }
 
-    public ChunkData getData(World world) {
+    /**public ChunkData getData(World world) {
         if (world == null) {
             LogModule.MAP.log("world is null @ data");
             return null;
@@ -59,12 +59,12 @@ public class CustomChunkGenerator extends ChunkGenerator {
             return null;
         }
 
-        return new WorldInfo() {
-            @Override
-            public @NotNull String getName() {
-                return Main.getGame().getUuid().toString();
-            }
-
+        //return new WorldInfo() {
+           // @Override
+           // public @NotNull String getName() {
+          //      return Main.getGame().getUuid().toString();
+          //  }
+/**
             @Override
             public @NotNull UUID getUID() {
                 return Main.getGame().getUuid();
@@ -94,11 +94,12 @@ public class CustomChunkGenerator extends ChunkGenerator {
             public @NotNull BiomeProvider vanillaBiomeProvider() {
                 return Objects.requireNonNull(Main.getInstance().getDefaultBiomeProvider(world.getName(), Main.getGame().getUuid().toString()));
             }
+return null;
         };
 
     }
 
-    public BiomeProvider provider() {
+   /** public BiomeProvider provider() {
          return new BiomeProvider() {
              @Override
              public @NotNull Biome getBiome(@NotNull WorldInfo worldInfo, int x, int y, int z) {
@@ -117,4 +118,5 @@ public class CustomChunkGenerator extends ChunkGenerator {
          };
     };
 
+    **/
 }

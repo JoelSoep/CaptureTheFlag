@@ -2,11 +2,16 @@ package me.joelsoep.ctf.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoDatabase;
+import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.Version;
+import org.bson.Document;
 import org.bukkit.entity.Player;
 
 @CommandAlias("ctf")
@@ -36,5 +41,16 @@ public final class CTFCommand extends BaseCommand {
         boolean update = !ctfPlayer.isElevated();
         ctfPlayer.setElevated(update);
         player.sendMessage(MM.deserialize("<gray>Updated elevation state to <yellow>%s<gray>.".formatted(update)));
+    }
+
+    @CommandPermission("ctf.admin|op")
+    @Description("Fetches information about the database connection")
+    @Subcommand("dbinfo")
+    public void dbInfo(Player player) {
+        MongoClient client = Main.getMongoManager().getClient();
+        MongoDatabase database = Main.getMongoManager().getDatabase();
+        //database.runCommand(new Document("ping", 0));
+        String connectionString = LocalConfig.MONGO_CONNECTION_STRING;
+
     }
 }

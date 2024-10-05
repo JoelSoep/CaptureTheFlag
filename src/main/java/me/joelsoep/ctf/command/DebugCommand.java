@@ -1,12 +1,11 @@
 package me.joelsoep.ctf.command;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.RegisteredCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.animation.animation.BreakAnimation;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
-import me.joelsoep.ctf.cosmetic.CosmeticManager;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.file.FileManager;
@@ -15,20 +14,21 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
-import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.player.effect.EffectType;
+import me.joelsoep.ctf.player.effect.effects.BreakEffect;
 import me.joelsoep.ctf.player.experience.Level;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
@@ -313,5 +313,28 @@ public final class DebugCommand extends BaseCommand {
     @Subcommand("sleep")
     public void sleep(Player player) {
         player.sleep(player.getLocation(), true);
+    }
+
+    @Subcommand("testanimation")
+    public void testAnimation(Player player, Long interval){
+        Location location = player.getEyeLocation();
+
+        BreakAnimation breakAnimation = new BreakAnimation(location);
+        breakAnimation.setInterval(1L);
+        breakAnimation.play(0L, interval);
+    }
+
+    @Subcommand("simulatebed")
+    public void simulateBed(Player player) {
+        player.setGliding(true);
+    }
+
+    @Subcommand("testeffect")
+    public void testEffect(Player player) {
+        BreakEffect effect = (BreakEffect) EffectType.BREAK.getEffect();
+        effect.setDuration(5 * 20L);
+
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        effect.play(ctfPlayer);
     }
 }

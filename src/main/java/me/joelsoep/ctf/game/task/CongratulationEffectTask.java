@@ -42,7 +42,7 @@ public class CongratulationEffectTask {
 
                     Player player = ctfPlayer.getPlayer();
                     Location location = player.getLocation().clone().add(0, 2, 0);
-                    Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
+                    Firework firework = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK_ROCKET);
                     FireworkMeta meta = firework.getFireworkMeta();
 
                     meta.setPower(2); // Set power to 0 for immediate detonation
