@@ -13,6 +13,7 @@ import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.game.board.ActionbarService;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.special.SpecialService;
@@ -313,5 +314,34 @@ public final class DebugCommand extends BaseCommand {
     @Subcommand("sleep")
     public void sleep(Player player) {
         player.sleep(player.getLocation(), true);
+    }
+
+    @Subcommand("actionbarset")
+    public void actionbarset(Player player, ActionbarService.ActionbarPriority priority, @Optional String message) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+        if (message == null) {
+            message = "";
+        }
+        ctfPlayer.getActionbarHandler().setMessage(priority, message);
+        player.sendMessage(MM.deserialize("<gray>Set message!"));
+    }
+
+    @Subcommand("actionbarsetwithtime")
+    public void actionbarsetwithtime(Player player, ActionbarService.ActionbarPriority priority, Long time, @Optional String message) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+
+        if (message == null) {
+            message = "";
+        }
+        ctfPlayer.getActionbarHandler().setMessage(priority, message, time);
+        player.sendMessage(MM.deserialize("<gray>Set message!"));
     }
 }

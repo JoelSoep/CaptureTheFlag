@@ -8,8 +8,11 @@ import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.Game;
+import me.joelsoep.ctf.game.board.ActionbarService;
+import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.player.effect.PlayerEffect;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
@@ -27,7 +30,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -39,9 +44,12 @@ public class CTFPlayer implements Audience {
     private final CTFPlayerData data;
     private final Balance balance;
     private final Cosmetics cosmetics;
+    private final ScoreboardHandler scoreboardHandler;
+    private final ActionbarService actionbarHandler;
 
     private Game game;
     private ParticipationState participationState;
+    private List<PlayerEffect> effects;
     private Team team;
     private Integer killStreak;
     private BaseKit kit;
@@ -68,8 +76,28 @@ public class CTFPlayer implements Audience {
         this.killStreak = 0;
         this.level = 1;
         this.cooldown = System.currentTimeMillis();
+        this.effects = new ArrayList<>();
+        this.scoreboardHandler = new ScoreboardHandler(this);
+        this.board = scoreboardHandler.getBoard();
+        this.actionbarHandler = new ActionbarService(this);
         this.elevated = false;
         reset();
+    }
+
+    public void addEffect(PlayerEffect effect) {
+        this.effects.add(effect);
+        player.sendMessage(MM.deserialize("<gray>You've received effect <yellow>%s<gray>!".formatted(effect.getEffectType().toString())));
+    }
+
+    public void removeEffect(PlayerEffect effect) {
+        if (!this.effects.contains(effect)) {
+            return;
+        }
+        this.effects.remove(effect);
+    }
+
+    public void clearEffects() {
+        this.effects.clear();
     }
 
     public boolean hasCooldown() {

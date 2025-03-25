@@ -7,13 +7,11 @@ import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
+import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import org.bson.Document;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,6 +49,11 @@ public abstract class Map {
                     if (!(event.getPlayer().getWorld().getName().equals(getWorld().getName()))) {
                         return;
                     }
+
+                    if (Main.getGame().getState() != GameState.RUNNING) {
+                        return;
+                    }
+
                     action.accept(event);
                 }
             }, Main.getInstance());

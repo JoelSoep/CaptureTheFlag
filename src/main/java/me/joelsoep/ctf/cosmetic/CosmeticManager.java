@@ -1,22 +1,17 @@
 package me.joelsoep.ctf.cosmetic;
 
 import lombok.Getter;
-import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.cosmetic.type.DeathMessageCosmetic;
+import me.joelsoep.ctf.cosmetic.type.listener.DeathMessageCosmeticListener;
 import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.LogModule;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.reflections.Reflections;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
-import static java.util.stream.Collectors.toList;
 
 public class CosmeticManager {
 
@@ -59,6 +54,10 @@ public class CosmeticManager {
         cosmetics.put(type, map);
     }
 
+    /**
+     *
+     * TODO: add annotation instead of a class for each single deathmessage cosmetic.
+     */
     private void loadDeathMessages() {
         String dir = "me.joelsoep.ctf.cosmetic.type.deathMessage";
         Reflections reflections = new Reflections(dir);

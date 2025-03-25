@@ -35,9 +35,6 @@ public class PlayerJoinListener implements Listener {
                     """));
         }
 
-        ScoreboardHandler scoreboardHandler = new ScoreboardHandler(ctfPlayer);
-        ctfPlayer.setBoard(scoreboardHandler.getBoard());
-
         if (game.getState() == GameState.WAITING) {
             ctfPlayer.reset();
             if (game.getPlayerCount() >= game.getMap().getMaxPlayers()) {

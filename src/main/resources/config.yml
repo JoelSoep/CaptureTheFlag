@@ -1,2 +1,4 @@
 mongodb-uri:
 additional-message: "Have fun!"
+allow_custom_teams: false
+force_game_mode: false

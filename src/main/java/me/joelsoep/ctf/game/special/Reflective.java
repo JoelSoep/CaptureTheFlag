@@ -3,6 +3,12 @@ package me.joelsoep.ctf.game.special;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
+import me.joelsoep.ctf.game.special.specials.Mirror;
+
+/**
+ * An interface to state whether a special item is reflectable by a {@link Mirror} item
+ * @param <T> The event which contains information to reflect
+ */
 
 public interface Reflective<T extends Event> {
 
