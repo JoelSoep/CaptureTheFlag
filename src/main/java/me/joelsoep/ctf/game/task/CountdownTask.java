@@ -62,9 +62,9 @@ public class CountdownTask {
                 if (seconds == 0) {
                     LogModule.GAME.log("SECONDS = 0 @ Countdowntask");
                     if (isGameStartCountdown && game.getState() == GameState.READY) {
-                        game.setState(GameState.RUNNING);
                         game.setStartTime(System.currentTimeMillis());
                         game.setGameTime(System.currentTimeMillis() + (10L * 60L * 1000L));
+                        game.setState(GameState.RUNNING);
                         new GameTimerTask(game);
                         LogModule.GAME.log("Updated game state to RUNNING");
                         if (game.getPlayers().size() == 0) {

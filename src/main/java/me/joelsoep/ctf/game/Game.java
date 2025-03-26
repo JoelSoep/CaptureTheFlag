@@ -130,6 +130,7 @@ public class Game {
         this.setStarting(false);
         this.setSpedUp(false);
         this.setMap(MapManager.getRandomGameMap());
+        this.setGameTime(10L * 60L * 1000L);
         TeamService.getTeams().clear();
         this.createTeams(this.getMap());
         this.setAudience(Audience.audience(concatAudience(players, spectators)));
