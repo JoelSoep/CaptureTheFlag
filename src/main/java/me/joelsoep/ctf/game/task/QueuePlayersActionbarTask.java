@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.game.task;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.board.ActionbarService;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -24,7 +25,7 @@ public class QueuePlayersActionbarTask {
                     if (player == null) {
                         return;
                     }
-                    player.sendActionBar(MM.deserialize("<gray>Queue position: <yellow>%s<gray>/<yellow>%s".formatted(Main.getQueue().getPosition(player), Main.getQueue().getQueue().size())));
+                    player.getActionbarHandler().setMessage(ActionbarService.ActionbarPriority.LOW, "<gray>Queue position: <yellow>%s<gray>/<yellow>%s".formatted(Main.getQueue().getPosition(player), Main.getQueue().getQueue().size()));
                 });
             }
         }, 0L, 2L * 20L);

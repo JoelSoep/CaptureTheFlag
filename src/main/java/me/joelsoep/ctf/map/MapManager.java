@@ -146,7 +146,7 @@ public class MapManager {
 
         map.placeFlag(Main.getGame().getBlue());
         map.placeFlag(Main.getGame().getRed());
-        Main.getGame().setMap(map);
+        game.setMap(map);
     }
 
     public static @Nullable

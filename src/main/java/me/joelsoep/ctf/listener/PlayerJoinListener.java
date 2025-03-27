@@ -4,6 +4,9 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
+import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.map.MapManager;
+import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
@@ -13,6 +16,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.util.Comparator;
+import java.util.Optional;
 
 public class PlayerJoinListener implements Listener {
 
@@ -25,7 +31,7 @@ public class PlayerJoinListener implements Listener {
 
         if (!Main.getInstance().getServer().getAllowFlight()) {
             if (!(player.hasPermission("ctf.admin"))) {
-                return;
+                return; // TODO: this will fuck up when its not enabled, cuz it will not handle player joins at all!!!!
             }
             player.sendMessage(MM.deserialize("""
                                         <gray>[<red><bold>CTF-ALERT</bold><gray>]
@@ -37,6 +43,27 @@ public class PlayerJoinListener implements Listener {
 
         if (game.getState() == GameState.WAITING) {
             ctfPlayer.reset();
+
+            // scales the map if there is one available with higher player capacity when the old capacity has been reached
+
+            LogModule.GAME.log("pcount: %s, mplayers: %s".formatted( game.getPlayerCount(), game.getMap().getMaxPlayers()));
+            if (game.getPlayerCount() >= game.getMap().getMaxPlayers()) {
+                Optional<GameMap> replacement = MapManager.getGameMaps().stream()
+                        .filter(gameMap -> gameMap.getMaxPlayers() > game.getPlayerCount())
+                        .min(Comparator.comparing(GameMap::getMaxPlayers));
+
+                LogModule.GAME.log("CHECKING FOR OTHER MAP");
+
+                if (replacement.isPresent()) {
+                    LogModule.MAP.log("Scaling map to map %s as max players for map %s was reached.".formatted(replacement.get().getName(), game.getMap().getName()));
+                    MapManager.registerMapToGame(replacement.get(), game);
+                    LogModule.MAP.log("Successfully scaled to map %s.".formatted(replacement.get().getName()));
+                    if (game.getCountdownTask() != null) {
+                        game.getCountdownTask().cancel();
+                    }
+                }
+            }
+
             if (game.getPlayerCount() >= game.getMap().getMaxPlayers()) {
                 player.sendMessage(MM.deserialize("<gray>You've been added to the queue as the current game is full."));
                 Main.getQueue().addPlayer(ctfPlayer);

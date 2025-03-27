@@ -1,10 +1,13 @@
 package me.joelsoep.ctf.map.type;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.map.Map;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -14,34 +17,64 @@ import org.bukkit.block.data.Rotatable;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-
+@Getter
+@Setter
 public abstract class GameMap extends Map {
 
     protected final File schematic;
 
+    protected @NotNull Location redFlagLocation;
+    protected @NotNull Location redSpawnLocation;
+    protected @NotNull BlockFace redBlockFace;
+    protected @NotNull Location blueFlagLocation;
+    protected @NotNull Location blueSpawnLocation;
+    protected @NotNull BlockFace blueBlockFace;
+    protected @NotNull Location centerLocation;
+    protected @NotNull Integer minPlayers;
+    protected @NotNull Integer maxPlayers;
+    protected @NotNull Integer worldSize;
+    protected @NotNull Integer maxBuildHeight;
+    protected @NotNull Integer deathHeight;
+
     public GameMap(String name, File schematic) {
         super(name, "game_");
         this.schematic = schematic;
-
         this.setWorld(createEmptyWorld());
-        world.setSpawnLocation(getCenterLocation());
+
+        // set values for the map
+
+        redFlagLocation();
+        redSpawnLocation();
+        redBlockFace();
+        blueFlagLocation();
+        blueSpawnLocation();
+        blueBlockFace();
+        centerLocation();
+        minPlayers();
+        maxPlayers();
+        worldSize();
+        maxPlayers();
+        maxBuildHeight();
+        deathHeight();
+
+        world.setSpawnLocation(this.centerLocation);
         new CleanItemsTask(world);
     }
 
     public abstract void load();
     public abstract void resetFeatures();
-    public abstract @NotNull Location getRedFlagLocation();
-    public abstract @NotNull Location getRedSpawnLocation();
-    public abstract @NotNull BlockFace getRedBlockFace();
-    public abstract @NotNull Location getBlueFlagLocation();
-    public abstract @NotNull Location getBlueSpawnLocation();
-    public abstract @NotNull BlockFace getBlueBlockFace();
-    public abstract @NotNull Location getCenterLocation();
-    public abstract @NotNull Integer getMinPlayers();
-    public abstract @NotNull Integer getMaxPlayers();
-    public abstract @NotNull Integer getWorldSize();
-    public abstract @NotNull Integer getMaxBuildHeight();
-    public abstract @NotNull Integer getDeathHeight();
+    protected abstract void redFlagLocation();
+    protected abstract void redSpawnLocation();
+    protected abstract void redBlockFace();
+    protected abstract void blueFlagLocation();
+    protected abstract void blueSpawnLocation();
+    protected abstract void blueBlockFace();
+    protected abstract void centerLocation();
+    protected abstract void minPlayers();
+    protected abstract void maxPlayers();
+    protected abstract void worldSize();
+    protected abstract void maxBuildHeight();
+    protected abstract void deathHeight();
 
     public boolean isLocationInMapSize(Location location) {
         if (location.getBlock().getY() > getMaxBuildHeight()) {

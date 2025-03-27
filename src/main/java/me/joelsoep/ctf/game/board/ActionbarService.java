@@ -6,18 +6,19 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class ActionbarService {
 
     private final CTFPlayer player;
-    private final HashMap<ActionbarPriority, String> messages;
+    private final EnumMap<ActionbarPriority, String> messages;
     private int id;
 
     public ActionbarService(CTFPlayer player) {
         this.player = player;
-        this.messages = new HashMap<>(3);
+        this.messages = new EnumMap<>(ActionbarPriority.class);
         this.id = 0;
 
         messages.put(ActionbarPriority.LOW, "");

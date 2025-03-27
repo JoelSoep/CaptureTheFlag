@@ -186,33 +186,33 @@ public class AirshipMap extends GameMap {
     }
 
     @Override
-    public @NotNull Location getRedFlagLocation() {
-        return new Location(this.getWorld(), -13, 38, 45);
+    protected void redFlagLocation() {
+        redFlagLocation = new Location(this.getWorld(), -13, 38, 45);
     }
 
     @Override
-    public @NotNull Location getRedSpawnLocation() {
-        return new Location(getWorld(), 34.5, 45.5, 45.5, -180, 0);
+    protected void redSpawnLocation() {
+        redSpawnLocation = new Location(getWorld(), 34.5, 45.5, 45.5, -180, 0);
     }
 
     @Override
-    public @NotNull BlockFace getRedBlockFace() {
-        return BlockFace.NORTH;
+    protected void redBlockFace() {
+        redBlockFace = BlockFace.NORTH;
     }
 
     @Override
-    public @NotNull Location getBlueFlagLocation() {
-        return new Location(getWorld(), -13, 38, -50);
+    protected void blueFlagLocation() {
+        blueFlagLocation = new Location(getWorld(), -13, 38, -50);
     }
 
     @Override
-    public @NotNull Location getBlueSpawnLocation() {
-        return new Location(getWorld(), 34.5, 45.5, -49.5);
+    protected void blueSpawnLocation() {
+        blueSpawnLocation = new Location(getWorld(), 34.5, 45.5, -49.5);
     }
 
     @Override
-    public @NotNull BlockFace getBlueBlockFace() {
-        return BlockFace.SOUTH;
+    protected void blueBlockFace() {
+        blueBlockFace = BlockFace.SOUTH;
     }
 
     /**
@@ -220,32 +220,32 @@ public class AirshipMap extends GameMap {
      * @return The location that is the spectator spawn location as well as the center of the map
      */
     @Override
-    public @NotNull Location getCenterLocation() {
-        return new Location(getWorld(), -4, 46, -1);
+    protected void centerLocation() {
+        centerLocation = new Location(getWorld(), -4, 46, -1);
     }
 
     @Override
-    public @NotNull Integer getMinPlayers() {
-        return 6;
+    protected void minPlayers() {
+        minPlayers = 6;
     }
 
     @Override
-    public @NotNull Integer getMaxPlayers() {
-        return 14;
+    protected void maxPlayers() {
+        maxPlayers = 14;
     }
 
     @Override
-    public @NotNull Integer getWorldSize() {
-        return 155;
+    protected void worldSize() {
+        worldSize = 155;
     }
 
     @Override
-    public @NotNull Integer getMaxBuildHeight() {
-        return 123;
+    protected void maxBuildHeight() {
+        maxBuildHeight = 123;
     }
 
     @Override
-    public @NotNull Integer getDeathHeight() {
-        return -40;
+    protected void deathHeight() {
+        deathHeight = -40;
     }
 }

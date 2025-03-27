@@ -26,62 +26,62 @@ public class DragonDesertMap extends GameMap {
     }
 
     @Override
-    public @NotNull Location getRedFlagLocation() {
-        return new Location(getWorld(), 0, 63, -121);
+    protected void redFlagLocation() {
+        redFlagLocation = new Location(getWorld(), 0, 63, -121);
     }
 
     @Override
-    public @NotNull Location getRedSpawnLocation() {
-        return new Location(getWorld(), 0, 50, -121);
+    protected void redSpawnLocation() {
+        redSpawnLocation = new Location(getWorld(), 0, 50, -121);
     }
 
     @Override
-    public @NotNull BlockFace getRedBlockFace() {
-        return BlockFace.SOUTH;
+    protected void redBlockFace() {
+        redBlockFace = BlockFace.SOUTH;
     }
 
     @Override
-    public @NotNull Location getBlueFlagLocation() {
-        return new Location(getWorld(), 0, 63, 122);
+    protected void blueFlagLocation() {
+        blueFlagLocation = new Location(getWorld(), 0, 63, 122);
     }
 
     @Override
-    public @NotNull Location getBlueSpawnLocation() {
-        return new Location(getWorld(), 0, 50, 122);
+    protected void blueSpawnLocation() {
+        blueSpawnLocation = new Location(getWorld(), 0, 50, 122);
     }
 
     @Override
-    public @NotNull BlockFace getBlueBlockFace() {
-        return BlockFace.NORTH;
+    protected void blueBlockFace() {
+        blueBlockFace = BlockFace.NORTH;
     }
 
     @Override
-    public @NotNull Location getCenterLocation() {
-        return new Location(getWorld(), -3, 73, 7);
+    protected void centerLocation() {
+        centerLocation = new Location(getWorld(), -3, 73, 7);
     }
 
     @Override
-    public @NotNull Integer getMinPlayers() {
-        return 8;
+    protected void minPlayers() {
+        minPlayers = 8;
     }
 
     @Override
-    public @NotNull Integer getMaxPlayers() {
-        return 20;
+    protected void maxPlayers() {
+        maxPlayers = 20;
     }
 
     @Override
-    public @NotNull Integer getWorldSize() {
-        return 300;
+    protected void worldSize() {
+        worldSize = 300;
     }
 
     @Override
-    public @NotNull Integer getMaxBuildHeight() {
-        return 200;
+    protected void maxBuildHeight() {
+        maxBuildHeight = 200;
     }
 
     @Override
-    public @NotNull Integer getDeathHeight() {
-        return -99;
+    protected void deathHeight() {
+        deathHeight = -99;
     }
 }

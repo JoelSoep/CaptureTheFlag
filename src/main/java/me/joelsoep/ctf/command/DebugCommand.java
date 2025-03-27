@@ -160,12 +160,12 @@ public final class DebugCommand extends BaseCommand {
         onlinePlayer.getPlayer().getInventory().addItem(BaseKit.getBlocks(finalTeam, 64));
     }
 
-   // @Subcommand("setmaxplayers")
-    //public void setMaxPlayers(Player player, int integer) {
-   //     Game game = Main.getGame();
-   //     game.getMap().setMaxPlayers(integer);
-   //     player.sendMessage(MM.deserialize("<gray>Updated max players to <yellow>" + game.getMap().getMaxPlayers()));
-   // }
+    @Subcommand("setmaxplayers")
+    public void setMaxPlayers(Player player, int integer) {
+        Game game = Main.getGame();
+        game.getMap().setMaxPlayers(integer);
+        player.sendMessage(MM.deserialize("<gray>Updated max players to <yellow>" + game.getMap().getMaxPlayers()));
+    }
 
     @Subcommand("worldtp")
     @CommandCompletion("@worlds")
@@ -209,9 +209,7 @@ public final class DebugCommand extends BaseCommand {
             player.sendMessage(MM.deserialize("The map is null."));
             return;
         }
-        Game game = Main.getGame();
         MapManager.registerMapToGame(map, Main.getGame());
-        game.setMap(map);
         player.sendMessage("Updated map.");
     }
 
