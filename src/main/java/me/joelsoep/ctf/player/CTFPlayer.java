@@ -1,14 +1,13 @@
 package me.joelsoep.ctf.player;
 
 import fr.mrmicky.fastboard.adventure.FastBoard;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.game.board.ActionbarService;
+import me.joelsoep.ctf.game.board.ActionbarHandler;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
@@ -45,7 +44,7 @@ public class CTFPlayer implements Audience {
     private final Balance balance;
     private final Cosmetics cosmetics;
     private final ScoreboardHandler scoreboardHandler;
-    private final ActionbarService actionbarHandler;
+    private final ActionbarHandler actionbarHandler;
 
     private Game game;
     private ParticipationState participationState;
@@ -79,7 +78,7 @@ public class CTFPlayer implements Audience {
         this.effects = new ArrayList<>();
         this.scoreboardHandler = new ScoreboardHandler(this);
         this.board = scoreboardHandler.getBoard();
-        this.actionbarHandler = new ActionbarService(this);
+        this.actionbarHandler = new ActionbarHandler(this);
         this.elevated = false;
         reset();
     }

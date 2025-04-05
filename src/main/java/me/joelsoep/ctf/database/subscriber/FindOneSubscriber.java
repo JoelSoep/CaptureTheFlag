@@ -4,28 +4,33 @@ import lombok.Getter;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-public class StandardSubscriber<T> {
+public class FindOneSubscriber<T> {
    @Getter private final Subscriber<T> subscriber;
-    public StandardSubscriber(IStandardSubscriber<T> Interface) {
+    public FindOneSubscriber(IFindOneSubscriber<T> Interface) {
         subscriber = new Subscriber<T>() {
+            private boolean received = false;
             @Override
             public void onSubscribe(Subscription s) {
-                s.request(2);
+                s.request(1);
             }
 
             @Override
             public void onNext(T result) {
+                received = true;
                 Interface.onResult(result);
             }
 
             @Override
             public void onError(Throwable t) {
+                received = true;
                 Interface.onError(t);
             }
 
             @Override
             public void onComplete() {
-
+                if (!received) {
+                    Interface.onResult(null);
+                }
             }
         };
     }

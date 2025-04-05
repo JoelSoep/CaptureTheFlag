@@ -3,9 +3,11 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
 import me.joelsoep.ctf.game.special.BaseSpecial;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.TextReplacementConfig;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +28,11 @@ public class PlayerRewardSpecialListener implements Listener {
             return;
         }
         player.getPlayer().getInventory().addItem(itemStack);
+
+        // temporary shit solution
+        if (itemStack.getType() == Material.BOW) {
+            player.getPlayer().getInventory().addItem(new ItemStack(Material.ARROW, 1));
+        }
 
         player.sendMessage(MM.deserialize("<gray>You have received the %s" + "<gray>!").replaceText(TextReplacementConfig.builder().match("%s").replacement(itemStack.getItemMeta().displayName()).build()));
     }

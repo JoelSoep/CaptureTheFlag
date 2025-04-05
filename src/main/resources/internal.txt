@@ -9,3 +9,4 @@ the game doesnt actually start if its the second game. It just stays at the read
 removing all advancements lags a lot
 game countdown task probs gets canceled somewhere
 kit sort menu buggs out sometimes, the block color isnt gray but the previous team color FIXED
+

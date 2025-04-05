@@ -7,16 +7,15 @@ import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Objects;
 
-public class ActionbarService {
+public class ActionbarHandler {
 
     private final CTFPlayer player;
     private final EnumMap<ActionbarPriority, String> messages;
     private int id;
 
-    public ActionbarService(CTFPlayer player) {
+    public ActionbarHandler(CTFPlayer player) {
         this.player = player;
         this.messages = new EnumMap<>(ActionbarPriority.class);
         this.id = 0;
@@ -110,11 +109,5 @@ public class ActionbarService {
                 updateActionbar();
             }
         }, 0L, 40L);
-    }
-
-    public enum ActionbarPriority {
-        LOW,
-        NORMAL,
-        HIGH
     }
 }

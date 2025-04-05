@@ -7,14 +7,13 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.ItemBuilder;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.SpectralArrow;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -33,14 +32,16 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
     private static final int MAX_BREAKABLE_BLOCKS = 12;
 
     public AcidArrow() {
-        super("AcidArrow");
+        super("AcidBow");
     }
 
     @Override
     public ItemStack getItemStack() {
-        return new ItemBuilder(Material.SPECTRAL_ARROW)
-                .setName(MM.deserialize("<aqua>Acid Arrow"))
+        return new ItemBuilder(Material.BOW)
+                .setName(MM.deserialize("<aqua>Acid Bow"))
+                .setHealth(1)
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS)
+                .enchant(Enchantment.MENDING, 1, true)
                 .build();
     }
 
@@ -50,6 +51,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
         Entity livingEntity = event.getEntity();
         Entity projectile = event.getProjectile();
         ItemStack itemStack = event.getConsumable();
+        ItemStack bow = event.getBow();
 
         if (!(livingEntity instanceof Player player)) {
             return;
@@ -59,19 +61,23 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
             return;
         }
 
-        if (getItemStack().getType() != itemStack.getType() || !itemStack.hasItemFlag(ItemFlag.HIDE_DYE)) {
-            return;
-        }
-        if (!(projectile instanceof SpectralArrow arrow)) {
+        if (bow == null) {
             return;
         }
 
-        arrow.customName(MM.deserialize("acid_arrow"));
+        PlainTextComponentSerializer textComponentSerializer = PlainTextComponentSerializer.builder().build();
+        String bowString = textComponentSerializer.serialize(bow.displayName());
+        String itemString = textComponentSerializer.serialize(this.getItemStack().displayName());
+        if (!bowString.equals(itemString)) {
+            return;
+        }
+
+        projectile.customName(MM.deserialize("acid_arrow"));
     }
 
     @EventHandler
     public void onUse(ProjectileHitEvent event) {
-        if (!(event.getEntity() instanceof SpectralArrow arrow)) {
+        if (!(event.getEntity() instanceof Arrow arrow)) {
             return;
         }
         Component customName = arrow.customName();

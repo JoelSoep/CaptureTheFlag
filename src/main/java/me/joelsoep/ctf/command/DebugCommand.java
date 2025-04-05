@@ -1,22 +1,20 @@
 package me.joelsoep.ctf.command;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.RegisteredCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
-import me.joelsoep.ctf.cosmetic.CosmeticManager;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.game.board.ActionbarService;
+import me.joelsoep.ctf.game.board.ActionbarHandler;
+import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
-import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.map.MapManager;
@@ -29,7 +27,6 @@ import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
@@ -40,7 +37,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @TestOnly
 @CommandAlias("debug|dbg")
-@CommandPermission("ctf.admin")
+@CommandPermission("ctf.debug|ctf.admin")
 public final class DebugCommand extends BaseCommand {
     Game game = Main.getGame();
 
@@ -315,7 +312,7 @@ public final class DebugCommand extends BaseCommand {
     }
 
     @Subcommand("actionbarset")
-    public void actionbarset(Player player, ActionbarService.ActionbarPriority priority, @Optional String message) {
+    public void actionbarset(Player player, ActionbarPriority priority, @Optional String message) {
         CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
         if (ctfPlayer == null) {
             player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
@@ -329,7 +326,7 @@ public final class DebugCommand extends BaseCommand {
     }
 
     @Subcommand("actionbarsetwithtime")
-    public void actionbarsetwithtime(Player player, ActionbarService.ActionbarPriority priority, Long time, @Optional String message) {
+    public void actionbarsetwithtime(Player player, ActionbarPriority priority, Long time, @Optional String message) {
         CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
         if (ctfPlayer == null) {
             player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
@@ -341,5 +338,16 @@ public final class DebugCommand extends BaseCommand {
         }
         ctfPlayer.getActionbarHandler().setMessage(priority, message, time);
         player.sendMessage(MM.deserialize("<gray>Set message!"));
+    }
+
+    @Subcommand("resetmapfeatures")
+    public void resetmapfeatures(Player player) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+        Main.getGame().getMap().resetFeatures();
+        player.sendMessage(MM.deserialize("<gray>Reset map features!"));
     }
 }

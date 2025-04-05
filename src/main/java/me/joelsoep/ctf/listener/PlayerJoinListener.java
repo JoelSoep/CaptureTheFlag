@@ -3,7 +3,6 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
@@ -30,15 +29,14 @@ public class PlayerJoinListener implements Listener {
         event.joinMessage(null);
 
         if (!Main.getInstance().getServer().getAllowFlight()) {
-            if (!(player.hasPermission("ctf.admin"))) {
-                return; // TODO: this will fuck up when its not enabled, cuz it will not handle player joins at all!!!!
+            if (player.hasPermission("ctf.admin")) {
+                player.sendMessage(MM.deserialize("""
+                                            <gray>[<red><bold>CTF-ALERT</bold><gray>]
+                                            <red>This server disallows player flight.
+                                            <red>It is highly recommended to allow flight, as disabling this could cause issues.
+                                            <red>Keeping allow flight disabled is at your own risk.
+                        """));
             }
-            player.sendMessage(MM.deserialize("""
-                                        <gray>[<red><bold>CTF-ALERT</bold><gray>]
-                                        <red>This server disallows player flight.
-                                        <red>It is highly recommended to allow flight, as disabling this could cause issues.
-                                        <red>Keeping allow flight disabled is at your own risk.
-                    """));
         }
 
         if (game.getState() == GameState.WAITING) {
@@ -66,9 +64,9 @@ public class PlayerJoinListener implements Listener {
 
             if (game.getPlayerCount() >= game.getMap().getMaxPlayers()) {
                 player.sendMessage(MM.deserialize("<gray>You've been added to the queue as the current game is full."));
-                Main.getQueue().addPlayer(ctfPlayer);
+                Main.getGameQueue().addPlayer(ctfPlayer);
             } else {
-                Main.getQueue().addPlayer(ctfPlayer);
+                Main.getGameQueue().addPlayer(ctfPlayer);
             }
             new Hotbar(ctfPlayer.getPlayer());
         }
@@ -81,7 +79,7 @@ public class PlayerJoinListener implements Listener {
                     <gray>The game has already started.
                     <gray>You have been put in spectator mode.
                     """));
-            Main.getQueue().addPlayer(ctfPlayer);
+            Main.getGameQueue().addPlayer(ctfPlayer);
         }
 
         if (game.getState() == GameState.ENDED) {

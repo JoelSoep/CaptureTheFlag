@@ -69,8 +69,8 @@ public class ResetGameTask {
                         return;
                     }
 
-                    if (!Main.getQueue().getQueue().contains(player)) {
-                        Main.getQueue().addPlayer(player, false);
+                    if (!Main.getGameQueue().getQueue().contains(player)) {
+                        Main.getGameQueue().addPlayer(player, false);
                         if (game.getPlayers().size() >= game.getMap().getMaxPlayers()) {
                             player.sendMessage(MM.deserialize("""
                                     <gray>Couldn't add you to the game as it is full!

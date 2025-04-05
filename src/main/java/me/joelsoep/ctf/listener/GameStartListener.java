@@ -17,6 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class GameStartListener implements Listener {
@@ -83,6 +84,7 @@ public class GameStartListener implements Listener {
 
         Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("game"), new Document("_id", game.getUuid().toString())
                 .append("players", names)
+                .append("date_start", new Date())
         );
 
         players.forEach(player -> {

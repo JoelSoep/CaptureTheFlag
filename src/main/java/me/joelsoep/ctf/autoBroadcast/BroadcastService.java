@@ -2,10 +2,9 @@ package me.joelsoep.ctf.autoBroadcast;
 
 import com.mongodb.reactivestreams.client.MongoCollection;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
+import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
-import org.bukkit.plugin.Plugin;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -20,7 +19,7 @@ public class BroadcastService {
         public void runAll() {
             AtomicInteger count = new AtomicInteger(0);
 
-            Main.getMongoManager().countDocuments(collection, new IStandardSubscriber<Long>() {
+            Main.getMongoManager().countDocuments(collection, new IFindOneSubscriber<Long>() {
                 @Override
                 public void onResult(Long result) {
                     if (result != null) {

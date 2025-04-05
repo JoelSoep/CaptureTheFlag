@@ -100,6 +100,12 @@ public class AirshipMap extends GameMap {
             if (itemStack == null) {
                 return;
             }
+
+            // again, temporary shit solution
+            if (itemStack.getType() == Material.BOW) {
+                player.getInventory().addItem(new ItemStack(Material.ARROW, 1));
+            }
+
             player.getInventory().addItem(itemStack);
         });
         chest.getBlockInventory().clear();

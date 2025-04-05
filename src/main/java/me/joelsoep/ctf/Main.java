@@ -33,15 +33,16 @@ import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {
 
     @Getter private static final Game game = new Game();
     @Getter private static MongoManager mongoManager = null;
-    @Getter private static final KitService kitService = new KitService();
-    @Getter private static final SpecialService specialService = new SpecialService();
-    @Getter private static final GameQueue queue = new GameQueue();
+    @Getter private static KitService kitService = null;
+    @Getter private static SpecialService specialService = null;
+    @Getter private static final GameQueue gameQueue = new GameQueue();
     @Getter private static CosmeticManager cosmeticManager;
     @Getter private static Main instance = null;
     @Getter private static BackupPlayerDataTask backupTask = null;
@@ -77,6 +78,8 @@ public final class Main extends JavaPlugin {
 
         backupTask = new BackupPlayerDataTask();
         cosmeticManager = new CosmeticManager();
+        kitService = new KitService();
+        specialService = new SpecialService();
         new ListenerService("me.joelsoep.ctf.listener");
         new QueuePlayersActionbarTask();
         new QueueCheckGameAvailabilityTask();

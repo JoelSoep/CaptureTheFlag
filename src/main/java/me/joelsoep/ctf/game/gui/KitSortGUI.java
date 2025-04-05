@@ -9,7 +9,7 @@ import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.database.subscriber.IStandardSubscriber;
+import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.logger.LogModule;
@@ -227,7 +227,7 @@ public class KitSortGUI extends ChestGui {
 
             Document finalDoc = new Document("$set", document);
 
-            Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getDatabase().getCollection("player"), Filters.eq("_id", player.getUniqueId().toString()), finalDoc, options, new IStandardSubscriber<Document>() {
+            Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getDatabase().getCollection("player"), Filters.eq("_id", player.getUniqueId().toString()), finalDoc, options, new IFindOneSubscriber<Document>() {
                 @Override
                 public void onResult(Document result) {
                     if (result != null) {

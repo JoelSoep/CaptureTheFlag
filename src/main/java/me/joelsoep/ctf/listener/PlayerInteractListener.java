@@ -77,8 +77,8 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.LIME_CONCRETE) {
-            if (Main.getQueue().getQueue().contains(ctfPlayer)) {
-                Main.getQueue().removePlayer(ctfPlayer);
+            if (Main.getGameQueue().getQueue().contains(ctfPlayer)) {
+                Main.getGameQueue().removePlayer(ctfPlayer);
             }
 
             if (Main.getGame().getPlayers().contains(ctfPlayer) && game.getState() == GameState.WAITING) {
@@ -95,7 +95,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.RED_CONCRETE) {
-            if (Main.getQueue().getQueue().contains(ctfPlayer)) {
+            if (Main.getGameQueue().getQueue().contains(ctfPlayer)) {
                 return;
             }
 
@@ -107,7 +107,7 @@ public class PlayerInteractListener implements Listener {
                 Main.getGame().removeSpectator(ctfPlayer);
                 ctfPlayer.sendMessage(MM.deserialize("<gray>You stopped spectating."));
             }
-            Main.getQueue().addPlayer(ctfPlayer);
+            Main.getGameQueue().addPlayer(ctfPlayer);
             ctfPlayer.setParticipationState(ParticipationState.AVAILABLE);
             Hotbar.Static.giveQueueBlock(player);
             return;

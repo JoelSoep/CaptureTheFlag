@@ -3,9 +3,10 @@ package me.joelsoep.ctf.game.task;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
+import me.joelsoep.ctf.game.board.ActionbarHandler;
+import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.player.CTFPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 public class QueueCheckGameAvailabilityTask {
     private Game game;
@@ -23,7 +24,7 @@ public class QueueCheckGameAvailabilityTask {
                 if (game.getState() != GameState.WAITING) {
                     return;
                 }
-                if (Main.getQueue().getQueue().isEmpty()) {
+                if (Main.getGameQueue().getQueue().isEmpty()) {
                     return;
                 }
 
@@ -32,13 +33,14 @@ public class QueueCheckGameAvailabilityTask {
                 }
 
 
-                while (!Main.getQueue().getQueue().isEmpty() && game.getMap().getMaxPlayers() != game.getPlayers().size()) {
-                    CTFPlayer player = Main.getQueue().getNext();
+                while (!Main.getGameQueue().getQueue().isEmpty() && game.getMap().getMaxPlayers() != game.getPlayers().size()) {
+                    CTFPlayer player = Main.getGameQueue().getNext();
                     if (player == null) {
                         continue;
                     }
 
                     game.addPlayer(player);
+                    player.getActionbarHandler().removeMessage(ActionbarPriority.LOW);
                 }
             }
         }, 0L, 20L);

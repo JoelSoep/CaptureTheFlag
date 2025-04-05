@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -114,6 +115,25 @@ public class ItemBuilder {
 
     public ItemBuilder setCustomModelData(int customModelData) {
         itemStack.editMeta(itemMeta -> itemMeta.setCustomModelData(customModelData));
+        return this;
+    }
+
+    public ItemBuilder setHealth(int hp) {
+        ItemMeta meta = itemStack.getItemMeta();
+        if (!(meta instanceof Damageable)) {
+            return this;
+        }
+
+        Damageable damageable = (Damageable) meta;
+
+        int max = itemStack.getType().getMaxDurability();
+        if (hp > max) {
+            damageable.setDamage(0); // full HP
+        } else {
+            damageable.setDamage(max - hp); // less HP = more damage
+        }
+
+        itemStack.setItemMeta((ItemMeta) damageable); // <-- MUST apply back
         return this;
     }
 

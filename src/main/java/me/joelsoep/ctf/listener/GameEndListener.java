@@ -21,6 +21,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Date;
+
 public class GameEndListener implements Listener {
 
     @EventHandler
@@ -79,7 +81,8 @@ public class GameEndListener implements Listener {
         Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getDatabase().getCollection("game"),
                 new Document("_id", game.getUuid().toString()),
                 Updates.combine(
-                        Updates.set("winner", winner.getTeamColor().toString())
+                        Updates.set("winner", winner.getTeamColor().toString()),
+                        Updates.set("date_end", new Date())
                 ),
                 options);
 
