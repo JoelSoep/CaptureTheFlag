@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.Damageable;
 
 public class Knight extends BaseKit {
     public Knight() {
-        super("Knight", Material.IRON_SWORD, MM.deserialize("<#ebd007>ᴋɴɪɢʜᴛ ᴋɪᴛ"));
+        super("Knight", "1.0.0", Material.IRON_SWORD, MM.deserialize("<#ebd007>ᴋɴɪɢʜᴛ ᴋɪᴛ"));
     }
 
     @Override

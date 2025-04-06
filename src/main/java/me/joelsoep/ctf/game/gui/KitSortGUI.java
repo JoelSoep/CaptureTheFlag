@@ -220,6 +220,7 @@ public class KitSortGUI extends ChestGui {
 
                     innerDocument.append(String.valueOf(integer), material);
                 }
+                innerDocument.append("version", kit.getVersion());
                 documentArray.add(new Document(kitName, innerDocument));
             }
 

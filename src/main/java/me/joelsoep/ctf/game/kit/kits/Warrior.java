@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 public class Warrior extends BaseKit {
 
     public Warrior() {
-        super("Warrior", Material.IRON_AXE, MM.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ᴋɪᴛ"));
+        super("Warrior", "1.0.0", Material.IRON_AXE, MM.deserialize("<#3884ff>ᴡᴀʀʀɪᴏʀ ᴋɪᴛ"));
     }
 
     @Override

@@ -195,8 +195,10 @@ public final class DebugCommand extends BaseCommand {
             return;
         }
 
-        itemStack.setAmount(amount != null ? amount : 1);
-        target.getPlayer().getInventory().addItem(itemStack);
+        ItemStack itemCloned = itemStack.clone();
+
+        itemCloned.setAmount(amount != null ? amount : 1);
+        target.getPlayer().getInventory().addItem(itemCloned);
     }
 
     @Subcommand("setmap")

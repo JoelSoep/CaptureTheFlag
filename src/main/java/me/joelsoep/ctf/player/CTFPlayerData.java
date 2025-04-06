@@ -1,7 +1,11 @@
 package me.joelsoep.ctf.player;
 
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.Updates;
 import lombok.Data;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.experience.Level;
@@ -13,6 +17,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 public class CTFPlayerData {
@@ -117,7 +122,11 @@ public class CTFPlayerData {
                     }
 
                     HashMap<String, HashMap<Integer, Material>> parsedData = new HashMap<>();
+                    AtomicInteger position = new AtomicInteger();
                     resultList.forEach(object -> {
+                        if (object == null) {
+                            return;
+                        }
                         String dataString = object.toString();
 
                         // Remove unnecessary parts of the input string
@@ -141,15 +150,69 @@ public class CTFPlayerData {
 
                         // Split the innerData into key-value pairs using ", "
                         String[] keyValues = innerData.split(", ");
+                        List<String> keyValuesList = Arrays.stream(keyValues).toList();
+                        LogModule.DATABASE.log(keyValuesList.toString());
+                        String hasVersion = keyValuesList.get(keyValuesList.size() - 1);
+                        LogModule.DATABASE.log(hasVersion);
+                        boolean kitHasNoVersion = !hasVersion.startsWith("version=");
+                        LogModule.DATABASE.log(String.valueOf(kitHasNoVersion));
+                        // if the kit is outdated we will skip sorting it, and it won't end up in parsedData.
+                        final boolean[] skip = {false};
                         for (String pair : keyValues) {
+                            skip[0] = false;
                             String[] keyValue = pair.split("=");
                             if (keyValue.length == 2) {
+                                // check the version of the kit. If changes are made, the old version will be removed from the database
+                                // and the player will have to resort it themselves.
+                                if (keyValue[0].equals("version") || kitHasNoVersion) {
+                                    String version = keyValue[1];
+                                    BaseKit versionKit = Main.getKitService().getKit(name);
+                                    // if kit no longer exists skip
+                                    if (versionKit == null) {
+                                        skip[0] = true;
+                                        position.getAndIncrement();
+                                        return;
+                                    }
+                                    String latestVersion = versionKit.getVersion();
+                                    LogModule.DATABASE.log("ISTRUE: " + (!latestVersion.equals(version) || kitHasNoVersion));
+                                    if (!latestVersion.equals(version) || kitHasNoVersion) {
+                                        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
+                                        Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getCollection("player"), Filters.eq("_id", player.getPlayer().getUniqueId().toString()), Updates.unset("sortedKits." + position), options, new IFindOneSubscriber<Document>() {
+                                            @Override
+                                            public void onResult(Document result) {
+                                                if (result == null) {
+                                                    onError(null);
+                                                    return;
+                                                }
+                                                player.getWaitingSystemMessages().add("<red>Your sorted kit %s was updated. Please re-sort it again.".formatted(name));
+                                                LogModule.DATABASE.log("reset sorted kit %s of player %s as it was outdated. Old version: %s, new version: %s"
+                                                        .formatted(name, player.getPlayer().getName(), keyValue[1], latestVersion));
+                                                skip[0] = true;
+                                            }
+
+                                            @Override
+                                            public void onError(Throwable throwable) {
+                                                if (throwable == null) {
+                                                    LogModule.DATABASE.severe("Redirected from onResult() to OnError() as result was null.");
+                                                }
+                                                LogModule.DATABASE.severe("Tried to update player kit due to outdated version, but failed!! :: %s, old ver=%s, new ver=%s ".formatted(player.getPlayer().getName(), latestVersion, keyValue[1]));
+                                            }
+                                            });
+                                        skip[0] = true;
+                                        kitHasNoVersion = false;
+                                        };
+                                }
                                 int key = Integer.parseInt(keyValue[0]);
                                 String value = keyValue[1];
                                 Material material = Material.valueOf(value);
                                 innerMap.put(key, material);
                             }
-
+                            position.getAndIncrement();
+                            if (skip[0]) {
+                                LogModule.DATABASE.log("skipped kit %s!!!".formatted(name));
+                                skip[0] = false;
+                             return;
+                            }
                             parsedData.put(name, innerMap);
                         }
                     });

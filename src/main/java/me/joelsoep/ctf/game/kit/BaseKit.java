@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.game.kit;
 
 import com.destroystokyo.paper.Namespaced;
+import lombok.Getter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.team.Team;
@@ -25,14 +26,16 @@ import java.util.stream.Collectors;
 
 public abstract class BaseKit {
     protected String name;
+   @Getter protected String version;
     protected ItemStack[] armor;
     protected Map<Integer, ItemStack> items; // Map to store items and their enchantments
     protected Material icon;
     protected Component styledName;
     protected ItemStack[] hand;
 
-    public BaseKit(String name, Material icon) {
+    public BaseKit(String name, String version, Material icon) {
         this.name = name;
+        this.version = version;
         this.icon = icon;
         this.styledName = Component.text(name);
         this.armor = new ItemStack[4];
@@ -43,8 +46,9 @@ public abstract class BaseKit {
         setHand();
     }
 
-    public BaseKit(String name, Material icon, Component styledName) {
+    public BaseKit(String name, String version, Material icon, Component styledName) {
         this.name = name;
+        this.version = version;
         this.icon = icon;
         this.styledName = styledName;
         this.armor = new ItemStack[4];

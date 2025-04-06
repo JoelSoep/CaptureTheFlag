@@ -69,7 +69,7 @@ public class ActionbarHandler {
 
     public void cancelActionbar() {
         if (this.id == 0) {
-            LogModule.CORE.log("Tried to cancel actionbar while no actionbar was active.");
+           // LogModule.CORE.log("Tried to cancel actionbar while no actionbar was active.");
             return;
         }
         player.sendActionBar(MM.deserialize(""));

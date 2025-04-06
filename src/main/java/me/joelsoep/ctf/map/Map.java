@@ -13,6 +13,7 @@ import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import org.bson.Document;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -111,6 +112,12 @@ public abstract class Map {
     }
 
     public void clearEntities() {
-        getWorld().getEntities().forEach(Entity::remove);
+        getWorld().getEntities().forEach(entity -> {
+            if (entity instanceof Player player) {
+                player.teleport(MapManager.getLobby().getSpawnLocation());
+                return;
+            }
+            entity.remove();
+        });
     }
 }

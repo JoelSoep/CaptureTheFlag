@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 public class Archer extends BaseKit {
 
     public Archer() {
-        super("Archer", Material.BOW, MM.deserialize("<#fc0324>ᴀʀᴄʜᴇʀ ᴋɪᴛ"));
+        super("Archer", "1.0.0", Material.BOW, MM.deserialize("<#fc0324>ᴀʀᴄʜᴇʀ ᴋɪᴛ"));
     }
 
     @Override

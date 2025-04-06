@@ -55,6 +55,7 @@ public class CTFPlayer implements Audience {
     private FastBoard board;
     private Long cooldown;
     private Integer level;
+    private List<String> waitingSystemMessages; // messages that need to be sent to the player when they join the server
 
     // start admin section
 
@@ -79,6 +80,7 @@ public class CTFPlayer implements Audience {
         this.scoreboardHandler = new ScoreboardHandler(this);
         this.board = scoreboardHandler.getBoard();
         this.actionbarHandler = new ActionbarHandler(this);
+        this.waitingSystemMessages = new ArrayList<>();
         this.elevated = false;
         reset();
     }
