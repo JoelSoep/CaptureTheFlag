@@ -1,5 +1,5 @@
 /**
- * © 2023-2024 Hendrik Joël Soepenberg. All rights reserved.
+ * © 2023-2025 Hendrik Joël Soepenberg. All rights reserved.
  *
  * This software is proprietary and confidential.
  * Unauthorized copying, modification, or distribution of this software,

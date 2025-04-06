@@ -10,6 +10,7 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,6 +28,19 @@ public class PlayerJoinListener implements Listener {
         Game game = Main.getGame();
         CTFPlayer ctfPlayer = PlayerService.createPlayer(player);
         event.joinMessage(null);
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                if (!ctfPlayer.getWaitingSystemMessages().isEmpty()) {
+
+                    ctfPlayer.getWaitingSystemMessages().forEach(message -> {
+                        ctfPlayer.sendMessage(MM.deserialize(message));
+                    });
+                    ctfPlayer.getWaitingSystemMessages().clear();
+                }
+            }
+        }, 20L);
 
         if (!Main.getInstance().getServer().getAllowFlight()) {
             if (player.hasPermission("ctf.admin")) {

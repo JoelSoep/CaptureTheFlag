@@ -19,25 +19,12 @@ public class PlayerSpawnListener implements Listener {
     public void onSpawn(PlayerSpawnLocationEvent event) {
         Game game = Main.getGame();
         Player player = event.getPlayer();
-
         if (MapManager.getLobby().getSpawnLocation() == null) {
             player.kick(MM.deserialize("""
                     <red>We are preparing Capture the Flag.
                     <red>Please try again later.
                     """));
             return;
-        }
-
-        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
-        if (ctfPlayer == null) {
-            LogModule.CORE.log("CTFPlayer %s was null while trying to retrieve waitingSystemMessages.".formatted(player.getName()));
-            return;
-        }
-
-        if (!ctfPlayer.getWaitingSystemMessages().isEmpty()) {
-            ctfPlayer.getWaitingSystemMessages().forEach(message -> {
-                ctfPlayer.sendMessage(MM.deserialize(message));
-            });
         }
 
         if (game.getState() == GameState.WAITING || game.getState() == GameState.ENDED) {

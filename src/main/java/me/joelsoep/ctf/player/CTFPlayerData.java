@@ -156,10 +156,10 @@ public class CTFPlayerData {
                         LogModule.DATABASE.log(hasVersion);
                         boolean kitHasNoVersion = !hasVersion.startsWith("version=");
                         LogModule.DATABASE.log(String.valueOf(kitHasNoVersion));
+                        LogModule.DATABASE.log("position: " + position);
                         // if the kit is outdated we will skip sorting it, and it won't end up in parsedData.
-                        final boolean[] skip = {false};
                         for (String pair : keyValues) {
-                            skip[0] = false;
+
                             String[] keyValue = pair.split("=");
                             if (keyValue.length == 2) {
                                 // check the version of the kit. If changes are made, the old version will be removed from the database
@@ -169,7 +169,6 @@ public class CTFPlayerData {
                                     BaseKit versionKit = Main.getKitService().getKit(name);
                                     // if kit no longer exists skip
                                     if (versionKit == null) {
-                                        skip[0] = true;
                                         position.getAndIncrement();
                                         return;
                                     }
@@ -184,10 +183,9 @@ public class CTFPlayerData {
                                                     onError(null);
                                                     return;
                                                 }
-                                                player.getWaitingSystemMessages().add("<red>Your sorted kit %s was updated. Please re-sort it again.".formatted(name));
+                                                player.getWaitingSystemMessages().add("<red>Your sorted kit %s was updated to version %s. Please re-sort it again.".formatted(name, latestVersion));
                                                 LogModule.DATABASE.log("reset sorted kit %s of player %s as it was outdated. Old version: %s, new version: %s"
                                                         .formatted(name, player.getPlayer().getName(), keyValue[1], latestVersion));
-                                                skip[0] = true;
                                             }
 
                                             @Override
@@ -198,23 +196,19 @@ public class CTFPlayerData {
                                                 LogModule.DATABASE.severe("Tried to update player kit due to outdated version, but failed!! :: %s, old ver=%s, new ver=%s ".formatted(player.getPlayer().getName(), latestVersion, keyValue[1]));
                                             }
                                             });
-                                        skip[0] = true;
-                                        kitHasNoVersion = false;
+                                        LogModule.DATABASE.log("skipped kit %s!!!".formatted(name));
+                                        return;
                                         };
+                                    continue;
                                 }
                                 int key = Integer.parseInt(keyValue[0]);
                                 String value = keyValue[1];
                                 Material material = Material.valueOf(value);
                                 innerMap.put(key, material);
                             }
-                            position.getAndIncrement();
-                            if (skip[0]) {
-                                LogModule.DATABASE.log("skipped kit %s!!!".formatted(name));
-                                skip[0] = false;
-                             return;
-                            }
-                            parsedData.put(name, innerMap);
                         }
+                        position.getAndIncrement();
+                        parsedData.put(name, innerMap);
                     });
 
 // Now you have the parsed data in the parsedData HashMap
