@@ -1,7 +1,6 @@
 package me.joelsoep.ctf.player.experience;
 
 import me.joelsoep.ctf.game.event.PlayerLevelUpEvent;
-import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import org.bukkit.Bukkit;
 

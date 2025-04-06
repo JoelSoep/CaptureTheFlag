@@ -11,7 +11,6 @@ import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.game.board.ActionbarHandler;
 import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;

@@ -11,16 +11,14 @@ import com.mongodb.reactivestreams.client.MongoCollection;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import lombok.Getter;
 import me.joelsoep.ctf.database.subscriber.EmptySubscriber;
-import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.database.subscriber.FindOneSubscriber;
+import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.jetbrains.annotations.NotNull;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
-
-import java.util.concurrent.CompletableFuture;
 
 @Getter
 public class MongoManager {

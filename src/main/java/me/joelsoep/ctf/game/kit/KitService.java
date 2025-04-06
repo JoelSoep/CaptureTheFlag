@@ -9,12 +9,8 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
-import org.bson.BsonDocument;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bukkit.entity.Player;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 import org.reflections.Reflections;
 
 import javax.annotation.Nullable;

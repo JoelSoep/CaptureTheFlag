@@ -7,7 +7,6 @@ import me.joelsoep.ctf.game.event.GameEndEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 public class GameTimerTask {
     private final Game game;

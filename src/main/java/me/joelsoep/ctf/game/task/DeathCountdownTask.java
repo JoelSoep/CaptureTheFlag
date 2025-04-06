@@ -9,7 +9,6 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.plugin.Plugin;
 
 public class DeathCountdownTask {
 

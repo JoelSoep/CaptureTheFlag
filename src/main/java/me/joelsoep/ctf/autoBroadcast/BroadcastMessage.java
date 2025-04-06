@@ -2,12 +2,10 @@ package me.joelsoep.ctf.autoBroadcast;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.map.MapManager;
-import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 public class BroadcastMessage {
 

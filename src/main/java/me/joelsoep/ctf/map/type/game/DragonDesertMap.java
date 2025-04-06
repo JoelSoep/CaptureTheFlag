@@ -5,7 +5,6 @@ import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.util.FAWE;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 

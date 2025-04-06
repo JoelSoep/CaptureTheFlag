@@ -1,9 +1,9 @@
 package me.joelsoep.ctf.game.special;
 
+import me.joelsoep.ctf.game.special.specials.Mirror;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
-import me.joelsoep.ctf.game.special.specials.Mirror;
 
 /**
  * An interface to state whether a special item is reflectable by a {@link Mirror} item

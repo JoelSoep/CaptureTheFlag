@@ -2,12 +2,10 @@ package me.joelsoep.ctf.map.type;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.map.Map;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

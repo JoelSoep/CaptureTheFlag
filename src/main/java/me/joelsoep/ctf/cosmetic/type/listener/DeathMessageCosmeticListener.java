@@ -5,7 +5,6 @@ import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.cosmetic.type.DeathMessageCosmetic;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;

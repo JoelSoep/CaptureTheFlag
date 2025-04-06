@@ -2,12 +2,7 @@ package me.joelsoep.ctf.animation.animation;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.animation.Animation;
-import me.joelsoep.ctf.logger.LogModule;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Particle;
-import org.bukkit.World;
+import org.bukkit.*;
 
 public class BreakAnimation extends Animation {
 

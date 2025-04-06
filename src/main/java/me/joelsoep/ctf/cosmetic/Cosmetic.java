@@ -1,11 +1,8 @@
 package me.joelsoep.ctf.cosmetic;
 
 import lombok.Data;
-import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
-import me.joelsoep.ctf.logger.LogModule;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 

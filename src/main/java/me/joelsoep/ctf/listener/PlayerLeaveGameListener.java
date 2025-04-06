@@ -11,7 +11,6 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.IntUtils;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.plugin.Plugin;
 
 public class CleanItemsTask {
     private final World world;

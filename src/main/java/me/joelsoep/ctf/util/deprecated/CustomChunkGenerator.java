@@ -1,12 +1,9 @@
 package me.joelsoep.ctf.util.deprecated;
 
-import io.papermc.lib.environments.Environment;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.util.RandomUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.HeightMap;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
@@ -15,7 +12,9 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Deprecated
 public class CustomChunkGenerator extends ChunkGenerator {

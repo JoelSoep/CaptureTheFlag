@@ -3,7 +3,6 @@ package me.joelsoep.ctf.cosmetic;
 import lombok.Getter;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.cosmetic.type.DeathMessageCosmetic;
-import me.joelsoep.ctf.cosmetic.type.listener.DeathMessageCosmeticListener;
 import me.joelsoep.ctf.listener.ListenerService;
 import me.joelsoep.ctf.logger.LogModule;
 import org.jetbrains.annotations.Nullable;

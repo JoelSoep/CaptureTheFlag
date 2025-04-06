@@ -33,7 +33,6 @@ import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 
 public final class Main extends JavaPlugin {

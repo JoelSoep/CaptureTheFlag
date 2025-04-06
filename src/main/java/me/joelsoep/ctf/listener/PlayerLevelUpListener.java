@@ -1,7 +1,6 @@
 package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
-import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.PlayerLevelUpEvent;
 import me.joelsoep.ctf.player.CTFPlayer;

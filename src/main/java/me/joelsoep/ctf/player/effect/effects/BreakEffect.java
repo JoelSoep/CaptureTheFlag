@@ -1,9 +1,9 @@
 package me.joelsoep.ctf.player.effect.effects;
 
 import me.joelsoep.ctf.animation.animation.BreakAnimation;
+import me.joelsoep.ctf.player.effect.EffectRules;
 import me.joelsoep.ctf.player.effect.EffectType;
 import me.joelsoep.ctf.player.effect.PlayerEffect;
-import me.joelsoep.ctf.player.effect.EffectRules;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
