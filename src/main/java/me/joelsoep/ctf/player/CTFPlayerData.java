@@ -125,6 +125,7 @@ public class CTFPlayerData {
                     AtomicInteger position = new AtomicInteger();
                     resultList.forEach(object -> {
                         if (object == null) {
+                            position.getAndIncrement();
                             return;
                         }
                         String dataString = object.toString();
@@ -197,6 +198,7 @@ public class CTFPlayerData {
                                             }
                                             });
                                         LogModule.DATABASE.log("skipped kit %s!!!".formatted(name));
+                                        position.getAndIncrement();
                                         return;
                                         };
                                     continue;
