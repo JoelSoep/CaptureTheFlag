@@ -20,12 +20,12 @@ public class DesertLobby extends LobbyMap {
     }
 
     @Override
-    public Location getSpawnLocation() {
+    protected Location spawnLocation() {
         return new Location(getWorld(), 16, 35, 13, 138, 0);
     }
 
     @Override
-    public ArrayList<Location> getLeaderboardLocations() {
+    protected ArrayList<Location> leaderboardLocations() {
         return new ArrayList<>(List.of(
                 new Location(getWorld(), 5, 39, 3),
                 new Location(getWorld(), 5, 39, -3),

@@ -191,33 +191,33 @@ public class AirshipMap extends GameMap {
     }
 
     @Override
-    protected void redFlagLocation() {
-        redFlagLocation = new Location(this.getWorld(), -13, 38, 45);
+    protected Location redFlagLocation() {
+        return new Location(this.getWorld(), -13, 38, 45);
     }
 
     @Override
-    protected void redSpawnLocation() {
-        redSpawnLocation = new Location(getWorld(), 34.5, 45.5, 45.5, -180, 0);
+    protected Location redSpawnLocation() {
+        return new Location(getWorld(), 34.5, 45.5, 45.5, -180, 0);
     }
 
     @Override
-    protected void redBlockFace() {
-        redBlockFace = BlockFace.NORTH;
+    protected BlockFace redBlockFace() {
+        return BlockFace.NORTH;
     }
 
     @Override
-    protected void blueFlagLocation() {
-        blueFlagLocation = new Location(getWorld(), -13, 38, -50);
+    protected Location blueFlagLocation() {
+        return new Location(getWorld(), -13, 38, -50);
     }
 
     @Override
-    protected void blueSpawnLocation() {
-        blueSpawnLocation = new Location(getWorld(), 34.5, 45.5, -49.5);
+    protected Location blueSpawnLocation() {
+        return new Location(getWorld(), 34.5, 45.5, -49.5);
     }
 
     @Override
-    protected void blueBlockFace() {
-        blueBlockFace = BlockFace.SOUTH;
+    protected BlockFace blueBlockFace() {
+        return BlockFace.SOUTH;
     }
 
     /**
@@ -225,32 +225,37 @@ public class AirshipMap extends GameMap {
      * @return The location that is the spectator spawn location as well as the center of the map
      */
     @Override
-    protected void centerLocation() {
-        centerLocation = new Location(getWorld(), -4, 46, -1);
+    protected Location centerLocation() {
+        return new Location(getWorld(), -4, 46, -1);
     }
 
     @Override
-    protected void minPlayers() {
-        minPlayers = 6;
+    protected int minPlayers() {
+        return 6;
     }
 
     @Override
-    protected void maxPlayers() {
-        maxPlayers = 14;
+    protected int maxPlayers() {
+        return 14;
     }
 
     @Override
-    protected void worldSize() {
-        worldSize = 155;
+    protected int worldSize() {
+        return 155;
     }
 
     @Override
-    protected void maxBuildHeight() {
-        maxBuildHeight = 123;
+    protected int maxBuildHeight() {
+        return 123;
     }
 
     @Override
-    protected void deathHeight() {
-        deathHeight = -40;
+    protected int minBuildHeight() {
+        return 13;
+    }
+
+    @Override
+    protected int deathHeight() {
+        return -40;
     }
 }

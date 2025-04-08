@@ -25,62 +25,67 @@ public class DragonDesertMap extends GameMap {
     }
 
     @Override
-    protected void redFlagLocation() {
-        redFlagLocation = new Location(getWorld(), 0, 63, -121);
+    protected Location redFlagLocation() {
+        return new Location(getWorld(), 0, 63, -121);
     }
 
     @Override
-    protected void redSpawnLocation() {
-        redSpawnLocation = new Location(getWorld(), 0, 50, -121);
+    protected Location redSpawnLocation() {
+        return new Location(getWorld(), 0, 50, -121);
     }
 
     @Override
-    protected void redBlockFace() {
-        redBlockFace = BlockFace.SOUTH;
+    protected BlockFace redBlockFace() {
+        return BlockFace.SOUTH;
     }
 
     @Override
-    protected void blueFlagLocation() {
-        blueFlagLocation = new Location(getWorld(), 0, 63, 122);
+    protected Location blueFlagLocation() {
+        return new Location(getWorld(), 0, 63, 122);
     }
 
     @Override
-    protected void blueSpawnLocation() {
-        blueSpawnLocation = new Location(getWorld(), 0, 50, 122);
+    protected Location blueSpawnLocation() {
+        return new Location(getWorld(), 0, 50, 122);
     }
 
     @Override
-    protected void blueBlockFace() {
-        blueBlockFace = BlockFace.NORTH;
+    protected BlockFace blueBlockFace() {
+        return BlockFace.NORTH;
     }
 
     @Override
-    protected void centerLocation() {
-        centerLocation = new Location(getWorld(), -3, 73, 7);
+    protected Location centerLocation() {
+        return new Location(getWorld(), -3, 73, 7);
     }
 
     @Override
-    protected void minPlayers() {
-        minPlayers = 8;
+    protected int minPlayers() {
+        return 8;
     }
 
     @Override
-    protected void maxPlayers() {
-        maxPlayers = 20;
+    protected int maxPlayers() {
+        return 20;
     }
 
     @Override
-    protected void worldSize() {
-        worldSize = 300;
+    protected int worldSize() {
+        return 300;
     }
 
     @Override
-    protected void maxBuildHeight() {
-        maxBuildHeight = 200;
+    protected int maxBuildHeight() {
+        return 200;
     }
 
     @Override
-    protected void deathHeight() {
-        deathHeight = -99;
+    protected int minBuildHeight() {
+        return -64;
+    }
+
+    @Override
+    protected int deathHeight() {
+        return -99;
     }
 }

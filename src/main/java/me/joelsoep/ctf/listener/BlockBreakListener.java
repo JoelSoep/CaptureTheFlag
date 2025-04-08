@@ -22,7 +22,7 @@ public class BlockBreakListener implements Listener {
         }
 
         if (ctfPlayer.isElevated()) {
-            event.setCancelled(true);
+            event.setDropItems(false);
             return;
         }
 

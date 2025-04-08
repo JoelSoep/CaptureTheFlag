@@ -22,7 +22,7 @@ public class PlayerLeaveGameListener implements Listener {
         CTFPlayer player = event.getPlayer();
         LogModule.GAME.log("init");
 
-        if (game.getPlayers().size() < game.getMinPlayers() && game.isStarting()) {
+        if (game.getPlayers().size() < game.getMap().getMinPlayers() && game.isStarting()) {
             if (game.getCountdownTask() != null) {
                 game.getCountdownTask().cancel();
                 game.setStarting(false);

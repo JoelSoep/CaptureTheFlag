@@ -27,6 +27,8 @@ public class PlayerSpawnListener implements Listener {
             return;
         }
 
+        LogModule.CORE.log(MapManager.getLobby().getSpawnLocation().toString());
+
         if (game.getState() == GameState.WAITING || game.getState() == GameState.ENDED) {
             event.setSpawnLocation(MapManager.getLobby().getSpawnLocation());
         }

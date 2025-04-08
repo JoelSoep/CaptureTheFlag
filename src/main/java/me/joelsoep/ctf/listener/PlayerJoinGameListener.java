@@ -23,7 +23,7 @@ public class PlayerJoinGameListener implements Listener {
             game.getCountdownTask().updateAudience(game.getAudience());
         }
 
-        if (game.getPlayerCount() >= game.getMinPlayers() && !game.isStarting()) {
+        if (game.getPlayerCount() >= game.getMap().getMinPlayers() && !game.isStarting()) {
             game.setCountdownTask(new CountdownTask(
                     MM.deserialize("<#63f02b>Game has started!"),
                     game.getAudience(),

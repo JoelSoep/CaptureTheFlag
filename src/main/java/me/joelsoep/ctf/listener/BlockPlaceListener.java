@@ -29,7 +29,7 @@ public class BlockPlaceListener implements Listener {
                 return;
             }
 
-            if (ctfPlayer.isElevated()) {
+            if (!ctfPlayer.isElevated()) {
                 event.setCancelled(true);
                 return;
             }

@@ -33,19 +33,7 @@ public class Game {
 
     private UUID uuid = UUID.randomUUID();
     private GameMap map;
-    private Integer playerCount = 0;
-
-    /**
-     * max and minplayers are deprecated and scheduled for removal, as this should be map-specific
-     */
-
-    @Deprecated
-    private Integer maxPlayers = 20;
-
-    @Deprecated
-    private Integer minPlayers = 2;
-
-
+    private Integer playerCount = 0; // manual playerCount as it is handy in case you want to manipulate it manually
     private Integer maxPoints = 3;
     private Integer minKillStreak = 1;
     private Long gameTime = 10L * 60L * 1000L;
@@ -121,7 +109,6 @@ public class Game {
     public void reset() {
         this.setUuid(UUID.randomUUID());
         this.setPlayerCount(0);
-        this.setMinPlayers(2);
         this.setMaxPoints(3);
         this.setMinKillStreak(1);
         this.setState(GameState.WAITING);

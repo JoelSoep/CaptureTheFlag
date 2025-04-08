@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.map;
 
 import io.papermc.lib.PaperLib;
+import lombok.Getter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.game.Game;
@@ -27,6 +28,7 @@ import java.util.concurrent.CompletableFuture;
 public class MapManager {
 
     private static final HashMap<String, GameMap> gameMaps = new HashMap<>();
+    @Getter
     private static LobbyMap lobby;
 
     public MapManager() {
@@ -53,8 +55,6 @@ public class MapManager {
     public static GameMap getGameMap(String name) {
         return gameMaps.get(name);
     }
-
-    public static LobbyMap getLobby() { return lobby; }
 
     public void loadLobby(String packageName) {
         Reflections reflections = new Reflections(packageName);

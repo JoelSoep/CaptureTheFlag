@@ -3,6 +3,7 @@ package me.joelsoep.ctf.command;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
+import com.ibm.icu.number.Scale;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
@@ -22,10 +23,10 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.player.experience.Level;
 import me.joelsoep.ctf.util.MM;
+import me.joelsoep.ctf.util.test.DisplayEntities;
 import net.kyori.adventure.title.Title;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
+import org.bukkit.*;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
@@ -52,6 +53,8 @@ public final class DebugCommand extends BaseCommand {
                 <gray>- endgame
                 <gray>- game
                 <gray>- giveblocks
+                <gray>- etc, im too lazy to add all the cmds,
+                <gray>- because i am too lazy
                 """));
     }
 
@@ -350,5 +353,15 @@ public final class DebugCommand extends BaseCommand {
         }
         Main.getGame().getMap().resetFeatures();
         player.sendMessage(MM.deserialize("<gray>Reset map features!"));
+    }
+
+    @Subcommand("dpe-scale")
+    public void DPEScale(Player player, Location location, Material material, int scale) {
+        if (location.equals("~")) {
+            location = player.getLocation();
+        }
+        DisplayEntities DPE = new DisplayEntities(location);
+        DPE.scale(material, scale);
+        player.sendMessage(MM.deserialize("<gray>Scaled!"));
     }
 }

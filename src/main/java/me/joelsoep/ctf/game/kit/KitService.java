@@ -75,7 +75,6 @@ public class KitService {
         Document document = new Document("name", kitName);
         final boolean[] enabled = {true};
         CompletableFuture<Boolean> future = new CompletableFuture<>();
-        LogModule.KIT.log("made it here");
         manager.findOne(collection, document, new IFindOneSubscriber<Document>() {
             @Override
             public void onResult(Document result) {

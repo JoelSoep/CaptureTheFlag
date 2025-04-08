@@ -32,6 +32,7 @@ public abstract class GameMap extends Map {
     protected @NotNull Integer maxPlayers;
     protected @NotNull Integer worldSize;
     protected @NotNull Integer maxBuildHeight;
+    protected @NotNull Integer minBuildHeight;
     protected @NotNull Integer deathHeight;
 
     public GameMap(String name, File schematic) {
@@ -41,19 +42,19 @@ public abstract class GameMap extends Map {
 
         // set values for the map
 
-        redFlagLocation();
-        redSpawnLocation();
-        redBlockFace();
-        blueFlagLocation();
-        blueSpawnLocation();
-        blueBlockFace();
-        centerLocation();
-        minPlayers();
-        maxPlayers();
-        worldSize();
-        maxPlayers();
-        maxBuildHeight();
-        deathHeight();
+        this.redFlagLocation = redFlagLocation();
+        this.redSpawnLocation = redSpawnLocation();
+        this.redBlockFace = redBlockFace();
+        this.blueFlagLocation = blueFlagLocation();
+        this.blueSpawnLocation = blueSpawnLocation();
+        this.blueBlockFace = blueBlockFace();
+        this.centerLocation = centerLocation();
+        this.minPlayers = minPlayers();
+        this.maxPlayers = maxPlayers();
+        this.worldSize = worldSize();
+        this.maxBuildHeight = maxBuildHeight();
+        this.minBuildHeight = minBuildHeight();
+        this.deathHeight = deathHeight();
 
         world.setSpawnLocation(this.centerLocation);
         new CleanItemsTask(world);
@@ -61,21 +62,26 @@ public abstract class GameMap extends Map {
 
     public abstract void load();
     public abstract void resetFeatures();
-    protected abstract void redFlagLocation();
-    protected abstract void redSpawnLocation();
-    protected abstract void redBlockFace();
-    protected abstract void blueFlagLocation();
-    protected abstract void blueSpawnLocation();
-    protected abstract void blueBlockFace();
-    protected abstract void centerLocation();
-    protected abstract void minPlayers();
-    protected abstract void maxPlayers();
-    protected abstract void worldSize();
-    protected abstract void maxBuildHeight();
-    protected abstract void deathHeight();
+    protected abstract Location redFlagLocation();
+    protected abstract Location redSpawnLocation();
+    protected abstract BlockFace redBlockFace();
+    protected abstract Location blueFlagLocation();
+    protected abstract Location blueSpawnLocation();
+    protected abstract BlockFace blueBlockFace();
+    protected abstract Location centerLocation();
+    protected abstract int minPlayers();
+    protected abstract int maxPlayers();
+    protected abstract int worldSize();
+    protected abstract int maxBuildHeight();
+    protected abstract int minBuildHeight();
+    protected abstract int deathHeight();
 
     public boolean isLocationInMapSize(Location location) {
         if (location.getBlock().getY() > getMaxBuildHeight()) {
+            return false;
+        }
+
+        if (location.getBlock().getY() < getMinBuildHeight()) {
             return false;
         }
 
