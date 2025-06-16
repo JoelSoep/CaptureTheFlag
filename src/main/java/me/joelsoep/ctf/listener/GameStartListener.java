@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameStartEvent;
@@ -74,7 +75,7 @@ public class GameStartListener implements Listener {
                 player.getPlayer().playerListName(
                         MM.deserialize(
                                         blue.getTeamColor().getPrefix())
-                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName() + " ⭐" + player.getLevel()))
                 );
         });
 
@@ -82,7 +83,7 @@ public class GameStartListener implements Listener {
 
         List<String> names = List.of(game.getPlayers().stream().map(CTFPlayer::getPlayer).map(Player::getName).toArray(String[]::new));
 
-        Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("game"), new Document("_id", game.getUuid().toString())
+        MongoManager.insertOne(MongoManager.getCollection("game"), new Document("_id", game.getUuid().toString())
                 .append("players", names)
                 .append("date_start", new Date())
         );

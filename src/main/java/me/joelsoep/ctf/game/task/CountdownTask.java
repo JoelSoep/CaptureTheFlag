@@ -101,7 +101,7 @@ public class CountdownTask {
             Title title = Title.title(MM.deserialize("<green><bold>%s".formatted(seconds)), MM.deserialize(""), times);
             audience.showTitle(title);
         } else {
-            audience.sendMessage(MM.deserialize("<gray>Starting in <green>%s<gray> seconds.".formatted(seconds)));
+            audience.sendMessage(MM.announce("<gray>Starting in <green>%s<gray> seconds.".formatted(seconds)));
         }
         audience.playSound(Sound.sound(Key.key("block.note_block.hat"), Sound.Source.MASTER, 1, 1));
     }

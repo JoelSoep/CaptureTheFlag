@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implements Reflective<EntityDamageByEntityEvent> {
+    private static final int FIREWORK_POWER = 2;
     public FireworkRider() {
         super("FireworkRider");
     }
@@ -81,7 +82,7 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
     public Firework spawnFirework(Player rider) {
         Firework firework = (Firework) rider.getWorld().spawnEntity(rider.getEyeLocation().toBlockLocation(), EntityType.FIREWORK);
         FireworkMeta meta = firework.getFireworkMeta();
-        meta.setPower(2);
+        meta.setPower(FIREWORK_POWER);
         meta.addEffect(FireworkEffect.builder()
                 .withFade(Color.YELLOW)
                 .withTrail()

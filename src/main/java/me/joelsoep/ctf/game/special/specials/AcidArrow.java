@@ -30,8 +30,8 @@ import java.util.List;
 public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
     private static final double ARROW_VELOCITY_MULTIPLIER = 1.5;
     private static final double ADDITIONAL_SHOOT_HEIGHT = 1.5;
-    private static final long CHAIN_REACTION_DELAY = 5L;
-    private static final int MAX_BREAKABLE_BLOCKS = 12;
+    private static final long CHAIN_REACTION_DELAY = 4L;
+    private static final int MAX_BREAKABLE_BLOCKS = 24;
 
     public AcidArrow() {
         super("AcidBow");
@@ -114,6 +114,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
             return;
         }
 
+        event.getEntity().remove();
         event.setCancelled(true);
         destroyBlocks(block, material, MAX_BREAKABLE_BLOCKS);
 

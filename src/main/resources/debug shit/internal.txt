@@ -1,0 +1,12 @@
+PlayerJoinGameEvent
+PlayerLeaveGameEvent
+
+LARGE TEST ISSUES:
+Sometimes teams are broken, last time everyone got added to a single team FIXED
+players kept the hotbar for some reason FIXED
+advancements about specials are broken, players get them for no reason FIXED
+the game doesnt actually start if its the second game. It just stays at the ready state FIXED
+removing all advancements lags a lot FIXED
+game countdown task probs gets canceled somewhere FIXED
+kit sort menu buggs out sometimes, the block color isnt gray but the previous team color FIXED
+

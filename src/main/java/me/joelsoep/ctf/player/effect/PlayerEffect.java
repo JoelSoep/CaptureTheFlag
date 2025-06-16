@@ -7,12 +7,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.EnumSet;
 import java.util.Set;
 
 @Data
 public abstract class PlayerEffect {
 
-    private final @NotNull Set<EffectRules> rules;
+    private final @NotNull EnumSet<EffectRules> rules;
     private final EffectType effectType;
     private Long duration;
 
@@ -28,12 +29,12 @@ public abstract class PlayerEffect {
         this.duration = 0L;
     }
 
-    protected abstract @NotNull Set<EffectRules> getRules();
+    protected abstract @NotNull EnumSet<EffectRules> getRules();
 
-    protected abstract void effect(Player player);
+    protected abstract void effect(CTFPlayer player);
 
     public void play(CTFPlayer player) {
-        effect(player.getPlayer());
+        effect(player);
         player.addEffect(this);
         if (duration != 0) {
             scheduleCancellation(player, duration);

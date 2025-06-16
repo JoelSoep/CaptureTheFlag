@@ -12,17 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class CosmeticManager {
+public class CosmeticsManager {
 
     @Getter private static final HashMap<CosmeticType, HashMap<String, Cosmetic>> cosmetics = new HashMap<>();
 
-    public CosmeticManager() {
+    public CosmeticsManager() {
         new ListenerService("me.joelsoep.ctf.cosmetic.type.listener");
         loadDeathMessages();
-    }
-
-    public HashMap<CosmeticType, HashMap<String, Cosmetic>> getCosmetics() {
-        return cosmetics;
     }
 
     public @Nullable Cosmetic getCosmetic(CosmeticType type, String name) {

@@ -1,8 +1,11 @@
 package me.joelsoep.ctf.map;
 
+import com.mongodb.client.result.InsertOneResult;
 import io.papermc.lib.PaperLib;
 import lombok.Getter;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
+import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.board.LeaderboardService;
@@ -12,6 +15,7 @@ import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import me.joelsoep.ctf.util.EmptyChunkGenerator;
 import me.joelsoep.ctf.util.RandomUtil;
+import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -20,10 +24,9 @@ import org.bukkit.generator.ChunkGenerator;
 import org.reflections.Reflections;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MapManager {
 
@@ -132,6 +135,63 @@ public class MapManager {
                 exception.printStackTrace();
             }
         });
+    }
+
+    public HashMap<String, Map> handleMapsAndGetEnabled(List<Map> maps) {
+        Set<String> loadedNames = gameMaps.keySet();
+        List<String> foundNames = new ArrayList<>();
+        HashMap<String, Map> enabled = new HashMap<>();
+
+
+        ArrayList<Document> documents =  MongoManager.findAll(MongoManager.getCollection("map")).join();
+
+        documents.forEach(document -> {
+            String name = document.getString("name");
+            if (name == null) {
+                return;
+            }
+            foundNames.add(name);
+            boolean isEnabled = (boolean) document.getOrDefault("enabled", false);
+            if (isEnabled) {
+     //           enabled.put(name, maps.get(name));
+            }
+        });
+        loadedNames.forEach(loaded -> {
+            if (!foundNames.contains(loaded)) {
+                insertMapToDatabase(gameMaps.get(loaded));
+                enabled.put(loaded, gameMaps.get(loaded));
+            }
+
+
+        });
+        return null;
+    }
+
+    public CompletableFuture<Boolean> insertMapToDatabase(Map map) {
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+        Document document = new Document("name", map.getPrefix() + map.getName())
+                .append("enabled", true);
+
+        MongoManager.insertOne(MongoManager.getCollection("map"), document, new IFindOneSubscriber<InsertOneResult>() {
+            @Override
+            public void onResult(InsertOneResult result) {
+                if (result.wasAcknowledged()) {
+                    future.complete(true);
+                    LogModule.CORE.log("Registered new map %s to the database. It has now been enabled.".formatted(map.getPrefix() + map.getName()));
+                } else {
+                    future.complete(false);
+                    LogModule.CORE.log("Failed to register new map %s to the database. It will not be enabled.".formatted(map.getPrefix() + map.getName()));
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                future.complete(false);
+                LogModule.MAP.log("An error occurred while attempting to register map %s to the database:".formatted(map.getPrefix() + map.getName()));
+                throwable.printStackTrace();
+            }
+        });
+        return future;
     }
 
     public static void registerMapToGame(GameMap map, Game game) {

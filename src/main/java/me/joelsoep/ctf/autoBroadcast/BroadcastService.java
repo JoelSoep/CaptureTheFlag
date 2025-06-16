@@ -2,6 +2,7 @@ package me.joelsoep.ctf.autoBroadcast;
 
 import com.mongodb.reactivestreams.client.MongoCollection;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.logger.LogModule;
 import org.bson.Document;
@@ -14,12 +15,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BroadcastService {
 
-        MongoCollection<Document> collection = Main.getMongoManager().getDatabase().getCollection("autoBroadcast");
+        MongoCollection<Document> collection = MongoManager.getCollection("autoBroadcast");
 
         public void runAll() {
             AtomicInteger count = new AtomicInteger(0);
 
-            Main.getMongoManager().countDocuments(collection, new IFindOneSubscriber<Long>() {
+            MongoManager.countDocuments(collection, new IFindOneSubscriber<Long>() {
                 @Override
                 public void onResult(Long result) {
                     if (result != null) {
@@ -37,7 +38,7 @@ public class BroadcastService {
             });
 
             List<Document> results = new ArrayList<>();
-            Main.getMongoManager().find(collection, new Document(), new Subscriber<>() {
+            MongoManager.find(collection, new Document(), new Subscriber<>() {
 
                 @Override
                 public void onSubscribe(Subscription s) {

@@ -1,9 +1,11 @@
 package me.joelsoep.ctf.listener;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.event.FlagStealEvent;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.enchantments.Enchantment;
@@ -34,7 +36,7 @@ public class FlagStealListener implements Listener {
         player.getInventory().setHelmet(helmet);
         game.getMap().removeFlag(flagOwner);
         flagOwner.getFlag().setThief(ctfPlayer);
-        player.setGlowing(true);
+        ctfPlayer.setGlowing(true);
         game.getAudience().sendMessage(MM.deserialize("""
                 <gray>Team %s<gray>'s flag has been stolen by %s<gray>!"""
                 .formatted(flagOwner.getTeamColor().getPrefix(), team.getTeamColor().getColor() + player.getName())));

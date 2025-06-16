@@ -2,16 +2,23 @@ package me.joelsoep.ctf.map.type;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.task.CleanItemsTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.game.team.TeamService;
 import me.joelsoep.ctf.map.Map;
+import me.joelsoep.ctf.player.CTFPlayer;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Banner;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

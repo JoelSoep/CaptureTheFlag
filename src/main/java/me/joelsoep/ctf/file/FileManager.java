@@ -2,6 +2,9 @@ package me.joelsoep.ctf.file;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.net.URL;
@@ -47,5 +50,30 @@ public class FileManager {
         String logFolderPath = Main.getInstance().getDataFolder() + File.separator + "logs" + File.separator;
         new File(logFolderPath).mkdirs();
         return logFolderPath;
+    }
+
+    public static String getServerPath() {
+        String serverPath = Main.getInstance().getDataFolder() + File.separator + "server" + File.separator;
+        new File(serverPath).mkdirs();
+        return serverPath;
+    }
+
+    public static YamlConfiguration getServerConfig() {
+        String path = getServerPath() + "server.yml";
+        File file = new File(path);
+        String internalPath = "server" + File.separator + "server.yml";
+        if (!file.exists()) {
+            Main.getInstance().saveResource(internalPath, true);
+            LogModule.FILE.log("Created new server.yml.");
+        }
+
+        return YamlConfiguration.loadConfiguration(file);
+    }
+
+    public static void saveServerConfig() {
+        String path = getServerPath() + File.separator + "server.yml";
+        if (!(new File(path).exists())) {
+            Main.getInstance().saveResource(path, true);
+        }
     }
 }

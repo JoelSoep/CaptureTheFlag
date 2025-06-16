@@ -2,7 +2,7 @@ package me.joelsoep.ctf.cosmetic.type;
 
 import lombok.Getter;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
-import me.joelsoep.ctf.cosmetic.CosmeticManager;
+import me.joelsoep.ctf.cosmetic.CosmeticsManager;
 import me.joelsoep.ctf.cosmetic.CosmeticRarity;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,7 +17,7 @@ public abstract class DeathMessageCosmetic extends Cosmetic {
      *
      * <p>
      * This {@link Cosmetic} type should only be created in the {@code me.joelsoep.ctf.cosmetic.type.deathMessage} directory.
-     * If this is created outside of this package, it's necessary to register it to the {@link CosmeticManager} manually.
+     * If this is created outside of this package, it's necessary to register it to the {@link CosmeticsManager} manually.
      * <p>
      *
      * <p>

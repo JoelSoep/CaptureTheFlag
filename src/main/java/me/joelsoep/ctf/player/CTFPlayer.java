@@ -3,6 +3,7 @@ package me.joelsoep.ctf.player;
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import lombok.Getter;
 import lombok.Setter;
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.economy.EconomyManager;
@@ -11,6 +12,8 @@ import me.joelsoep.ctf.game.board.ActionbarHandler;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.game.team.TeamColor;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.effect.PlayerEffect;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
@@ -24,6 +27,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.title.TitlePart;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -57,6 +63,14 @@ public class CTFPlayer implements Audience {
     private Integer level;
     private List<String> waitingSystemMessages; // messages that need to be sent to the player when they join the server
 
+    // start plus section
+
+    /**
+     * Whether the user has the plus rank.
+     */
+
+    private boolean plus;
+
     // start admin section
 
     /**
@@ -81,6 +95,7 @@ public class CTFPlayer implements Audience {
         this.board = scoreboardHandler.getBoard();
         this.actionbarHandler = new ActionbarHandler(this);
         this.waitingSystemMessages = new ArrayList<>();
+        this.plus = player.hasPermission("ctf.plus");
         this.elevated = false;
         reset();
     }
@@ -109,19 +124,26 @@ public class CTFPlayer implements Audience {
         this.cooldown = System.currentTimeMillis() + amount;
     }
 
+    public void addWaitingSystemMessage(String message) {
+        this.waitingSystemMessages.add(message);
+    }
+
+    public boolean ownsCosmetic(Cosmetic cosmetic) {
+        return this.getData().getOwnedCosmetics().contains(cosmetic);
+    }
+
     public void reset() {
         this.setGame(null);
         this.setTeam(null);
         this.setKillStreak(0);
 
         player.getInventory().clear();
-        player.playerListName(MM.deserialize("<gray>" + player.getName() + " ✪" + this.getLevel()));
+        player.playerListName(MM.deserialize("<gray>" + player.getName() + " ⭐" + this.getLevel()));
         player.displayName(MM.deserialize("<gray>" + player.getName()));
         player.setGameMode(GameMode.ADVENTURE);
         player.setGlowing(false);
         player.setLastDamageCause(null);
         player.setLastDeathLocation(null);
-        player.setKiller(null);
         player.setKiller(null);
         player.setLastDamage(0);
         player.setHealth(20);
@@ -174,7 +196,45 @@ public class CTFPlayer implements Audience {
         }
     }
 
+    public void setGlowing(boolean glow) {
+        if (glow) {
+            if (this.getTeam() == null) {
+                player.setGlowing(true);
+                return;
+            }
 
+            if (this.getTeam().getTeamColor() == TeamColor.RED) {
+                Bukkit.getOnlinePlayers().forEach(player -> {
+                    try {
+                        Main.getGlowingEntitiesAPI().setGlowing(this.getPlayer(), player, ChatColor.RED);
+                    } catch (ReflectiveOperationException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            } else {
+                Bukkit.getOnlinePlayers().forEach(player -> {
+                    try {
+                        Main.getGlowingEntitiesAPI().setGlowing(this.getPlayer(), player, ChatColor.BLUE);
+                    } catch (ReflectiveOperationException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+            }
+        } else {
+            Bukkit.getOnlinePlayers().forEach(player -> {
+                try {
+                    Main.getGlowingEntitiesAPI().unsetGlowing(this.getPlayer(), player);
+                } catch (ReflectiveOperationException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+    public UUID getUUID() {
+        return player.getUniqueId();
+    }
 
     @Override
     public void showTitle(@NotNull Title title) {

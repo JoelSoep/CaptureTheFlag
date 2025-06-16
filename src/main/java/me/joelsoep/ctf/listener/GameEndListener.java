@@ -3,6 +3,7 @@ package me.joelsoep.ctf.listener;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameEndEvent;
@@ -43,10 +44,12 @@ public class GameEndListener implements Listener {
         }
 
         winner.getPlayers().forEach(player -> {
+            game.getXPCollector().write(player, 50);
             player.getData().setWinStreak(player.getData().getWinStreak() + 1);
         });
 
         loser.getPlayers().forEach(player -> {
+            game.getXPCollector().write(player, 25);
             player.getData().setWinStreak(0);
         });
 
@@ -76,7 +79,7 @@ public class GameEndListener implements Listener {
 
         // Push final game data to database.
 
-        Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getDatabase().getCollection("game"),
+        MongoManager.findOneAndUpdate(MongoManager.getCollection("game"),
                 new Document("_id", game.getUuid().toString()),
                 Updates.combine(
                         Updates.set("winner", winner.getTeamColor().toString()),

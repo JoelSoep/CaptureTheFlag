@@ -71,7 +71,7 @@ public class PlayerDeathListener implements Listener {
             clearCraftingSlots(player);
             player.setHealth(20);
             player.setFoodLevel(20);
-            player.setGlowing(false);
+            ctfPlayer.setGlowing(false);
             ctfPlayer.setKillStreak(0);
             ctfPlayer.getData().setDeaths(ctfPlayer.getData().getDeaths() + 1);
             event.setCancelled(true);
@@ -82,7 +82,7 @@ public class PlayerDeathListener implements Listener {
                 if (!(oppositeTeam.getFlag().getThief().equals(ctfPlayer))) {
                     return;
                 }
-                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, player);
+                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, ctfPlayer);
                 Bukkit.getPluginManager().callEvent(returnEvent);
 
                 game.getAudience().sendMessage(
@@ -98,8 +98,7 @@ public class PlayerDeathListener implements Listener {
                 }
                 if (killer.getName().equals(player.getName())) {
                     game.getAudience().sendMessage(MM.deserialize("""
-                        <gray>%s <gray>died.
-                        """.formatted(team.getTeamColor().getColor() + player.getName())));
+                        <gray>%s <gray>died.""".formatted(team.getTeamColor().getColor() + player.getName())));
                     return;
                 }
 
@@ -127,8 +126,7 @@ public class PlayerDeathListener implements Listener {
                 game.getXPCollector().write(ctfKiller, 15);
             } else {
                 game.getAudience().sendMessage(MM.deserialize("""
-                        <gray>%s <gray>died.
-                        """.formatted(team.getTeamColor().getColor() + player.getName())));
+                        <gray>%s <gray>died.""".formatted(team.getTeamColor().getColor() + player.getName())));
             }
         } else if (game.getState() == GameState.ENDED) {
             player.teleport(ctfPlayer.getTeam().getSpawn());

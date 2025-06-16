@@ -1,14 +1,14 @@
 package me.joelsoep.ctf.player.effect.effects;
 
-import me.joelsoep.ctf.animation.animation.BreakAnimation;
+import me.joelsoep.ctf.animation.animations.BreakAnimation;
+import me.joelsoep.ctf.game.board.ActionbarPriority;
+import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.effect.EffectRules;
 import me.joelsoep.ctf.player.effect.EffectType;
 import me.joelsoep.ctf.player.effect.PlayerEffect;
-import me.joelsoep.ctf.util.MM;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Set;
+import java.util.EnumSet;
 
 public class BreakEffect extends PlayerEffect {
     public BreakEffect() {
@@ -16,16 +16,16 @@ public class BreakEffect extends PlayerEffect {
     }
 
     @Override
-    protected @NotNull Set<EffectRules> getRules() {
-        return Set.of(EffectRules.CAN_DAMAGE, EffectRules.CAN_MOVE_LOCATION);
+    protected @NotNull EnumSet<EffectRules> getRules() {
+        return EnumSet.of(EffectRules.CAN_DAMAGE, EffectRules.CAN_MOVE_LOCATION);
     }
 
     @Override
-    protected void effect(Player player) {
-        BreakAnimation breakAnimation = new BreakAnimation(player.getEyeLocation());
+    protected void effect(CTFPlayer player) {
+        BreakAnimation breakAnimation = new BreakAnimation(player.getPlayer().getEyeLocation());
         breakAnimation.setDuration(5 * 20L);
         breakAnimation.play(0L, 1L);
 
-        player.sendActionBar(MM.deserialize("<light_purple>You have been broken!"));
+        player.getActionbarHandler().setMessage(ActionbarPriority.HIGH, "<light_purple>You have been broken!", 5 * 20L);
     }
 }

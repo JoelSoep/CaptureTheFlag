@@ -5,13 +5,13 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
 
-public class GameSound {
+public class SoundUtils {
 
-    public GameSound(Player player, Sound sound) {
+    public SoundUtils(Player player, Sound sound) {
         player.playSound(sound);
     }
 
-    public GameSound(Audience audience, Sound sound) {
+    public SoundUtils(Audience audience, Sound sound) {
         audience.playSound(sound);
     }
 
@@ -39,7 +39,27 @@ public class GameSound {
                 .type(Key.key("entity.firework_rocket.launch"))
                 .volume(10)
                 .source(Sound.Source.MASTER)
-                .pitch(1)
+                .pitch(1F)
+                .seed(7)
+                .build();
+    }
+
+    public static Sound getConfirmSound() {
+        return Sound.sound()
+                .type(Key.key("block.note_block.pling"))
+                .volume(10)
+                .source(Sound.Source.MASTER)
+                .pitch(2F)
+                .seed(7)
+                .build();
+    }
+
+    public static Sound getDenySound() {
+        return Sound.sound()
+                .type(Key.key("block.note_block.pling"))
+                .volume(10)
+                .source(Sound.Source.MASTER)
+                .pitch(0.5F)
                 .seed(7)
                 .build();
     }

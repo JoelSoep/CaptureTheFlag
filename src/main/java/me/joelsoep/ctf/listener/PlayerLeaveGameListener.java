@@ -49,7 +49,7 @@ public class PlayerLeaveGameListener implements Listener {
                 if (!(oppositeTeam.getFlag().getThief().equals(player))) {
                     return;
                 }
-                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, player.getPlayer());
+                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, player);
                 Bukkit.getPluginManager().callEvent(returnEvent);
                 game.getAudience().sendMessage(
                         MM.deserialize(
@@ -67,7 +67,7 @@ public class PlayerLeaveGameListener implements Listener {
                 return;
             }
             player.getData().setWinStreak(0);
-            LogModule.GAME.log("Win streak of %s has been reset because he left the game while it was running.".formatted(player.getPlayer().getName()));
+            LogModule.GAME.log("Win streak of %s has been reset because they left the game while it was running.".formatted(player.getPlayer().getName()));
         }
     }
 }

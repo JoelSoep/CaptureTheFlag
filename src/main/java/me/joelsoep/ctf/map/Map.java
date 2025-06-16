@@ -5,8 +5,10 @@ import com.mongodb.client.model.Updates;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.map.type.GameMap;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -37,6 +39,11 @@ public abstract class Map {
         this.world = null;
     }
 
+    /**
+     * Map interactions are a way to implement custom map-specific interactions.
+     * For example, clicking on a specific block in a map could result in an interaction.
+     */
+
     protected class Interaction implements Listener {
 
         public Interaction(Consumer<PlayerInteractEvent> action) {
@@ -48,7 +55,7 @@ public abstract class Map {
                         return;
                     }
 
-                    if (Main.getGame().getState() != GameState.RUNNING) {
+                    if (Main.getGame().getState() != GameState.RUNNING && Map.this instanceof GameMap) {
                         return;
                     }
 
@@ -62,11 +69,16 @@ public abstract class Map {
         return MapManager.createEmptyWorld(prefix + name);
     }
 
+    /**
+     * Checks if a map should load. It can be enabled/disabled in the database.
+     * @return whether the map should load
+     */
+
     public CompletableFuture<Boolean> isGloballyEnabled() {
         CompletableFuture<Boolean> future = new CompletableFuture<>();
         final int[] amount = {0};
         final boolean[] forwarder = new boolean[1];
-        Main.getMongoManager().findOne(Main.getMongoManager().getCollection("map"), new Document("name", getPrefix() + getName()), new Subscriber<Document>() {
+        MongoManager.findOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()), new Subscriber<Document>() {
 
             @Override
             public void onSubscribe(Subscription s) {
@@ -76,8 +88,8 @@ public abstract class Map {
             @Override
             public void onNext(Document result) {
                 if (result == null) {
-                    Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("map"), new Document("name", getPrefix() + getName()));
-                    Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getCollection("map"), new Document("name", getPrefix() + getName()), Updates.set("enabled", true), new FindOneAndUpdateOptions().upsert(true));
+                    MongoManager.insertOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()));
+                    MongoManager.findOneAndUpdate(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()), Updates.set("enabled", true), new FindOneAndUpdateOptions().upsert(true));
                     future.complete(true);
                 } else {
                     boolean enabled = result.getBoolean("enabled");
@@ -97,8 +109,8 @@ public abstract class Map {
             public void onComplete() {
                 LogModule.MAP.log("COMPLETED");
                 if (amount[0] == 0) {
-                    Main.getMongoManager().insertOne(Main.getMongoManager().getCollection("map"), new Document("name", getPrefix() + getName()));
-                    Main.getMongoManager().findOneAndUpdate(Main.getMongoManager().getCollection("map"), new Document("name", getPrefix() + getName()), Updates.set("enabled", true), new FindOneAndUpdateOptions().upsert(false));
+                    MongoManager.insertOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()));
+                    MongoManager.findOneAndUpdate(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()), Updates.set("enabled", true), new FindOneAndUpdateOptions().upsert(false));
                     future.complete(true);
                     return;
                 }
@@ -107,6 +119,11 @@ public abstract class Map {
         });
         return future;
     }
+
+    /**
+     * Clears all entities from a map, except for players,
+     * as this causes weird behavior.
+     */
 
     public void clearEntities() {
         getWorld().getEntities().forEach(entity -> {

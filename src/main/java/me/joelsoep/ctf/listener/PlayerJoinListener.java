@@ -29,6 +29,15 @@ public class PlayerJoinListener implements Listener {
         CTFPlayer ctfPlayer = PlayerService.createPlayer(player);
         event.joinMessage(null);
 
+        if (!player.hasPermission("ctf.admin") && !player.isOp() && !Main.getSettings().isOpen() && !PlayerService.isAllowedToJoin(player.getUniqueId())) {
+            player.kick(MM.deserialize("""
+                <gray>[<red><bold>Capture the Flag</bold><gray>]
+                <gray>This server is currently closed.
+                <gray>Please try again later.
+                """));
+            return;
+        }
+
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
@@ -45,10 +54,10 @@ public class PlayerJoinListener implements Listener {
         if (!Main.getInstance().getServer().getAllowFlight()) {
             if (player.hasPermission("ctf.admin")) {
                 player.sendMessage(MM.deserialize("""
-                                            <gray>[<red><bold>CTF-ALERT</bold><gray>]
-                                            <red>This server disallows player flight.
-                                            <red>It is highly recommended to allow flight, as disabling this could cause issues.
-                                            <red>Keeping allow flight disabled is at your own risk.
+                        <gray>[<red><bold>CTF-ALERT</bold><gray>]
+                        <red>This server disallows player flight.
+                        <red>It is highly recommended to allow flight, as disabling this could cause issues.
+                        <red>Keeping allow flight disabled is at your own risk.
                         """));
             }
         }

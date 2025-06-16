@@ -55,14 +55,14 @@ public class PlayerInteractListener implements Listener {
 
         ctfPlayer.setCooldown(500L);
 
-        if (material == Material.KNOWLEDGE_BOOK) {
+        if (material == Material.WRITTEN_BOOK && item.getItemMeta().getCustomModelData() == 3) {
             event.setUseItemInHand(Event.Result.DENY);
             event.setCancelled(true);
             new TutorialBook(player);
             return;
         }
 
-        if (material == Material.BOOK) {
+        if (material == Material.PAPER && item.getItemMeta().getCustomModelData() == 2047) {
             new KitSelectionGUI(player, Main.getKitService());
             return;
         }
@@ -76,7 +76,7 @@ public class PlayerInteractListener implements Listener {
             return;
         }
 
-        if (material == Material.LIME_CONCRETE) {
+        if (material == Material.PAPER && item.getItemMeta().getCustomModelData() == 1012) {
             if (Main.getGameQueue().getQueue().contains(ctfPlayer)) {
                 Main.getGameQueue().removePlayer(ctfPlayer);
             }
@@ -85,16 +85,17 @@ public class PlayerInteractListener implements Listener {
                 Main.getGame().removePlayer(ctfPlayer);
             }
             ctfPlayer.setParticipationState(ParticipationState.UNAVAILABLE);
+            ctfPlayer.sendMessage("<gray>You left the queue.");
             Hotbar.Static.giveQueueBlock(player);
             return;
         }
 
-        if (material == Material.POPPY) {
+        if (material == Material.PAPER && item.getItemMeta().getCustomModelData() == 1001) {
             new CosmeticsGUI(player);
             return;
         }
 
-        if (material == Material.RED_CONCRETE) {
+        if (material == Material.PAPER && item.getItemMeta().getCustomModelData() == 1011) {
             if (Main.getGameQueue().getQueue().contains(ctfPlayer)) {
                 return;
             }
@@ -113,7 +114,7 @@ public class PlayerInteractListener implements Listener {
             return;
         }
 
-        if (event.getMaterial() == Material.COMMAND_BLOCK) {
+        if (event.getMaterial() == Material.PAPER && item.getItemMeta().getCustomModelData() == 1014) {
             if (!player.hasPermission("ctf.admin") && !player.isOp()) {
                 player.sendMessage(MM.deserialize("<red>You do not have permission to use this!"));
                 return;

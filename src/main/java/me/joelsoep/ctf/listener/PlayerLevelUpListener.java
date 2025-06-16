@@ -22,6 +22,6 @@ public class PlayerLevelUpListener implements Listener {
 
         player.getBalance().giveCoins((newLevel - oldLevel) * 10);
         player.sendMessage(MM.deserialize("<green>Level up! <yellow>%s".formatted(player.getLevel())));
-        player.getPlayer().playerListName(MM.deserialize("<gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()));
+        player.getPlayer().playerListName(MM.deserialize("<gray>" + player.getPlayer().getName() + " ⭐" + player.getLevel()));
     }
 }

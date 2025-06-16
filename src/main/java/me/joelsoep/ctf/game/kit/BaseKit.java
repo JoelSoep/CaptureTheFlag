@@ -103,13 +103,17 @@ public abstract class BaseKit {
                 inventory.setArmorContents(armor);
             }
         }
+
+        // helmet color depending on team
         Color color = team.equals(game.getBlue()) ? Color.BLUE : Color.RED;
         inventory.setHelmet(getHelmet(color));
 
+        // give items based on how they are sorted by the player
         HashMap<Integer, ItemStack> sorted = ctfPlayer.getData().getSortedKits().get(this.getName());
         HashMap<Integer, ItemStack> finalSorted = sorted != null ? new HashMap<>(sorted.entrySet().stream()
                 .filter(entry -> entry.getValue() != null)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))) : null;
+        // if player hasn't sorted the items yet, give them the default layout
         if (sorted == null) {
             sorted = new HashMap<>(this.items);
             HashMap<Integer, ItemStack> finalSorted1 = sorted;
@@ -149,7 +153,7 @@ public abstract class BaseKit {
 
         HashMap<Integer, ItemStack> finalList = finalSorted == null ? sorted : finalSorted;
         for (Map.Entry<Integer, ItemStack> entry : finalList.entrySet()) {
-            // remove NBT data from stackables so they stack on top of each other
+            // remove NBT data from stackables so they stack on top of each other, might not be handy for all items tho
 
             ItemStack item;
             if (entry.getValue().getItemFlags().contains(ItemFlag.HIDE_DYE)) {

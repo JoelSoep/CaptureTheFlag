@@ -45,7 +45,15 @@ public class DeathMessageCosmeticListener implements Listener {
             return;
         }
 
-        Component message = MM.deserialize(deathMessageCosmetic.getDeathMessage().replace("%k", ctfKiller.getTeam().getTeamColor().getColor() +  killer.getName()).replace("%p", ctfPlayer.getTeam().getTeamColor().getColor() + player.getName()));
+        String killerColor = ctfKiller.getTeam().getTeamColor().getColor();
+        String playerColor = ctfPlayer.getTeam().getTeamColor().getColor();
+
+        Component message = MM.deserialize(
+                deathMessageCosmetic.getDeathMessage()
+                        .replace("%k", killerColor + killer.getName())
+                        .replace("%p", playerColor + player.getName())
+        );
+
         game.getAudience().sendMessage(message);
     }
 }

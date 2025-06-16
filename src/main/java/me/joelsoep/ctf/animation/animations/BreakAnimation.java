@@ -1,4 +1,4 @@
-package me.joelsoep.ctf.animation.animation;
+package me.joelsoep.ctf.animation.animations;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.animation.Animation;

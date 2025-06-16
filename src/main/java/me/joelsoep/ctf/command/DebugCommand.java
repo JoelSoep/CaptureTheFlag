@@ -3,16 +3,20 @@ package me.joelsoep.ctf.command;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
-import com.ibm.icu.number.Scale;
+import com.mongodb.client.result.DeleteResult;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
+import me.joelsoep.ctf.cosmetic.CosmeticsManager;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
+import me.joelsoep.ctf.database.MongoManager;
+import me.joelsoep.ctf.database.subscriber.IDeleteOneSubscriber;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.ActionbarPriority;
+import me.joelsoep.ctf.game.gui.CosmeticStoreGUI;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.task.ResetGameTask;
@@ -22,11 +26,19 @@ import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.player.experience.Level;
+import me.joelsoep.ctf.server.BaseServer;
+import me.joelsoep.ctf.server.CTFServer;
+import me.joelsoep.ctf.server.packet.packets.GoodbyePacket;
+import me.joelsoep.ctf.server.socket.SocketSender;
+import me.joelsoep.ctf.server.packet.packets.RetrievePlayerPacket;
+import me.joelsoep.ctf.store.StoreManager;
+import me.joelsoep.ctf.store.items.cosmetic.deathMessage.TookLItem;
+import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.test.DisplayEntities;
 import net.kyori.adventure.title.Title;
+import org.bson.Document;
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.TestOnly;
@@ -37,7 +49,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @TestOnly
 @CommandAlias("debug|dbg")
-@CommandPermission("ctf.debug|ctf.admin")
+@CommandPermission("ctf.debug")
 public final class DebugCommand extends BaseCommand {
     Game game = Main.getGame();
 
@@ -266,7 +278,7 @@ public final class DebugCommand extends BaseCommand {
             return;
         }
 
-        Cosmetic cosmetic = Main.getCosmeticManager().getCosmetic(cosmeticType, cosmeticName);
+        Cosmetic cosmetic = Main.getCosmeticsManager().getCosmetic(cosmeticType, cosmeticName);
         if (cosmetic == null) {
             player.sendMessage(MM.deserialize("The cosmetic is null!"));
             return;
@@ -277,7 +289,7 @@ public final class DebugCommand extends BaseCommand {
 
     @Subcommand("listcosmetics")
     public void listCosmetics(Player player, CosmeticType type) {
-        HashMap<String, Cosmetic> map = Main.getCosmeticManager().getCosmetics().get(type);
+        HashMap<String, Cosmetic> map = CosmeticsManager.getCosmetics().get(type);
         if (map == null) {
             player.sendMessage(MM.deserialize("No cosmetics found."));
             return;
@@ -363,5 +375,171 @@ public final class DebugCommand extends BaseCommand {
         DisplayEntities DPE = new DisplayEntities(location);
         DPE.scale(material, scale);
         player.sendMessage(MM.deserialize("<gray>Scaled!"));
+    }
+
+    @Subcommand("glow")
+    public void glow(Player player, ChatColor color) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+
+        Bukkit.getOnlinePlayers().forEach(p -> {
+            try {
+                Main.getGlowingEntitiesAPI().setGlowing(player, p, color);
+            } catch (ReflectiveOperationException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @Subcommand("unglow")
+    public void unglow(Player player) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>You are not registered as a CTFPlayer!"));
+            return;
+        }
+
+        Bukkit.getOnlinePlayers().forEach(p -> {
+            try {
+                Main.getGlowingEntitiesAPI().unsetGlowing(player, p);
+            } catch (ReflectiveOperationException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @Subcommand("sendRetrievalPacket")
+    public void sendRetrievalPacket(Player player, String uuid) {
+        RetrievePlayerPacket packet =  new RetrievePlayerPacket.Builder()
+                .withUUID(uuid)
+                .withTeam("red")
+                .withKey(Main.getGameServer().getApiConfig().key())
+                .withSender(Main.getGameServer().getId())
+                .build();
+        SocketSender.send(Main.getGameServer().getIp(), Main.getGameServer().getPort(), packet);
+    }
+
+    @Subcommand("msg")
+    public void simulateMessage(Player player, String message) {
+        player.sendMessage(MM.deserialize(message));
+    }
+
+    @Subcommand("rotatingblock")
+    public void rotatingBlock(Player player, int size, int radians) {
+        Location location = player.getLocation();
+        DisplayEntities dpe = new DisplayEntities(location);
+        dpe.rotatingLuckyBlock(size, radians);
+    }
+
+    @Subcommand("unregisterServer")
+    public void unregisterServer(Player player, @Single String serverName) {
+        if (!Main.getGameServer().getOnlineServers().containsKey(serverName)) {
+            player.sendMessage("<red>Couldn't find server in server registry.");
+            return;
+        }
+        BaseServer bs = Main.getGameServer().getOnlineServers().get(serverName);
+        GoodbyePacket packet = new GoodbyePacket.Builder()
+                .withDefaultValues()
+                .withSender(serverName)
+                .withHost(bs.ip())
+                .withPort(bs.port())
+                .withMode(bs.mode())
+                .build();
+        SocketSender.sendAll(packet, true);
+        MongoManager.deleteOne(MongoManager.getCollection("server"), new Document("_id", serverName), new IDeleteOneSubscriber() {
+            @Override
+            public void onResult(DeleteResult result) {
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        });
+        player.sendMessage(MM.deserialize("<gray>Removed server <yellow>%s <gray>from all registries.".formatted(serverName)));
+    }
+
+    @Subcommand("refreshAdditionalMessage")
+    public void refresh(Player sender) {
+        PlayerService.getPlayers().values().forEach(player -> {
+            String message = Main.getInstance().getConfig().getString("additional-message") == null ? "<gray>" : Main.getInstance().getConfig().getString("additional-message");
+            player.getScoreboardHandler().setAdditionalMessage(message);
+        });
+        sender.sendMessage(MM.deserialize("<gray>Refreshed and updated all scoreboards."));
+    }
+
+    @Subcommand("reloadhotbar")
+    public void reloadHotbar(Player player, @Optional OnlinePlayer onlinePlayer) {
+        if (onlinePlayer == null) {
+            new Hotbar(player);
+            player.sendMessage(MM.deserialize("<gray>Done!"));
+            return;
+        }
+
+        new Hotbar(onlinePlayer.getPlayer());
+        player.sendMessage(MM.deserialize("<gray>Reloaded hotbar for player %s".formatted(onlinePlayer.getPlayer().getName())));
+    }
+
+    @Subcommand("reloadhotbars")
+    public void reloadHotbars(Player p) {
+        PlayerService.getPlayers().forEach((name, player) -> {
+            new Hotbar(player.getPlayer());
+        });
+        p.sendMessage(MM.deserialize("<gray>Done!"));
+    }
+
+    @Subcommand("addwaitingsystemmessage")
+    public void addWaitingSystemMessage(Player player, OnlinePlayer target, String message) {
+        if (target == null) {
+            player.sendMessage(MM.deserialize("<red>This player does not exist."));
+            return;
+        }
+
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(target.getPlayer());
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>Could not find the target's profile."));
+            return;
+        }
+
+        ctfPlayer.addWaitingSystemMessage(message);
+        player.sendMessage(MM.deserialize("<gray>Added message to %s's waiting system messages.".formatted(target.getPlayer().getName())));
+    }
+
+    @Subcommand("earlystorepurchasetest")
+    public void earlyStorePurchaseTest(Player player) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+        if (ctfPlayer == null) {
+            return;
+        }
+        StoreManager.purchase(new TookLItem(), ctfPlayer);
+    }
+
+    @Subcommand("store")
+    public void openStore(Player player) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+        if (ctfPlayer == null) {
+            return;
+        }
+        new CosmeticStoreGUI(ctfPlayer);
+    }
+
+    @Subcommand("reloadstore")
+    public void reloadStore(Player player) {
+        player.sendMessage(MM.deserialize("<gray>Reloading store..."));
+        StoreManager.reload();
+        player.sendMessage(MM.deserialize("<gray>Done!"));
+    }
+
+    @Subcommand("verifyApiKey")
+    public void verifyApiKey(Player player) {
+        if (!CTFServer.isEnabled()) {
+            player.sendMessage(MM.deserialize("There is no API key as the CTF-server is disabled."));
+            return;
+        }
+
+        player.sendMessage(MM.deserialize(Main.getGameServer().getApiConfig().key()));
     }
 }

@@ -16,4 +16,10 @@ public class GuiUtils {
         gui.setOnGlobalClick(event -> event.setCancelled(true));
         gui.addPane(pane);
     }
+
+    public static GuiItem getComingSoon() {
+        return new GuiItem(new ItemBuilder(Material.BARRIER)
+                .setName("<red>Coming soon")
+                .build());
+    }
 }

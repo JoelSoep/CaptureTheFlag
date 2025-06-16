@@ -20,8 +20,6 @@ public class EntityDamageByEntityListener implements Listener {
         Entity entityDamager = event.getDamager();
         Game game = Main.getGame();
 
-        // TODO: Clean up stuff from entitydamagehandler
-
         if (!(entity instanceof Player player)) {
             return;
         }
@@ -31,7 +29,11 @@ public class EntityDamageByEntityListener implements Listener {
             return;
         }
 
-        CTFPlayer ctfPlayer = PlayerService.getPlayers().get(player.getName());
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player.getName());
+        if (ctfPlayer == null) {
+            event.setCancelled(true);
+            return;
+        }
 
         if (entityDamager instanceof Player damager) {
             CTFPlayer ctfDamager = PlayerService.getPlayers().get(damager.getName());

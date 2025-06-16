@@ -4,11 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum CosmeticRarity {
-    COMMON("<#20bd32>", "<#20bd32>Common"),
-    RARE("<#243ac9>", "<#243ac9>Rare"),
-    EPIC("<#8416c4>", "<#8416c4>Epic"),
-    LEGENDARY("<#FFD700>", "<#FFD700>Legendary"),
-    MYTHIC("<gradient:#2DFFEC:#ADF3FD>", "<gradient:#2DFFEC:#ADF3FD>Mythic");
+    COMMON("<#20bd32>", "\uuE001"),
+    RARE("<#243ac9>", "\uE002"),
+    EPIC("<#8416c4>", "\uE003"),
+    LEGENDARY("<#FFD700>", "\uE004"),
+    MYTHIC("<gradient:#2DFFEC:#ADF3FD>", "\u795E");
 
     private final String color;
     private final String displayName;

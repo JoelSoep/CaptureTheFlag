@@ -47,6 +47,8 @@ public class WorldLoadListener implements Listener {
                     return;
                 }
 
+                // TODO: implement normal check cuz we load regardless of db values
+
                 map.load();
                 map.setState(MapState.READY);
                 LogModule.MAP.log("Added content to map %s.".formatted(map.getName()));

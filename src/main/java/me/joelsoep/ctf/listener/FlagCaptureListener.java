@@ -45,7 +45,7 @@ public class FlagCaptureListener implements Listener {
         player.getInventory().setHelmet(BaseKit.getHelmet(ctfPlayer.getTeam().getTeamColor() == TeamColor.BLUE ? Color.BLUE : Color.RED));
         ctfPlayer.getData().setCaptures(ctfPlayer.getData().getCaptures() + 1);
 
-        FlagReturnEvent returnEvent = new FlagReturnEvent(game, flagOwner, player);
+        FlagReturnEvent returnEvent = new FlagReturnEvent(game, flagOwner, ctfPlayer);
         Bukkit.getPluginManager().callEvent(returnEvent);
     }
 }

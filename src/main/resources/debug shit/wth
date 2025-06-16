@@ -1,0 +1,84 @@
+[01:02:53 ERROR]: Error occurred while enabling CapturetheFlag v1.0.0 (Is it up to date?)
+java.lang.NullPointerException: Cannot invoke "org.bukkit.World.getBlockAt(org.bukkit.Location)" because the return value of "org.bukkit.Location.getWorld()" is null
+        at org.bukkit.Location.getBlock(Location.java:133) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at me.joelsoep.ctf.map.type.GameMap.placeFlag(GameMap.java:108) ~[ctf-1.0.0.jar:?]
+        at me.joelsoep.ctf.map.MapManager.registerMapToGame(MapManager.java:147) ~[ctf-1.0.0.jar:?]
+        at me.joelsoep.ctf.map.MapManager.<init>(MapManager.java:42) ~[ctf-1.0.0.jar:?]
+        at me.joelsoep.ctf.Main.onEnable(Main.java:85) ~[ctf-1.0.0.jar:?]
+        at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:281) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:189) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:104) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:507) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at org.bukkit.craftbukkit.v1_19_R3.CraftServer.enablePlugin(CraftServer.java:563) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.CraftServer.enablePlugins(CraftServer.java:474) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.loadWorld0(MinecraftServer.java:638) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.loadLevel(MinecraftServer.java:437) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:308) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1104) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:840) ~[?:?]
+
+        [01:22:04 WARN]: java.lang.reflect.InvocationTargetException
+        [01:22:04 WARN]:        at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+        [01:22:04 WARN]:        at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+        [01:22:04 WARN]:        at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+        [01:22:04 WARN]:        at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+        [01:22:04 WARN]:        at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+        [01:22:04 WARN]:        at ctf-1.0.0.jar//me.joelsoep.ctf.map.MapManager.lambda$loadGames$0(MapManager.java:112)
+        [01:22:04 WARN]:        at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+        [01:22:04 WARN]:        at ctf-1.0.0.jar//me.joelsoep.ctf.map.MapManager.loadGames(MapManager.java:110)
+        [01:22:04 WARN]:        at ctf-1.0.0.jar//me.joelsoep.ctf.map.MapManager.<init>(MapManager.java:34)
+        [01:22:04 WARN]:        at ctf-1.0.0.jar//me.joelsoep.ctf.Main.onEnable(Main.java:85)
+        [01:22:04 WARN]:        at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:281)
+        [01:22:04 WARN]:        at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:189)
+        [01:22:04 WARN]:        at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:104)
+        [01:22:04 WARN]:        at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:507)
+        [01:22:04 WARN]:        at org.bukkit.craftbukkit.v1_19_R3.CraftServer.enablePlugin(CraftServer.java:563)
+        [01:22:04 WARN]:        at org.bukkit.craftbukkit.v1_19_R3.CraftServer.enablePlugins(CraftServer.java:474)
+        [01:22:04 WARN]:        at net.minecraft.server.MinecraftServer.loadWorld0(MinecraftServer.java:638)
+        [01:22:04 WARN]:        at net.minecraft.server.MinecraftServer.loadLevel(MinecraftServer.java:437)
+        [01:22:04 WARN]:        at net.minecraft.server.dedicated.DedicatedServer.e(DedicatedServer.java:308)
+        [01:22:04 WARN]:        at net.minecraft.server.MinecraftServer.w(MinecraftServer.java:1104)
+        [01:22:04 WARN]:        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320)
+        [01:22:04 WARN]:        at java.base/java.lang.Thread.run(Thread.java:840)
+        [01:22:04 WARN]: Caused by: java.lang.IllegalArgumentException: location
+        [01:22:04 WARN]:        at com.google.common.base.Preconditions.checkArgument(Preconditions.java:145)
+        [01:22:04 WARN]:        at org.bukkit.craftbukkit.v1_19_R3.CraftWorld.setSpawnLocation(CraftWorld.java:287)
+        [01:22:04 WARN]:        at ctf-1.0.0.jar//me.joelsoep.ctf.map.type.GameMap.<init>(GameMap.java:43)
+        [01:22:04 WARN]:        at ctf-1.0.0.jar//me.joelsoep.ctf.map.type.game.AirshipMap.<init>(AirshipMap.java:34)
+        [01:22:04 WARN]:        ... 22 more
+
+
+        [22:48:38 WARN]: [CTF] Task #3552 for CapturetheFlag v1.0.0 generated an exception
+        java.lang.UnsupportedOperationException: Calling Entity#remove on players produces undefined (bad) behavior
+                at org.bukkit.craftbukkit.v1_19_R3.entity.CraftPlayer.remove(CraftPlayer.java:3028) ~[paper-1.19.4.jar:git-Paper-550]
+                at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
+                at me.joelsoep.ctf.map.Map.clearEntities(Map.java:114) ~[ctf-1.0.0.jar:?]
+                at me.joelsoep.ctf.map.type.game.DragonDesertMap.load(DragonDesertMap.java:19) ~[ctf-1.0.0.jar:?]
+                at me.joelsoep.ctf.game.task.ResetGameTask$1.run(ResetGameTask.java:47) ~[ctf-1.0.0.jar:?]
+                at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftTask.run(CraftTask.java:101) ~[paper-1.19.4.jar:git-Paper-550]
+                at org.bukkit.craftbukkit.v1_19_R3.scheduler.CraftScheduler.mainThreadHeartbeat(CraftScheduler.java:483) ~[paper-1.19.4.jar:git-Paper-550]
+                at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:1483) ~[paper-1.19.4.jar:git-Paper-550]
+                at net.minecraft.server.dedicated.DedicatedServer.tickChildren(DedicatedServer.java:447) ~[paper-1.19.4.jar:git-Paper-550]
+                at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1397) ~[paper-1.19.4.jar:git-Paper-550]
+                at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1174) ~[paper-1.19.4.jar:git-Paper-550]
+                at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+                at java.lang.Thread.run(Thread.java:840) ~[?:?]
+
+[21:17:11 ERROR]: [CTF] Error initializing plugin 'ctf-1.0.0.jar' in folder 'plugins' (Is it up to date?)
+org.bukkit.plugin.IllegalPluginAccessException: Plugin attempted to register me.joelsoep.ctf.fr.skytasul.glowingentities.GlowingEntities@50cda1bd while not enabled
+        at io.papermc.paper.plugin.manager.PaperEventManager.registerEvents(PaperEventManager.java:80) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.registerEvents(PaperPluginManagerImpl.java:131) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.plugin.SimplePluginManager.registerEvents(SimplePluginManager.java:670) ~[paper-api-1.19.4-R0.1-SNAPSHOT.jar:?]
+        at me.joelsoep.ctf.fr.skytasul.glowingentities.GlowingEntities.enable(GlowingEntities.java:65) ~[ctf-1.0.0.jar:?]
+        at me.joelsoep.ctf.fr.skytasul.glowingentities.GlowingEntities.<init>(GlowingEntities.java:53) ~[ctf-1.0.0.jar:?]
+        at me.joelsoep.ctf.Main.onLoad(Main.java:54) ~[ctf-1.0.0.jar:?]
+        at io.papermc.paper.plugin.storage.ServerPluginProviderStorage.processProvided(ServerPluginProviderStorage.java:59) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.storage.ServerPluginProviderStorage.processProvided(ServerPluginProviderStorage.java:18) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:40) ~[paper-1.19.4.jar:git-Paper-550]
+        at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:36) ~[paper-1.19.4.jar:git-Paper-550]
+        at org.bukkit.craftbukkit.v1_19_R3.CraftServer.loadPlugins(CraftServer.java:431) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:273) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1104) ~[paper-1.19.4.jar:git-Paper-550]
+        at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:320) ~[paper-1.19.4.jar:git-Paper-550]
+        at java.lang.Thread.run(Thread.java:840) ~[?:?]

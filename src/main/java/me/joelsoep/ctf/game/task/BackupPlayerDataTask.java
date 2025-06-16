@@ -4,6 +4,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import org.bson.conversions.Bson;
@@ -84,8 +85,8 @@ public class BackupPlayerDataTask {
 
         FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(false);
 
-        Main.getMongoManager().findOneAndUpdate(
-                Main.getMongoManager().getCollection("player"),
+        MongoManager.findOneAndUpdate(
+                MongoManager.getCollection("player"),
                 Filters.eq("_id", player.getPlayer().getUniqueId().toString()),
                 update,
                 options

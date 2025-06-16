@@ -31,12 +31,14 @@
 32. after a game has ended and you get to the chest, you can put items in it and when the next game starts theres items in it
 33. bossbar event showcaser
 34. variety: RANDOMNESS
-35. Add winstreak
-36. For admins: add elevateperms command
+35. Add winstreak DONE
+36. For admins: add elevateperms command DONE
 37. Add something like a weekend-rush event, which would grant players extra xp or coins during weekend or other days
+38. Dragon desert: after 2 captures explode center head and do some fun stuff there
 
 35 Procedurally generated worlds, cut a border in the middle and cut the grounds so it creates an illusion of flying islands SCRAPPED
 
+/debug msg <#03e3fc><bold>Capture <gray>The <#f03030>Flag
 
 CUSTOM COSMETICS IDEAS:
 - When a player has a flag captured, they can have a custom flag banner pattern

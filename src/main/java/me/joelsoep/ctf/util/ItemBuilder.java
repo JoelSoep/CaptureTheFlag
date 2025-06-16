@@ -1,14 +1,17 @@
 package me.joelsoep.ctf.util;
 
+import me.joelsoep.ctf.Main;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Collections;
 import java.util.List;
@@ -115,6 +118,11 @@ public class ItemBuilder {
 
     public ItemBuilder setCustomModelData(int customModelData) {
         itemStack.editMeta(itemMeta -> itemMeta.setCustomModelData(customModelData));
+        return this;
+    }
+
+    public ItemBuilder setPersistentDataContainer(String name, PersistentDataType<Object, Object> type, Object value) {
+        itemStack.editMeta(itemMeta -> itemMeta.getPersistentDataContainer().set(new NamespacedKey(Main.getInstance(), name), type, value));
         return this;
     }
 

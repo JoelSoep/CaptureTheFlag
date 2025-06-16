@@ -67,21 +67,27 @@ public class FAWE {
                 }
             } catch (Exception e) {
                 if (e instanceof FileNotFoundException) {
-                    LogModule.MAP.severe("Couldn't find file " + file.getName() + "!");
-                    if (failed) {
-                        LogModule.MAP.severe("Attempt to get file %s failed! Cannot load world.");
-                        return false;
-                    }
-                    LogModule.FILE.severe("Attempting to download file %s...".formatted(file.getName()));
-                    FileManager.requestFile(file.getName(), FileType.SCHEMATIC, "schematics" + File.separator + file.getName());
-                    failed = true;
-                    paste(file, location);
-                    return true;
+                    return handleFileNotFound(file, location);
                 }
                 e.printStackTrace();
                 return false;
             }
+        } else {
+            return handleFileNotFound(file, location);
         }
         return false;
+    }
+
+    private static boolean handleFileNotFound(File file, Location location) {
+        LogModule.MAP.severe("Couldn't find file " + file.getName() + "!");
+        if (failed) {
+            LogModule.MAP.severe("Attempt to get file %s failed! Cannot load world.");
+            return false;
+        }
+        LogModule.FILE.severe("Attempting to download file %s...".formatted(file.getName()));
+        FileManager.requestFile(file.getName(), FileType.SCHEMATIC, "schematics" + File.separator + file.getName());
+        failed = true;
+        paste(file, location);
+        return true;
     }
 }

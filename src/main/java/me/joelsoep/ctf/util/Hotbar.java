@@ -35,8 +35,9 @@ public class Hotbar {
     }
 
     private void giveKitSelectionItem() {
-        ItemStack kitSelector = new ItemStack(Material.BOOK);
+        ItemStack kitSelector = new ItemStack(Material.PAPER);
         ItemMeta itemMeta = kitSelector.getItemMeta();
+        itemMeta.setCustomModelData(2047);
 
         // Create a MiniMessage Component for the display name and parse colors
         Component displayName = MM.deserialize("<green>Select Kit</green>");
@@ -65,9 +66,10 @@ public class Hotbar {
     }
 
     private void giveCosmeticsItem() {
-        ItemStack item = new ItemBuilder(Material.POPPY)
+        ItemStack item = new ItemBuilder(Material.PAPER)
                 .setName("<light_purple>Cosmetics Menu")
                 .setLore(MM.deserialize("<gray>Right-click to open"))
+                .setCustomModelData(1001)
                 .build();
         player.getInventory().setItem(2, item);
     }
@@ -77,8 +79,9 @@ public class Hotbar {
             return;
         }
 
-        ItemStack adminPanel = new ItemStack(Material.COMMAND_BLOCK);
+        ItemStack adminPanel = new ItemStack(Material.PAPER);
         ItemMeta meta = adminPanel.getItemMeta();
+        meta.setCustomModelData(1014);
 
         Component displayName = MM.deserialize("<red>Admin Panel</red>");
         meta.displayName(displayName);
@@ -92,8 +95,9 @@ public class Hotbar {
     }
 
     private void giveTutorialBook() {
-        ItemStack tutorial = new ItemStack(Material.KNOWLEDGE_BOOK);
+        ItemStack tutorial = new ItemStack(Material.WRITTEN_BOOK);
         ItemMeta meta = tutorial.getItemMeta();
+        meta.setCustomModelData(3);
 
         Component displayName = MM.deserialize("<#FFD700>Tutorial Book");
         meta.displayName(displayName);
@@ -121,8 +125,9 @@ public class Hotbar {
         }
 
         public static ItemStack getEnqueuedItemStack() {
-            ItemStack queueBlock = new ItemStack(Material.LIME_CONCRETE);
+            ItemStack queueBlock = new ItemStack(Material.PAPER);
             ItemMeta itemMeta = queueBlock.getItemMeta();
+            itemMeta.setCustomModelData(1012);
 
             Component displayName = MM.deserialize("<green>You are queued");
             itemMeta.displayName(displayName);
@@ -131,12 +136,14 @@ public class Hotbar {
             itemMeta.lore(Collections.singletonList(lore));
 
             queueBlock.setItemMeta(itemMeta);
+            queueBlock.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS);
             return queueBlock;
         }
 
         public static ItemStack getDequeuedItemStack() {
-            ItemStack queueBlock = new ItemStack(Material.RED_CONCRETE);
+            ItemStack queueBlock = new ItemStack(Material.PAPER);
             ItemMeta itemMeta = queueBlock.getItemMeta();
+            itemMeta.setCustomModelData(1011);
 
             Component displayName = MM.deserialize("<red>You are not in the queue.");
             itemMeta.displayName(displayName);
@@ -145,6 +152,7 @@ public class Hotbar {
             itemMeta.lore(Collections.singletonList(lore));
 
             queueBlock.setItemMeta(itemMeta);
+            queueBlock.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS);
             return queueBlock;
         }
     }

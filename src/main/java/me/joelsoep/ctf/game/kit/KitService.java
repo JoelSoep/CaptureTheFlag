@@ -12,6 +12,7 @@ import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
 import org.bukkit.entity.Player;
 import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -27,7 +28,7 @@ public class KitService {
 
     private void loadKits() {
         // Use reflection to find all classes that extend BaseKit in the specified package
-        Reflections reflections = new Reflections(FileManager.KIT_PATH);
+        Reflections reflections = new Reflections(FileManager.KIT_PATH, Scanners.SubTypes);
         Set<Class<? extends BaseKit>> kitClasses = reflections.getSubTypesOf(BaseKit.class);
 
         // Instantiate and load all found kit classes
@@ -69,19 +70,19 @@ public class KitService {
     }
 
     private CompletableFuture<Boolean> isKitEnabled(BaseKit kit) {
-        MongoManager manager = Main.getMongoManager();
-        MongoCollection<Document> collection = manager.getCollection("kit");
+        MongoCollection<Document> collection = MongoManager.getCollection("kit");
         String kitName = kit.getName().toLowerCase();
         Document document = new Document("name", kitName);
         final boolean[] enabled = {true};
         CompletableFuture<Boolean> future = new CompletableFuture<>();
-        manager.findOne(collection, document, new IFindOneSubscriber<Document>() {
+        MongoManager.findOne(collection, document, new IFindOneSubscriber<Document>() {
             @Override
             public void onResult(Document result) {
                 if (result == null) {
                     LogModule.KIT.log("result for kit %s is null".formatted(kitName));
-                 Main.getMongoManager().insertOne(collection,
+                 MongoManager.insertOne(collection,
                          new Document("name", kitName)
+                                 .append("version", kit.getVersion())
                                  .append("enabled", true)
                  );
                  future.complete(true);
