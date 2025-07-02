@@ -13,13 +13,11 @@ public abstract class Cosmetic implements Listener {
     private CosmeticRarity rarity;
     private Component displayName;
     private Material logo;
-    private Integer price;
 
     protected Cosmetic(String name, CosmeticType type) {
         this.name = name;
         this.type = type;
         this.logo = Material.POPPY;
-        this.price = 0;
     }
 
     protected Cosmetic(String name, CosmeticType type, CosmeticRarity rarity) {
@@ -27,7 +25,6 @@ public abstract class Cosmetic implements Listener {
         this.type = type;
         this.rarity = rarity;
         this.logo = Material.POPPY;
-        this.price = 0;
     }
 
     protected Cosmetic(String name, CosmeticRarity rarity, CosmeticType type, Component displayName) {
@@ -36,6 +33,5 @@ public abstract class Cosmetic implements Listener {
         this.type = type;
         this.displayName = displayName;
         this.logo = Material.POPPY;
-        this.price = 0;
     }
 }

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CheckPointCityDeathMessage extends DeathMessageCosmetic {
     public CheckPointCityDeathMessage() {
-        super("Checkpoint City", CosmeticRarity.MYTHIC);
+        super("CheckpointCity", CosmeticRarity.MYTHIC);
     }
 
     @Override

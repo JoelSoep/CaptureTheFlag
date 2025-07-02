@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.cosmetic;
 
 import lombok.Getter;
+import me.joelsoep.ctf.cosmetic.type.CaptureAnimationCosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.cosmetic.type.DeathMessageCosmetic;
 import me.joelsoep.ctf.listener.ListenerService;
@@ -19,6 +20,7 @@ public class CosmeticsManager {
     public CosmeticsManager() {
         new ListenerService("me.joelsoep.ctf.cosmetic.type.listener");
         loadDeathMessages();
+        loadCaptureAnimations();
     }
 
     public @Nullable Cosmetic getCosmetic(CosmeticType type, String name) {
@@ -63,6 +65,22 @@ public class CosmeticsManager {
                 DeathMessageCosmetic cosmetic = cosmeticClass.getDeclaredConstructor().newInstance();
                 this.addCosmetic(cosmetic.getType(), cosmetic);
                 LogModule.COSMETIC.log("Loaded deathMessage cosmetic %s!".formatted(cosmetic.getName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void loadCaptureAnimations() {
+        String dir = "me.joelsoep.ctf.cosmetic.type.captureAnimation";
+        Reflections reflections = new Reflections(dir);
+
+        Set<Class<? extends CaptureAnimationCosmetic>> classes = reflections.getSubTypesOf(CaptureAnimationCosmetic.class);
+        classes.forEach(cosmeticClass -> {
+            try {
+                CaptureAnimationCosmetic cosmetic = cosmeticClass.getDeclaredConstructor().newInstance();
+                this.addCosmetic(cosmetic.getType(), cosmetic);
+                LogModule.COSMETIC.log("Loaded captureAnimation cosmetic %s".formatted(cosmetic.getName()));
             } catch (Exception e) {
                 e.printStackTrace();
             }

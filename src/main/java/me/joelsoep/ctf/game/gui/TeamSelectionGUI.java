@@ -61,7 +61,7 @@ public class TeamSelectionGUI extends ChestGui {
             itemStack.setItemMeta(itemMeta);
 
             if (isPlayerInTeam(player, team)) {
-                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+                itemStack.addUnsafeEnchantment(Enchantment.UNBREAKING, 1);
                 itemStack.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             }
 

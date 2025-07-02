@@ -132,7 +132,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             task(player);
             yoink(player, attacker);
             attacker.setHealth(4);
-            attacker.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 7, 1, true, false, true));
+            attacker.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 7, 1, true, false, true));
             event.setCancelled(true);
         }
 
@@ -182,7 +182,7 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             @Override
             public void run() {
                 i[0]++;
-                player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, player.getLocation(), 20);
+                player.getWorld().spawnParticle(Particle.SMOKE, player.getLocation(), 20);
                 if (i[0] == 30) {
                     cancel(id[0]);
                 }
@@ -200,9 +200,9 @@ public class SmashBros extends BaseSpecial<EntityDamageByEntityEvent> {
             @Override
             public void run() {
                 if (player.getGameMode() != GameMode.SPECTATOR) {
-                    player.setLastDamageCause(new EntityDamageEvent(player, EntityDamageEvent.DamageCause.DRAGON_BREATH, 0));
-                    PlayerDeathEvent deathEvent =new PlayerDeathEvent(player, Arrays.stream(player.getInventory().getContents()).toList(), 0, Component.empty());
-                    Bukkit.getPluginManager().callEvent(deathEvent);
+                   // player.setLastDamageCause(new EntityDamageEvent(player, EntityDamageEvent.DamageCause.DRAGON_BREATH, 0));
+                  //  PlayerDeathEvent deathEvent =new PlayerDeathEvent(player, Arrays.stream(player.getInventory().getContents()).toList(), 0, Component.empty());
+                   // Bukkit.getPluginManager().callEvent(deathEvent);
                 }
             }
         }, 5L);

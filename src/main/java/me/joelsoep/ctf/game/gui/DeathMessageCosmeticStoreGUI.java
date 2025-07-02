@@ -67,7 +67,7 @@ public class DeathMessageCosmeticStoreGUI extends ChestGui {
                     .build();
             if (currentCosmetic != null) {
                 if (item.getName().equals(currentCosmetic.getType().getPrefix() + currentCosmetic.getName())) {
-                    itemStack.editMeta(meta -> meta.addEnchant(Enchantment.DURABILITY, 1, false));
+                    itemStack.editMeta(meta -> meta.addEnchant(Enchantment.UNBREAKING, 1, false));
                 }
             }
             GuiItem guiItem = new GuiItem(itemStack, (action -> {

@@ -46,7 +46,7 @@ public class DragonDesertMap extends GameMap {
 
     @Override
     protected Location blueSpawnLocation() {
-        return new Location(getWorld(), 0, 50, 122);
+        return new Location(getWorld(), 0, 50, 122, -180, 0);
     }
 
     @Override

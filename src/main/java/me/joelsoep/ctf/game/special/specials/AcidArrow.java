@@ -42,7 +42,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
         return new ItemBuilder(Material.BOW)
                 .setName(MM.deserialize("<aqua>Acid Bow"))
                 .setHealth(1)
-                .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS)
+                .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_STORED_ENCHANTS)
                 .enchant(Enchantment.MENDING, 1, true)
                 .build();
     }

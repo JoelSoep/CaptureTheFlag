@@ -11,6 +11,7 @@ import java.util.Date;
 
 @Getter
 public class StoreItem {
+    private final String prefix;
     private final String name;
     @Setter private int price;
     @Setter private double discountCoefficient;
@@ -20,7 +21,8 @@ public class StoreItem {
     @Setter private String displayName;
     @Setter private Material display;
 
-    public StoreItem(String name, int price, double discountCoefficient) {
+    public StoreItem(String prefix, String name, int price, double discountCoefficient) {
+        this.prefix = prefix;
         this.name = name;
         this.price = price;
         this.discountCoefficient = discountCoefficient;
@@ -31,7 +33,8 @@ public class StoreItem {
         this.display = Material.LIME_DYE;
     }
 
-    public StoreItem(String name, int price, double discountCoefficient, boolean available) {
+    public StoreItem(String prefix, String name, int price, double discountCoefficient, boolean available) {
+        this.prefix = prefix;
         this.name = name;
         this.price = price;
         this.discountCoefficient = discountCoefficient;
@@ -42,7 +45,8 @@ public class StoreItem {
         this.display = Material.LIME_DYE;
     }
 
-    public StoreItem(String name, int price, double discountCoefficient, boolean available, Date expiryDate) {
+    public StoreItem(String prefix, String name, int price, double discountCoefficient, boolean available, Date expiryDate) {
+        this.prefix = prefix;
         this.name = name;
         this.price = price;
         this.discountCoefficient = discountCoefficient;
@@ -72,6 +76,7 @@ public class StoreItem {
 
     public StoreItem toStoreItem() {
         StoreItem item = new StoreItem(
+                this.getPrefix(),
                 this.getName(),
                 this.getPrice(),
                 this.getDiscountCoefficient(),

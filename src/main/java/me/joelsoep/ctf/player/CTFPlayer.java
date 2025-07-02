@@ -154,7 +154,7 @@ public class CTFPlayer implements Audience {
         });
     }
 
-    public static class Cosmetics {
+    public class Cosmetics {
         private final HashMap<CosmeticType, Cosmetic> appliedCosmetics = new HashMap<>();
 
         public @Nullable Cosmetic getAppliedCosmetic(CosmeticType type) {
@@ -163,6 +163,7 @@ public class CTFPlayer implements Audience {
 
         public void setAppliedCosmetic(CosmeticType type, Cosmetic cosmetic) {
             appliedCosmetics.put(type, cosmetic);
+            Main.getBackupTask().backupAppliedCosmetics(CTFPlayer.this);
         }
     }
 

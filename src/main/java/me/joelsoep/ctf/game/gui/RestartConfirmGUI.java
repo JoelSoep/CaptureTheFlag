@@ -12,6 +12,7 @@ import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -46,7 +47,7 @@ public class RestartConfirmGUI extends ChestGui {
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
                         @Override
                         public void run() {
-                            Bukkit.spigot().restart();
+                            Main.getInstance().getServer().restart();
                         }
                     }, 300L);
                 }

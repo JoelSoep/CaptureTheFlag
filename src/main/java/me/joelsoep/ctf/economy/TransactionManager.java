@@ -51,7 +51,7 @@ public class TransactionManager {
     public static Transaction createTransaction(UUID userId, StoreItem item, String reason) {
         CompletableFuture<Boolean> future = new CompletableFuture<>();
         int amount = (int) Math.round(item.getPrice() * item.getDiscountCoefficient());
-        Transaction transaction = new Transaction(userId, item.getName(), amount, reason);
+        Transaction transaction = new Transaction(userId, item.getPrefix() + item.getName(), amount, reason);
         LogModule.CORE.log("Creating new transaction with uuid %s".formatted(transaction.getUuid()));
 
         TransactionCreateEvent event = new TransactionCreateEvent(transaction);
@@ -278,130 +278,140 @@ public class TransactionManager {
     }
 
     public static void completeTransaction(Transaction transaction) {
-        transaction.setState(TransactionState.COMPLETED);
-        LogModule.ECONOMY.log("COMPLETING RN");
-        CompletableFuture<Boolean> future = new CompletableFuture<>();
-        MongoManager.getCollection("transaction").updateOne(
-                Filters.eq("_id", transaction.getUuid().toString()),
-                Updates.combine(
-                        Updates.set("state", TransactionState.COMPLETED.toString()),
-                        Updates.set("locked_by", null)
-                )
-        ).subscribe(new Subscriber<UpdateResult>() {
-            @Override
-            public void onSubscribe(Subscription s) {
-                s.request(1);
-            }
-
-            @Override
-            public void onNext(UpdateResult updateResult) {
-                if (!updateResult.wasAcknowledged()) {
-                    LogModule.ECONOMY.log("Something went wrong while marking transaction %s as completed in db (not acknowledged).".formatted(transaction.getUuid().toString()));
-                    cancelTransaction(transaction, "Failed to push completion state (write not acknowledged).");
-                    future.complete(false);
-                } else {
-                    future.complete(true);
+        try {
+            LogModule.ECONOMY.log("COMPLETING RN");
+            CompletableFuture<Boolean> future = new CompletableFuture<>();
+            MongoManager.getCollection("transaction").updateOne(
+                    Filters.eq("_id", transaction.getUuid().toString()),
+                    Updates.combine(
+                            Updates.set("state", TransactionState.COMPLETED.toString()),
+                            Updates.set("locked_by", null)
+                    )
+            ).subscribe(new Subscriber<UpdateResult>() {
+                @Override
+                public void onSubscribe(Subscription s) {
+                    s.request(1);
                 }
-            }
 
-            @Override
-            public void onError(Throwable t) {
-                LogModule.ECONOMY.log("Something went wrong while marking transaction %s as completed in db.".formatted(transaction.getUuid().toString()));
-                cancelTransaction(transaction, "Failed to push completion state.");
-                future.complete(false);
-            }
+                @Override
+                public void onNext(UpdateResult updateResult) {
+                    if (!updateResult.wasAcknowledged()) {
+                        LogModule.ECONOMY.log("Something went wrong while marking transaction %s as completed in db (not acknowledged).".formatted(transaction.getUuid().toString()));
+                        cancelTransaction(transaction, "Failed to push completion state (write not acknowledged).");
+                        future.complete(false);
+                    } else {
+                        future.complete(true);
+                    }
+                }
 
-            @Override
-            public void onComplete() {
+                @Override
+                public void onError(Throwable t) {
+                    LogModule.ECONOMY.log("Something went wrong while marking transaction %s as completed in db.".formatted(transaction.getUuid().toString()));
+                    cancelTransaction(transaction, "Failed to push completion state.");
+                    future.complete(false);
+                }
 
-            }
-        });
+                @Override
+                public void onComplete() {
 
-        future.thenAcceptAsync(bool -> {
-            if (bool) {
-                FindPublisher<Document> publisher = MongoManager.getCollection("player").find(Filters.eq("_id", transaction.getUserId().toString()));
-                publisher.subscribe(new Subscriber<Document>() {
-                    @Override public void onSubscribe(Subscription s) { s.request(1); LogModule.ECONOMY.log("subbing rn"); }
+                }
+            });
 
-                    @Override
-                    public void onNext(Document document) {
-                        List<Object> list = document.getList("ownedCosmetics", Object.class);
-                        if (list == null) {
-                            MongoManager.getCollection("player").updateOne(Filters.eq("_id", transaction.getUserId().toString()), Updates.set("ownedCosmetics", List.of(transaction.getItemName())))
-                                    .subscribe(new Subscriber<UpdateResult>() {
-                                        @Override
-                                        public void onSubscribe(Subscription s) {
-                                            s.request(1);
-                                        }
+            future.thenAcceptAsync(bool -> {
+                if (bool) {
+                    FindPublisher<Document> publisher = MongoManager.getCollection("player").find(Filters.eq("_id", transaction.getUserId().toString()));
+                    publisher.subscribe(new Subscriber<Document>() {
+                        @Override
+                        public void onSubscribe(Subscription s) {
+                            s.request(1);
+                            LogModule.ECONOMY.log("subbing rn");
+                        }
 
-                                        @Override
-                                        public void onNext(UpdateResult updateResult) {
-                                            if (!updateResult.wasAcknowledged()) {
-                                                cancelTransaction(transaction, "failed to insert ownedCosmetics field.");
+                        @Override
+                        public void onNext(Document document) {
+                            List<Object> list = document.getList("ownedCosmetics", Object.class);
+                            if (list == null) {
+                                MongoManager.getCollection("player").updateOne(Filters.eq("_id", transaction.getUserId().toString()), Updates.set("ownedCosmetics", List.of(transaction.getItemName())))
+                                        .subscribe(new Subscriber<UpdateResult>() {
+                                            @Override
+                                            public void onSubscribe(Subscription s) {
+                                                s.request(1);
                                             }
-                                        }
 
-                                        @Override
-                                        public void onError(Throwable t) {
-                                            cancelTransaction(transaction, "An error occurred while writing to MongoDB");
-                                            t.printStackTrace();
-                                        }
+                                            @Override
+                                            public void onNext(UpdateResult updateResult) {
+                                                if (!updateResult.wasAcknowledged()) {
+                                                    cancelTransaction(transaction, "failed to insert ownedCosmetics field.");
+                                                }
+                                                transaction.setState(TransactionState.COMPLETED);
+                                                Bukkit.getScheduler().runTask(Main.getInstance(),
+                                                        new CallEventTask(new TransactionCompleteEvent(transaction)));
+                                            }
 
-                                        @Override
-                                        public void onComplete() {
+                                            @Override
+                                            public void onError(Throwable t) {
+                                                cancelTransaction(transaction, "An error occurred while writing to MongoDB");
+                                                t.printStackTrace();
+                                            }
+
+                                            @Override
+                                            public void onComplete() {
+                                            }
+                                        });
+                            } else {
+                                MongoManager.getCollection("player").updateOne(
+                                        Filters.eq("_id", transaction.getUserId().toString()),
+                                        Updates.addToSet("ownedCosmetics", transaction.getItemName())
+                                ).subscribe(new Subscriber<UpdateResult>() {
+                                    @Override
+                                    public void onSubscribe(Subscription s) {
+                                        s.request(1);
+                                    }
+
+                                    @Override
+                                    public void onNext(UpdateResult updateResult) {
+                                        if (!updateResult.wasAcknowledged()) {
+                                            cancelTransaction(transaction, "Failed to save data cosmetic to database.");
+                                        } else {
+                                            transaction.setState(TransactionState.COMPLETED);
+                                            postWebhook(transaction, null);
                                             Bukkit.getScheduler().runTask(Main.getInstance(),
                                                     new CallEventTask(new TransactionCompleteEvent(transaction)));
                                         }
-                                    });
-                        } else {
-                            MongoManager.getCollection("player").updateOne(
-                                    Filters.eq("_id", transaction.getUserId().toString()),
-                                    Updates.addToSet("ownedCosmetics", transaction.getItemName())
-                            ).subscribe(new Subscriber<UpdateResult>() {
-                                @Override
-                                public void onSubscribe(Subscription s) {
-                                    s.request(1);
-                                }
-
-                                @Override
-                                public void onNext(UpdateResult updateResult) {
-                                    if (!updateResult.wasAcknowledged()) {
-                                        cancelTransaction(transaction, "Failed to save data cosmetic to database.");
-                                    } else {
-                                        postWebhook(transaction, null);
-                                        Bukkit.getScheduler().runTask(Main.getInstance(),
-                                                new CallEventTask(new TransactionCompleteEvent(transaction)));
                                     }
-                                }
 
-                                @Override
-                                public void onError(Throwable t) {
-                                    cancelTransaction(transaction, "An error occurred while trying to save cosmetic to database.");
-                                    t.printStackTrace();
-                                }
+                                    @Override
+                                    public void onError(Throwable t) {
+                                        cancelTransaction(transaction, "An error occurred while trying to save cosmetic to database.");
+                                        t.printStackTrace();
+                                    }
 
-                                @Override
-                                public void onComplete() {
-                                }
-                            });
+                                    @Override
+                                    public void onComplete() {
+                                    }
+                                });
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(Throwable t) {
-                        cancelTransaction(transaction, "An error occurred whilst writing an update to MongoDB");
-                        t.printStackTrace();
-                    }
+                        @Override
+                        public void onError(Throwable t) {
+                            cancelTransaction(transaction, "An error occurred whilst writing an update to MongoDB");
+                            t.printStackTrace();
+                        }
 
-                    @Override
-                    public void onComplete() {
+                        @Override
+                        public void onComplete() {
 
-                    }
-                });
-            }
-        });
+                        }
+                    });
+                }
+            });
 
-        // TODO: Actually give the user the item
+            // TODO: Actually give the user the item
+        } catch (Exception e) {
+            cancelTransaction(transaction, "An error occurred while executing completeTransaction.");
+            e.printStackTrace();
+        }
     }
 
     private static CompletableFuture<Boolean> postWebhook(Transaction transaction, @Nullable String cancelReason) {

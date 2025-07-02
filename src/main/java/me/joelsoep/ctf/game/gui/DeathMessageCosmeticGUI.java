@@ -84,11 +84,11 @@ public class DeathMessageCosmeticGUI extends ChestGui {
             ItemStack itemStack = new ItemBuilder(logo)
                     .setName(color.append(displayName).append(MM.deserialize("  <#FFFFFF>" + cosmetic.getRarity().getDisplayName())))
                     .setLore(lines)
-                    .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ENCHANTS)
+                    .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ARMOR_TRIM, ItemFlag.HIDE_ENCHANTS)
                     .build();
 
             if (enabled) {
-                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+                itemStack.addUnsafeEnchantment(Enchantment.UNBREAKING, 1);
             }
 
             final Component finalDisplayName = displayName;

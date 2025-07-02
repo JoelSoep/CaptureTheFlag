@@ -7,7 +7,7 @@ import me.joelsoep.ctf.store.StoreCosmeticItem;
 
 public class TookLItem extends StoreCosmeticItem {
     public TookLItem() {
-        super("death_message.TookL", Main.getCosmeticsManager().getCosmetic(CosmeticType.DEATH_MESSAGE, "TookL"), 100, 1);
+        super("cosmetic.death_message.TookL", Main.getCosmeticsManager().getCosmetic(CosmeticType.DEATH_MESSAGE, "TookL"), 100, 1);
 
     }
 }

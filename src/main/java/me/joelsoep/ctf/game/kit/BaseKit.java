@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.game.kit;
 
-import com.destroystokyo.paper.Namespaced;
 import lombok.Getter;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
@@ -8,9 +7,13 @@ import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.AdventureModeBlockUtils;
+import net.kyori.adventure.key.Namespaced;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.Registry;
+import org.bukkit.block.BlockType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -18,10 +21,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class BaseKit {
@@ -191,22 +191,19 @@ public abstract class BaseKit {
 
         itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        ArrayList<Namespaced> list = new ArrayList<>(Material.values().length);
-        List.of(Material.values()).forEach(value -> list.add(value.getKey()));
-        itemMeta.setPlaceableKeys(list);
         itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE);
         itemStack.setItemMeta(itemMeta);
+        AdventureModeBlockUtils.setCanPlaceOn(itemStack, Registry.BLOCK.stream().toList());
         return itemStack;
     }
 
     public ItemStack getDefaultPickaxe() {
         ItemStack itemStack = new ItemStack(Material.STONE_PICKAXE);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        ArrayList<Namespaced> list = new ArrayList<>(List.of(Material.BLUE_CONCRETE.getKey(), Material.RED_CONCRETE.getKey(), Material.RED_CONCRETE_POWDER.getKey(), Material.BLUE_CONCRETE_POWDER.getKey()));
         itemMeta.setUnbreakable(true);
-        itemMeta.setDestroyableKeys(list);
         itemStack.setItemMeta(itemMeta);
         itemStack.addItemFlags(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_UNBREAKABLE);
+        AdventureModeBlockUtils.setCanBreak(itemStack, BlockType.BLUE_CONCRETE, BlockType.RED_CONCRETE, BlockType.RED_CONCRETE_POWDER, BlockType.BLUE_CONCRETE_POWDER);
         return itemStack;
     }
 }

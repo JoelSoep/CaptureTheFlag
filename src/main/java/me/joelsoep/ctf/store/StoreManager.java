@@ -35,21 +35,22 @@ public class StoreManager {
     private static List<StoreItem> ITEMS_INCLUDING_UNAVAILABLE = new ArrayList<>(); // private list, including items that are not currently available.
 
     public StoreManager() {
-        loadItems();
+        cloud.createCosmeticItems();
+        //loadItems();
       //  Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
         //    @Override
        //     public void run() {
-                cloud.verifyItems();
+                //cloud.verifyItems();
       //      }
       //  });
         Bukkit.getPluginManager().registerEvents(new StoreListener(), Main.getInstance());
     }
 
     public static void reload() {
-        items.clear();
-        ITEMS_INCLUDING_UNAVAILABLE.clear();
-        loadItems();
-        cloud.verifyItems();
+        clear();
+        cloud.createCosmeticItems();
+        //loadItems();
+        //cloud.verifyItems();
     }
 
     public static @Nullable StoreItem getItem(@NotNull String name) {
@@ -113,6 +114,11 @@ public class StoreManager {
         });
     }
 
+    public static void clear() {
+        items.clear();
+        ITEMS_INCLUDING_UNAVAILABLE.clear();
+    }
+
     // cloud area
 
     public static class Cloud {
@@ -124,7 +130,7 @@ public class StoreManager {
 
         public CompletableFuture<Boolean> pushItem(@NotNull StoreItem item) {
             CompletableFuture<Boolean> future = new CompletableFuture<>();
-            String name = item.getName();
+            String name = item.getPrefix() + item.getName();
             Bson filter = Filters.eq("_id", name);
             LogModule.CORE.log(item.getDisplayName());
             FindOneAndReplaceOptions options = new FindOneAndReplaceOptions().upsert(true).returnDocument(ReturnDocument.AFTER);
@@ -146,6 +152,42 @@ public class StoreManager {
                 }
             });
             return future;
+        }
+
+        public void createCosmeticItems() {
+            List<StoreItem> cloudItems = getAllItems();
+            for (StoreItem item : cloudItems) {
+                if (!item.getPrefix().equals("cosmetic")) {
+                    return;
+                }
+
+                CosmeticType type = CosmeticType.valueOf(item.getName().split("\\.")[0].toUpperCase(Locale.ROOT));
+                String name = item.getName().split("\\.")[1];
+                StoreCosmeticItem cosmeticItem = new StoreCosmeticItem(
+                        item.getName(), Main.getCosmeticsManager().getCosmetic(type, name), item.getPrice(), item.getDiscountCoefficient()
+                );
+                if (item.getDisplay() != null) {
+                    cosmeticItem.setDisplay(item.getDisplay());
+                }
+
+                if (item.getExpiryDate() != null) {
+                    cosmeticItem.setExpiryDate(item.getExpiryDate());
+                }
+
+                if (item.getDisplayName() != null) {
+                    cosmeticItem.setDisplayName(item.getDisplayName());
+                }
+
+                cosmeticItem.setAvailable(item.isAvailable());
+
+                cosmeticItem.checkAndProcessAvailability();
+                if (!cosmeticItem.isAvailable()) {
+                    ITEMS_INCLUDING_UNAVAILABLE.add(cosmeticItem);
+                    return;
+                }
+
+                registerItem(cosmeticItem);
+            }
         }
 
         public void verifyItems() {

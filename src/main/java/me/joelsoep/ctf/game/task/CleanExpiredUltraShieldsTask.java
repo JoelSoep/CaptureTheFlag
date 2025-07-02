@@ -11,6 +11,6 @@ public class CleanExpiredUltraShieldsTask implements Runnable {
         if (Main.getGame().getState() != GameState.RUNNING) {
             return;
         }
-        UltraShieldExtension.getActiveShields().values().removeIf(UltraShieldExtension.UltraShieldData::isExpired);
+        UltraShieldExtension.getACTIVE_ANIMATING_SHIELDS().values().removeIf(UltraShieldExtension.UltraShieldData::isExpired);
     }
 }

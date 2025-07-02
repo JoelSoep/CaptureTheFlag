@@ -1,15 +1,13 @@
 package me.joelsoep.ctf.command;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CatchUnknown;
-import co.aikar.commands.annotation.CommandPermission;
-import co.aikar.commands.annotation.Default;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.entity.Player;
 
+@CommandAlias("coins")
 public final class CoinsCommand extends BaseCommand {
 
     @Default
@@ -21,6 +19,6 @@ public final class CoinsCommand extends BaseCommand {
             return;
         }
 
-        player.sendMessage(MM.deserialize("<gray>You have <gold>%s <gray>coins.".formatted(ctfPlayer.getData().getCoins())));
+        player.sendMessage(MM.announce("<gray>You have <gold>%s <gray>coins.".formatted(ctfPlayer.getData().getCoins())));
     }
 }

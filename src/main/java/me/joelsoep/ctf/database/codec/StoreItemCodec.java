@@ -17,7 +17,7 @@ public class StoreItemCodec implements Codec<StoreItem> {
     @Override
     public void encode(BsonWriter writer, StoreItem value, EncoderContext encoderContext) {
         writer.writeStartDocument();
-        writer.writeString("_id", value.getName());
+        writer.writeString("_id", value.getPrefix() + value.getName());
         writer.writeInt32("price", value.getPrice());
         writer.writeDouble("discountCoefficient", value.getDiscountCoefficient());
         writer.writeBoolean("available", value.isAvailable());
@@ -32,7 +32,9 @@ public class StoreItemCodec implements Codec<StoreItem> {
     @Override
     public StoreItem decode(BsonReader reader, DecoderContext decoderContext) {
         reader.readStartDocument();
-        String name = reader.readString("_id");
+        String id = reader.readString("_id");
+        String prefix = id.split("\\.", 2)[0];
+        String name = id.split("\\.", 2)[1];
         int price = reader.readInt32("price");
         double discountCoefficient = reader.readDouble("discountCoefficient");
         boolean available = reader.readBoolean("available");
@@ -40,7 +42,7 @@ public class StoreItemCodec implements Codec<StoreItem> {
         String displayName = reader.readString("displayName");
         Material displayMaterial = Material.getMaterial(reader.readString("displayMaterial"));
 
-        StoreItem item = new StoreItem(name, price, discountCoefficient, available, expiryDate);
+        StoreItem item = new StoreItem(prefix, name, price, discountCoefficient, available, expiryDate);
         item.setDisplayName(displayName);
         item.setDisplay(displayMaterial);
         reader.readEndDocument();

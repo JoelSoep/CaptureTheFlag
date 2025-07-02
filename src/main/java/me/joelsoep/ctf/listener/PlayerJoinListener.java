@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.RegisteredListener;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -28,6 +30,19 @@ public class PlayerJoinListener implements Listener {
         Game game = Main.getGame();
         CTFPlayer ctfPlayer = PlayerService.createPlayer(player);
         event.joinMessage(null);
+
+   //     Plugin plugin = Bukkit.getPluginManager().getPlugin("mcmanhunt-nametags");
+   //     if (plugin == null) {
+   //         LogModule.CORE.warning("Could not disable chat listener from MCManhunt-NameTags as the plugin is null.");
+   //         return;
+    //    }
+
+    //    for (RegisteredListener listener : event.getHandlers().getRegisteredListeners()) {
+    //        if (listener.getPlugin().getName().equals("MCManhunt-Nametags")) {
+     //           LogModule.CORE.log("unregistered mcmanhunt-nametags");
+      //          event.getHandlers().unregister(plugin);
+      //      }
+    //    }
 
         if (!player.hasPermission("ctf.admin") && !player.isOp() && !Main.getSettings().isOpen() && !PlayerService.isAllowedToJoin(player.getUniqueId())) {
             player.kick(MM.deserialize("""

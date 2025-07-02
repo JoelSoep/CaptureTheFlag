@@ -6,6 +6,7 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -136,7 +137,7 @@ public class Hotbar {
             itemMeta.lore(Collections.singletonList(lore));
 
             queueBlock.setItemMeta(itemMeta);
-            queueBlock.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS);
+            queueBlock.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ARMOR_TRIM);
             return queueBlock;
         }
 
@@ -152,7 +153,7 @@ public class Hotbar {
             itemMeta.lore(Collections.singletonList(lore));
 
             queueBlock.setItemMeta(itemMeta);
-            queueBlock.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ITEM_SPECIFICS);
+            queueBlock.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ARMOR_TRIM);
             return queueBlock;
         }
     }

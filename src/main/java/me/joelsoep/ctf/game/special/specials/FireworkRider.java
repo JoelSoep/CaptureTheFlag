@@ -13,11 +13,11 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jetbrains.annotations.NotNull;
-import org.spigotmc.event.entity.EntityDismountEvent;
 
 public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implements Reflective<EntityDamageByEntityEvent> {
     private static final int FIREWORK_POWER = 2;
@@ -29,7 +29,7 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
     public ItemStack getItemStack() {
         return new ItemBuilder(Material.FIREWORK_STAR)
                 .setName(MM.deserialize("<red>Fermented Firework"))
-                .addItemFlag(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
+                .addItemFlag(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ATTRIBUTES)
                 .build();
     }
 
@@ -80,7 +80,7 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
     }
 
     public Firework spawnFirework(Player rider) {
-        Firework firework = (Firework) rider.getWorld().spawnEntity(rider.getEyeLocation().toBlockLocation(), EntityType.FIREWORK);
+        Firework firework = (Firework) rider.getWorld().spawnEntity(rider.getEyeLocation().toBlockLocation(), EntityType.FIREWORK_ROCKET);
         FireworkMeta meta = firework.getFireworkMeta();
         meta.setPower(FIREWORK_POWER);
         meta.addEffect(FireworkEffect.builder()

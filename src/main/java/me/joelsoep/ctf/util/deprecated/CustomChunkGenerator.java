@@ -4,6 +4,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.util.RandomUtil;
+import org.bukkit.FeatureFlag;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
@@ -11,9 +12,11 @@ import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Deprecated
@@ -59,6 +62,11 @@ public class CustomChunkGenerator extends ChunkGenerator {
         }
 
         return new WorldInfo() {
+            @Override
+            public @Unmodifiable Set<FeatureFlag> getFeatureFlags() {
+                return Set.of();
+            }
+
             @Override
             public @NotNull String getName() {
                 return Main.getGame().getUuid().toString();

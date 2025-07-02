@@ -44,8 +44,16 @@ public class CosmeticStoreGUI extends ChestGui {
         }), Main.getInstance());
         this.itemPane.addItem(deathMessage, 0, 0);
 
+        GuiItem captureAnimation = new GuiItem(new ItemBuilder(Material.FIREWORK_STAR)
+                .build(), (action -> {
+                    if (!action.isLeftClick()) {
+                        return;
+                    }
+                    new CaptureAnimationCosmeticStoreGUI(player);
+        }), Main.getInstance());
+        this.itemPane.addItem(captureAnimation, 2, 0);
+
         // TODO: add other types
-        this.itemPane.addItem(GuiUtils.getComingSoon(), 2, 0);
         this.itemPane.addItem(GuiUtils.getComingSoon(), 4, 0);
     }
 }

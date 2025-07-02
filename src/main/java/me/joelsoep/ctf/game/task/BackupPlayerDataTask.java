@@ -4,14 +4,21 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.cosmetic.Cosmetic;
+import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import javax.annotation.Nullable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class BackupPlayerDataTask {
 
@@ -91,6 +98,37 @@ public class BackupPlayerDataTask {
                 update,
                 options
         );
+    }
+
+    public void backupAppliedCosmetics(CTFPlayer player) {
+        HashMap<String, String> applied = new HashMap<>();
+        for (CosmeticType type : CosmeticType.values()) {
+            @Nullable Cosmetic cosmetic = player.getCosmetics().getAppliedCosmetic(type);
+            if (cosmetic == null) {
+                continue;
+            }
+
+            applied.put(type.toString(), cosmetic.getName());
+        }
+        List<Document> documents = new ArrayList<>();
+        applied.forEach((type, name) -> {
+            Document document = new Document(type, name);
+            documents.add(document);
+        });
+
+        Bson updates = Updates.set("appliedCosmetics", documents);
+        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(true);
+
+        MongoManager.findOneAndUpdate(
+                MongoManager.getCollection("player"),
+                Filters.eq("_id", player.getUUID().toString()),
+                updates,
+                options
+        );
+    }
+
+    public void backupWaitingSystemMessages(CTFPlayer player) {
+        List<String> waitingSystemMessages = player.getWaitingSystemMessages();
     }
 
     public void cancel() {

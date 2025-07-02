@@ -16,12 +16,12 @@ public class StoreCosmeticItem extends StoreItem {
     private final Cosmetic cosmetic;
 
     public StoreCosmeticItem(String name, Cosmetic cosmetic, int price, double discount) {
-        super(name, price, discount);
+        super("cosmetic.", name, price, discount);
         this.cosmetic = cosmetic;
     }
 
     public StoreCosmeticItem(String name, String displayName, Cosmetic cosmetic, int price, double discount) {
-        super(name, price, discount);
+        super("cosmetic.", name, price, discount);
         this.cosmetic = cosmetic;
     }
 

@@ -96,7 +96,7 @@ public class KitSortGUI extends ChestGui {
         });
         this.update();
         this.show(player);
-
+/** THIS IS REMOVED UNTIL IF FIXED THE ONCLOSE METHOD TODO: reimpl
         this.setOnClose(event -> {
             // return in case the game is starting in order to prevent the hotbar inventory from overriding the kit.
             if (ctfPlayer.getGame() != null) {
@@ -108,7 +108,7 @@ public class KitSortGUI extends ChestGui {
             new Hotbar(player);
             new KitSelectionGUI((Player) event.getPlayer(), Main.getKitService());
         });
-
+*/
         this.setOnGlobalDrag(event -> {
             ItemStack draggedItem = event.getOldCursor();
             if (draggedItem == null) {

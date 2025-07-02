@@ -17,6 +17,7 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.game.gui.CosmeticStoreGUI;
+import me.joelsoep.ctf.game.gui.TestGui;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.task.ResetGameTask;
@@ -31,6 +32,8 @@ import me.joelsoep.ctf.server.CTFServer;
 import me.joelsoep.ctf.server.packet.packets.GoodbyePacket;
 import me.joelsoep.ctf.server.socket.SocketSender;
 import me.joelsoep.ctf.server.packet.packets.RetrievePlayerPacket;
+import me.joelsoep.ctf.store.StoreCosmeticItem;
+import me.joelsoep.ctf.store.StoreItem;
 import me.joelsoep.ctf.store.StoreManager;
 import me.joelsoep.ctf.store.items.cosmetic.deathMessage.TookLItem;
 import me.joelsoep.ctf.util.Hotbar;
@@ -541,5 +544,49 @@ public final class DebugCommand extends BaseCommand {
         }
 
         player.sendMessage(MM.deserialize(Main.getGameServer().getApiConfig().key()));
+    }
+
+    @Subcommand("createBaseCosmetic")
+    public void createBaseCosmetic(Player player, CosmeticType type, @Single String name, int price) {
+        player.sendMessage("creating");
+        StoreCosmeticItem item = new StoreCosmeticItem(name, Main.getCosmeticsManager().getCosmetic(type, name.split("\\.")[1]), price, 1);
+        StoreManager.getCloud().pushItem(item);
+        player.sendMessage("done");
+    }
+
+    @Subcommand("opentestgui")
+    public void openTestGui(Player player) {
+        new TestGui(player);
+    }
+
+    @Subcommand("appliedCosmetic")
+    public void appliedCosmetic(Player player, CosmeticType type, @Optional OnlinePlayer onlinePlayer) {
+        if (onlinePlayer == null) {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+            if (ctfPlayer == null) {
+                player.sendMessage("<red>An error occurred while trying to retrieve your profile.");
+                return;
+            }
+
+            Cosmetic applied = ctfPlayer.getCosmetics().getAppliedCosmetic(type);
+            if (applied == null) {
+                player.sendMessage(MM.deserialize("You do not have a cosmetic applied for type %s".formatted(type.toString())));
+            } else {
+                player.sendMessage(MM.deserialize("You have cosmetic %s applied for type %s".formatted(applied.getName(), type.toString())));
+            }
+        } else {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(onlinePlayer.getPlayer());
+            if (ctfPlayer == null) {
+                player.sendMessage("<red>An error occurred while trying to retrieve your profile.");
+                return;
+            }
+
+            Cosmetic applied = ctfPlayer.getCosmetics().getAppliedCosmetic(type);
+            if (applied == null) {
+                player.sendMessage(MM.deserialize("%s does not have a cosmetic applied for type %s".formatted(onlinePlayer.getPlayer().getName(), type.toString())));
+            } else {
+                player.sendMessage(MM.deserialize("%s has cosmetic %s applied for type %s".formatted(onlinePlayer.getPlayer().getName(), applied.getName(), type.toString())));
+            }
+        }
     }
 }

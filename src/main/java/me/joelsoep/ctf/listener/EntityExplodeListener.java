@@ -19,7 +19,7 @@ public class EntityExplodeListener implements Listener {
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent event) {
-        if (event.getEntity().getType() != EntityType.PRIMED_TNT) {
+        if (event.getEntity().getType() != EntityType.TNT) {
             return;
         }
 

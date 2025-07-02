@@ -38,6 +38,8 @@ import me.joelsoep.ctf.server.ServerMode;
 import me.joelsoep.ctf.store.StoreManager;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
+import org.bukkit.Registry;
+import org.bukkit.block.BlockType;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
@@ -156,7 +158,7 @@ public final class Main extends JavaPlugin {
                 gameServer.unregisterServer().get();
                 long newMs = System.currentTimeMillis();
                 int seconds = Math.toIntExact((newMs - ms) / 1000);
-                LogModule.CORE.log("DONE! (in %s seconds)".formatted(seconds));
+                LogModule.CORE.log("DONE! (in %s seconds)".formatted(seconds < 1 ? "< 1" : seconds));
                 LogModule.CORE.log("Unregistered server %s from the database.".formatted(FileManager.getServerConfig().get("id")));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -172,6 +174,9 @@ public final class Main extends JavaPlugin {
         try {
             Class.forName("me.joelsoep.ctf.server.packet.packets.GoodbyePacket$Builder");
             Class.forName("me.joelsoep.ctf.database.subscriber.UnregisterServerSubscriber");
+            Class.forName("com.mongodb.client.model.DeleteOptions");
+            Class.forName("com.mongodb.internal.bulk.WriteRequest$Type");
+            Class.forName("com.mongodb.client.model.DeleteOneModel");
             CTFServer.preloadShutdownModule();
             return true;
         } catch (ClassNotFoundException e) {

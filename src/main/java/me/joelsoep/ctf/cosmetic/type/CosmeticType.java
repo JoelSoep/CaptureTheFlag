@@ -6,9 +6,9 @@ import me.joelsoep.ctf.cosmetic.Cosmetic;
 @Getter
 public enum CosmeticType {
     //FINISHER("finisher."),
-    DEATH_MESSAGE("death_message.", DeathMessageCosmetic.class);
+    DEATH_MESSAGE("death_message.", DeathMessageCosmetic.class),
    // BANNER_PATTERN("banner_pattern."),
-   // CAPTURE_ANIMATION("capture_animation.")
+    CAPTURE_ANIMATION("capture_animation.", CaptureAnimationCosmetic.class);
   //  WIN_ANIMATION("win_animation."),
    // ARMOR_TRIM("armor_trim.");
 

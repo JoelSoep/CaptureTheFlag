@@ -8,6 +8,7 @@ import me.joelsoep.ctf.economy.Transaction;
 import me.joelsoep.ctf.economy.event.TransactionCancellationEvent;
 import me.joelsoep.ctf.economy.event.TransactionCompleteEvent;
 import me.joelsoep.ctf.economy.event.TransactionCreateEvent;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
@@ -53,10 +54,17 @@ public class StoreListener implements Listener {
             return;
         }
         String[] itemString = transaction.getItemName().split("\\.");
-        String typeString = itemString[0];
-        String name = itemString[1];
-        CosmeticType type = CosmeticType.valueOf(typeString.toUpperCase(Locale.ROOT));
+        String prefix = itemString[0];
 
+        if (!prefix.toUpperCase(Locale.ROOT).equals("COSMETIC")) {
+            player.sendMessage(MM.announce("<red>The item you bought was not of initial type COSMETIC! Please report this to an administrator!!"));
+            player.sendMessage(MM.announce("<red>Please specify the following ID: %s".formatted(transaction.getUuid().toString())));
+            LogModule.ECONOMY.log("transaction with uuid %s was not with prefix cosmetic!!!!!!!".formatted(transaction.getUuid().toString()));
+            return;
+        }
+        String typeString = itemString[1];
+        String name = itemString[2];
+        CosmeticType type = CosmeticType.valueOf(typeString.toUpperCase(Locale.ROOT));
 
         Cosmetic cosmetic = Main.getCosmeticsManager().getCosmetic(type, name);
         if (cosmetic == null) {

@@ -4,7 +4,7 @@ import me.joelsoep.ctf.server.packet.CTFPacket;
 import me.joelsoep.ctf.server.packet.PacketConstructor;
 import org.json.JSONObject;
 
-public class StoreReloadPacket extends CTFPacket {
+public final class StoreReloadPacket extends CTFPacket {
     private static final String ACTION = "RELOAD_STORE";
 
     private StoreReloadPacket(String sender, String key, JSONObject json) {

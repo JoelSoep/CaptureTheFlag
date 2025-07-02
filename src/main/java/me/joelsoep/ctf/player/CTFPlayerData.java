@@ -29,6 +29,7 @@ public class CTFPlayerData {
     private final String name;
 
     private HashMap<String, HashMap<Integer, ItemStack>> sortedKits = new HashMap<>();
+    private EnumMap<CosmeticType, Cosmetic> appliedCosmetics = new EnumMap<>(CosmeticType.class);
     private List<Cosmetic> ownedCosmetics = new ArrayList<>();
     private List<String> storedWaitingSystemMessages = new ArrayList<>();
     private Date lastSeen;
@@ -127,14 +128,40 @@ public class CTFPlayerData {
                     player.getPlayer().playerListName(MM.deserialize("<gray>" + player.getPlayer().getName() + " ⭐" + player.getLevel()));
 
                     deserializeOwnedCosmetics(result);
+                    deserializeAndApplyAppliedCosmetics(result);
                     deserializeKits(result);
                 }
             });
         }
 
+        public void deserializeAndApplyAppliedCosmetics(Document result) {
+        List<Object> appliedCosmeticsList = result.getList("appliedCosmetics", Object.class);
+        if (appliedCosmeticsList == null || appliedCosmeticsList.isEmpty()) {
+            return;
+        }
+
+        appliedCosmeticsList.forEach(appliedCosmetic -> {
+            String dataString = appliedCosmetic.toString();
+            LogModule.CORE.log(dataString);
+            dataString = dataString.replace("Document{{", "").replace("}}", "");
+            String[] parts = dataString.split("=");
+            String type = parts[0];
+            String name = parts[1];
+
+            CosmeticType cosmeticType = CosmeticType.valueOf(type);
+            Cosmetic cosmetic = Main.getCosmeticsManager().getCosmetic(cosmeticType, name);
+            if (cosmetic == null) {
+                player.sendMessage(MM.deserialize("Could not find applied cosmetic %s".formatted(name)));
+                return;
+            }
+            player.getCosmetics().setAppliedCosmetic(cosmeticType, cosmetic);
+        });
+
+        }
+
         public void deserializeOwnedCosmetics(Document result) {
             List<Object> ownedCosmeticsList = result.getList("ownedCosmetics", Object.class);
-            if (ownedCosmeticsList == null) {
+            if (ownedCosmeticsList == null || ownedCosmeticsList.isEmpty()) {
                 return;
             }
 
@@ -144,10 +171,15 @@ public class CTFPlayerData {
                 String dataString = ownedCosmetic.toString();
                 dataString = dataString.replace("Document{{", "").replace("}}", "");
 
-                // example name for cosmetic would be death_message.TookL
+                // example name for cosmetic would be cosmetic.death_message.TookL
                 String[] parts = dataString.split("\\.");
-                String typeString = parts[0];
-                String name = parts[1];
+                String prefix = parts[0];
+                if (!prefix.toUpperCase(Locale.ROOT).equals("COSMETIC")) {
+                    return;
+                }
+
+                String typeString = parts[1];
+                String name = parts[2];
 
                 CosmeticType cosmeticType = CosmeticType.valueOf(typeString.toUpperCase(Locale.ROOT));
                 List<Cosmetic> typeCosmetics = Main.getCosmeticsManager().getCosmetics(cosmeticType);

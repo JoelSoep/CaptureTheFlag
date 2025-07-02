@@ -4,7 +4,6 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.animation.animations.UltraShieldAnimation;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.special.extension.UltraShieldExtension;
-import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.ItemBuilder;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.*;
@@ -14,15 +13,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -37,7 +33,7 @@ public class UltraShield extends BaseSpecial<PlayerInteractEvent> {
         return new ItemBuilder(Material.SHIELD)
                 .setName(MM.deserialize("<blue>Ultra Shield"))
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
-                .enchant(Enchantment.DURABILITY, 1, true)
+                .enchant(Enchantment.UNBREAKING, 1, true)
                 .setCustomModelData(732)
                 .setHealth(1)
                 .build();
@@ -51,7 +47,7 @@ public class UltraShield extends BaseSpecial<PlayerInteractEvent> {
         Location attackerLoc = attacker.getEyeLocation();
         Location targetLoc = target.getLocation().add(0, 1, 0); // middelpunt van torso
 
-        for (UltraShieldExtension.UltraShieldData shield : UltraShieldExtension.getActiveShields().values()) {
+        for (UltraShieldExtension.UltraShieldData shield : UltraShieldExtension.getACTIVE_ANIMATING_SHIELDS().values()) {
             if (shield.isExpired()) continue;
 
             // Afstand tot schild
@@ -123,13 +119,13 @@ public class UltraShield extends BaseSpecial<PlayerInteractEvent> {
                     Location center = eye.clone().add(direction);
 
                     UltraShieldExtension.UltraShieldData data = new UltraShieldExtension.UltraShieldData(center, direction, animation.getDuration());
-                    if (UltraShieldExtension.getActiveShields().get(blocker) != null) {
-                        UltraShieldExtension.UltraShieldData usd = UltraShieldExtension.getActiveShields().get(blocker);
+                    if (UltraShieldExtension.getACTIVE_ANIMATING_SHIELDS().get(blocker) != null) {
+                        UltraShieldExtension.UltraShieldData usd = UltraShieldExtension.getACTIVE_ANIMATING_SHIELDS().get(blocker);
                         usd.setCenter(center);
                         usd.setDirection(direction);
                         usd.setExpirationTime(animation.getDuration());
                     } else {
-                        UltraShieldExtension.getActiveShields().put(blocker, data);
+                        UltraShieldExtension.getACTIVE_ANIMATING_SHIELDS().put(blocker, data);
                     }
                     animation.play(0L, 1L);
                     cooldown[0] = System.currentTimeMillis() + 400L;

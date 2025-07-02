@@ -2,20 +2,19 @@ package me.joelsoep.ctf.game.special.extension;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.joelsoep.ctf.game.special.specials.UltraShield;
-import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class UltraShieldExtension {
     @Getter
-    private static final HashMap<Player, UltraShieldData> activeShields = new HashMap<>();
+    private static final HashMap<Player, UltraShieldData> ACTIVE_ANIMATING_SHIELDS = new HashMap<>(); // shields which are actively blocking
+    @Getter private static final HashMap<Player, ItemExpiryManager> OWNED_SHIELDS = new HashMap<>();
 
     @Getter
     @Setter
@@ -32,6 +31,37 @@ public class UltraShieldExtension {
 
         public boolean isExpired() {
             return System.currentTimeMillis() > expirationTime;
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class ItemExpiryManager {
+        private long expiryTime = 7 * 20L;
+        private BukkitTask task;// 7 seconds in game
+
+        private boolean isExpired() {
+            return this.expiryTime <= 0L;
+        }
+
+        private void stopTicking() {
+            this.task.cancel();
+        }
+
+        private void startTicking() {
+            task = Bukkit.getScheduler().runTaskTimer(Main.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    if (getExpiryTime() == 0) {
+                        stopTicking();
+                    }
+                    setExpiryTime(getExpiryTime() - 1L);
+                }
+            }, 0L, 1L);
+        }
+
+        private void removeShield() {
+            stopTicking();
         }
     }
 

@@ -50,7 +50,7 @@ public class FallingBlockRemovalTask {
                 World world = block.getWorld();
                 // don't ask me why, but if we just try to block.setType() it won't work.
                 world.getBlockAt(block.getLocation()).setType(Material.AIR);
-                world.spawnParticle(Particle.VILLAGER_ANGRY, block.getLocation(), 1);
+                world.spawnParticle(Particle.ANGRY_VILLAGER, block.getLocation(), 1);
             }
         },  0L);
     }

@@ -48,7 +48,8 @@ public class CosmeticsGUI extends ChestGui {
 
     private void addToList() {
         this.items = List.of(
-                getDeathMessageItem()
+                getDeathMessageItem(),
+                getCaptureAnimationItem()
         );
     }
 
@@ -58,6 +59,15 @@ public class CosmeticsGUI extends ChestGui {
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
                 .build(), event -> {
             new DeathMessageCosmeticGUI(player);
+        });
+    }
+
+    private GuiItem getCaptureAnimationItem() {
+        return new GuiItem(new ItemBuilder(Material.FIREWORK_STAR)
+                .setName(MM.deserialize("<green>Capture Animations"))
+                .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
+                .build(), event -> {
+            new CaptureAnimationCosmeticGUI(player);
         });
     }
 

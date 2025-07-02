@@ -18,6 +18,15 @@ public abstract class Animation {
     private Long interval;
     private Long duration;
 
+    /**
+     * only use this if you are sure that you will set the location;
+     */
+    public Animation() {
+        this.delay = 0L;
+        this.interval = 2L;
+        this.duration = 0L;
+    }
+
     public Animation(Location location) {
         this.location = location;
         this.delay = 0L;

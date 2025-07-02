@@ -88,8 +88,7 @@ public abstract class Map {
             @Override
             public void onNext(Document result) {
                 if (result == null) {
-                    MongoManager.insertOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()));
-                    MongoManager.findOneAndUpdate(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()), Updates.set("enabled", true), new FindOneAndUpdateOptions().upsert(true));
+                    MongoManager.insertOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()).append("enabled", true));
                     future.complete(true);
                 } else {
                     boolean enabled = result.getBoolean("enabled");
@@ -109,8 +108,7 @@ public abstract class Map {
             public void onComplete() {
                 LogModule.MAP.log("COMPLETED");
                 if (amount[0] == 0) {
-                    MongoManager.insertOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()));
-                    MongoManager.findOneAndUpdate(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()), Updates.set("enabled", true), new FindOneAndUpdateOptions().upsert(false));
+                    MongoManager.insertOne(MongoManager.getCollection("map"), new Document("name", getPrefix() + getName()).append("enabled", true));
                     future.complete(true);
                     return;
                 }

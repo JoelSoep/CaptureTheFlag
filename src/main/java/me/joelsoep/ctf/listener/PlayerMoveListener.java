@@ -14,6 +14,8 @@ import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.Hotbar;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.damage.DamageSource;
+import org.bukkit.damage.DamageType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -63,7 +65,7 @@ public class PlayerMoveListener implements Listener {
                 return;
             }
 
-            PlayerDeathEvent deathEvent = new PlayerDeathEvent(player, Arrays.stream(player.getInventory().getContents()).toList(), 0, "");
+            PlayerDeathEvent deathEvent = new PlayerDeathEvent(player, DamageSource.builder(DamageType.OUT_OF_WORLD).build(), Arrays.stream(player.getInventory().getContents()).toList(), 0, null, false);
             Bukkit.getPluginManager().callEvent(deathEvent);
         }
 
