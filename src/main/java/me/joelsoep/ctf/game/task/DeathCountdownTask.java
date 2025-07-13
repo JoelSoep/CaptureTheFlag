@@ -1,6 +1,7 @@
 package me.joelsoep.ctf.game.task;
 
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.game.kit.kits.Warrior;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -55,7 +56,7 @@ public class DeathCountdownTask {
     }
 
     public void actionbar(int seconds) {
-        player.sendActionBar(MM.deserialize("<gray>Respawning in <red>" + seconds));
+        player.getActionbarHandler().sendMessage(ActionbarPriority.NORMAL, "<gray>Respawning in <red>" + seconds);
         player.playSound(Sound.sound(Key.key("block.note_block.hat"), Sound.Source.MASTER, 1, 1));
     }
 

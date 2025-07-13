@@ -10,7 +10,7 @@ import org.bukkit.Material;
 public abstract class CaptureAnimationCosmetic extends Cosmetic {
     private final Animation animation;
 
-    protected CaptureAnimationCosmetic(String name, CosmeticRarity rarity) {
+    public CaptureAnimationCosmetic(String name, CosmeticRarity rarity) {
         super(name, CosmeticType.CAPTURE_ANIMATION);
         this.setRarity(rarity);
         this.setLogo(Material.FIREWORK_STAR);

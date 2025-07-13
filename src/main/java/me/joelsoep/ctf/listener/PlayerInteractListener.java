@@ -3,10 +3,7 @@ package me.joelsoep.ctf.listener;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.game.gui.AdminPanelGUI;
-import me.joelsoep.ctf.game.gui.CosmeticsGUI;
-import me.joelsoep.ctf.game.gui.KitSelectionGUI;
-import me.joelsoep.ctf.game.gui.TeamSelectionGUI;
+import me.joelsoep.ctf.game.gui.*;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.ParticipationState;
 import me.joelsoep.ctf.player.PlayerService;
@@ -91,7 +88,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         if (material == Material.PAPER && item.getItemMeta().getCustomModelData() == 1001) {
-            new CosmeticsGUI(player);
+            new CosmeticAndStoreGui(ctfPlayer);
             return;
         }
 
@@ -123,6 +120,12 @@ public class PlayerInteractListener implements Listener {
                 return;
             }
             new AdminPanelGUI(player);
+            return;
+        }
+
+        if (event.getMaterial() == Material.TORCHFLOWER) {
+            new PlusMenuGui(ctfPlayer);
+            return;
         }
     }
 }

@@ -5,12 +5,15 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.persistence.PersistentDataType;
 
 public class EntityDamageByEntityListener implements Listener {
 
@@ -33,6 +36,17 @@ public class EntityDamageByEntityListener implements Listener {
         if (ctfPlayer == null) {
             event.setCancelled(true);
             return;
+        }
+
+        if (entityDamager instanceof TNTPrimed tnt) {
+            Byte noDamage = tnt.getPersistentDataContainer().get(
+                    new NamespacedKey(Main.getInstance(), "no_damage"),
+                    PersistentDataType.BYTE
+            );
+
+            if (noDamage != null && noDamage == 1) {
+                event.setCancelled(true);
+            }
         }
 
         if (entityDamager instanceof Player damager) {

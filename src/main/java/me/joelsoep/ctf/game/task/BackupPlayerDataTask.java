@@ -46,6 +46,15 @@ public class BackupPlayerDataTask {
     }
 
     public void backup(CTFPlayer player) {
+
+        if (!player.getPlayer().isOnline()) {
+            return;
+        }
+
+        if (!player.getData().isBackupable()) {
+            return;
+        }
+
         if (player.getData().getKills() == null) {
             player.getData().setKills(0);
         }

@@ -20,6 +20,7 @@ import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -69,7 +70,7 @@ public class PlayerDeathListener implements Listener {
             player.getOpenInventory().close();
             player.getInventory().clear();
             clearCraftingSlots(player);
-            player.setHealth(20);
+            ctfPlayer.heal();
             player.setFoodLevel(20);
             ctfPlayer.setGlowing(false);
             ctfPlayer.setKillStreak(0);
@@ -108,8 +109,9 @@ public class PlayerDeathListener implements Listener {
                     PlayerRewardSpecialEvent rewardEvent = new PlayerRewardSpecialEvent(ctfKiller);
                     Bukkit.getPluginManager().callEvent(rewardEvent);
                 }
-                if (killer.getHealth() >= 13) {
-                    killer.setHealth(20);
+
+                if (ctfKiller.getMaxHealth() - killer.getHealth() <= 7) {
+                    ctfKiller.heal();
                 } else {
                     killer.setHealth(killer.getHealth() + 7);
                 }
@@ -128,8 +130,6 @@ public class PlayerDeathListener implements Listener {
                 game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>died.""".formatted(team.getTeamColor().getColor() + player.getName())));
             }
-        } else if (game.getState() == GameState.ENDED) {
-            player.teleport(ctfPlayer.getTeam().getSpawn());
         } else {
             player.teleport(MapManager.getLobby().getSpawnLocation());
             new Hotbar(player);

@@ -59,6 +59,10 @@ public class MapManager {
         return gameMaps.get(name);
     }
 
+    public static GameMap getGameMap(GameMap map) {
+        return map;
+    }
+
     public void loadLobby(String packageName) {
         Reflections reflections = new Reflections(packageName);
         Set<Class<? extends LobbyMap>> mapClasses = reflections.getSubTypesOf(LobbyMap.class);
@@ -81,6 +85,7 @@ public class MapManager {
                 return;
             }
             MapManager.lobby = lobby;
+            Bukkit.getPluginManager().registerEvents(lobby, Main.getInstance());
             LogModule.MAP.log("Loaded lobby %s".formatted(lobby.getName()));
 
             if (Bukkit.getWorld(lobby.getWorld().getName()) == null) {
@@ -122,6 +127,7 @@ public class MapManager {
                     return;
                 }
                 gameMaps.put(gameMap.getName(), gameMap);
+                Bukkit.getPluginManager().registerEvents(gameMap, Main.getInstance());
                 LogModule.MAP.log("Loaded gameMap %s".formatted(gameMap.getName()));
 
                 if (Bukkit.getWorld(gameMap.getWorld().getName()) == null) {

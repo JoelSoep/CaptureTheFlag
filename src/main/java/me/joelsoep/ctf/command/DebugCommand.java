@@ -2,14 +2,19 @@ package me.joelsoep.ctf.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import co.aikar.commands.annotation.Optional;
 import co.aikar.commands.bukkit.contexts.OnlinePlayer;
+import com.eduardomcb.discord.webhook.WebhookClient;
 import com.mongodb.client.result.DeleteResult;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.TooltipDisplay;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.CosmeticsManager;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.database.subscriber.IDeleteOneSubscriber;
+import me.joelsoep.ctf.discord.DiscordWebhook;
 import me.joelsoep.ctf.economy.EconomyManager;
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.file.LocalConfig;
@@ -17,11 +22,14 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.game.gui.CosmeticStoreGUI;
+import me.joelsoep.ctf.game.gui.GameSettingsGui;
 import me.joelsoep.ctf.game.gui.TestGui;
 import me.joelsoep.ctf.game.kit.BaseKit;
+import me.joelsoep.ctf.game.setting.GameSetting;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.game.task.ResetGameTask;
 import me.joelsoep.ctf.game.team.Team;
+import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -39,15 +47,21 @@ import me.joelsoep.ctf.store.items.cosmetic.deathMessage.TookLItem;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.test.DisplayEntities;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bson.Document;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.TestOnly;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 @TestOnly
@@ -468,7 +482,8 @@ public final class DebugCommand extends BaseCommand {
     @Subcommand("refreshAdditionalMessage")
     public void refresh(Player sender) {
         PlayerService.getPlayers().values().forEach(player -> {
-            String message = Main.getInstance().getConfig().getString("additional-message") == null ? "<gray>" : Main.getInstance().getConfig().getString("additional-message");
+            YamlConfiguration config = FileManager.getDefaultConfig();
+            String message = config.getString("additional-message") == null ? "<gray>" : config.getString("additional-message");
             player.getScoreboardHandler().setAdditionalMessage(message);
         });
         sender.sendMessage(MM.deserialize("<gray>Refreshed and updated all scoreboards."));
@@ -564,7 +579,7 @@ public final class DebugCommand extends BaseCommand {
         if (onlinePlayer == null) {
             CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
             if (ctfPlayer == null) {
-                player.sendMessage("<red>An error occurred while trying to retrieve your profile.");
+                player.sendMessage(MM.deserialize("<red>An error occurred while trying to retrieve your profile."));
                 return;
             }
 
@@ -588,5 +603,159 @@ public final class DebugCommand extends BaseCommand {
                 player.sendMessage(MM.deserialize("%s has cosmetic %s applied for type %s".formatted(onlinePlayer.getPlayer().getName(), applied.getName(), type.toString())));
             }
         }
+    }
+
+    @Subcommand("setinfinitegametime")
+    public void setInfiniteGameTime(Player player, boolean value) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>An error occurred while trying to retrieve your profile."));
+            return;
+        }
+
+        Game game = ctfPlayer.getGame();
+        if (game == null) {
+            player.sendMessage(MM.deserialize("<red>You are not in a game right now."));
+            return;
+        }
+
+        game.setInfiniteGameTime(value);
+        player.sendMessage(MM.deserialize("<gray>Done!"));
+    }
+
+    @Subcommand("locationblock")
+    public void locationBlock(Player player) {
+        Block block = player.getLocation().getBlock();
+        player.sendMessage(MM.deserialize("Type: " + block.getType()));
+    }
+
+    @Subcommand("gamesettingsgui")
+    public void gameSettingsGui(Player player, @Optional OnlinePlayer onlinePlayer) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+        if (ctfPlayer == null) {
+            player.sendMessage(MM.deserialize("<red>An error occurred while trying to retrieve your profile."));
+            return;
+        }
+        if (onlinePlayer == null) {
+            new GameSettingsGui(ctfPlayer);
+            return;
+        } else {
+            CTFPlayer onlineCtfPlayer = PlayerService.getPlayer(onlinePlayer.getPlayer());
+            if (onlineCtfPlayer == null) {
+                player.sendMessage(MM.deserialize("<red>Couldn't find profile for player %s".formatted(onlinePlayer.getPlayer().getName())));
+                return;
+            }
+            new GameSettingsGui(onlineCtfPlayer);
+            player.sendMessage(MM.deserialize("<gray>Done!"));
+        }
+    }
+
+    @Subcommand("givepaperhp")
+    public void givepaperhp(Player player) {
+        ItemStack itemStack = new ItemStack(Material.POTION);
+        PotionMeta meta = (PotionMeta) itemStack.getItemMeta();
+        meta.setColor(Color.RED);
+        meta.displayName(MM.deserialize("<red>%s Hearts".formatted(10)));
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
+        List<Component> lore = new ArrayList<>();
+        lore.add(MM.deserialize("<gray>Left-click to change"));
+
+
+        meta.lore(lore);
+        itemStack.setItemMeta(meta);
+        itemStack.setData(
+                DataComponentTypes.TOOLTIP_DISPLAY,
+                TooltipDisplay.tooltipDisplay()
+                        .hiddenComponents(Set.of(DataComponentTypes.POTION_CONTENTS, DataComponentTypes.ENCHANTMENTS))
+                        .build()
+        );
+        player.getInventory().addItem(itemStack);
+    }
+
+    @Subcommand("uuid")
+    public void uuid(Player player, @Optional OnlinePlayer onlinePlayer) {
+        if (onlinePlayer == null) {
+            player.sendMessage(MM.deserialize("Your uuid is <click:copy_to_clipboard:%s>%s. Click here to copy.</click>".formatted(player.getUniqueId(), player.getUniqueId())));
+            return;
+        } else {
+            player.sendMessage(MM.deserialize("%s's uuid is <click:copy_to_clipboard:%s>%s. Click here to copy.</click>".formatted(player.getName(), player.getUniqueId(), player.getUniqueId())));
+        }
+    }
+
+    @Subcommand("giveItemByMaterial")
+    public void giveItemByMaterial(Player player, Material material) {
+        ItemStack item = new ItemStack(material);
+        player.getInventory().addItem(item);
+        player.sendMessage("Done");
+    }
+
+    @Subcommand("checkplus")
+    public void checkPlus(Player player, @Optional OnlinePlayer onlinePlayer) {
+        if (onlinePlayer == null) {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+            if (ctfPlayer == null) {
+                player.sendMessage("ctfplayer is null");
+                return;
+            }
+            ctfPlayer.setPlus(player.hasPermission("ctf.plus"));
+            player.sendMessage("done");
+            return;
+        } else {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(onlinePlayer.getPlayer());
+            if (ctfPlayer == null) {
+                player.sendMessage("ctfplayer is null");
+                return;
+            }
+            ctfPlayer.setPlus(player.hasPermission("ctf.plus"));
+            player.sendMessage("done");
+            return;
+        }
+    }
+
+    @Subcommand("setplus")
+    public void setPlus(Player player, @Optional OnlinePlayer onlinePlayer, boolean value) {
+        if (onlinePlayer == null) {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+            if (ctfPlayer == null) {
+                player.sendMessage("ctfplayer is null");
+                return;
+            }
+            ctfPlayer.setPlus(value);
+            player.sendMessage("done");
+            return;
+        } else {
+            CTFPlayer ctfPlayer = PlayerService.getPlayer(onlinePlayer.getPlayer());
+            if (ctfPlayer == null) {
+                player.sendMessage("ctfplayer is null");
+                return;
+            }
+            ctfPlayer.setPlus(value);
+            player.sendMessage("done");
+            return;
+        }
+    }
+
+    @Subcommand("allowbypassdatasuspicioncheck")
+    public void allowBypassDataSuspicionCheck(Player player, boolean value) {
+        if (!player.getUniqueId().equals(UUID.fromString("b35f3a61-8e25-4274-87ce-93a0e604df2c"))) {
+            player.sendMessage(MM.deserialize("<red>This is a very dangerous command!"));
+            player.sendMessage(MM.deserialize("<red>Do not touch debug commands if you don't know what they do!"));
+            player.sendMessage(MM.deserialize("<red>This attempt will be logged."));
+            player.sendMessage(MM.deserialize("<red>Execution of this command has been denied."));
+            DiscordWebhook.sendMessage(new WebhookClient.Callback() {
+                @Override
+                public void onSuccess(String response) {
+                    LogModule.CORE.log("logged unauthorized allowbypasssuspicioncheck usage by player %s".formatted(player.getUniqueId().toString()));
+                }
+
+                @Override
+                public void onFailure(int statusCode, String errorMessage) {
+                    LogModule.CORE.log(statusCode + " err: " + errorMessage);
+                }
+            }, "user %s attempted to use command /debug allowbypassdatasuspicioncheck!".formatted(player.getName() + "(" + player.getUniqueId().toString() + ")"));
+        }
+
+        Main.getSettings().setAllowBypassDataSuspicionCheck(value);
+        player.sendMessage("done");
     }
 }

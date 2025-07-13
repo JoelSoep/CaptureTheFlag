@@ -15,6 +15,7 @@ import org.bson.Document;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class GameStartListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onStart(GameStartEvent event) {
         Game game = event.getGame();
         ArrayList<CTFPlayer> players = game.getPlayers();
@@ -90,6 +91,7 @@ public class GameStartListener implements Listener {
 
         players.forEach(player -> {
             player.getPlayer().closeInventory();
+            player.heal();
             if (player.getKit() == null) {
                 player.setKit(Main.getKitService().getAllKits().get(0));
             }
@@ -97,6 +99,7 @@ public class GameStartListener implements Listener {
             Main.getKitService().giveKitToPlayer(player.getPlayer(), player.getKit().getName());
         });
 
+        game.getGameSettings().announceDecisions(game.getAudience());
         new CountdownTask(
                 MM.deserialize("<#63f02b>Fight!"),
                 game.getAudience(),

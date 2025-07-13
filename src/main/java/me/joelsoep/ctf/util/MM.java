@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.util;
 
+import me.joelsoep.ctf.util.test.CC;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -26,6 +27,10 @@ public class MM {
 
     public static Component alert(String input) {
         return MiniMessage.miniMessage().deserialize("<gray>[<red><bold>CTF-ALERT</bold><gray>] <gray>" + input);
+    }
+
+    public static Component getStoreMessage() {
+        return MiniMessage.miniMessage().deserialize("<gray>Buy <b>%sPLUS</b> <gray>in the store: <yellow><u><click:open_url:'https://store.mcmanhunt.com/'>store.mcmanhunt.com".formatted(CC.PLUS));
     }
 
 }

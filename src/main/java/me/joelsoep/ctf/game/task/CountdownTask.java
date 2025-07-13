@@ -81,6 +81,7 @@ public class CountdownTask {
                     audience.sendMessage(message);
                     audience.playSound(Sound.sound(Key.key("block.note_block.pling"), Sound.Source.MASTER, 1, 2));
                     if (isGameStartCountdown && game.getState() == GameState.WAITING) {
+                        game.getGameSettings().calculateVotesAndSet();
                         GameStartEvent event = new GameStartEvent(game);
                         Bukkit.getPluginManager().callEvent(event);
                         LogModule.GAME.log("GameStartEvent trigger @Countdowntask");

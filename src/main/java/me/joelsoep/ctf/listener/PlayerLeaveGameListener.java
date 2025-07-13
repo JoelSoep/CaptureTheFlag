@@ -20,7 +20,6 @@ public class PlayerLeaveGameListener implements Listener {
     public void onLeaveGame(PlayerLeaveGameEvent event) {
         Game game = event.getGame();
         CTFPlayer player = event.getPlayer();
-        LogModule.GAME.log("init");
 
         if (game.getPlayers().size() < game.getMap().getMinPlayers() && game.isStarting()) {
             if (game.getCountdownTask() != null) {
@@ -32,6 +31,9 @@ public class PlayerLeaveGameListener implements Listener {
         }
 
         editWinStreak(game, player);
+        if (game.getState() == GameState.WAITING) {
+            game.getGameSettings().removeVotesFor(player);
+        }
         if (player.getTeam() != null) {
             Team team = player.getTeam();
             Team oppositeTeam = player.getTeam() == game.getRed() ? game.getBlue() : game.getRed();

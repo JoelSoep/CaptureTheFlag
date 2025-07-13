@@ -63,4 +63,14 @@ public class SoundUtils {
                 .seed(7)
                 .build();
     }
+
+    public static Sound getClickSound() {
+        return Sound.sound()
+                .type(Key.key("bock.note_block.hat"))
+                .volume(10)
+                .source(Sound.Source.MASTER)
+                .pitch(1F)
+                .seed(7)
+                .build();
+    }
 }

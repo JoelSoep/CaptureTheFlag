@@ -75,9 +75,8 @@ public class StoreManager {
             if (!(item instanceof StoreCosmeticItem cosmeticItem)) {
                 return;
             }
-            LogModule.CORE.log("yes man making it rn here");
+
             if (cosmeticItem.getType() == type) {
-                LogModule.CORE.log("yes type");
                 returnList.add(item);
             }
         });
@@ -85,6 +84,11 @@ public class StoreManager {
     }
 
     public static void purchase(StoreCosmeticItem item, CTFPlayer player) {
+        if (player.getCosmetics().ownsCosmetic(item.getCosmetic())) {
+            player.sendMessage(MM.announce("<red>You already own this cosmetic!"));
+            return;
+        }
+
         player.sendMessage(MM.deserialize("<gray>Initializing purchase..."));
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
             @Override

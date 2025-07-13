@@ -26,6 +26,10 @@ public class GameTimerTask {
                     return;
                 }
 
+                if (game.isInfiniteGameTime()) {
+                    return;
+                }
+
                 if (game.getGameTime() < System.currentTimeMillis()) {
                     LogModule.CORE.log("Game ended due to time being up");
 

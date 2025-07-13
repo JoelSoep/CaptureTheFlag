@@ -42,6 +42,10 @@ public abstract class GameMap extends Map {
     protected @NotNull Integer minBuildHeight;
     protected @NotNull Integer deathHeight;
 
+    // misc
+
+    protected @NotNull Material icon;
+
     public GameMap(String name, File schematic) {
         super(name, "game_");
         this.schematic = schematic;
@@ -63,6 +67,8 @@ public abstract class GameMap extends Map {
         this.minBuildHeight = minBuildHeight();
         this.deathHeight = deathHeight();
 
+        this.icon = icon();
+
         world.setSpawnLocation(this.centerLocation);
         new CleanItemsTask(world);
     }
@@ -82,6 +88,8 @@ public abstract class GameMap extends Map {
     protected abstract int maxBuildHeight();
     protected abstract int minBuildHeight();
     protected abstract int deathHeight();
+
+    protected abstract Material icon();
 
     public boolean isLocationInMapSize(Location location) {
         if (location.getBlock().getY() > getMaxBuildHeight()) {

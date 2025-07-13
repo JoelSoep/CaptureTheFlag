@@ -11,6 +11,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.ItemBuilder;
+import me.joelsoep.ctf.util.MM;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,6 +37,8 @@ public class CosmeticStoreGUI extends ChestGui {
 
     private void setItems() {
         GuiItem deathMessage = new GuiItem(new ItemBuilder(Material.SKELETON_SKULL)
+                .setName(MM.deserialize("<light_purple>Death Message Store"))
+                .setLore(MM.deserialize("<gray>Left-click to view"))
                 .build(), (action -> {
                     if (!action.isLeftClick()) {
                         return;
@@ -45,6 +48,8 @@ public class CosmeticStoreGUI extends ChestGui {
         this.itemPane.addItem(deathMessage, 0, 0);
 
         GuiItem captureAnimation = new GuiItem(new ItemBuilder(Material.FIREWORK_STAR)
+                .setName(MM.deserialize("<green>Capture Animation Store"))
+                .setLore(MM.deserialize("<gray>Left-click to view"))
                 .build(), (action -> {
                     if (!action.isLeftClick()) {
                         return;

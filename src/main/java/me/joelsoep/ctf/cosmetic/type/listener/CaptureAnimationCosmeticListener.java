@@ -26,7 +26,6 @@ public class CaptureAnimationCosmeticListener implements Listener {
             return;
         }
 
-        System.out.println("playing the animation");
         Animation animation = animationCosmetic.getAnimation();
         animation.setLocation(flagLocation);
         animation.play();

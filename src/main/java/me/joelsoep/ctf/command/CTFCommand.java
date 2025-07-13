@@ -3,10 +3,12 @@ package me.joelsoep.ctf.command;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.game.gui.PlusMenuGui;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.server.CTFServer;
 import me.joelsoep.ctf.server.packet.packets.AlertPacket;
+import me.joelsoep.ctf.server.packet.packets.ScheduleRestartPacket;
 import me.joelsoep.ctf.server.packet.packets.StoreReloadPacket;
 import me.joelsoep.ctf.server.socket.SocketSender;
 import me.joelsoep.ctf.util.MM;
@@ -55,7 +57,7 @@ public final class CTFCommand extends BaseCommand {
     @Subcommand("setJoinable")
     public void setJoinable(Player player, boolean value) {
         Main.getSettings().setOpen(value);
-        player.sendMessage("<gray>Updated server joinable state to <yellow>%s<gray>.".formatted(value));
+        player.sendMessage(MM.deserialize("<gray>Updated server joinable state to <yellow>%s<gray>.".formatted(value)));
     }
 
     @CommandPermission("ctf.admin|op")
@@ -113,4 +115,30 @@ public final class CTFCommand extends BaseCommand {
         StoreReloadPacket packet = new StoreReloadPacket.Builder().withDefaultValues().build();
         SocketSender.sendAll(packet, true);
     }
+
+    @CommandPermission("ctf.serveradmin")
+    @Description("Schedules a global server restart as soon as the next game ends, or instantly if none is ongoing.")
+    @Subcommand("restart-global")
+    public void restartGlobal(Player player) {
+        if (!CTFServer.isEnabled()) {
+            player.sendMessage(MM.deserialize("<gray>Server mode is disabled. Cannot perform a global restart."));
+            return;
+        }
+
+        ScheduleRestartPacket packet = new ScheduleRestartPacket.Builder().withDefaultValues().build();
+        SocketSender.sendAll(packet, true);
+    }
+
+    @CommandPermission("ctf.plus")
+    @Description("Opens the Plus Menu")
+    @Subcommand("plusmenu")
+    public void openPlusMenu(Player player) {
+        CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
+        if (ctfPlayer == null) {
+            return;
+        }
+
+        new PlusMenuGui(ctfPlayer);
+    }
+
 }

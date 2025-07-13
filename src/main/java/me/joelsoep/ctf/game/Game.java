@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.game.event.PlayerJoinGameEvent;
 import me.joelsoep.ctf.game.event.PlayerLeaveGameEvent;
+import me.joelsoep.ctf.game.setting.GameSettingsManager;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
@@ -45,10 +46,15 @@ public class Game {
     private ArrayList<CTFPlayer> players = new ArrayList<>();
     private ArrayList<CTFPlayer> spectators = new ArrayList<>();
     private MatchExperienceCollector XPCollector = new MatchExperienceCollector();
+    private GameSettingsManager gameSettings;
     private @Nullable Team winner;
     private CountdownTask countdownTask;
     private boolean isStarting = false;
     private boolean isSpedUp = false;
+
+    // debug options
+
+    private boolean infiniteGameTime = false;
 
     public Game() {
         this.audience = Audience.audience(concatAudience(players, spectators));
@@ -121,7 +127,10 @@ public class Game {
         TeamService.getTeams().clear();
         this.createTeams(this.getMap());
         this.setAudience(Audience.audience(concatAudience(players, spectators)));
+        this.getGameSettings().reset();
         MapManager.registerMapToGame(this.getMap(), this);
+
+        this.setInfiniteGameTime(false);
     }
 
     public void addPlayer(CTFPlayer player) {

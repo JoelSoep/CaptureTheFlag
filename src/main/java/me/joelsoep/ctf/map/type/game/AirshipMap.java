@@ -258,4 +258,9 @@ public class AirshipMap extends GameMap {
     protected int deathHeight() {
         return -40;
     }
+
+    @Override
+    protected Material icon() {
+        return Material.FEATHER;
+    }
 }

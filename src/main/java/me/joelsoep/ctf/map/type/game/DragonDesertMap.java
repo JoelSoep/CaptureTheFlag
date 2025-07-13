@@ -4,6 +4,7 @@ import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.util.FAWE;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 import java.io.File;
@@ -87,5 +88,10 @@ public class DragonDesertMap extends GameMap {
     @Override
     protected int deathHeight() {
         return -99;
+    }
+
+    @Override
+    protected Material icon() {
+        return Material.DEAD_BUSH;
     }
 }

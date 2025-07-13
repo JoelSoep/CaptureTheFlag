@@ -11,6 +11,7 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.board.ActionbarHandler;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.game.kit.BaseKit;
+import me.joelsoep.ctf.game.setting.GameSetting;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.logger.LogModule;
@@ -30,6 +31,8 @@ import net.kyori.adventure.title.TitlePart;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -100,6 +103,15 @@ public class CTFPlayer implements Audience {
         reset();
     }
 
+    public void heal() {
+        int hp = game == null ? 20 : (int) this.getGame().getGameSettings().getSetting(GameSetting.MAX_HEALTH);
+        player.setHealth(hp);
+    }
+
+    public double getMaxHealth() {
+        return player.getAttribute(Attribute.MAX_HEALTH).getBaseValue();
+    }
+
     public void addEffect(PlayerEffect effect) {
         this.effects.add(effect);
         player.sendMessage(MM.deserialize("<gray>You've received effect <yellow>%s<gray>!".formatted(effect.getEffectType().toString())));
@@ -146,7 +158,8 @@ public class CTFPlayer implements Audience {
         player.setLastDeathLocation(null);
         player.setKiller(null);
         player.setLastDamage(0);
-        player.setHealth(20);
+        player.getAttribute(Attribute.MAX_HEALTH).setBaseValue(20);
+        this.heal();
         player.setFoodLevel(20);
 
         player.getActivePotionEffects().forEach(effect -> {
@@ -164,6 +177,10 @@ public class CTFPlayer implements Audience {
         public void setAppliedCosmetic(CosmeticType type, Cosmetic cosmetic) {
             appliedCosmetics.put(type, cosmetic);
             Main.getBackupTask().backupAppliedCosmetics(CTFPlayer.this);
+        }
+
+        public boolean ownsCosmetic(Cosmetic cosmetic) {
+            return CTFPlayer.this.getData().getOwnedCosmetics().contains(cosmetic);
         }
     }
 

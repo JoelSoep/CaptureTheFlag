@@ -28,6 +28,7 @@ import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameQueue;
 import me.joelsoep.ctf.game.kit.KitService;
+import me.joelsoep.ctf.game.setting.GameSettingsManager;
 import me.joelsoep.ctf.game.special.SpecialService;
 import me.joelsoep.ctf.game.task.*;
 import me.joelsoep.ctf.listener.ListenerService;
@@ -126,6 +127,7 @@ public final class Main extends JavaPlugin {
         DiscordWebhook.init();
         new StoreManager();
         new MapManager();
+        Main.getGame().setGameSettings(new GameSettingsManager());
         new BroadcastService().runAll();
         PaperCommandManager manager = new PaperCommandManager(this);
 

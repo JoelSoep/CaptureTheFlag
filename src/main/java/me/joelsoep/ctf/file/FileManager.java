@@ -5,6 +5,7 @@ import me.joelsoep.ctf.logger.LogModule;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.net.URL;
@@ -67,6 +68,12 @@ public class FileManager {
             LogModule.FILE.log("Created new server.yml.");
         }
 
+        return YamlConfiguration.loadConfiguration(file);
+    }
+
+    public static YamlConfiguration getDefaultConfig() {
+        String path = Main.getInstance().getDataPath() + "config.yml";
+        File file = new File(path);
         return YamlConfiguration.loadConfiguration(file);
     }
 

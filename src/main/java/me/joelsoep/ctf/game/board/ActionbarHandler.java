@@ -28,12 +28,23 @@ public class ActionbarHandler {
         return this.id != 0;
     }
 
+    /**
+     * Sets a message at a priority.
+     * This will stay until overridden.
+     *
+     * @param priority The actionbar priority.
+     * @param message The message to set
+     */
     public void setMessage(ActionbarPriority priority, String message) {
         messages.put(priority, message);
         updateActionbar();
         if (!hasActiveActionbar()) {
             scheduleActionbar();
         }
+    }
+
+    public void sendMessage(ActionbarPriority priority, String message) {
+        updateActionbar(priority, message);
     }
 
     public void setMessage(ActionbarPriority priority, String message, Long ticks) {
@@ -94,6 +105,29 @@ public class ActionbarHandler {
             cancelActionbar();
             return;
         }
+        player.sendActionBar(MM.deserialize(message));
+    }
+
+    /**
+     * Updates a single time without actually interfering with the saved messages.
+     *
+     * @param priority the priority of the message
+     * @param message the message to send
+     */
+    private void updateActionbar(ActionbarPriority priority, String message) {
+
+        if (hasMessage(ActionbarPriority.NORMAL)) {
+            if (priority != ActionbarPriority.NORMAL && priority != ActionbarPriority.HIGH) {
+                message = getMessage(ActionbarPriority.NORMAL);
+            }
+        }
+
+        if (hasMessage(ActionbarPriority.HIGH)) {
+            if (priority != ActionbarPriority.HIGH) {
+                message = getMessage(ActionbarPriority.HIGH);
+            }
+        }
+
         player.sendActionBar(MM.deserialize(message));
     }
 

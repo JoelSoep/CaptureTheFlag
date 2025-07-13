@@ -4,6 +4,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.test.CC;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -25,13 +26,14 @@ public class Hotbar {
         player.getInventory().clear();
         giveTutorialBook();
         giveKitSelectionItem();
+        givePlusMenu();
         giveAdminMenu();
         giveQueueBlock(player);
 
         if (LocalConfig.ALLOW_CUSTOM_TEAMS) {
             giveTeamSelectionMenuItem();
         } else {
-            giveCosmeticsItem();
+            giveCosmeticsAndStoreItem();
         }
     }
 
@@ -66,9 +68,9 @@ public class Hotbar {
         this.player.getInventory().setItem(2, teamMenu);
     }
 
-    private void giveCosmeticsItem() {
+    private void giveCosmeticsAndStoreItem() {
         ItemStack item = new ItemBuilder(Material.PAPER)
-                .setName("<light_purple>Cosmetics Menu")
+                .setName("<light_purple>Store & Cosmetics")
                 .setLore(MM.deserialize("<gray>Right-click to open"))
                 .setCustomModelData(1001)
                 .build();
@@ -93,6 +95,15 @@ public class Hotbar {
         meta.addItemFlags(ItemFlag.HIDE_DYE);
         adminPanel.setItemMeta(meta);
         this.player.getInventory().setItem(8, adminPanel);
+    }
+
+    private void givePlusMenu() {
+        ItemStack plusMenu = new ItemBuilder(Material.TORCHFLOWER)
+                .setName(MM.deserialize(CC.PLUS + "Plus Menu"))
+                .setLore(MM.deserialize("<gray>Right-click to open"))
+                .build();
+
+        this.player.getInventory().setItem(8, plusMenu);
     }
 
     private void giveTutorialBook() {

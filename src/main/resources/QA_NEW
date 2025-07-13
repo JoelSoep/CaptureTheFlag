@@ -3,3 +3,5 @@
 3. add sounds when flag is stolen
 4. display chat message to player when leaving the queue with the queue block
 5. chat should be username with color -> message
+
+6. Player votes for settings should be removed on quit

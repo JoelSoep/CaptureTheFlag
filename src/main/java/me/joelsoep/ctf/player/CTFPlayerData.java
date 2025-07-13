@@ -41,6 +41,8 @@ public class CTFPlayerData {
     private Integer winStreak = 0;
     private Double kd = (double) 1;
 
+    private boolean backupable = false;
+
     public CTFPlayerData(CTFPlayer player) {
         this.player = player;
         this.name = player.getPlayer().getName();
@@ -77,6 +79,7 @@ public class CTFPlayerData {
                             .append("coins", 0)
                             .append("win_streak", 0)
                     );
+                    CTFPlayerData.this.setBackupable(true);
                 } else {
                     fetchData();
                 }
@@ -130,6 +133,7 @@ public class CTFPlayerData {
                     deserializeOwnedCosmetics(result);
                     deserializeAndApplyAppliedCosmetics(result);
                     deserializeKits(result);
+                    CTFPlayerData.this.setBackupable(true);
                 }
             });
         }

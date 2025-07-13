@@ -9,10 +9,12 @@ import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.GameMap;
+import me.joelsoep.ctf.map.type.LobbyMap;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -24,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 @Getter
-public abstract class Map {
+public abstract class Map implements Listener {
 
     protected final String name;
     protected final String prefix;
@@ -55,7 +57,11 @@ public abstract class Map {
                         return;
                     }
 
-                    if (Main.getGame().getState() != GameState.RUNNING && Map.this instanceof GameMap) {
+                    if (Map.this instanceof GameMap && Main.getGame().getState() != GameState.RUNNING) {
+                        return;
+                    }
+
+                    if (Map.this instanceof LobbyMap && Main.getGame().getState() != GameState.WAITING) {
                         return;
                     }
 

@@ -12,9 +12,19 @@ public class GuiUtils {
 
     public static void setBackground(ChestGui gui, Pattern pattern, int height) {
         PatternPane pane = new PatternPane(0, 0, 9, height, Pane.Priority.LOWEST, pattern);
-        pane.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
+        ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+        item.editMeta(meta -> meta.setHideTooltip(true));
+        pane.bindItem('1', new GuiItem(item));
         gui.setOnGlobalClick(event -> event.setCancelled(true));
         gui.addPane(pane);
+    }
+
+    public static void cancelGlobalClick(ChestGui gui) {
+        gui.setOnGlobalClick(action -> action.setCancelled(true));
+    }
+
+    public static void cancelGlobalDrag(ChestGui gui) {
+        gui.setOnGlobalDrag(action -> action.setCancelled(true));
     }
 
     public static GuiItem getComingSoon() {
