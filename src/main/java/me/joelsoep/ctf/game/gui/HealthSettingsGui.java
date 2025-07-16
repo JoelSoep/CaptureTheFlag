@@ -5,8 +5,6 @@ import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
-import eu.decentsoftware.holograms.api.utils.scheduler.S;
-import io.papermc.paper.datacomponent.DataComponentType;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.TooltipDisplay;
 import me.joelsoep.ctf.game.GameState;
@@ -15,7 +13,7 @@ import me.joelsoep.ctf.game.setting.GameSettingsManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.MM;
-import me.joelsoep.ctf.util.test.CC;
+import me.joelsoep.ctf.util.CC;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -23,11 +21,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -73,12 +69,12 @@ public class HealthSettingsGui extends ChestGui {
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ADDITIONAL_TOOLTIP);
         List<Component> lore = new ArrayList<>();
         lore.add(MM.deserialize("<gray>Left-click to change"));
-        lore.add(MM.deserialize("<gray>%s votes(s)".formatted(manager.getVotesFor(GameSetting.MAX_HEALTH, hearts * 2))));
+        lore.add(MM.deserialize("<gray>%s votes(s)".formatted(manager.getVotesFor(GameSetting.MAX_HEALTH, hearts))));
 
         @Nullable Object voteValue = manager.getVote(player, GameSetting.MAX_HEALTH);
 
         if (voteValue != null) {
-            if ((int) voteValue == hearts * 2) {
+            if ((int) voteValue == hearts) {
                 meta.addEnchant(Enchantment.UNBREAKING, 1, true);
                 lore.add(MM.deserialize(""));
                 lore.add(MM.deserialize("<green>You voted for this option!"));
@@ -116,10 +112,10 @@ public class HealthSettingsGui extends ChestGui {
                 return;
             }
 
-            if (manager.hasVotedFor(player, GameSetting.MAX_HEALTH, hearts * 2)) {
+            if (manager.hasVotedFor(player, GameSetting.MAX_HEALTH, hearts)) {
                 manager.vote(player, GameSetting.MAX_HEALTH, null);
             } else {
-                manager.vote(player, GameSetting.MAX_HEALTH, hearts * 2);
+                manager.vote(player, GameSetting.MAX_HEALTH, hearts);
             }
             this.update();
             player.setCooldown(1000L);

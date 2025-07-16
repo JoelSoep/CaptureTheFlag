@@ -11,6 +11,7 @@ import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.kit.KitService;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -28,24 +29,20 @@ public class KitSelectionGUI extends ChestGui implements Listener {
 
     private final KitService kitService;
     private final OutlinePane pane;
-    private final PatternPane background;
 
     public KitSelectionGUI(Player player, KitService kitService) {
         super(3, "Kit Selection");
         this.kitService = kitService;
         this.pane = new OutlinePane(2, 1, 5, 1);
-        this.background = new PatternPane(0, 0, 9, 3, new Pattern(
+        GuiUtils.setBackground(this, new Pattern(
                 "111111111",
                 "110000011",
                 "111111111"
-        ));
+        ), 3);
 
-        this.background.setPriority(Pane.Priority.HIGH);
-        this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
 
         this.pane.setPriority(Pane.Priority.HIGHEST);
         this.addPane(pane);
-        this.addPane(background);
 
         openKitSelectionGUI(player);
     }

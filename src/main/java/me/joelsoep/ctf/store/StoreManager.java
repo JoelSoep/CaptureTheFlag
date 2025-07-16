@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class StoreManager {
     @Getter private static Cloud cloud = new Cloud();
     @Getter private static List<StoreItem> items = new ArrayList<>(); // The public list with available items in store.
-    private static List<StoreItem> ITEMS_INCLUDING_UNAVAILABLE = new ArrayList<>(); // private list, including items that are not currently available.
+    @Getter private static List<StoreItem> ITEMS_INCLUDING_UNAVAILABLE = new ArrayList<>(); // private list, including items that are not currently available.
 
     public StoreManager() {
         cloud.createCosmeticItems();
@@ -54,8 +54,20 @@ public class StoreManager {
     }
 
     public static @Nullable StoreItem getItem(@NotNull String name) {
-        Optional<StoreItem> optional = items.stream().filter(item -> item.getName().equals(name)).findFirst();
+        Optional<StoreItem> optional = items.stream()
+                .filter(item -> (item.getPrefix() + item.getName()).equals(name))
+                .findFirst();
+
         return optional.orElse(null);
+    }
+
+    public static @Nullable StoreCosmeticItem getCosmeticItem(@NotNull String name) {
+        Optional<StoreItem> optional = ITEMS_INCLUDING_UNAVAILABLE.stream()
+                .filter(item -> item.getName().equals(name))
+                .filter(item -> item instanceof StoreCosmeticItem)
+                .findFirst();
+
+        return (StoreCosmeticItem) optional.orElse(null);
     }
 
     public static void registerItem(@NotNull StoreItem item) {
@@ -176,6 +188,7 @@ public class StoreManager {
 
                 if (item.getExpiryDate() != null) {
                     cosmeticItem.setExpiryDate(item.getExpiryDate());
+                    LogModule.CORE.log(String.valueOf(item.getExpiryDate().getTime()));
                 }
 
                 if (item.getDisplayName() != null) {
@@ -183,11 +196,11 @@ public class StoreManager {
                 }
 
                 cosmeticItem.setAvailable(item.isAvailable());
-
                 cosmeticItem.checkAndProcessAvailability();
+                LogModule.CORE.log("%s: current time: %s, expiry time: %s".formatted(cosmeticItem.getName(), System.currentTimeMillis(), cosmeticItem.getExpiryDate().getTime()));
                 if (!cosmeticItem.isAvailable()) {
                     ITEMS_INCLUDING_UNAVAILABLE.add(cosmeticItem);
-                    return;
+                    continue;
                 }
 
                 registerItem(cosmeticItem);

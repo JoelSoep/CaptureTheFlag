@@ -6,6 +6,7 @@ import me.joelsoep.ctf.game.setting.GameSetting;
 import me.joelsoep.ctf.game.setting.GameSettingImpl;
 import me.joelsoep.ctf.game.setting.GameSettingsManager;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 public class CaptureAmountGameSettingImpl implements GameSettingImpl<GameStartEvent>, Listener {
@@ -16,7 +17,7 @@ public class CaptureAmountGameSettingImpl implements GameSettingImpl<GameStartEv
     }
 
     @Override
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOW)
     public void handle(GameStartEvent event) {
         Game game = event.getGame();
         GameSettingsManager manager = game.getGameSettings();

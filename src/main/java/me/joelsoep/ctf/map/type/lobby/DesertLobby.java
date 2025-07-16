@@ -2,13 +2,12 @@ package me.joelsoep.ctf.map.type.lobby;
 
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.game.gui.DesertLobbyJukeboxGui;
-import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.LobbyMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.FAWE;
 import me.joelsoep.ctf.util.MM;
-import me.joelsoep.ctf.util.test.CC;
+import me.joelsoep.ctf.util.CC;
 import org.bukkit.Location;
 import org.bukkit.Material;
 

@@ -753,9 +753,17 @@ public final class DebugCommand extends BaseCommand {
                     LogModule.CORE.log(statusCode + " err: " + errorMessage);
                 }
             }, "user %s attempted to use command /debug allowbypassdatasuspicioncheck!".formatted(player.getName() + "(" + player.getUniqueId().toString() + ")"));
+            return;
         }
 
         Main.getSettings().setAllowBypassDataSuspicionCheck(value);
         player.sendMessage("done");
+    }
+
+    @Subcommand("liststoreitems")
+    public void listStoreItems(Player player) {
+        StoreManager.getITEMS_INCLUDING_UNAVAILABLE().forEach(item -> {
+            player.sendMessage(item.getName());
+        });
     }
 }

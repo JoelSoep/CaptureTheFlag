@@ -23,9 +23,10 @@ public class PlayerVoteSettingListener implements Listener {
         }
 
         String message = switch (event.getSetting()) {
-            case MAX_HEALTH -> "<yellow>%s <gray>has voted for <red><b>%s Hearts</b><gray>!".formatted(player.getPlayer().getName(), (int) value / 2);
+            case MAX_HEALTH -> "<yellow>%s <gray>has voted for <red><b>%s Hearts</b><gray>!".formatted(player.getPlayer().getName(), (int) value);
             case MAP -> "<yellow>%s <gray>has voted for map <blue>%s<gray>!".formatted(player.getPlayer().getName(), MapManager.getGameMap((GameMap) value).getName());
             case CAPTURE_AMOUNT -> "<yellow>%s <gray>has voted for <light_purple>%s Captures<gray>!".formatted(player.getPlayer().getName(), (int) value);
+            case TIME -> "<yellow>%s <gray>has voted for <yellow>%s minutes<gray>!".formatted(player.getPlayer().getName(), (Long) value);
         };
 
         audience.sendMessage(MM.deserialize(message));

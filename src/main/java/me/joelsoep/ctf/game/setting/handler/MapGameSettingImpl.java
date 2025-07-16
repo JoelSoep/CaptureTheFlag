@@ -13,6 +13,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 public class MapGameSettingImpl implements GameSettingImpl<GameStartEvent>, Listener {
+
     @Override
     public GameSetting getSetting() {
         return GameSetting.MAP;

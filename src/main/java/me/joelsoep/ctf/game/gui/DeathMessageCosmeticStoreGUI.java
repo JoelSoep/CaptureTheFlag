@@ -73,8 +73,8 @@ public class DeathMessageCosmeticStoreGUI extends ChestGui {
             GuiItem guiItem = new GuiItem(itemStack, (action -> {
 
                 if (action.isLeftClick()) {
-                    StoreManager.purchase((StoreCosmeticItem) item, player);
-                    player.getPlayer().getOpenInventory().close();
+                    new StoreCosmeticItemVerificationGui(player, (StoreCosmeticItem) item);
+                    return;
                 }
 
                if (action.isRightClick()) {

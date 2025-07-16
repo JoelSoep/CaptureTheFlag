@@ -2,12 +2,10 @@ package me.joelsoep.ctf.map.type.game;
 
 import me.joelsoep.ctf.file.FileManager;
 import me.joelsoep.ctf.game.Game;
-import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.map.type.GameMap;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.FAWE;
-import me.joelsoep.ctf.util.MM;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -15,17 +13,15 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceInvadersMap extends GameMap {
+public class CelestialMap extends GameMap {
 
-    public SpaceInvadersMap() {
-        super("space_invaders", new File(FileManager.getSchematicFolderPath() + "space_invaders.schem"));
+    public CelestialMap() {
+        super("celestial", new File(FileManager.getSchematicFolderPath() + "space_invaders.schem"));
     }
 
     @Override

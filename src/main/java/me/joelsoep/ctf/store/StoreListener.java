@@ -12,6 +12,7 @@ import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
+import me.joelsoep.ctf.util.SoundUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -73,6 +74,7 @@ public class StoreListener implements Listener {
             player.getData().getOwnedCosmetics().add(cosmetic);
         }
         player.sendMessage(MM.deserialize("<green>Completed transaction."));
+        player.playSound(SoundUtils.getRewardSound());
         announceDebug(player, transaction);
     }
 

@@ -10,6 +10,7 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.task.CountdownTask;
 import me.joelsoep.ctf.logger.LogModule;
+import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -26,7 +27,6 @@ public class AdminPanelGUI extends ChestGui implements Listener {
 
     private final Player player;
     private Game game;
-    private PatternPane background;
     private StaticPane forceStart;
     private StaticPane serverRestart;
 
@@ -37,14 +37,12 @@ public class AdminPanelGUI extends ChestGui implements Listener {
 
         this.serverRestart = new StaticPane(1, 1, 1, 1);
         this.forceStart = new StaticPane(4, 1, 1, 1);
-        this.background = new PatternPane(0, 0, 9, 3, new Pattern(
+        GuiUtils.setBackground(this, new Pattern(
                 "111111111",
                 "101101111",
                 "111111111"
-        ));
+        ), 3);
 
-        this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
-        this.addPane(background);
         this.addPane(serverRestart);
         this.addPane(forceStart);
         this.openMenu();

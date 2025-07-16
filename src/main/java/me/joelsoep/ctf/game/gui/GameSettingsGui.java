@@ -4,26 +4,21 @@ import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
-import com.github.stefvanschie.inventoryframework.pane.StaticPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.TooltipDisplay;
 import me.joelsoep.ctf.game.GameState;
-import me.joelsoep.ctf.game.setting.GameSetting;
-import me.joelsoep.ctf.game.setting.GameSettingsManager;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.ItemBuilder;
 import me.joelsoep.ctf.util.MM;
-import me.joelsoep.ctf.util.test.CC;
-import net.kyori.adventure.text.Component;
+import me.joelsoep.ctf.util.CC;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -49,6 +44,7 @@ public class GameSettingsGui extends ChestGui {
         this.pane.addItem(getHealthSettings());
         this.pane.addItem(getMapItem());
         this.pane.addItem(getCaptureAmountItem());
+        this.pane.addItem(getTimeSettingsItem());
         this.addPane(pane);
         this.show(player.getPlayer());
     }
@@ -83,7 +79,7 @@ public class GameSettingsGui extends ChestGui {
 
             if (!player.isPlus()) {
                 player.getPlayer().getInventory().close();
-                player.sendMessage(MM.deserialize("<red>You need %sPLUS <red>to vote for health settings!".formatted(CC.PLUS)));
+                player.sendMessage(MM.deserialize("<red>You need %s<b>PLUS</b> <red>to vote for health settings!".formatted(CC.PLUS)));
                 player.sendMessage(MM.getStoreMessage());
                 return;
             }
@@ -121,7 +117,7 @@ public class GameSettingsGui extends ChestGui {
 
             if (!player.isPlus()) {
                 player.getPlayer().getInventory().close();
-                player.sendMessage(MM.deserialize("<red>You need %sPLUS <red>to vote for map settings!".formatted(CC.PLUS)));
+                player.sendMessage(MM.deserialize("<red>You need %s<b>PLUS</b> <red>to vote for map settings!".formatted(CC.PLUS)));
                 player.sendMessage(MM.getStoreMessage());
                 return;
             }
@@ -159,7 +155,7 @@ public class GameSettingsGui extends ChestGui {
 
             if (!player.isPlus()) {
                 player.getPlayer().getInventory().close();
-                player.sendMessage(MM.deserialize("<red>You need %sPLUS <red>to vote for Capture Amount settings!".formatted(CC.PLUS)));
+                player.sendMessage(MM.deserialize("<red>You need %s<b>PLUS</b> <red>to vote for Capture Amount settings!".formatted(CC.PLUS)));
                 player.sendMessage(MM.getStoreMessage());
                 return;
             }
@@ -172,6 +168,44 @@ public class GameSettingsGui extends ChestGui {
 
             this.update();
             new CaptureAmountSettingsGui(player);
+        });
+        return guiItem;
+    }
+
+    public GuiItem getTimeSettingsItem() {
+        ItemStack itemStack = new ItemBuilder(Material.CLOCK).build();
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.displayName(MM.deserialize("<yellow>Time Settings"));
+        if (player.isPlus()) {
+            meta.lore(List.of(
+                    MM.deserialize("<gray>Change the game time.")
+            ));
+        } else {
+            meta.lore(List.of(
+                    MM.deserialize("<red>Buy %s<b>PLUS</b> <red>in order to vote for Time Settings!".formatted(CC.PLUS))
+            ));
+        }
+        itemStack.setItemMeta(meta);
+        GuiItem guiItem = new GuiItem(itemStack, action -> {
+            if (!action.isLeftClick()) {
+                return;
+            }
+
+            if (!player.isPlus()) {
+                player.getPlayer().getInventory().close();
+                player.sendMessage(MM.deserialize("<red>You need %s<b>PLUS</b> <red>to vote for Time settings!".formatted(CC.PLUS)));
+                player.sendMessage(MM.getStoreMessage());
+                return;
+            }
+
+            if (player.getGame().getState() != GameState.WAITING) {
+                player.getPlayer().getInventory().close();
+                player.sendMessage(MM.deserialize("<red>The game has already started."));
+                return;
+            }
+
+            this.update();
+            new TimeSettingsGui(player);
         });
         return guiItem;
     }

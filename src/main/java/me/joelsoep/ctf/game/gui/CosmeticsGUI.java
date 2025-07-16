@@ -6,6 +6,7 @@ import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import com.github.stefvanschie.inventoryframework.pane.PatternPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
+import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.ItemBuilder;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Material;
@@ -18,7 +19,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CosmeticsGUI extends ChestGui {
     private final Player player;
-    private PatternPane background;
     private OutlinePane cosmetics;
     private List<GuiItem> items;
 
@@ -26,7 +26,12 @@ public class CosmeticsGUI extends ChestGui {
         super(3, "Cosmetics");
 
         this.player = player;
-        setBackground();
+        GuiUtils.setBackground(this,new Pattern(
+                "111111111",
+                "110000011",
+                "111111111"
+        ), 3);
+
         addToList();
         setCosmetics();
         this.show(player);
@@ -75,16 +80,5 @@ public class CosmeticsGUI extends ChestGui {
         return new GuiItem(new ItemBuilder(Material.BARRIER)
                 .setName("<red>Coming soon")
                 .build());
-    }
-
-    private void setBackground() {
-        this.background = new PatternPane(0, 0, 9, 3, Pane.Priority.LOWEST, new Pattern(
-                "111111111",
-                "110000011",
-                "111111111"
-        ));
-        this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
-        this.setOnGlobalClick(event -> event.setCancelled(true));
-        this.addPane(background);
     }
 }

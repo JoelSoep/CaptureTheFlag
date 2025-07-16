@@ -38,7 +38,7 @@ public abstract class DeathMessageCosmetic extends Cosmetic {
      * @param rarity The {@link CosmeticRarity } of the item
      */
 
-    protected DeathMessageCosmetic(String name, CosmeticRarity rarity) {
+    public DeathMessageCosmetic(String name, CosmeticRarity rarity) {
         super(name, CosmeticType.DEATH_MESSAGE);
         this.setRarity(rarity);
         this.deathMessage = getMessage();

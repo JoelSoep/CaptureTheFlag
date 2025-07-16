@@ -63,7 +63,7 @@ public class GameStartListener implements Listener {
                 player.getPlayer().playerListName(
                         MM.deserialize(
                                 red.getTeamColor().getPrefix())
-                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName() + " ✪" + player.getLevel()))
+                                .append(MM.deserialize(" <gray>" + player.getPlayer().getName() + " ⭐" + player.getLevel()))
                 );
             });
 
@@ -93,7 +93,7 @@ public class GameStartListener implements Listener {
             player.getPlayer().closeInventory();
             player.heal();
             if (player.getKit() == null) {
-                player.setKit(Main.getKitService().getAllKits().get(0));
+                player.setKit(Main.getKitService().getAllKits().getFirst());
             }
 
             Main.getKitService().giveKitToPlayer(player.getPlayer(), player.getKit().getName());

@@ -6,7 +6,7 @@ import me.joelsoep.ctf.map.MapManager;
 public enum GameSetting {
     MAX_HEALTH {
         public Object getDefault() {
-            return 20;
+            return 10;
         }
     },
 
@@ -20,9 +20,13 @@ public enum GameSetting {
         public Object getDefault() {
             return 3;
         }
-    };
+    },
 
-    // GAME_TIME
+    TIME {
+      public Object getDefault() {
+          return 10L;
+      }
+    };
 
     public abstract Object getDefault();
 }

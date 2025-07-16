@@ -52,7 +52,6 @@ public class StoreItem {
         this.discountCoefficient = discountCoefficient;
         this.available = available;
         this.expiryDate = expiryDate;
-        setNotExpire();
 
         this.displayName = name.split("\\.")[1];
         this.display = Material.LIME_DYE;
@@ -64,6 +63,10 @@ public class StoreItem {
 
     public void setNotExpire() {
         this.expiryDate = Date.from(Instant.parse("9999-12-31T23:59:59.999Z"));
+    }
+
+    public void setExpire() {
+        this.expiryDate = Date.from(Instant.EPOCH);
     }
 
     public boolean isExpiring() {

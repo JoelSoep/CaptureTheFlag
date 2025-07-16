@@ -9,6 +9,7 @@ import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -22,19 +23,17 @@ import java.util.List;
 public class RestartConfirmGUI extends ChestGui {
     private final Player player;
     private final StaticPane confirmButtonPane = new StaticPane(4, 1, 1, 1);
-    private final PatternPane background = new PatternPane(0, 0, 9, 3, Pane.Priority.LOW, new Pattern(
-       "111111111",
-       "111101111",
-       "111111111"
-    ));
 
     public RestartConfirmGUI(Player player) {
         super(3, "Restart server?");
         this.player = player;
-        this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
+        GuiUtils.setBackground(this, new Pattern(
+                "111111111",
+                "111101111",
+                "111111111"
+        ), 3);
         confirmButtonPane.addItem(getConfirmItem(), 0, 0);
         this.setOnGlobalClick(event -> { event.setCancelled(true); });
-        this.addPane(background);
         this.addPane(confirmButtonPane);
         this.show(player);
     }

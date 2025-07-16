@@ -26,7 +26,7 @@ public class MaxHealthGameSettingImpl implements GameSettingImpl<GameStartEvent>
         Game game = event.getGame();
 
         GameSettingsManager manager = game.getGameSettings();
-        int maxHealth = (int) manager.getSetting(getSetting());
+        int maxHealth = (int) manager.getSetting(getSetting()) * 2;
 
         this.setMaxHealth(game, maxHealth);
     }
@@ -34,7 +34,7 @@ public class MaxHealthGameSettingImpl implements GameSettingImpl<GameStartEvent>
     @EventHandler(priority = EventPriority.LOW)
     public void reset(GameEndEvent event) {
         Game game = event.getGame();
-        int std = (int) this.getSetting().getDefault();
+        int std = (int) this.getSetting().getDefault() * 2;
         this.setMaxHealth(game, std);
     }
 

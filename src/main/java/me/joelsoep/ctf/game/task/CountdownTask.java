@@ -4,6 +4,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameStartEvent;
+import me.joelsoep.ctf.game.setting.GameSetting;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
@@ -63,7 +64,7 @@ public class CountdownTask {
                     LogModule.GAME.log("SECONDS = 0 @ Countdowntask");
                     if (isGameStartCountdown && game.getState() == GameState.READY) {
                         game.setStartTime(System.currentTimeMillis());
-                        game.setGameTime(System.currentTimeMillis() + (10L * 60L * 1000L));
+                        game.setGameTime(System.currentTimeMillis() + ((Long) game.getGameSettings().getSetting(GameSetting.TIME) * 60L * 1000L));
                         game.setState(GameState.RUNNING);
                         new GameTimerTask(game);
                         LogModule.GAME.log("Updated game state to RUNNING");

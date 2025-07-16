@@ -73,4 +73,14 @@ public class SoundUtils {
                 .seed(7)
                 .build();
     }
+
+    public static Sound getRewardSound() {
+        return Sound.sound()
+                .type(Key.key("entity.player.levelup"))
+                .volume(10)
+                .source(Sound.Source.MASTER)
+                .pitch(1F)
+                .seed(7)
+                .build();
+    }
 }

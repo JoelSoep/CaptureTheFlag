@@ -16,6 +16,7 @@ import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.effect.PlayerEffect;
+import me.joelsoep.ctf.store.StoreItem;
 import me.joelsoep.ctf.util.MM;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
@@ -103,8 +104,12 @@ public class CTFPlayer implements Audience {
         reset();
     }
 
+    public boolean canPurchase(@NotNull StoreItem item) {
+        return this.getBalance().getCoins() >= item.getPrice();
+    }
+
     public void heal() {
-        int hp = game == null ? 20 : (int) this.getGame().getGameSettings().getSetting(GameSetting.MAX_HEALTH);
+        int hp = game == null ? 20 : (int) this.getGame().getGameSettings().getSetting(GameSetting.MAX_HEALTH) * 2;
         player.setHealth(hp);
     }
 

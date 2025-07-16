@@ -3,6 +3,8 @@ package me.joelsoep.ctf.command;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.cosmetic.Cosmetic;
+import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.game.gui.PlusMenuGui;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
@@ -11,12 +13,15 @@ import me.joelsoep.ctf.server.packet.packets.AlertPacket;
 import me.joelsoep.ctf.server.packet.packets.ScheduleRestartPacket;
 import me.joelsoep.ctf.server.packet.packets.StoreReloadPacket;
 import me.joelsoep.ctf.server.socket.SocketSender;
+import me.joelsoep.ctf.store.StoreCosmeticItem;
+import me.joelsoep.ctf.store.StoreManager;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.Version;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -129,7 +134,7 @@ public final class CTFCommand extends BaseCommand {
         SocketSender.sendAll(packet, true);
     }
 
-    @CommandPermission("ctf.plus")
+    @CommandPermission("ctf.plus|ctf.admin")
     @Description("Opens the Plus Menu")
     @Subcommand("plusmenu")
     public void openPlusMenu(Player player) {
@@ -140,5 +145,37 @@ public final class CTFCommand extends BaseCommand {
 
         new PlusMenuGui(ctfPlayer);
     }
+
+    @CommandPermission("ctf.serveradmin")
+    @Description("Changes the availability of a cosmetic in the store.")
+    @Subcommand("set-cosmetic-availability")
+    public void setCosmeticAvailability(Player player, @Single String name, boolean value) {
+        @Nullable StoreCosmeticItem item = StoreManager.getCosmeticItem(name);
+        if (item == null) {
+            player.sendMessage(MM.deserialize("<red>Could not find item."));
+            return;
+        }
+
+        if (value) {
+            item.setNotExpire();
+        } else {
+            item.setExpire();
+        }
+
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                StoreManager.getCloud().pushItem(item).thenAccept(action -> {
+                    Bukkit.getScheduler().runTask(Main.getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            player.sendMessage(MM.deserialize(action ? "<green>Done!" : "<red>An error occurred."));
+                        }
+                    });
+                });
+            }
+        });
+    }
+
 
 }

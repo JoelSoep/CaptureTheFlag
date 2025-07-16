@@ -11,6 +11,7 @@ import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamService;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
+import me.joelsoep.ctf.util.GuiUtils;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -23,22 +24,20 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TeamSelectionGUI extends ChestGui {
-    private final PatternPane background;
     private final OutlinePane teamsPane;
 
     public TeamSelectionGUI(Player player) {
         super(3, "Team Selection");
 
-        this.background = new PatternPane(0, 0, 9, 3, Pane.Priority.LOWEST, new Pattern(
+
+        GuiUtils.setBackground(this, new Pattern(
                 "111111111",
                 "111010111",
                 "111111111"
-        ));
+        ), 3);
 
-        this.background.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
         this.teamsPane = new OutlinePane(3, 1, 9, 3, Pane.Priority.HIGHEST);
         this.setOnGlobalClick(event -> { event.setCancelled(true); });
-        this.addPane(background);
         this.addPane(teamsPane);
         this.loadTeams(player);
         this.show(player);

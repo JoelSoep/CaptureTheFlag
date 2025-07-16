@@ -69,8 +69,8 @@ public class CaptureAnimationCosmeticStoreGUI extends ChestGui {
             GuiItem guiItem = new GuiItem(itemStack, (action -> {
 
                 if (action.isLeftClick()) {
-                    StoreManager.purchase((StoreCosmeticItem) item, player);
-                    player.getPlayer().getOpenInventory().close();
+                    new StoreCosmeticItemVerificationGui(player, (StoreCosmeticItem) item);
+                    player.getPlayer().playSound(SoundUtils.getClickSound());
                 }
 
                 if (action.isRightClick()) {
