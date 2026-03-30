@@ -89,14 +89,14 @@ public class TimeSettingsGui extends ChestGui {
 
             if (!player.isPlus()) {
                 player.getPlayer().getInventory().close();
-                player.sendMessage(MM.deserialize("<red>You need %sPLUS <red>to vote for time settings!".formatted(CC.PLUS)));
+                player.sendMessage(MM.announce("<red>You need %sPLUS <red>to vote for time settings!".formatted(CC.PLUS)));
                 player.sendMessage(MM.getStoreMessage());
                 return;
             }
 
             if (player.getGame().getState() != GameState.WAITING) {
                 player.getPlayer().getInventory().close();
-                player.sendMessage(MM.deserialize("<red>The game has already started."));
+                player.sendMessage(MM.announce("<red>The game has already started."));
                 return;
             }
 

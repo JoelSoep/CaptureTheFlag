@@ -11,6 +11,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
+
 public class FlowerPower extends BaseSpecial<PlayerInteractEvent> {
     private static final int EFFECT_DURATION = 7 * 20;
     private static final int EFFECT_AMPLIFIER = 2;
@@ -25,6 +27,7 @@ public class FlowerPower extends BaseSpecial<PlayerInteractEvent> {
         ItemMeta meta = item.getItemMeta();
         meta.displayName(MM.deserialize("<aqua>Flower Power"));
         item.setItemMeta(meta);
+        item.lore(List.of(MM.deserialize("<aqua>Gain a speed boost by using this item!"), MM.deserialize(""), MM.deserialize("<gray>Duration: %ss.".formatted(EFFECT_DURATION / 20)), MM.deserialize("<gray>Right-click to use")));
         return item;
     }
 

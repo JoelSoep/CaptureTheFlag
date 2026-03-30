@@ -8,6 +8,7 @@ import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.database.MongoManager;
+import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.discord.DiscordWebhook;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
@@ -98,7 +99,6 @@ public class BackupPlayerDataTask {
                 Updates.set("player_kd", roundedNumber),
                 Updates.set("flag_captures", player.getData().getCaptures()),
                 Updates.set("experience", player.getData().getExperience()),
-                Updates.set("coins", player.getData().getCoins()), // maybe remove coins from auto backup
                 Updates.set("win_streak", player.getData().getWinStreak())
         );
 
@@ -178,6 +178,37 @@ public class BackupPlayerDataTask {
                 Filters.eq("_id", player.getUUID().toString()),
                 updates,
                 options
+        );
+    }
+
+    public void backupCoins(CTFPlayer player) {
+        Bson update = Updates.set("coins", player.getData().getCoins());
+        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions().upsert(true);
+        MongoManager.findOneAndUpdate(
+                MongoManager.getCollection("player"),
+                Filters.eq("_id", player.getUUID().toString()),
+                update,
+                options, new IFindOneSubscriber<Document>() {
+                    @Override
+                    public void onResult(Document result) {
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        throwable.printStackTrace();
+                        DiscordWebhook.sendMessage(new WebhookClient.Callback() {
+                            @Override
+                            public void onSuccess(String response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, String errorMessage) {
+                                LogModule.DATABASE.log("%s: an error occurred during coin backup webhook publishing: %s.".formatted(statusCode, errorMessage));
+                            }
+                        }, "An error occurred while updating coin amount for player %s (%s). Amount to be updated: %s".formatted(player.getPlayer().getName(), player.getUUID().toString(), player.getData().getCoins().toString()));
+                    }
+                }
         );
     }
 

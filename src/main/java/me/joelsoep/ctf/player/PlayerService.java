@@ -12,12 +12,9 @@ import java.util.UUID;
 @Getter
 public class PlayerService {
 
-    @Getter
-    private static final HashMap<String, CTFPlayer> players = new HashMap<>();
-    @Getter
-    private static final ArrayList<UUID> whitelist = new ArrayList<>();
-    @Getter
-    private static Audience audience = Audience.audience(players.values());
+    @Getter private static final HashMap<String, CTFPlayer> players = new HashMap<>();
+    @Getter private static final ArrayList<UUID> whitelist = new ArrayList<>();
+    @Getter private static Audience audience = Audience.audience(players.values());
 
     public static CTFPlayer createPlayer(Player player) {
         CTFPlayer ctfPlayer = new CTFPlayer(player);

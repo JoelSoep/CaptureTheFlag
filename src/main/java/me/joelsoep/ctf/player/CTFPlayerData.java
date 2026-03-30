@@ -159,6 +159,7 @@ public class CTFPlayerData {
                 return;
             }
             player.getCosmetics().setAppliedCosmetic(cosmeticType, cosmetic);
+            LogModule.DATABASE.log("Player %s has cosmetic %s enabled for type %s".formatted(player.getPlayer().getName(), cosmetic.getName(), cosmeticType.toString()));
         });
 
         }

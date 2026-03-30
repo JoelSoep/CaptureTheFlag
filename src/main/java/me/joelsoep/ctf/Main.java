@@ -1,12 +1,3 @@
-/**
- * © 2023-2025 Hendrik Joël Soepenberg. All rights reserved.
- * <p>
- * This software is proprietary and confidential.
- * Unauthorized copying, modification, or distribution of this software,
- * or any portion of it, is strictly prohibited and may result in legal action.
- * <p>
- * For licensing information and inquiries, please visit: https://www.soep.me
- */
 
 package me.joelsoep.ctf;
 
@@ -16,10 +7,7 @@ import fr.skytasul.glowingentities.GlowingEntities;
 import lombok.Getter;
 import lombok.Setter;
 import me.joelsoep.ctf.autoBroadcast.BroadcastService;
-import me.joelsoep.ctf.command.CTFCommand;
-import me.joelsoep.ctf.command.CoinsCommand;
-import me.joelsoep.ctf.command.DebugCommand;
-import me.joelsoep.ctf.command.SpectateCommand;
+import me.joelsoep.ctf.command.*;
 import me.joelsoep.ctf.cosmetic.CosmeticsManager;
 import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.discord.DiscordWebhook;
@@ -39,8 +27,6 @@ import me.joelsoep.ctf.server.ServerMode;
 import me.joelsoep.ctf.store.StoreManager;
 import me.joelsoep.ctf.util.MM;
 import org.bukkit.Bukkit;
-import org.bukkit.Registry;
-import org.bukkit.block.BlockType;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
@@ -135,6 +121,7 @@ public final class Main extends JavaPlugin {
         manager.registerCommand(new SpectateCommand());
         manager.registerCommand(new CTFCommand());
         manager.registerCommand(new CoinsCommand());
+        manager.registerCommand(new CosmeticAdminCommand());
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, new CleanExpiredUltraShieldsTask(), 0L, 5L);
         Bukkit.getScheduler().runTaskAsynchronously(this, new ResumePendingTransactionsTask());
@@ -144,6 +131,8 @@ public final class Main extends JavaPlugin {
             // this should never be null
             getGameServer().hello();
         }
+
+        LogModule.CORE.log("Finished booting Capture the Flag!");
     }
 
     @Override

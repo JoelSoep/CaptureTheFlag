@@ -14,6 +14,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class TNT extends BaseSpecial<PlayerInteractEvent> {
     private static final double TNT_VELOCITY_MULTIPLIER = 1.25;
     private static final int TNT_FUSE_TICKS = 55;
@@ -28,6 +30,7 @@ public class TNT extends BaseSpecial<PlayerInteractEvent> {
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.displayName(MM.deserialize("<red>Super TNT"));
         itemStack.setItemMeta(itemMeta);
+        itemStack.lore(List.of(MM.deserialize("<red>Shoot a TNT!"), MM.deserialize(""), MM.deserialize("<gray>Right-click to use")));
         return itemStack;
     }
 

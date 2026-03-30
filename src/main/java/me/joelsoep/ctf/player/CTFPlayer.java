@@ -12,6 +12,7 @@ import me.joelsoep.ctf.game.board.ActionbarHandler;
 import me.joelsoep.ctf.game.board.ScoreboardHandler;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.setting.GameSetting;
+import me.joelsoep.ctf.game.task.BackupPlayerDataTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.logger.LogModule;
@@ -203,6 +204,7 @@ public class CTFPlayer implements Audience {
         public void giveCoins(int amount) {
             boolean success = EconomyManager.increment(player, amount);
             if (success) {
+                Main.getBackupTask().backupCoins(player);
                 player.sendMessage(MM.deserialize("<gray>You've received <gold>%s <gray>coins!".formatted(amount)));
             } else {
                 player.sendMessage(MM.deserialize("<red>A transaction for <gold>%s <red>coins failed. Please contact an administrator."));
@@ -212,6 +214,7 @@ public class CTFPlayer implements Audience {
         public void takeCoins(int amount) {
             boolean success = EconomyManager.subtract(player, amount);
             if (success) {
+                Main.getBackupTask().backupCoins(player);
                 player.sendMessage(MM.deserialize("<gold>%s <gray>coins were taken from your account.".formatted(amount)));
             } else {
                 player.sendMessage(MM.deserialize("<red>You do not have enough coins to complete this transaction!"));

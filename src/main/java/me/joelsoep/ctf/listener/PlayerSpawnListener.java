@@ -1,5 +1,6 @@
 package me.joelsoep.ctf.listener;
 
+import io.papermc.paper.event.player.AsyncPlayerSpawnLocationEvent;
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
@@ -11,16 +12,14 @@ import me.joelsoep.ctf.util.MM;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
 public class PlayerSpawnListener implements Listener {
 
     @EventHandler
-    public void onSpawn(PlayerSpawnLocationEvent event) {
+    public void onSpawn(AsyncPlayerSpawnLocationEvent event) {
         Game game = Main.getGame();
-        Player player = event.getPlayer();
         if (MapManager.getLobby().getSpawnLocation() == null) {
-            player.kick(MM.deserialize("""
+            event.getConnection().disconnect(MM.deserialize("""
                     <red>We are preparing Capture the Flag.
                     <red>Please try again later.
                     """));

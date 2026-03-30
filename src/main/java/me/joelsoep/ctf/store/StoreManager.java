@@ -14,7 +14,6 @@ import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
 import me.joelsoep.ctf.economy.TransactionManager;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
-import me.joelsoep.ctf.store.items.cosmetic.deathMessage.TookLItem;
 import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -101,11 +100,11 @@ public class StoreManager {
             return;
         }
 
-        player.sendMessage(MM.deserialize("<gray>Initializing purchase..."));
+        player.sendMessage(MM.announce("<gray>Initializing purchase..."));
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
-                TransactionManager.createTransaction(player.getUUID(), item, "STORE_PURCHASE_GENERIC");
+                TransactionManager.createTransaction(player.getUUID(), item, "STORE_PURCHASE_GENERIC", false);
             }
         });
     }

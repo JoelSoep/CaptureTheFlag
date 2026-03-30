@@ -25,15 +25,21 @@ import java.util.Set;
 
 public class GameSettingsGui extends ChestGui {
     private final CTFPlayer player;
-    private OutlinePane pane;
+    private OutlinePane healthPane;
+    private OutlinePane mapPane;
+    private OutlinePane capturePane;
+    private OutlinePane timePane;
 
     public GameSettingsGui(CTFPlayer player) {
         super(3, "Game Settings");
         this.player = player;
-        this.pane = new OutlinePane(2, 1, 5, 1, Pane.Priority.HIGHEST);
+        this.healthPane = new OutlinePane(1, 1, 1, 1, Pane.Priority.HIGHEST);
+        this.mapPane = new OutlinePane(3, 1, 1, 1, Pane.Priority.HIGHEST);
+        this.capturePane = new OutlinePane(5, 1, 1, 1, Pane.Priority.HIGHEST);
+        this.timePane = new OutlinePane(7, 1, 1, 1, Pane.Priority.HIGHEST);
         GuiUtils.setBackground(this, new Pattern(
                 "111111111",
-                "110000011",
+                "101010101", // maybe in case of 4 we do 101010101
                 "111111111"
         ), 3);
 
@@ -41,11 +47,14 @@ public class GameSettingsGui extends ChestGui {
             player.sendMessage("<red>You are not in a game right now!");
             return;
         }
-        this.pane.addItem(getHealthSettings());
-        this.pane.addItem(getMapItem());
-        this.pane.addItem(getCaptureAmountItem());
-        this.pane.addItem(getTimeSettingsItem());
-        this.addPane(pane);
+        this.healthPane.addItem(getHealthSettings());
+        this.mapPane.addItem(getMapItem());
+        this.capturePane.addItem(getCaptureAmountItem());
+        this.timePane.addItem(getTimeSettingsItem());
+        this.addPane(healthPane);
+        this.addPane(mapPane);
+        this.addPane(capturePane);
+        this.addPane(timePane);
         this.show(player.getPlayer());
     }
 
@@ -135,7 +144,7 @@ public class GameSettingsGui extends ChestGui {
     }
 
     public GuiItem getCaptureAmountItem() {
-        ItemStack itemStack = new ItemStack(Material.LIGHT_GRAY_BANNER);
+        ItemStack itemStack = new ItemStack(Material.RED_BANNER);
         ItemMeta meta = itemStack.getItemMeta();
         meta.displayName(MM.deserialize("<light_purple>Capture Amount Settings"));
         if (player.isPlus()) {

@@ -4,6 +4,7 @@ import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import me.joelsoep.ctf.InstanceSettings;
 import me.joelsoep.ctf.Main;
+import me.joelsoep.ctf.file.LocalConfig;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
@@ -30,6 +31,10 @@ public class ChatListener implements Listener {
         if (Main.getSettings().isMuted() && !player.hasPermission("ctf.admin")) {
             player.sendMessage(MM.deserialize("<red>This server is currently muted."));
             event.setCancelled(true);
+            return;
+        }
+
+        if (!LocalConfig.OVERRIDE_MCMANHUNT_CHAT_HANDLER) {
             return;
         }
 

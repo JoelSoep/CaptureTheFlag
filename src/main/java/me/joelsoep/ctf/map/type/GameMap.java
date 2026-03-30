@@ -9,6 +9,7 @@ import me.joelsoep.ctf.game.team.TeamColor;
 import me.joelsoep.ctf.game.team.TeamService;
 import me.joelsoep.ctf.map.Map;
 import me.joelsoep.ctf.player.CTFPlayer;
+import me.joelsoep.ctf.util.BlockUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -18,7 +19,11 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Rotatable;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -120,7 +125,8 @@ public abstract class GameMap extends Map {
 
     public void placeFlag(Team team) {
         Material material = team.getFlag().getMaterial();
-        Location flagLocation;
+        ItemDisplay display = null;
+        Location flagLocation = null;
         BlockFace blockFace = null;
         Block block = null;
 
@@ -140,12 +146,23 @@ public abstract class GameMap extends Map {
             return;
         }
 
+
         block.setType(material);
         BlockData blockData = block.getBlockData();
         if (blockData instanceof Rotatable rotatable) {
             rotatable.setRotation(blockFace);
             block.setBlockData(rotatable);
         }
+
+        BlockFace finalBlockFace = blockFace;
+        display = flagLocation.getWorld().spawn(flagLocation.getBlock().getLocation().clone().toCenterLocation(), ItemDisplay.class, entity -> {
+            ItemStack item = new ItemStack(material);
+            entity.setItemStack(item);
+            entity.setPersistent(true);
+            entity.setGlowing(true);
+            entity.getLocation().setYaw(BlockUtils.blockFaceToYaw(finalBlockFace));
+        });
+        team.getFlag().setDisplay(display);
     }
 
     public void removeFlag(Team team) {
@@ -163,6 +180,11 @@ public abstract class GameMap extends Map {
             return;
         }
 
+        if (team.getFlag().getDisplay() != null) {
+            team.getFlag().getDisplay().setGlowing(false);
+            team.getFlag().getDisplay().remove();
+            team.getFlag().setDisplay(null);
+        }
         Block block = flagLocation.getBlock();
         block.setType(Material.AIR);
     }

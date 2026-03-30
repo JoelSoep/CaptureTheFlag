@@ -7,6 +7,8 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.ItemDisplay;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class Team {
         this.teamColor = teamColor;
         this.spawn = spawn;
         this.flag.location = flagLocation;
+        this.flag.display = null;
         this.audience = Audience.audience(players);
     }
 
@@ -34,6 +37,7 @@ public class Team {
     public static class Flag {
         private Location location;
         private Material material;
+        private @Nullable ItemDisplay display;
         private @Nullable CTFPlayer thief;
     }
 

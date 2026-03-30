@@ -80,17 +80,16 @@ public class PlayerDeathListener implements Listener {
             new DeathCountdownTask(ctfPlayer, 5);
 
             if (oppositeTeam.getFlag().getThief() != null) {
-                if (!(oppositeTeam.getFlag().getThief().equals(ctfPlayer))) {
-                    return;
-                }
-                FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, ctfPlayer);
-                Bukkit.getPluginManager().callEvent(returnEvent);
+                if (oppositeTeam.getFlag().getThief().equals(ctfPlayer)) {
+                    FlagReturnEvent returnEvent = new FlagReturnEvent(game, oppositeTeam, ctfPlayer);
+                    Bukkit.getPluginManager().callEvent(returnEvent);
 
-                game.getAudience().sendMessage(
-                        MM.deserialize(
-                                "<gray>Team %s<gray>'s flag has been returned."
-                                        .formatted(team.getTeamColor().getPrefix()))
-                );
+                    game.getAudience().sendMessage(
+                            MM.deserialize(
+                                    "<gray>Team %s<gray>'s flag has been returned."
+                                            .formatted(team.getTeamColor().getPrefix()))
+                    );
+                }
             }
             if (killer != null) {
                 CTFPlayer ctfKiller = PlayerService.getPlayers().get(killer.getName());
@@ -116,6 +115,9 @@ public class PlayerDeathListener implements Listener {
                     killer.setHealth(killer.getHealth() + 7);
                 }
 
+                new KillStreakHandler(ctfKiller);
+                game.getXPCollector().write(ctfKiller, 15);
+
                 Cosmetic cosmetic = ctfKiller.getCosmetics().getAppliedCosmetic(CosmeticType.DEATH_MESSAGE);
                 if (cosmetic == null) {
                     game.getAudience().sendMessage(MM.deserialize("""
@@ -123,9 +125,6 @@ public class PlayerDeathListener implements Listener {
                             .formatted(team.getTeamColor().getColor() + player.getName(), ctfKiller.getTeam().getTeamColor().getColor() + killer.getName())));
                     return;
                 }
-
-                new KillStreakHandler(ctfKiller);
-                game.getXPCollector().write(ctfKiller, 15);
             } else {
                 game.getAudience().sendMessage(MM.deserialize("""
                         <gray>%s <gray>died.""".formatted(team.getTeamColor().getColor() + player.getName())));
@@ -143,7 +142,6 @@ public class PlayerDeathListener implements Listener {
             if (item == null) {
                 continue;
             }
-            LogModule.CORE.log("yep " + i);
             item.setType(Material.AIR);
         }
     }

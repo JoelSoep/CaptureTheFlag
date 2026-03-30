@@ -9,6 +9,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
+
 public class Leap extends BaseSpecial<PlayerInteractEvent> {
     private static final double VELOCITY_MULTIPLIER = 1.75;
 
@@ -20,8 +22,9 @@ public class Leap extends BaseSpecial<PlayerInteractEvent> {
     public ItemStack getItemStack() {
         ItemStack item = new ItemStack(Material.RABBIT_FOOT);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(MM.deserialize("<yellow>Leap of Faith"));
+        meta.displayName(MM.deserialize("<gold>Leap of Faith"));
         item.setItemMeta(meta);
+        item.lore(List.of(MM.deserialize("<gold>Launch yourself forward!"), MM.deserialize(""), MM.deserialize("<gray>Right-click to use")));
         return item;
     }
 

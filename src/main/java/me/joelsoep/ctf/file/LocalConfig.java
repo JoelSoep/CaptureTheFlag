@@ -13,6 +13,8 @@ public class LocalConfig {
 
     public static boolean FORCE_GAME_MODE = CONFIG.getBoolean("force_game_mode");
 
+    public static boolean OVERRIDE_MCMANHUNT_CHAT_HANDLER = CONFIG.getBoolean("override-mcmanhunt-chat-handler");
+
     public static String MONGO_CONNECTION_STRING = CONFIG.getString("mongodb-uri");
 
     public static String MODE = CONFIG.getString("mode");

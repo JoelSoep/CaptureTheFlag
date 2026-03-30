@@ -37,6 +37,7 @@ public class Game {
     private Integer playerCount = 0; // manual playerCount as it is handy in case you want to manipulate it manually
     private Integer maxPoints = 3;
     private Integer minKillStreak = 1;
+    private Integer specialsGrantedOnKill = 1;
     private Long gameTime = 10L * 60L * 1000L;
     private Long startTime;
     private Team red;

@@ -19,6 +19,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implements Reflective<EntityDamageByEntityEvent> {
     private static final int FIREWORK_POWER = 2;
     public FireworkRider() {
@@ -28,7 +30,10 @@ public class FireworkRider extends BaseSpecial<EntityDamageByEntityEvent> implem
     @Override
     public ItemStack getItemStack() {
         return new ItemBuilder(Material.FIREWORK_STAR)
-                .setName(MM.deserialize("<red>Fermented Firework"))
+                .setName(MM.deserialize("<red>Bottle Rocket"))
+                .setLore(List.of(
+                        MM.deserialize("<gray>Launch someone into the air by hitting them with this item!")
+                ))
                 .addItemFlag(ItemFlag.HIDE_DYE, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ATTRIBUTES)
                 .build();
     }

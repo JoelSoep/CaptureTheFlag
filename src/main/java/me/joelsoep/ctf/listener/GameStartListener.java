@@ -6,12 +6,14 @@ import me.joelsoep.ctf.game.Game;
 import me.joelsoep.ctf.game.GameState;
 import me.joelsoep.ctf.game.event.GameStartEvent;
 import me.joelsoep.ctf.game.task.CountdownTask;
+import me.joelsoep.ctf.game.task.RemoveItemDisplayFlagsTask;
 import me.joelsoep.ctf.game.team.Team;
 import me.joelsoep.ctf.game.team.TeamService;
 import me.joelsoep.ctf.logger.LogModule;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
 import org.bson.Document;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -101,11 +103,12 @@ public class GameStartListener implements Listener {
 
         game.getGameSettings().announceDecisions(game.getAudience());
         new CountdownTask(
-                MM.deserialize("<#63f02b>Fight!"),
+                MM.announce("<#63f02b>Fight!"),
                 game.getAudience(),
                 7,
                 true,
                 game
         );
+        Bukkit.getScheduler().runTask(Main.getInstance(), new RemoveItemDisplayFlagsTask(game.getMap()));
     }
 }

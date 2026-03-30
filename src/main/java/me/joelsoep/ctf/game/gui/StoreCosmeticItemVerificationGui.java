@@ -2,6 +2,7 @@ package me.joelsoep.ctf.game.gui;
 
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
+import com.github.stefvanschie.inventoryframework.pane.OutlinePane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
@@ -22,28 +23,29 @@ public class StoreCosmeticItemVerificationGui extends ChestGui {
     private final CTFPlayer player;
     private final StoreCosmeticItem item;
 
-    private StaticPane confirm;
-    private StaticPane cancel;
+    private final OutlinePane confirm;
+    private final OutlinePane cancel;
 
     public StoreCosmeticItemVerificationGui(CTFPlayer player, StoreCosmeticItem item) {
-        super(3, "Purchase " + StringUtils.capitalize(item.getName().split("\\.")[1]));
+        super(3, "Purchase " + StringUtils.capitalize(item.getName().split("\\.")[1]) + "?");
         this.player = player;
         this.item = item;
 
         GuiUtils.cancelGlobalClick(this);
         GuiUtils.cancelGlobalDrag(this);
         GuiUtils.setBackground(this, new Pattern(
-                "111111111",
-                "111010111",
-                "111111111"
+                "000111222",
+                "000111222",
+                "000111222"
         ), 3);
 
-        this.confirm = new StaticPane(3, 1, 1, 1, Pane.Priority.HIGHEST);
-        this.cancel = new StaticPane(5, 1, 1, 1, Pane.Priority.HIGHEST);
+        this.confirm = new OutlinePane(0, 0, 3, 3, Pane.Priority.HIGHEST);
+        this.cancel = new OutlinePane(6, 0, 3, 3, Pane.Priority.HIGHEST);
 
-        this.confirm.addItem(getConfirmItem(), 0, 0);
-        this.cancel.addItem(getCancelItem(), 0, 0);
-
+        for (int i = 0; i < 9; i++) {
+            this.confirm.addItem(getConfirmItem());
+            this.cancel.addItem(getCancelItem());
+        }
         this.addPane(confirm);
         this.addPane(cancel);
         this.show(player.getPlayer());

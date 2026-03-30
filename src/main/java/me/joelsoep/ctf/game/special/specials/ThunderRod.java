@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
@@ -28,6 +29,7 @@ public class ThunderRod extends BaseSpecial<PlayerInteractEvent> {
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.displayName(MM.deserialize("<gold>Thunder Rod"));
         item.setItemMeta(itemMeta);
+        item.lore(List.of(MM.deserialize("<gold>Summon a lightning bolt wherever you're looking"), MM.deserialize(""), MM.deserialize("<gray>Right-click to use")));
         return item;
     }
 

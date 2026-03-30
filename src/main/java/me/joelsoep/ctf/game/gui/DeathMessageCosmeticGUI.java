@@ -24,6 +24,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeathMessageCosmeticGUI extends ChestGui {
@@ -75,22 +76,33 @@ public class DeathMessageCosmeticGUI extends ChestGui {
                 displayName = MM.deserialize(cosmetic.getName());
             }
 
-            List<Component> lines = List.of(
-                    MM.deserialize("<gray>Left-Click to equip"),
-                    MM.deserialize("<gray>Shift-Left-Click to preview"),
-                    MM.deserialize("<gray>Right-Click to change color")
-            );
+            List<Component> lines;
+            if (cosmetic.getLore() == null) {
+                lines = List.of(
+                        MM.deserialize("<gray>Left-Click to equip"),
+                        MM.deserialize("<gray>Shift-Left-Click to preview"),
+                        MM.deserialize("<gray>Right-Click to change color")
+                );
+            } else {
+                List<Component> list = new ArrayList<>(List.copyOf(cosmetic.getLore()));
+                list.add(MM.deserialize(""));
+                list.add(MM.deserialize("<gray>Left-Click to equip"));
+                list.add(MM.deserialize("<gray>Shift-Left-Click to preview"));
+                list.add(MM.deserialize("<gray>Right-Click to change color"));
+                lines = list;
+            }
 
             ItemStack itemStack = new ItemBuilder(logo)
                     .setName(color.append(displayName).append(MM.deserialize("  <#FFFFFF>" + cosmetic.getRarity().getDisplayName())))
-                    .setLore(lines)
+                        .setLore(lines)
                     .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ARMOR_TRIM, ItemFlag.HIDE_ENCHANTS)
                     .build();
 
             if (enabled) {
                 itemStack.addUnsafeEnchantment(Enchantment.UNBREAKING, 1);
+                itemStack.editMeta(meta -> meta.lore().add(MM.deserialize("")));
+                itemStack.editMeta(meta -> meta.lore().add(MM.deserialize("<green>You've applied this item!")));
             }
-
             final Component finalDisplayName = displayName;
             GuiItem item = new GuiItem(itemStack, event -> {
                 if (event.isLeftClick() && !event.isShiftClick()) {
@@ -126,7 +138,7 @@ public class DeathMessageCosmeticGUI extends ChestGui {
     private void handleShiftLeftClick(Cosmetic cosmetic) {
         String message = ((DeathMessageCosmetic) cosmetic).getDeathMessage();
         player.getOpenInventory().close();
-        player.sendMessage(MM.deserialize("<gray>Example message:"));
+        player.sendMessage(MM.announce("<gray>Example message:"));
         player.sendMessage(MM.deserialize(message.replace("%p", "JoelSoep").replace("%k", player.getName())));
         player.closeInventory();
     }

@@ -58,7 +58,7 @@ public class CaptureAmountSettingsGui extends ChestGui {
     public GuiItem getItem(int captures) {
         GameSettingsManager manager = player.getGame().getGameSettings();
 
-        ItemStack itemStack = new ItemStack(Material.LIGHT_GRAY_BANNER);
+        ItemStack itemStack = new ItemStack(Material.RED_BANNER);
         ItemMeta meta = itemStack.getItemMeta();
         meta.displayName(MM.deserialize("<light_purple>%s Captures".formatted(captures)));
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES);

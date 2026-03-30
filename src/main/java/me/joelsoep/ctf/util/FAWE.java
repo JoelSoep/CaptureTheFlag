@@ -27,8 +27,7 @@ public class FAWE {
     private static boolean failed = false;
 
     /**
-     *
-     * @param file The schematic to paste.
+     * @param file     The schematic to paste.
      * @param location The location where the schematic should be pasted.
      * @return A boolean which indicates whether the operation was successful.
      */

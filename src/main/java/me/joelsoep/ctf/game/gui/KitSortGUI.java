@@ -71,6 +71,7 @@ public class KitSortGUI extends ChestGui {
 
         ItemStack backgroundPanes = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta backgroundMeta = backgroundPanes.getItemMeta();
+        backgroundMeta.setHideTooltip(true);
         backgroundMeta.displayName(MM.deserialize(""));
         backgroundPanes.setItemMeta(backgroundMeta);
 
@@ -84,6 +85,7 @@ public class KitSortGUI extends ChestGui {
         this.background.bindItem('1', new GuiItem(backgroundPanes));
         this.addPane(background);
         this.addPane(itemPane);
+        this.setParent(new KitSelectionGUI(player, Main.getKitService()));
         openGUI();
     }
 

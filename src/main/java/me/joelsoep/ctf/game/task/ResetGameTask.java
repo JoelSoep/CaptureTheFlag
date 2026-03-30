@@ -72,7 +72,7 @@ public class ResetGameTask {
                     if (!Main.getGameQueue().getQueue().contains(player)) {
                         Main.getGameQueue().addPlayer(player, false);
                         if (game.getPlayers().size() >= game.getMap().getMaxPlayers()) {
-                            player.sendMessage(MM.deserialize("""
+                            player.sendMessage(MM.announce("""
                                     <gray>Couldn't add you to the game as it is full!
                                     """));
                             return;
@@ -83,6 +83,10 @@ public class ResetGameTask {
                 PlayerService.getPlayers().values().forEach(player -> {
                     new Hotbar(player.getPlayer());
                 });
+
+                if (Main.getSettings().isRestartAfterGame()) {
+                    Main.getInstance().getServer().restart();
+                }
             }
         }, 400L);
     }

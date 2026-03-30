@@ -2,6 +2,7 @@ package me.joelsoep.ctf.listener;
 
 import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.game.event.PlayerRewardSpecialEvent;
+import me.joelsoep.ctf.game.setting.GameSetting;
 import me.joelsoep.ctf.game.special.BaseSpecial;
 import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.util.MM;
@@ -16,23 +17,27 @@ public class PlayerRewardSpecialListener implements Listener {
     @EventHandler
     public void onReward(PlayerRewardSpecialEvent event) {
         CTFPlayer player = event.getPlayer();
-        BaseSpecial<?> special = Main.getSpecialService().getRandomSpecial();
-        ItemStack itemStack = special.getItem();
+        int amount = player.getGame().getSpecialsGrantedOnKill();
+        while (amount > 0) {
+            BaseSpecial<?> special = Main.getSpecialService().getRandomSpecial();
+            ItemStack itemStack = special.getItem();
 
-        if (itemStack == null) {
-            player.sendMessage(MM.deserialize("""
-        <red>An error occurred while trying to give you your special.
-        <red>Please report the following error to an administrator: BASESPECIAL_LISTENER_STACK_IS_NULL
-        """));
-            return;
+            if (itemStack == null) {
+                player.sendMessage(MM.deserialize("""
+                        <red>An error occurred while trying to give you your special.
+                        <red>Please report the following error to an administrator: BASESPECIAL_LISTENER_STACK_IS_NULL
+                        """));
+                return;
+            }
+            player.getPlayer().getInventory().addItem(itemStack);
+
+            // temporary shit solution
+            if (itemStack.getType() == Material.BOW) {
+                player.getPlayer().getInventory().addItem(new ItemStack(Material.ARROW, 1));
+            }
+
+            player.sendMessage(MM.announce("<gray>You have received the %s" + "<gray>!").replaceText(TextReplacementConfig.builder().match("%s").replacement(itemStack.getItemMeta().displayName()).build()));
+            amount--;
         }
-        player.getPlayer().getInventory().addItem(itemStack);
-
-        // temporary shit solution
-        if (itemStack.getType() == Material.BOW) {
-            player.getPlayer().getInventory().addItem(new ItemStack(Material.ARROW, 1));
-        }
-
-        player.sendMessage(MM.deserialize("<gray>You have received the %s" + "<gray>!").replaceText(TextReplacementConfig.builder().match("%s").replacement(itemStack.getItemMeta().displayName()).build()));
     }
 }

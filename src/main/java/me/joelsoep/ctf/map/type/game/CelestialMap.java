@@ -116,7 +116,7 @@ public class CelestialMap extends GameMap {
         }
 
         if (location.getBlock().getType() == Material.HEAVY_WEIGHTED_PRESSURE_PLATE) {
-            player.setVelocity(player.getLocation().getDirection().add(new Vector(0, 1, 0)).multiply(3.4));
+            player.setVelocity(player.getLocation().getDirection().add(new Vector(0, 1, 0)).multiply(4));
         }
 
         if (location.getBlock().getType() == Material.LIGHT_WEIGHTED_PRESSURE_PLATE || location.getBlock().getType() == Material.GOLD_BLOCK) {

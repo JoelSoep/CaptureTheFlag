@@ -6,12 +6,15 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
 
+import java.util.List;
+
 @Data
 public abstract class Cosmetic implements Listener {
     private final String name;
     private final CosmeticType type;
     private CosmeticRarity rarity;
     private Component displayName;
+    private List<Component> lore;
     private Material logo;
 
     protected Cosmetic(String name, CosmeticType type) {

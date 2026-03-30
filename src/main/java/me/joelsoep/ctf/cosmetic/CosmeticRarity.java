@@ -3,6 +3,7 @@ package me.joelsoep.ctf.cosmetic;
 import lombok.Getter;
 
 @Getter
+// TODO: refactor to 2 rarity system
 public enum CosmeticRarity {
     COMMON("<#20bd32>", "\uuE001"),
     RARE("<#243ac9>", "\uE002"),

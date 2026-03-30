@@ -7,6 +7,7 @@ import me.joelsoep.ctf.map.MapManager;
 import me.joelsoep.ctf.map.MapState;
 import org.bukkit.GameRule;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -34,6 +35,10 @@ public class WorldLoadListener implements Listener {
          * The world could load earlier than the map was initialized, or the map loads earlier than the world was initialized.
          * To handle this, I attempt to load them on world load as well as on map initialization.
          */
+
+        for (Entity entity : world.getEntities()) {
+            entity.remove();
+        }
 
         MapManager.getGameMaps().forEach(map -> {
             World mapWorld = map.getWorld();

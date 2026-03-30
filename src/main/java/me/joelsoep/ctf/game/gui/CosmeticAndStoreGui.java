@@ -34,8 +34,8 @@ public class CosmeticAndStoreGui extends ChestGui {
         this.cosmetics = new StaticPane(3, 1, 1, 1, Pane.Priority.HIGHEST);
         this.store = new StaticPane(5, 1, 1, 1, Pane.Priority.HIGHEST);
 
-        this.cosmetics.addItem(getCosmeticsItem(), 0, 0);
-        this.store.addItem(getStoreItem(), 0, 0);
+        this.cosmetics.addItem(getStoreItem(), 0, 0);
+        this.store.addItem(getCosmeticsItem(), 0, 0);
         this.addPane(cosmetics);
         this.addPane(store);
         this.show(player.getPlayer());

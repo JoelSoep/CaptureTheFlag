@@ -41,6 +41,7 @@ public class AcidArrow extends BaseSpecial<EntityShootBowEvent> {
     public ItemStack getItemStack() {
         return new ItemBuilder(Material.BOW)
                 .setName(MM.deserialize("<aqua>Acid Bow"))
+                .setLore(List.of(MM.deserialize("<gray>Make blocks fall by hitting them with an arrow!"), MM.deserialize("<gray>Maximum chain: 24")))
                 .setHealth(1)
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_STORED_ENCHANTS)
                 .enchant(Enchantment.MENDING, 1, true)

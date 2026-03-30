@@ -1,6 +1,5 @@
 package me.joelsoep.ctf.game.kit.kits;
 
-import com.destroystokyo.paper.Namespaced;
 import io.papermc.paper.block.BlockPredicate;
 import io.papermc.paper.datacomponent.DataComponentBuilder;
 import io.papermc.paper.datacomponent.DataComponentTypes;

@@ -4,6 +4,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.FindOneAndUpdateOptions;
 import com.mongodb.client.model.Updates;
 import lombok.Data;
+import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.database.MongoManager;
 import me.joelsoep.ctf.database.subscriber.IFindOneSubscriber;
@@ -17,7 +18,9 @@ import org.jetbrains.annotations.Nullable;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -30,7 +33,7 @@ public class OfflineCTFPlayer {
     private final @Nullable CTFPlayer ctfPlayer;
     private final UUID uuid;
     private final @Nullable String name;
-    private HashMap<CosmeticType, String> ownedCosmetics = new HashMap<>();
+    private List<Cosmetic> ownedCosmetics = new ArrayList<>();
     private Integer kills = 0;
     private Integer deaths = 0;
     private Integer captures = 0;
@@ -41,14 +44,16 @@ public class OfflineCTFPlayer {
 
     private boolean fetched = false;
 
-    public OfflineCTFPlayer(UUID uuid) {
+    public OfflineCTFPlayer(UUID uuid, boolean fetch) {
         this.offlinePlayer = Bukkit.getOfflinePlayer(uuid);
         this.uuid = uuid;
         this.name = offlinePlayer.getName();
 
         // nullable
         this.ctfPlayer = PlayerService.getPlayer(offlinePlayer.getName());
-        fetchData().join();
+        if (fetch) {
+            fetchData().join();
+        }
     }
 
     public OfflineCTFPlayer(OfflinePlayer offlinePlayer) {
@@ -59,6 +64,14 @@ public class OfflineCTFPlayer {
         // nullable
         this.ctfPlayer = PlayerService.getPlayer(offlinePlayer.getName());
         fetchData().join();
+    }
+
+    public OfflineCTFPlayer(UUID uuid) {
+        this.offlinePlayer = Bukkit.getOfflinePlayer(uuid);
+        this.uuid = uuid;
+        this.name = offlinePlayer.getName();
+
+        this.ctfPlayer = PlayerService.getPlayer(offlinePlayer.getName());
     }
 
     public boolean isOnline() {

@@ -33,7 +33,7 @@ public class MM {
     }
 
     public static Component getCoinsMessage() {
-        return MiniMessage.miniMessage().deserialize("<gray>buy more %s<b>Coins</b> <gray>in the store: <yellow><u><click:open_url:'https://store.mcmanhunt.com/'>store.mcmanhunt.com".formatted(CC.GOLD));
+        return MiniMessage.miniMessage().deserialize("<gray>Buy more %s<b>Coins</b> <gray>in the store: <yellow><u><click:open_url:'https://store.mcmanhunt.com/'>store.mcmanhunt.com".formatted(CC.GOLD));
     }
 
 }

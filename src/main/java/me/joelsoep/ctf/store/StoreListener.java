@@ -13,6 +13,7 @@ import me.joelsoep.ctf.player.CTFPlayer;
 import me.joelsoep.ctf.player.PlayerService;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.SoundUtils;
+import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -30,7 +31,11 @@ public class StoreListener implements Listener {
             return;
         }
 
-        player.sendMessage(MM.deserialize("<gray>Creating new order..."));
+        if (transaction.isAdmin()) {
+            return;
+        }
+
+        player.sendMessage(MM.announce("<gray>Creating new order..."));
         announceDebug(player, transaction);
     }
 
@@ -42,7 +47,7 @@ public class StoreListener implements Listener {
             return;
         }
 
-        player.sendMessage(MM.deserialize("<gray>Your transaction has been cancelled."));
+        player.sendMessage(MM.announce("<gray>Your transaction has been cancelled."));
         player.sendMessage(MM.deserialize("<gray>Reason: %s".formatted(event.getReason())));
         announceDebug(player, transaction);
     }
@@ -59,7 +64,7 @@ public class StoreListener implements Listener {
 
         if (!prefix.toUpperCase(Locale.ROOT).equals("COSMETIC")) {
             player.sendMessage(MM.announce("<red>The item you bought was not of initial type COSMETIC! Please report this to an administrator!!"));
-            player.sendMessage(MM.announce("<red>Please specify the following ID: %s".formatted(transaction.getUuid().toString())));
+            player.sendMessage(MM.deserialize("<red>Please specify the following ID: %s".formatted(transaction.getUuid().toString())));
             LogModule.ECONOMY.log("transaction with uuid %s was not with prefix cosmetic!!!!!!!".formatted(transaction.getUuid().toString()));
             return;
         }
@@ -69,11 +74,19 @@ public class StoreListener implements Listener {
 
         Cosmetic cosmetic = Main.getCosmeticsManager().getCosmetic(type, name);
         if (cosmetic == null) {
-            player.sendMessage(MM.deserialize("An error occurred while trying to give you your item. Please rejoin the server."));
+            player.sendMessage(MM.announce("<red>An error occurred while trying to give you your item. Please rejoin the server so your cosmetics can reload."));
+            player.playSound(SoundUtils.getRewardSound());
+            announceDebug(player, transaction);
+            return;
         } else {
             player.getData().getOwnedCosmetics().add(cosmetic);
         }
-        player.sendMessage(MM.deserialize("<green>Completed transaction."));
+        player.sendMessage(MM.announce("<green>You've received the %s<green>!")
+                .replaceText(TextReplacementConfig.builder()
+                                .match("%s")
+                                .replacement(cosmetic.getDisplayName())
+                                .build()));
+
         player.playSound(SoundUtils.getRewardSound());
         announceDebug(player, transaction);
     }

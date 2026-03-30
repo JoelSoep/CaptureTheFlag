@@ -95,8 +95,5 @@ public class GameEndListener implements Listener {
         loser.getPlayers().clear();
         LogModule.GAME.log("Ending game. GameEndListener was triggered.");
         new ResetGameTask(game);
-        if (Main.getSettings().isRestartAfterGame()) {
-            Main.getInstance().getServer().restart();
-        }
     }
 }

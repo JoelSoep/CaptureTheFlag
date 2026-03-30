@@ -48,10 +48,11 @@ public class TransactionManager {
     private static final String SERVER_ID = LocalConfig.PROXY_MODE_ID != null ? LocalConfig.PROXY_MODE_ID : "NO_ID_FOUND";
     private static final long LOCK_TIMEOUT_MS = 5 * 60 * 1000; // 5 minutes
 
-    public static Transaction createTransaction(UUID userId, StoreItem item, String reason) {
+    public static Transaction createTransaction(UUID userId, StoreItem item, String reason, boolean admin) {
         CompletableFuture<Boolean> future = new CompletableFuture<>();
         int amount = (int) Math.round(item.getPrice() * item.getDiscountCoefficient());
         Transaction transaction = new Transaction(userId, item.getPrefix() + item.getName(), amount, reason);
+        transaction.setAdmin(admin);
         LogModule.CORE.log("Creating new transaction with uuid %s".formatted(transaction.getUuid()));
 
         TransactionCreateEvent event = new TransactionCreateEvent(transaction);
@@ -67,7 +68,8 @@ public class TransactionManager {
                 .append("state", TransactionState.PENDING.toString())
                 .append("locked_by", SERVER_ID)
                 .append("lock_time", System.currentTimeMillis())
-                .append("date", transaction.getDate());
+                .append("date", transaction.getDate())
+                .append("isAdmin", transaction.isAdmin());
 
         MongoManager.insertOne(MongoManager.getCollection("transaction"), document, new IFindOneSubscriber<>() {
             @Override
@@ -101,18 +103,17 @@ public class TransactionManager {
 
                                 @Override
                                 public void onError(Throwable t) {
+                                    postWebhook(transaction, null);
                                     cancelTransaction(transaction, "An error occurred while updating deduction state.");
                                     t.printStackTrace();
                                 }
 
                                 @Override
                                 public void onComplete() {
-
+                                    postWebhook(transaction, null);
                                 }
                             });
                 }
-
-                postWebhook(transaction, null);
 
             }
 
@@ -445,6 +446,10 @@ public class TransactionManager {
     }
 
     private static boolean deduct(Transaction transaction) {
+        if (transaction.isAdmin()) {
+            return true;
+        }
+
         Player player = Bukkit.getPlayer(transaction.getUserId());
         if (player == null) {
             return false;
@@ -468,7 +473,7 @@ public class TransactionManager {
             }
             EconomyManager.increment(ctfPlayer, amount);
         } else {
-            OfflineCTFPlayer offlineCTFPlayer = new OfflineCTFPlayer(playerUuid);
+            OfflineCTFPlayer offlineCTFPlayer = new OfflineCTFPlayer(playerUuid, true);
             EconomyManager.increment(offlineCTFPlayer, amount);
         }
         LogModule.ECONOMY.log("Refunded transaction %s for player %s.".formatted(transaction.getUuid().toString(), playerUuid.toString()));

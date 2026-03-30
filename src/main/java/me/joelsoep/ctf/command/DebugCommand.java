@@ -24,6 +24,7 @@ import me.joelsoep.ctf.game.board.ActionbarPriority;
 import me.joelsoep.ctf.game.gui.CosmeticStoreGUI;
 import me.joelsoep.ctf.game.gui.GameSettingsGui;
 import me.joelsoep.ctf.game.gui.TestGui;
+import me.joelsoep.ctf.game.gui.admin.SpecialsListGUI;
 import me.joelsoep.ctf.game.kit.BaseKit;
 import me.joelsoep.ctf.game.setting.GameSetting;
 import me.joelsoep.ctf.game.special.BaseSpecial;
@@ -43,7 +44,6 @@ import me.joelsoep.ctf.server.packet.packets.RetrievePlayerPacket;
 import me.joelsoep.ctf.store.StoreCosmeticItem;
 import me.joelsoep.ctf.store.StoreItem;
 import me.joelsoep.ctf.store.StoreManager;
-import me.joelsoep.ctf.store.items.cosmetic.deathMessage.TookLItem;
 import me.joelsoep.ctf.util.Hotbar;
 import me.joelsoep.ctf.util.MM;
 import me.joelsoep.ctf.util.test.DisplayEntities;
@@ -526,15 +526,6 @@ public final class DebugCommand extends BaseCommand {
         player.sendMessage(MM.deserialize("<gray>Added message to %s's waiting system messages.".formatted(target.getPlayer().getName())));
     }
 
-    @Subcommand("earlystorepurchasetest")
-    public void earlyStorePurchaseTest(Player player) {
-        CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
-        if (ctfPlayer == null) {
-            return;
-        }
-        StoreManager.purchase(new TookLItem(), ctfPlayer);
-    }
-
     @Subcommand("store")
     public void openStore(Player player) {
         CTFPlayer ctfPlayer = PlayerService.getPlayer(player);
@@ -689,6 +680,7 @@ public final class DebugCommand extends BaseCommand {
         player.sendMessage("Done");
     }
 
+    // mfw revamp? dont think this was the actual idea lol
     @Subcommand("checkplus")
     public void checkPlus(Player player, @Optional OnlinePlayer onlinePlayer) {
         if (onlinePlayer == null) {
@@ -765,5 +757,10 @@ public final class DebugCommand extends BaseCommand {
         StoreManager.getITEMS_INCLUDING_UNAVAILABLE().forEach(item -> {
             player.sendMessage(item.getName());
         });
+    }
+
+    @Subcommand("viewspecials")
+    public void viewspecials(Player player) {
+        new SpecialsListGUI(player);
     }
 }

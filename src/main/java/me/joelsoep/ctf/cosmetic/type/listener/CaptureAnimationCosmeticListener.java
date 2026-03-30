@@ -1,11 +1,13 @@
 package me.joelsoep.ctf.cosmetic.type.listener;
 
+import me.joelsoep.ctf.Main;
 import me.joelsoep.ctf.animation.Animation;
 import me.joelsoep.ctf.cosmetic.Cosmetic;
 import me.joelsoep.ctf.cosmetic.type.CaptureAnimationCosmetic;
 import me.joelsoep.ctf.cosmetic.type.CosmeticType;
 import me.joelsoep.ctf.game.event.FlagCaptureEvent;
 import me.joelsoep.ctf.player.CTFPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,6 +30,11 @@ public class CaptureAnimationCosmeticListener implements Listener {
 
         Animation animation = animationCosmetic.getAnimation();
         animation.setLocation(flagLocation);
-        animation.play();
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                animation.play();
+            }
+        }, 5L);
     }
 }

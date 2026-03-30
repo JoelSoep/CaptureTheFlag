@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Mirror extends BaseSpecial<DummyEvent> {
     public Mirror() {
@@ -30,6 +31,7 @@ public class Mirror extends BaseSpecial<DummyEvent> {
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.displayName(MM.deserialize("<dark_purple>Mirror"));
         item.setItemMeta(meta);
+        item.lore(List.of(MM.deserialize("<dark_purple>Reflects player-specific items!"), MM.deserialize(""), MM.deserialize("<gray>Hold in your main- or offhand to use")));
         return item;
     }
 

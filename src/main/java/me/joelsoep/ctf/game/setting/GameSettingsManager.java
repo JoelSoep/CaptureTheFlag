@@ -98,6 +98,15 @@ public class GameSettingsManager {
         return votes;
     }
 
+    public int getTotalVotesFor(GameSetting setting) {
+        HashMap<CTFPlayer, Object> settingVotes = votes.get(setting);
+        if (settingVotes == null) {
+            return 0;
+        }
+
+        return settingVotes.size();
+    }
+
     public void announceDecisions(Audience audience) {
         List<String> messages = new ArrayList<>();
         for (GameSetting setting : settings.keySet()) {

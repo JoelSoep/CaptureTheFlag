@@ -22,6 +22,8 @@ public class Transaction {
    private TransactionState state;
    @Setter
    private boolean deducted;
+   @Setter
+   private boolean admin;
 
     public Transaction(@NotNull UUID userId, @NotNull String itemName, int amount, @NotNull String reason) {
         this.uuid = UUID.randomUUID();
@@ -32,6 +34,7 @@ public class Transaction {
         this.reason = reason;
         this.state = TransactionState.PENDING;
         this.deducted = false;
+        this.admin = false;
     }
 
     public Transaction(@NotNull UUID userId, @NotNull UUID uuid, @NotNull String itemName, int amount, @NotNull Date date, @NotNull String reason) {
@@ -43,6 +46,7 @@ public class Transaction {
         this.reason = reason;
         this.state = TransactionState.PENDING;
         this.deducted = false;
+        this.admin = false;
     }
 
     public static Transaction fromDocument(Document document) {
@@ -54,9 +58,11 @@ public class Transaction {
         Date date = document.getDate("date");
         TransactionState state = TransactionState.valueOf(document.getString("state"));
         boolean deducted = document.getBoolean("deducted");
+        boolean admin = document.getBoolean("isAdmin");
 
         Transaction transaction = new Transaction(userId, uuid, itemName, amount, date, reason);
         transaction.setState(state);
+        transaction.setAdmin(admin);
         transaction.setDeducted(deducted);
         return transaction;
     }

@@ -51,10 +51,11 @@ public class MapSettingsGui extends ChestGui {
             ItemStack item = new ItemStack(material);
             ItemMeta meta = item.getItemMeta();
             List<Component> lore = new ArrayList<>();
+            GameSettingsManager manager = player.getGame().getGameSettings();
             meta.displayName(MM.deserialize("<gray>" + map.getName()));
             lore.add(MM.deserialize("<gray>Left-click to change"));
+            lore.add(MM.deserialize("<gray>%s votes(s)".formatted(manager.getVotesFor(GameSetting.MAP, map))));
 
-            GameSettingsManager manager = player.getGame().getGameSettings();
             Object value = manager.getVote(player, GameSetting.MAP);
             if (value != null && manager.hasVotedFor(player, GameSetting.MAP, map)) {
                 meta.addEnchant(Enchantment.UNBREAKING, 1, true);

@@ -24,6 +24,10 @@ public class MapGameSettingImpl implements GameSettingImpl<GameStartEvent>, List
     public void handle(GameStartEvent event) {
         Game game = event.getGame();
         GameSettingsManager manager = game.getGameSettings();
+        if (manager.getTotalVotesFor(GameSetting.MAP) == 0) {
+            return;
+        }
+
         GameMap map = (GameMap) manager.getSetting(GameSetting.MAP);
         MapManager.registerMapToGame(map, game);
     }

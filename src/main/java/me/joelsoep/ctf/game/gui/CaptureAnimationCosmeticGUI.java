@@ -25,6 +25,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CaptureAnimationCosmeticGUI extends ChestGui {
@@ -74,11 +75,21 @@ public class CaptureAnimationCosmeticGUI extends ChestGui {
                 displayName = MM.deserialize(cosmetic.getName());
             }
 
-            List<Component> lines = List.of(
-                    MM.deserialize("<gray>Left-Click to equip"),
-                    MM.deserialize("<gray>Shift-Left-Click to preview"),
-                    MM.deserialize("<gray>Right-Click to change color")
-            );
+            List<Component> lines;
+            if (cosmetic.getLore() == null) {
+                lines = List.of(
+                        MM.deserialize("<gray>Left-Click to equip"),
+                        MM.deserialize("<gray>Shift-Left-Click to preview"),
+                        MM.deserialize("<gray>Right-Click to change color")
+                );
+            } else {
+                 List<Component> list = new ArrayList<>(List.copyOf(cosmetic.getLore()));
+                 list.add(MM.deserialize(""));
+                 list.add(MM.deserialize("<gray>Left-Click to equip"));
+                 list.add(MM.deserialize("<gray>Shift-Left-Click to preview"));
+                 list.add(MM.deserialize("<gray>Right-Click to change color"));
+                 lines = list;
+            }
 
             ItemStack itemStack = new ItemBuilder(logo)
                     .setName(color.append(displayName).append(MM.deserialize("  <#FFFFFF>" + cosmetic.getRarity().getDisplayName())))
